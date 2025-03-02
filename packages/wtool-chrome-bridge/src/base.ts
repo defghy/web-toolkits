@@ -43,8 +43,9 @@ class BridgeMessageFormat {
   }
 }
 
-type RequestMessage = ReturnType<BridgeMessageFormat['makeRequest']>
-type ResponseMessage = ReturnType<BridgeMessageFormat['makeResponse']>
+type ExtraMessage = { lastSendBy?: Plat }
+type RequestMessage = ReturnType<BridgeMessageFormat['makeRequest']> & ExtraMessage
+type ResponseMessage = ReturnType<BridgeMessageFormat['makeResponse']> & ExtraMessage
 
 /**
  * 基础Bridge类

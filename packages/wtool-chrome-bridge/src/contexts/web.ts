@@ -15,14 +15,18 @@ export class WebBridge extends BaseBridge {
       const message = event.data
       if (!this.isBridgeMessage(message)) return
 
-      // 只处理发给Web页面的消息
-      if (message.target !== this.plat) return
+      const { target, type, lastSendBy } = message
+      // 不处理自己发出去的消息
+      if (lastSendBy === this.plat) return
 
-      if (message.type === MsgDef.REQUEST) {
+      // 只处理发给Web页面的消息
+      if (target !== this.plat) return
+
+      if (type === MsgDef.REQUEST) {
         this.handleRequest({
           request: message,
           sendResponse: response => {
-            window.postMessage(response, '*')
+            this.sendMessage(response)
           },
         })
       } else {
@@ -32,6 +36,7 @@ export class WebBridge extends BaseBridge {
   }
 
   async sendMessage(message) {
+    message.lastSendBy = this.plat
     return window.postMessage(message, '*')
   }
 }

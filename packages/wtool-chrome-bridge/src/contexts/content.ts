@@ -17,8 +17,8 @@ export class ContentBridge extends BaseBridge {
       const message = event.data
       if (!this.isBridgeMessage(message)) return
 
-      const { type, target, needResponse, byContent } = message
-      if (byContent) {
+      const { type, target, needResponse, lastSendBy } = message
+      if (lastSendBy === this.plat) {
         return
       }
       // 如果目标是content script，直接处理
@@ -72,11 +72,12 @@ export class ContentBridge extends BaseBridge {
     })
   }
 
+  // 发送web时需要排除content
   send2Web(message) {
     if (message.target !== Plat.web) {
       return
     }
-    message.byContent = true
+    message.lastSendBy = this.plat
     window.postMessage(message, '*')
   }
 
