@@ -1,0 +1,9 @@
+packages:
+  # all packages in subdirs of packages/
+  - 'packages/*'
+  - 'platforms/*'
+  - 'tools/*'
+  - 'libs/*'
+  # exclude packages that are inside test directories
+  - '!**/test/**'
+  - '!**/examples/**'

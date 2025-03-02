@@ -1,0 +1,39 @@
+{
+  "name": "@wtool/chrome-bridge",
+  "private": true,
+  "version": "0.0.1",
+  "description": "chrome extension and iframe promise bridge",
+  "keywords": [
+    "chrome",
+    "bridge",
+    "promise",
+    "iframe"
+  ],
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "pub": "node scripts/publish.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "lodash-es": "^4.17.21"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite": "^5.4.11",
+    "typescript": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kxxxlfe/vue-pixel-core.git"
+  }
+}
