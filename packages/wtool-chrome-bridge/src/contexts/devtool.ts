@@ -38,6 +38,6 @@ export class DevtoolBridge extends BaseBridge {
   }
 
   async sendMessage(message) {
-    return window.postMessage(message, '*')
+    return chrome.tabs.sendMessage(this.tabId, message, {})
   }
 }
