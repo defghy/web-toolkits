@@ -13,6 +13,7 @@
     "rimraf": "3.0.2"
   },
   "devDependencies": {
+    "@types/node": "^22.13.9",
     "@types/chrome": "^0.0.268",
     "@types/wicg-file-system-access": "",
     "execa": "^8.0.1",

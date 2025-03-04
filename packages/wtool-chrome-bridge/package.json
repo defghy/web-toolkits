@@ -1,22 +1,24 @@
 {
-  "name": "@wtool/chrome-bridge",
+  "name": "@yuhufe/browser-bridge",
   "private": true,
   "version": "0.0.1",
-  "description": "chrome extension and iframe promise bridge",
+  "description": "chrome extension and iframe bridge which support promise",
   "keywords": [
     "chrome",
     "bridge",
     "promise",
-    "iframe"
+    "iframe",
+    "postMessage"
   ],
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "main": "./dist/wtool-bridge.cjs.js",
+  "module": "./dist/wtool-bridge.esm.js",
   "files": [
     "dist/*",
     "src/*"
   ],
   "scripts": {
-    "build": "vite build",
+    "dev": "vite build --watch --mode development",
+    "build": "vite build --mode production",
     "pub": "node scripts/publish.mjs"
   },
   "publishConfig": {
@@ -30,10 +32,11 @@
   "dependencies": {},
   "devDependencies": {
     "vite": "^5.4.11",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite-plugin-dts": "^4.5.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kxxxlfe/vue-pixel-core.git"
+    "url": "https://github.com/defghy/web-toolkits.git"
   }
 }

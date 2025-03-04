@@ -20,10 +20,8 @@ const run = async function () {
   const newJson = JSON.parse(JSON.stringify(packageJson))
 
   Object.assign(newJson, {
-    name: 'chrome-rpc',
+    name: '@yuhufe/browser-bridge',
     private: false,
-    main: 'dist/chrome-rpc.umd.js',
-    module: 'dist/chrome-rpc.es.js',
   })
   Object.keys(newJson.dependencies).forEach(key => {
     if (key.startsWith('@aweb')) {
