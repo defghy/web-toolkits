@@ -10,8 +10,8 @@
     "iframe",
     "postMessage"
   ],
-  "main": "./dist/wtool-bridge.cjs.js",
-  "module": "./dist/wtool-bridge.esm.js",
+  "main": "./dist/browser-bridge.cjs.js",
+  "module": "./dist/browser-bridge.esm.js",
   "files": [
     "dist/*",
     "src/*"
