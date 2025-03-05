@@ -87,6 +87,10 @@ export class BaseBridge extends BridgeMessageFormat {
   }) {
     if (request.type !== MsgDef.REQUEST) return false
 
+    if (request.source === this.plat) {
+      return console.error('not support invoke own api')
+    }
+
     // 检查是否有对应的路由处理器
     const handler = this.handlers.get(request.path)
     if (!handler) {
