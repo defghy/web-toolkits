@@ -15,7 +15,7 @@ class BridgeMessageFormat {
     return {
       type: MsgDef.REQUEST,
       source: this.plat,
-      target: Object.values(Plat).find(p => path.startsWith(p)),
+      target: Object.values(Plat).find(p => path.startsWith(p)) || path.split('/')[0],
       requestId: `${path}_${uuid()}`,
       params,
       path,
