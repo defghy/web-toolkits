@@ -2,7 +2,7 @@ import { promises as fsp } from 'fs'
 import path from 'path'
 import { $ } from 'execa'
 
-import packageJson from '../package.json' assert { type: 'json' }
+import packageJson from '../package.json' with { type: 'json' };
 
 // 修改package.json
 const changePackage = function (newJson) {
