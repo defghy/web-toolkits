@@ -1,6 +1,17 @@
 # Chrome bridge
 
-支持`Promise`的`运行环境(content script, popup, devtool, web, iframe, service-worker)`的通信方式，封装了`chrome.runtime.sendMessage`与`window.postMessage`
+A `Proimse` communication method between `runtime envs`, encapsulating `chrome.runtime.sendMessage` and `window.postMessage`
+
+
+# 运行环境
+- web: main page
+- [content script](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts)
+- [popup](https://developer.chrome.com/docs/extensions/develop/ui/add-popup)
+- [devtool](https://developer.chrome.com/docs/extensions/how-to/devtools/extend-devtools)
+- [extension service worker](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/basics)
+- iframe
+
+![image](./assets/runtime_envs.png)
 
 # Usage
 
@@ -27,22 +38,14 @@ const piniaInfo = await devtoolBridge.request(`${Plat.web}/getPiniaInfo`, { key:
 console.log(piniaInfo); // { a: 1 }
 ```
 
-注意：
-- 每个bridge在当前执行环境只能`new`1次，否则会重复监听事件
-- 如果需要和`web`环境进行通信，必须初始化`ContentBridge`，因为需要通过`content script`和`web`通信
+notice：
+- `request` and `on` should use same `path`
+- `path` must be start with `${Plat.*}` format，implied who's `server`
+- Every bridge shoule init once in his runtime，because `addEventListener` should call once
+- If need request `web`，must `new` `ContentBridge`，because we need `content script` proxy `web`
 
 # Install
 
 ```
 npm install @yuhufe/browser-bridge
 ```
-
-# 运行环境
-- web: tab页面
-- [content script](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts)
-- [popup](https://developer.chrome.com/docs/extensions/develop/ui/add-popup)
-- [devtool](https://developer.chrome.com/docs/extensions/how-to/devtools/extend-devtools)
-- [extension service worker](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/basics)
-- iframe
-
-![image](./assets/runtime_envs.png)
