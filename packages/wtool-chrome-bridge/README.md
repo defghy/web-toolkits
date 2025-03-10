@@ -3,13 +3,14 @@
 A `Proimse` communication method between `runtime envs`, encapsulating `chrome.runtime.sendMessage` and `window.postMessage`
 
 
-# 运行环境
+# Runtime Envs
 - web: main page
 - [content script](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts)
 - [popup](https://developer.chrome.com/docs/extensions/develop/ui/add-popup)
 - [devtool](https://developer.chrome.com/docs/extensions/how-to/devtools/extend-devtools)
 - [extension service worker](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/basics)
-- iframe
+- iframe: `<iframe src="...">`
+- opener: `window.open()`
 
 ![image](./assets/runtime_envs.png)
 
@@ -41,7 +42,7 @@ console.log(piniaInfo); // { a: 1 }
 notice：
 - `request` and `on` should use same `path`
 - `path` must be start with `${Plat.*}` format，implied who's `server`
-- Every bridge shoule init once in his runtime，because `addEventListener` should call once
+- Every bridge should init only once，because `addEventListener` should listen once
 - If need request `web`，must `new` `ContentBridge`，because we need `content script` proxy `web`
 
 # Install
