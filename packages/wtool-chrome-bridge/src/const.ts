@@ -11,4 +11,5 @@ export enum Plat {
   devtool = 'wtc/devtool', // devtool主页面
   background = 'wtc/background',
   iframe = 'wtc/iframe',
+  iframeTop = 'wtc/iframe',
 }

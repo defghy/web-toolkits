@@ -11,28 +11,34 @@ export class WebBridge extends BaseBridge {
   }
 
   init() {
-    window.addEventListener('message', event => {
-      const message = event.data
-      if (!this.isBridgeMessage(message)) return
+    window.addEventListener('message', this.onMessage)
+  }
 
-      const { target, type, lastSendBy } = message
-      // 不处理自己发出去的消息
-      if (lastSendBy === this.plat) return
+  onMessage(event: MessageEvent<any>) {
+    const message = event.data
+    if (!this.isBridgeMessage(message)) return
 
-      // 只处理发给Web页面的消息
-      if (target !== this.plat) return
+    const { target, type, lastSendBy } = message
+    // 不处理自己发出去的消息
+    if (lastSendBy === this.plat) return
 
-      if (type === MsgDef.REQUEST) {
-        this.handleRequest({
-          request: message,
-          sendResponse: response => {
-            this.sendMessage(response)
-          },
-        })
-      } else {
-        this.handleResponse({ response: message })
-      }
-    })
+    // 只处理发给Web页面的消息
+    if (target !== this.plat) return
+
+    if (type === MsgDef.REQUEST) {
+      this.handleRequest({
+        request: message,
+        sendResponse: response => {
+          this.sendMessage(response)
+        },
+      })
+    } else {
+      this.handleResponse({ response: message })
+    }
+  }
+
+  destroy() {
+    window.removeEventListener('message', this.onMessage)
   }
 
   async sendMessage(message) {
