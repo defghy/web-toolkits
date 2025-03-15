@@ -4,23 +4,23 @@ import { Plat, MsgDef } from '../const'
 /**
  * Web页面Bridge
  */
-let hostSingle: IFrameHost
-export class IFrameHost extends WebBridge {
+let topSingle: IFrameTop
+export class IFrameTop extends WebBridge {
   static frameMap = new Map<string, HTMLIFrameElement>()
 
   constructor({ frameKey, frameEl }) {
-    IFrameHost.frameMap.set(frameKey, frameEl)
-    if (hostSingle) {
-      return hostSingle
+    IFrameTop.frameMap.set(frameKey, frameEl)
+    if (topSingle) {
+      return topSingle
     }
     super({ plat: Plat.iframeTop })
-    hostSingle = this
+    topSingle = this
   }
 
   async sendMessage(message) {
     message.lastSendBy = this.plat
     const frameKey = message.path.split('/')[0]
-    const frameDom = IFrameHost.frameMap.get(frameKey)
+    const frameDom = IFrameTop.frameMap.get(frameKey)
     return frameDom?.contentWindow?.postMessage(message, '*')
   }
 }
