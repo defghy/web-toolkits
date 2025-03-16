@@ -10,11 +10,11 @@ export class WebBridge extends BaseBridge {
     this.init()
   }
 
-  init() {
+  init = () => {
     window.addEventListener('message', this.onMessage)
   }
 
-  onMessage(event: MessageEvent<any>) {
+  onMessage = (event: MessageEvent<any>) => {
     const message = event.data
     if (!this.isBridgeMessage(message)) return
 
@@ -37,7 +37,7 @@ export class WebBridge extends BaseBridge {
     }
   }
 
-  destroy() {
+  destroy = () => {
     window.removeEventListener('message', this.onMessage)
   }
 

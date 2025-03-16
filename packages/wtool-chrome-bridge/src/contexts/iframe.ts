@@ -2,31 +2,42 @@ import { WebBridge } from './web'
 import { Plat, MsgDef } from '../const'
 
 /**
- * Web页面Bridge
+ * IFrame，使用单例
  */
-let topSingle: IFrameTop
 export class IFrameTop extends WebBridge {
-  static frameMap = new Map<string, HTMLIFrameElement>()
+  static frameMap = new Map<string, HTMLIFrameElement | (() => HTMLIFrameElement)>()
+  static singleton: IFrameTop | null
 
   constructor({ frameKey, frameEl }) {
     IFrameTop.frameMap.set(frameKey, frameEl)
-    if (topSingle) {
-      return topSingle
+    if (IFrameTop.singleton) {
+      return IFrameTop.singleton
     }
     super({ plat: Plat.iframeTop })
-    topSingle = this
+    IFrameTop.singleton = this
   }
 
   async sendMessage(message) {
     message.lastSendBy = this.plat
     const frameKey = message.path.split('/')[0]
-    const frameDom = IFrameTop.frameMap.get(frameKey)
+    const target = IFrameTop.frameMap.get(frameKey)
+    const frameDom = typeof target === 'function' ? target() : target
     return frameDom?.contentWindow?.postMessage(message, '*')
+  }
+
+  destroy() {
+    super.destroy()
+    IFrameTop.frameMap.clear()
+    IFrameTop.singleton = null
   }
 }
 
 export class IFrame extends WebBridge {
+  static singleton: IFrame
   constructor({ frameKey }) {
+    if (IFrame.singleton) {
+      return IFrame.singleton
+    }
     super({ plat: frameKey })
   }
 

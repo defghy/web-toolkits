@@ -62,10 +62,8 @@ export class BaseBridge extends BridgeMessageFormat {
 
   /**
    * 注册路由处理器
-   * @param {string} route - 路由路径
-   * @param {Function} handler - 处理函数
    */
-  on(route, handler) {
+  on(route: string, handler: Function) {
     this.handlers.set(route, handler)
   }
 
@@ -73,7 +71,7 @@ export class BaseBridge extends BridgeMessageFormat {
    * 注销路由处理器
    * @param {string} route - 路由路径
    */
-  off(route) {
+  off(route: string) {
     this.handlers.delete(route)
   }
 
