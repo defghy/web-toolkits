@@ -55,20 +55,17 @@ export class ContentBridge extends BaseBridge {
       if (target === this.plat) {
         // 如果是发给content script的请求，处理它
         if (type === MsgDef.REQUEST) {
-          return this.handleRequest({ request: message, sendResponse })
+          this.handleRequest({ request: message, sendResponse })
+          return true
         } else {
           this.handleResponse({ response: message })
-          return false
         }
       }
 
       // 转发消息
       if (message.target === Plat.web) {
         this.send2Web(message)
-        return false
       }
-
-      return false
     })
   }
 
