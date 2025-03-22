@@ -37,7 +37,7 @@ export class WebBridge extends BaseBridge {
     }
   }
 
-  destroy = () => {
+  destroy() {
     window.removeEventListener('message', this.onMessage)
   }
 
