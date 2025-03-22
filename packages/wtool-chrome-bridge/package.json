@@ -10,17 +10,18 @@
     "iframe",
     "postMessage"
   ],
-  "main": "./dist/browser-bridge.cjs.js",
-  "module": "./dist/browser-bridge.esm.js",
-  "files": [
-    "dist/*",
-    "src/*"
-  ],
   "scripts": {
     "dev": "vite build --watch --mode development",
     "build": "vite build --mode production",
     "pub": "node scripts/publish.mjs"
   },
+  "main": "./dist/browser-bridge.cjs.js",
+  "module": "./dist/browser-bridge.es.js",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "typings": "dist/browser-bridge.es.d.ts",
   "publishConfig": {
     "access": "public"
   },

@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
         entry: resolve(__dirname, 'src/index.ts'), // 入口文件
         name: 'WebToolBridge', // UMD 模块名称
         fileName: format => `browser-bridge.${format}.js`, // 输出文件名
-        formats: ['esm', 'cjs'],
+        formats: ['es', 'cjs'],
       },
       rollupOptions: {
         // 告诉打包工具 在external配置的 都是外部依赖项  不需要打包
