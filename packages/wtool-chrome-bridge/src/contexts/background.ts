@@ -5,8 +5,8 @@ import { Plat, MsgDef } from '../const'
  * Web页面Bridge
  */
 export class BackgroundBridge extends BaseBridge {
-  constructor() {
-    super({ plat: Plat.background })
+  constructor({ plat }: any = {}) {
+    super({ plat: plat || Plat.background })
     this.init()
   }
 

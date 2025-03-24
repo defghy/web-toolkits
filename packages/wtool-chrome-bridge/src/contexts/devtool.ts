@@ -7,8 +7,8 @@ import { Plat, MsgDef } from '../const'
 export class DevtoolBridge extends BaseBridge {
   tabId = 0
 
-  constructor() {
-    super({ plat: Plat.devtool })
+  constructor({ plat }: any = {}) {
+    super({ plat: plat || Plat.devtool })
     this.tabId = chrome.devtools?.inspectedWindow.tabId
     this.init()
   }

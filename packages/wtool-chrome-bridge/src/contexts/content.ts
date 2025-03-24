@@ -6,8 +6,8 @@ import { Plat, MsgDef } from '../const'
  * 负责中转消息
  */
 export class ContentBridge extends BaseBridge {
-  constructor() {
-    super({ plat: Plat.content })
+  constructor({ plat }: any = {}) {
+    super({ plat: plat || Plat.content })
     this.init()
   }
 
