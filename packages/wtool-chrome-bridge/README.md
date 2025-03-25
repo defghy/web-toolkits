@@ -17,6 +17,9 @@ A `Proimse` communication method between `runtime envs`, encapsulating `chrome.r
 # Usage
 
 ```typescript
+const Plat = {
+  web: 'testDevtoolsWeb'
+};
 const api = {
   getPinia: `${Plat.web}/getPiniaInfo`
 }
@@ -24,11 +27,11 @@ const api = {
 // content script 
 // must be required, if you want to request `web`
 import { ContentBridge } from '@yuhufe/browser-bridge'
-export const contentBridge = new ContentBridge() 
+export const contentBridge = new ContentBridge({ platWeb: Plat.web }) 
 
 // web.js
-import { WebBridge, Plat } from '@yuhufe/browser-bridge'
-export const webBridge = new WebBridge();
+import { WebBridge } from '@yuhufe/browser-bridge'
+export const webBridge = new WebBridge({ plat: Plat.web });
 webBridge.on(api.getPinia, async function({ key }) {
   console.log(key); // 'board'
   return Promise.resolve({ a: 1 });
@@ -36,7 +39,7 @@ webBridge.on(api.getPinia, async function({ key }) {
 
 
 // devtool.js
-import { DevtoolBridge, Plat } from '@yuhufe/browser-bridge'
+import { DevtoolBridge } from '@yuhufe/browser-bridge'
 export const devtoolBridge = new DevtoolBridge() // must be required, if you want to request `web`
 
 const piniaInfo = await devtoolBridge.request(api.getPinia, { key: 'board' });
@@ -46,7 +49,9 @@ console.log(piniaInfo); // { a: 1 }
 notice：
 - `request` and `on` should use same `path`
 - `path` must be start with `${Plat.*}` format，implied who's `server`
-- If use `WebBridge`，must also use `ContentBridge`，because we need `content script` proxy `web`
+- If use `WebBridge`
+  - must also use `ContentBridge`，because we need `content script` proxy `web`
+  - `WebBridge` may have multiple, should set `plat`
 
 # Install
 

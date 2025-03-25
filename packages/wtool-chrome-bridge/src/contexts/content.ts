@@ -6,8 +6,10 @@ import { Plat, MsgDef } from '../const'
  * 负责中转消息
  */
 export class ContentBridge extends BaseBridge {
-  constructor({ plat }: any = {}) {
+  platWeb = Plat.web
+  constructor({ plat, platWeb }: any = {}) {
     super({ plat: plat || Plat.content })
+    this.platWeb = this.platWeb || Plat.web
     this.init()
   }
 
@@ -63,7 +65,7 @@ export class ContentBridge extends BaseBridge {
       }
 
       // 转发消息
-      if (message.target === Plat.web) {
+      if (message.target === this.platWeb) {
         this.send2Web(message)
       }
     })
@@ -71,16 +73,13 @@ export class ContentBridge extends BaseBridge {
 
   // 发送web时需要排除content
   send2Web(message) {
-    if (message.target !== Plat.web) {
-      return
-    }
     message.lastSendBy = this.plat
     window.postMessage(message, '*')
   }
 
   async sendMessage(message) {
     // 发送给web页面
-    if (message.target === Plat.web) {
+    if (message.target === this.platWeb) {
       return this.send2Web(message)
     }
 
