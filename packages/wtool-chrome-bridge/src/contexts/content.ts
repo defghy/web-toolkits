@@ -9,7 +9,7 @@ export class ContentBridge extends BaseBridge {
   platWeb = Plat.web
   constructor({ plat, platWeb }: any = {}) {
     super({ plat: plat || Plat.content })
-    this.platWeb = this.platWeb || Plat.web
+    this.platWeb = platWeb || this.platWeb
     this.init()
   }
 
