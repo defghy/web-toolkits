@@ -31,6 +31,7 @@ export class DevtoolBridge extends BaseBridge {
           request: message,
           sendResponse,
         })
+        return true
       } else {
         this.handleResponse({ response: message })
       }

@@ -19,10 +19,16 @@ export class ContentBridge extends BaseBridge {
       const message = event.data
       if (!this.isBridgeMessage(message)) return
 
-      const { type, target, needResponse, lastSendBy } = message
+      const { type, target, source, needResponse, lastSendBy } = message
       if (lastSendBy === this.plat) {
         return
       }
+
+      // 多套bridge隔离
+      if (source !== this.platWeb) {
+        return
+      }
+
       // 如果目标是content script，直接处理
       if (target === this.plat) {
         if (message.type === MsgDef.REQUEST) {
