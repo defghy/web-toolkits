@@ -46,12 +46,19 @@ const piniaInfo = await devtoolBridge.request(api.getPinia, { key: 'board' });
 console.log(piniaInfo); // { a: 1 }
 ```
 
-notice：
+# Bridges
+
+- `path` should be start with `${plat}`，implied who's `request target`
 - `request` and `on` should use same `path`
-- `path` must be start with `${Plat.*}` format，implied who's `server`
-- If use `WebBridge`
-  - must also use `ContentBridge`，because we need `content script` proxy `web`
-  - `WebBridge` may have multiple, should set `plat`
+
+## WebBridge
+
+- one page may have multiple `WebBridge`, should set unique `plat`
+
+## ContentBridge
+
+- offten use to `proxy` `WebBridge`'s request
+- should set `platWeb` for `namespace`
 
 # Install
 
