@@ -57,7 +57,7 @@ console.log(piniaInfo); // { a: 1 }
 
 ## ContentBridge
 
-- offten use to `proxy` `WebBridge`'s request
+- often use to `proxy` `WebBridge`'s request
 - should set `platWeb` for `namespace`
 
 # Install
