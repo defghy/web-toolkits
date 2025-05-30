@@ -30,6 +30,7 @@ export interface BridgeMessage {
 
 export interface RequestMessage extends BridgeMessage {
   params?: any
+  needResponse?: boolean
 }
 export interface ResponseMessage extends BridgeMessage {
   data?: any

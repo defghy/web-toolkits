@@ -1,4 +1,5 @@
-import { Plat, MsgDef } from './const'
+import { Plat, MsgDef, RequestMessage, ResponseMessage } from './const'
+import { debug } from './utils'
 
 // 唯一ID生成器
 const uuid = () => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
@@ -11,7 +12,7 @@ class BridgeMessageFormat {
   }
 
   // 请求对象
-  makeRequest({ path, params }) {
+  makeRequest({ path, params, options }) {
     return {
       type: MsgDef.REQUEST,
       source: this.plat,
@@ -19,13 +20,14 @@ class BridgeMessageFormat {
       requestId: `${path}_${uuid()}`,
       params,
       path,
+      extra: options,
       needResponse: true,
-    }
+    } as RequestMessage
   }
   // response对象
   makeResponse({ data = null, error, request }: { data?: any; error?: string; request: RequestMessage }) {
-    const { requestId, path, source } = request
-    return {
+    const { requestId, path, source, params } = request
+    const response = {
       type: MsgDef.RESPONSE,
       path,
       source: this.plat,
@@ -36,16 +38,14 @@ class BridgeMessageFormat {
         errmsg: error || undefined,
         data,
       },
-    }
+      extra: request.extra,
+    } as ResponseMessage
+    return response
   }
   isBridgeMessage(msgdata) {
     return msgdata?.requestId && [MsgDef.REQUEST, MsgDef.RESPONSE].includes(msgdata.type)
   }
 }
-
-type ExtraMessage = { lastSendBy?: Plat }
-type RequestMessage = ReturnType<BridgeMessageFormat['makeRequest']> & ExtraMessage
-type ResponseMessage = ReturnType<BridgeMessageFormat['makeResponse']> & ExtraMessage
 
 /**
  * 基础Bridge类
@@ -58,6 +58,7 @@ export class BaseBridge extends BridgeMessageFormat {
   constructor({ plat }) {
     super({ plat })
     this.plat = plat
+    this.debug = this.debug.bind(this)
   }
 
   /**
@@ -133,17 +134,19 @@ export class BaseBridge extends BridgeMessageFormat {
     }
   }
 
-  send(path, params) {
-    const requestMessage = this.makeRequest({ path, params })
+  send(path, params, options) {
+    const requestMessage = this.makeRequest({ path, params, options })
     requestMessage.needResponse = false
     this.sendMessage(requestMessage)
   }
 
+  debug = debug
+
   /**
    * 发送请求并等待响应
    */
-  request(path, params = {}) {
-    const requestMessage = this.makeRequest({ path, params })
+  request(path, params = {}, options = {}) {
+    const requestMessage = this.makeRequest({ path, params, options })
     const { requestId } = requestMessage
 
     return new Promise((resolve, reject) => {
