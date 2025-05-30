@@ -15,3 +15,22 @@ export enum Plat {
   master = 'wtc/master',
   worker = 'wtc/worker',
 }
+
+export interface BridgeMessage {
+  type: (typeof MsgDef)[keyof typeof MsgDef]
+  source: Plat
+  target: Plat
+  requestId: string
+  path: string
+  lastSendBy?: Plat
+  extra?: {
+    trace?: boolean
+  }
+}
+
+export interface RequestMessage extends BridgeMessage {
+  params?: any
+}
+export interface ResponseMessage extends BridgeMessage {
+  data?: any
+}
