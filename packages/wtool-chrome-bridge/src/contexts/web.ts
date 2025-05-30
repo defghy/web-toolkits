@@ -25,6 +25,7 @@ export class WebBridge extends BaseBridge {
     // 只处理发给Web页面的消息
     if (target !== this.plat) return
 
+    this.debug(message, { type: 'receive' })
     if (type === MsgDef.REQUEST) {
       this.handleRequest({
         request: message,
@@ -42,6 +43,7 @@ export class WebBridge extends BaseBridge {
   }
 
   async sendMessage(message) {
+    this.debug(message, { type: 'send' })
     message.lastSendBy = this.plat
     return globalThis.postMessage(message, '*')
   }
