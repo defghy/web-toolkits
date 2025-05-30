@@ -2,6 +2,11 @@
 
 A `Proimse` communication method between `runtime envs`, encapsulating `chrome.runtime.sendMessage` and `window.postMessage`
 
+# Install
+
+```
+npm install @yuhufe/browser-bridge
+```
 
 # Runtime Envs
 - web: main page
@@ -59,12 +64,6 @@ console.log(piniaInfo); // { a: 1 }
 
 - often use to `proxy` `WebBridge`'s request
 - should set `platWeb` for `namespace`
-
-# Install
-
-```
-npm install @yuhufe/browser-bridge
-```
 
 # Other Case
 

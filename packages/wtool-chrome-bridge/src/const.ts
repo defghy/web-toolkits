@@ -12,4 +12,6 @@ export enum Plat {
   background = 'wtc/background',
   iframe = 'wtc/iframe',
   iframeTop = 'wtc/iframe',
+  master = 'wtc/master',
+  worker = 'wtc/worker',
 }

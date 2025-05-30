@@ -11,7 +11,7 @@ export class WebBridge extends BaseBridge {
   }
 
   init = () => {
-    window.addEventListener('message', this.onMessage)
+    globalThis.addEventListener('message', this.onMessage)
   }
 
   onMessage = (event: MessageEvent<any>) => {
@@ -38,11 +38,11 @@ export class WebBridge extends BaseBridge {
   }
 
   destroy() {
-    window.removeEventListener('message', this.onMessage)
+    globalThis.removeEventListener('message', this.onMessage)
   }
 
   async sendMessage(message) {
     message.lastSendBy = this.plat
-    return window.postMessage(message, '*')
+    return globalThis.postMessage(message, '*')
   }
 }
