@@ -2,12 +2,20 @@ import { BaseBridge } from '../base'
 import { Plat, MsgDef } from '../const'
 
 /**
- * Web页面Bridge
+ * Web页面Bridge；环境单例
  */
 export class WebBridge extends BaseBridge {
+  static bridgeMap = {} as Record<string, WebBridge>
+
   constructor({ plat }: any = {}) {
-    super({ plat: plat || Plat.web })
+    plat = plat || Plat.web
+    const bridgeMap = WebBridge.bridgeMap
+    if (bridgeMap[plat]) {
+      return bridgeMap[plat]
+    }
+    super({ plat })
     this.init()
+    bridgeMap[plat] = this
   }
 
   init = () => {
