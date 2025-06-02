@@ -100,7 +100,8 @@ export class BaseBridge extends BridgeMessageFormat {
 
     try {
       // 执行处理器
-      const result = await handler(request.params || {})
+      const params = request.params ?? {}
+      const result = await handler(params)
 
       // 发送响应
       const response = this.makeResponse({ data: result, request })
