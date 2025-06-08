@@ -5,11 +5,10 @@ import { Plat, MsgDef } from '../const'
  * Web页面Bridge；环境单例
  */
 export class WebBridge extends BaseBridge {
-  static bridgeMap = {} as Record<string, WebBridge>
-
   constructor({ plat }: any = {}) {
+    globalThis._browserBridgeMap = globalThis._browserBridgeMap || {}
     plat = plat || Plat.web
-    const bridgeMap = WebBridge.bridgeMap
+    const bridgeMap = globalThis._browserBridgeMap
     if (bridgeMap[plat]) {
       return bridgeMap[plat]
     }
