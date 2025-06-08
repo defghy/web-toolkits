@@ -19,7 +19,7 @@ export class ContentBridge extends BaseBridge {
       const message = event.data
       if (!this.isBridgeMessage(message)) return
 
-      const { type, target, source, needResponse, lastSendBy } = message
+      const { type, target, source, extra, lastSendBy } = message
       if (lastSendBy === this.plat) {
         return
       }
@@ -47,7 +47,7 @@ export class ContentBridge extends BaseBridge {
       // 否则，转发消息
       const handle = chrome.runtime.sendMessage(message)
 
-      if (needResponse) {
+      if (!extra?.noResponse) {
         const res = await handle
         window.postMessage(res, '*')
       }
@@ -57,7 +57,7 @@ export class ContentBridge extends BaseBridge {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       if (!this.isBridgeMessage(message)) return
 
-      const { type, target, needResponse } = message
+      const { type, target } = message
 
       // content script自己的消息
       if (target === this.plat) {
