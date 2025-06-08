@@ -31,6 +31,11 @@ export interface BridgeMessage {
   extra?: BridgeExtra
 }
 
+export enum DebugDir {
+  receive = 'receive',
+  send = 'send',
+}
+
 export interface RequestMessage extends BridgeMessage {
   params?: any
 }

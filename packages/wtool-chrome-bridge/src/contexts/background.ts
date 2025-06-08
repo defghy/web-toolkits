@@ -1,5 +1,5 @@
 import { BaseBridge } from '../base'
-import { Plat, MsgDef } from '../const'
+import { Plat, MsgDef, BridgeMessage } from '../const'
 
 /**
  * Web页面Bridge
@@ -11,7 +11,7 @@ export class BackgroundBridge extends BaseBridge {
   }
 
   init() {
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    chrome.runtime.onMessage.addListener((message: BridgeMessage, sender, sendResponse) => {
       if (!this.isBridgeMessage(message)) {
         return
       }
@@ -24,7 +24,7 @@ export class BackgroundBridge extends BaseBridge {
           request: message,
           sendResponse,
         })
-        return true
+        return message.extra?.noResponse ? undefined : true
       } else {
         this.handleResponse({ response: message })
       }
