@@ -21,7 +21,7 @@ npm install @yuhufe/browser-bridge
 
 # API
 
-```
+```typescript
 interface BridgeOptions {
   trace?: boolean // trace api route； for debug
   noResponse?: boolean // just send, no need response
