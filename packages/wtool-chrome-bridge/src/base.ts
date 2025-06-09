@@ -89,18 +89,18 @@ export class BaseBridge extends BridgeMessageFormat {
       return console.error('not support invoke own api')
     }
 
-    const doResponse = (resonpseParams: any) => {
+    const doResponse = ({ data, error }: any) => {
       if (request.extra?.noResponse) {
         return
       }
-      const response = this.makeResponse(resonpseParams)
+      const response = this.makeResponse({ data, error, request })
       sendResponse(response)
     }
 
     // 检查是否有对应的路由处理器
     const handler = this.handlers.get(request.path)
     if (!handler) {
-      doResponse({ error: 'Route not found', request })
+      doResponse({ error: 'Route not found' })
       return false
     }
 
@@ -110,9 +110,9 @@ export class BaseBridge extends BridgeMessageFormat {
       const result = await handler(params)
 
       // 发送响应
-      doResponse({ data: result, request })
+      doResponse({ data: result })
     } catch (error: any) {
-      doResponse({ error: error.message, request })
+      doResponse({ error: error.message })
     }
 
     // 返回true表示会异步发送响应

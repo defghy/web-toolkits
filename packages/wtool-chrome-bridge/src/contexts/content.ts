@@ -29,10 +29,11 @@ export class ContentBridge extends BaseBridge {
         return
       }
 
+      const isRequest = message.type === MsgDef.REQUEST
       this.debug(message, { type: DebugDir.receive })
       // 如果目标是content script，直接处理
       if (target === this.plat) {
-        if (message.type === MsgDef.REQUEST) {
+        if (isRequest) {
           this.handleRequest({
             request: message,
             sendResponse: response => {
@@ -48,9 +49,9 @@ export class ContentBridge extends BaseBridge {
       // 否则，转发消息
       const handle = this.sendMessage(message)
 
-      if (!extra?.noResponse) {
+      if (isRequest && !extra?.noResponse) {
         const res = await handle
-        this.sendMessage(res)
+        res && this.sendMessage(res)
       }
     })
 
