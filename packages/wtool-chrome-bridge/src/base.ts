@@ -1,4 +1,4 @@
-import { Plat, MsgDef, RequestMessage, ResponseMessage } from './const'
+import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeExtra } from './const'
 import { debug } from './utils'
 
 // 唯一ID生成器
@@ -21,7 +21,6 @@ class BridgeMessageFormat {
       params,
       path,
       extra: options,
-      needResponse: true,
     } as RequestMessage
   }
   // response对象
@@ -90,11 +89,18 @@ export class BaseBridge extends BridgeMessageFormat {
       return console.error('not support invoke own api')
     }
 
+    const doResponse = ({ data, error }: any) => {
+      if (request.extra?.noResponse) {
+        return
+      }
+      const response = this.makeResponse({ data, error, request })
+      sendResponse(response)
+    }
+
     // 检查是否有对应的路由处理器
     const handler = this.handlers.get(request.path)
     if (!handler) {
-      const err = this.makeResponse({ error: 'Route not found', request })
-      sendResponse(err)
+      doResponse({ error: 'Route not found' })
       return false
     }
 
@@ -104,11 +110,9 @@ export class BaseBridge extends BridgeMessageFormat {
       const result = await handler(params)
 
       // 发送响应
-      const response = this.makeResponse({ data: result, request })
-      sendResponse(response)
+      doResponse({ data: result })
     } catch (error: any) {
-      const err = this.makeResponse({ error: error.message, request })
-      sendResponse(err)
+      doResponse({ error: error.message })
     }
 
     // 返回true表示会异步发送响应
@@ -135,9 +139,9 @@ export class BaseBridge extends BridgeMessageFormat {
     }
   }
 
-  send(path, params, options) {
+  send(path, params, options: any = {}) {
+    options.noResponse = true
     const requestMessage = this.makeRequest({ path, params, options })
-    requestMessage.needResponse = false
     this.sendMessage(requestMessage)
   }
 
@@ -146,28 +150,35 @@ export class BaseBridge extends BridgeMessageFormat {
   /**
    * 发送请求并等待响应
    */
-  request(path, params = {}, options = {}) {
+  request(path, params = {}, options: BridgeExtra = {}) {
     const requestMessage = this.makeRequest({ path, params, options })
     const { requestId } = requestMessage
+    const { noResponse } = options
 
     return new Promise((resolve, reject) => {
-      // 设置超时
-      const timeoutId = setTimeout(() => {
-        this.pendingRequests.delete(requestId)
-        reject(new Error(`Request timeout for route: ${path}`))
-      }, this.timeout)
+      let timeoutId: any
+      if (!noResponse) {
+        // 设置超时
+        timeoutId = setTimeout(() => {
+          this.pendingRequests.delete(requestId)
+          reject(new Error(`Request timeout for route: ${path}`))
+        }, this.timeout)
 
-      // 存储pending请求
-      this.pendingRequests.set(requestId, {
-        resolve,
-        reject,
-        timeoutId,
-      })
+        // 存储pending请求
+        this.pendingRequests.set(requestId, {
+          resolve,
+          reject,
+          timeoutId,
+        })
+      }
 
       // 发送请求 - 由子类实现具体发送逻辑
       this.sendMessage(requestMessage).catch(error => {
-        this.pendingRequests.delete(requestId)
-        clearTimeout(timeoutId)
+        if (!noResponse) {
+          this.pendingRequests.delete(requestId)
+          clearTimeout(timeoutId)
+        }
+
         reject(error)
       })
     })

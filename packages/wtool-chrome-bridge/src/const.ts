@@ -16,6 +16,11 @@ export enum Plat {
   worker = 'wtc/worker',
 }
 
+export interface BridgeExtra {
+  trace?: boolean
+  noResponse?: boolean
+}
+
 export interface BridgeMessage {
   type: (typeof MsgDef)[keyof typeof MsgDef]
   source: Plat
@@ -23,14 +28,16 @@ export interface BridgeMessage {
   requestId: string
   path: string
   lastSendBy?: Plat
-  extra?: {
-    trace?: boolean
-  }
+  extra?: BridgeExtra
+}
+
+export enum DebugDir {
+  receive = 'receive',
+  send = 'send',
 }
 
 export interface RequestMessage extends BridgeMessage {
   params?: any
-  needResponse?: boolean
 }
 export interface ResponseMessage extends BridgeMessage {
   data?: any

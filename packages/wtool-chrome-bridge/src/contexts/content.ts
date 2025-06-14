@@ -1,5 +1,5 @@
 import { BaseBridge } from '../base'
-import { Plat, MsgDef } from '../const'
+import { Plat, MsgDef, BridgeMessage, DebugDir } from '../const'
 
 /**
  * Content Script Bridge
@@ -19,7 +19,7 @@ export class ContentBridge extends BaseBridge {
       const message = event.data
       if (!this.isBridgeMessage(message)) return
 
-      const { type, target, source, needResponse, lastSendBy } = message
+      const { type, target, source, extra, lastSendBy } = message
       if (lastSendBy === this.plat) {
         return
       }
@@ -29,13 +29,15 @@ export class ContentBridge extends BaseBridge {
         return
       }
 
+      const isRequest = message.type === MsgDef.REQUEST
+      this.debug(message, { type: DebugDir.receive })
       // 如果目标是content script，直接处理
       if (target === this.plat) {
-        if (message.type === MsgDef.REQUEST) {
+        if (isRequest) {
           this.handleRequest({
             request: message,
             sendResponse: response => {
-              window.postMessage(response, '*')
+              this.sendMessage(response)
             },
           })
         } else {
@@ -45,26 +47,27 @@ export class ContentBridge extends BaseBridge {
       }
 
       // 否则，转发消息
-      const handle = chrome.runtime.sendMessage(message)
+      const handle = this.sendMessage(message)
 
-      if (needResponse) {
+      if (isRequest && !extra?.noResponse) {
         const res = await handle
-        window.postMessage(res, '*')
+        res && this.sendMessage(res)
       }
     })
 
     // 监听来自background/devtools的消息
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    chrome.runtime.onMessage.addListener((message: BridgeMessage, sender, sendResponse) => {
       if (!this.isBridgeMessage(message)) return
 
-      const { type, target, needResponse } = message
+      const { type, target } = message
 
+      this.debug(message, { type: DebugDir.receive })
       // content script自己的消息
       if (target === this.plat) {
         // 如果是发给content script的请求，处理它
         if (type === MsgDef.REQUEST) {
           this.handleRequest({ request: message, sendResponse })
-          return true
+          return message.extra?.noResponse ? undefined : true
         } else {
           this.handleResponse({ response: message })
         }
@@ -84,6 +87,7 @@ export class ContentBridge extends BaseBridge {
   }
 
   async sendMessage(message) {
+    this.debug(message, { type: DebugDir.send })
     // 发送给web页面
     if (message.target === this.platWeb) {
       return this.send2Web(message)

@@ -19,6 +19,24 @@ npm install @yuhufe/browser-bridge
 
 ![image](./assets/runtime_envs.png)
 
+# API
+
+```typescript
+interface BridgeOptions {
+  trace?: boolean // trace api route； for debug
+  noResponse?: boolean // just send, no need response
+}
+
+// on listen api
+function on(path: string, async (params: any): Promise<any>): void
+
+// send trigger api; no response
+function send(path: string, params: any, options?: BridgeOptions): void
+
+// request trigger api; has response
+async function request(path: string, params: any, options?: BridgeOptions): Promise<any>
+```
+
 # Usage
 
 ```typescript

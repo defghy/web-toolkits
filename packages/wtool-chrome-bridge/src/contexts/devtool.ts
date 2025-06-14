@@ -1,5 +1,5 @@
 import { BaseBridge } from '../base'
-import { Plat, MsgDef } from '../const'
+import { Plat, MsgDef, BridgeMessage, DebugDir } from '../const'
 
 /**
  * Web页面Bridge
@@ -14,7 +14,7 @@ export class DevtoolBridge extends BaseBridge {
   }
 
   init() {
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    chrome.runtime.onMessage.addListener((message: BridgeMessage, sender, sendResponse) => {
       if (!this.isBridgeMessage(message)) {
         return
       }
@@ -26,12 +26,13 @@ export class DevtoolBridge extends BaseBridge {
       if (message.target !== this.plat) {
         return
       }
+      this.debug(message, { type: DebugDir.receive })
       if (message.type === MsgDef.REQUEST) {
         this.handleRequest({
           request: message,
           sendResponse,
         })
-        return true
+        return message.extra?.noResponse ? undefined : true
       } else {
         this.handleResponse({ response: message })
       }
@@ -39,6 +40,7 @@ export class DevtoolBridge extends BaseBridge {
   }
 
   async sendMessage(message) {
+    this.debug(message, { type: DebugDir.send })
     return chrome.tabs.sendMessage(this.tabId, message, {})
   }
 }
