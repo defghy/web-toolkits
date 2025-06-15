@@ -1,5 +1,5 @@
 import { BaseBridge } from '../base'
-import { Plat, MsgDef, BridgeMessage } from '../const'
+import { Plat, MsgDef, RequestMessage } from '../const'
 
 /**
  * Web页面Bridge
@@ -11,7 +11,7 @@ export class BackgroundBridge extends BaseBridge {
   }
 
   init() {
-    chrome.runtime.onMessage.addListener((message: BridgeMessage, sender, sendResponse) => {
+    chrome.runtime.onMessage.addListener((message: RequestMessage, sender, sendResponse) => {
       if (!this.isBridgeMessage(message)) {
         return
       }
@@ -20,6 +20,14 @@ export class BackgroundBridge extends BaseBridge {
         return
       }
       if (message.type === MsgDef.REQUEST) {
+        // 插入一些环境参数
+        let params = message.params
+        if (typeof params === 'object' && params) {
+          message.params.sender = sender
+        } else {
+          params = { data: params, sender }
+        }
+        message.params = params
         this.handleRequest({
           request: message,
           sendResponse,

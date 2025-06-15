@@ -17,8 +17,9 @@ export enum Plat {
 }
 
 export interface BridgeExtra {
-  trace?: boolean
-  noResponse?: boolean
+  trace?: boolean // 追踪
+  noResponse?: boolean // 无返回
+  [key: string]: any
 }
 
 export interface BridgeMessage {
