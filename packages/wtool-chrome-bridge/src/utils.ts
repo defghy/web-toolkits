@@ -10,3 +10,9 @@ export const debug = function (this: BaseBridge, message: BridgeMessage, { type 
   const preMessage = type === 'receive' ? `${bridge.plat} 接收了` : `${bridge.plat} 发送了`
   console.log(preMessage, message)
 }
+
+export const getBridgeMap = function () {
+  // 单例挂载到window上，因为当前目录也可能有多份儿
+  globalThis._browserBridgeMap = globalThis._browserBridgeMap || {}
+  return globalThis._browserBridgeMap
+}

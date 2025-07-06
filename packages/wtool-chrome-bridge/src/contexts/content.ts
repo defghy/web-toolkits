@@ -1,5 +1,6 @@
 import { BaseBridge } from '../base'
 import { Plat, MsgDef, BridgeMessage, DebugDir } from '../const'
+import { getBridgeMap } from '../utils'
 
 /**
  * Content Script Bridge
@@ -8,9 +9,15 @@ import { Plat, MsgDef, BridgeMessage, DebugDir } from '../const'
 export class ContentBridge extends BaseBridge {
   platWeb = Plat.web
   constructor({ plat, platWeb }: any = {}) {
-    super({ plat: plat || Plat.content })
+    plat = plat || Plat.content
+    const bridgeMap = getBridgeMap()
+    if (bridgeMap[plat]) {
+      return bridgeMap[plat]
+    }
+    super({ plat })
     this.platWeb = platWeb || this.platWeb
     this.init()
+    bridgeMap[plat] = this
   }
 
   init() {

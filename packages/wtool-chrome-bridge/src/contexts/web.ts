@@ -1,15 +1,14 @@
 import { BaseBridge } from '../base'
 import { Plat, MsgDef } from '../const'
+import { getBridgeMap } from '../utils'
 
 /**
  * Web页面Bridge；环境单例
  */
 export class WebBridge extends BaseBridge {
   constructor({ plat }: any = {}) {
-    // 单例挂载到window上，因为当前目录也可能有多份儿
-    globalThis._browserBridgeMap = globalThis._browserBridgeMap || {}
     plat = plat || Plat.web
-    const bridgeMap = globalThis._browserBridgeMap
+    const bridgeMap = getBridgeMap()
     if (bridgeMap[plat]) {
       return bridgeMap[plat]
     }
