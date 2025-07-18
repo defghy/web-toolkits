@@ -8,13 +8,15 @@ export class IFrameTop extends WebBridge {
   static frameMap = new Map<string, HTMLIFrameElement | (() => HTMLIFrameElement)>()
   static singleton: IFrameTop | null
 
-  constructor({ frameKey, frameEl }) {
+  constructor({ plat, frameKey, frameEl }) {
+    plat = plat || Plat.iframeTop
+    super({ plat })
     IFrameTop.frameMap.set(frameKey, frameEl)
     if (IFrameTop.singleton) {
       return IFrameTop.singleton
+    } else {
+      IFrameTop.singleton = this
     }
-    super({ plat: Plat.iframeTop })
-    IFrameTop.singleton = this
   }
 
   async sendMessage(message) {
@@ -35,10 +37,12 @@ export class IFrameTop extends WebBridge {
 export class IFrame extends WebBridge {
   static singleton: IFrame
   constructor({ frameKey }) {
+    super({ plat: frameKey })
     if (IFrame.singleton) {
       return IFrame.singleton
+    } else {
+      IFrame.singleton = this
     }
-    super({ plat: frameKey })
   }
 
   async sendMessage(message) {
