@@ -21,8 +21,7 @@ export class IFrameTop extends WebBridge {
 
   async sendMessage(message) {
     message.lastSendBy = this.plat
-    const frameKey = message.path.split('/')[0]
-    const target = IFrameTop.frameMap.get(frameKey)
+    const target = IFrameTop.frameMap.get(message.target)
     const frameDom = typeof target === 'function' ? target() : target
     return frameDom?.contentWindow?.postMessage(message, '*')
   }
