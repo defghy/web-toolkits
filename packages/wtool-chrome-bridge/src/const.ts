@@ -5,15 +5,15 @@ export const MsgDef = {
 }
 
 export enum Plat {
-  web = 'wtc/web',
-  content = 'wtc/content',
-  popup = 'wtc/popup',
-  devtool = 'wtc/devtool', // devtool主页面
-  background = 'wtc/background',
-  iframe = 'wtc/iframe',
-  iframeTop = 'wtc/iframe',
-  master = 'wtc/master',
-  worker = 'wtc/worker',
+  web = 'wtc_web',
+  content = 'wtc_content',
+  popup = 'wtc_popup',
+  devtool = 'wtc_devtool', // devtool主页面
+  background = 'wtc_background',
+  iframe = 'wtc_iframe',
+  iframeTop = 'wtc_iframe',
+  master = 'wtc_master',
+  worker = 'wtc_worker',
 }
 
 export interface BridgeExtra {
