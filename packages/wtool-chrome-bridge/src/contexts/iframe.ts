@@ -1,5 +1,5 @@
 import { WebBridge } from './web'
-import { Plat, MsgDef } from '../const'
+import { Plat, DebugDir } from '../const'
 
 /**
  * IFrame，使用单例
@@ -21,6 +21,7 @@ export class IFrameTop extends WebBridge {
 
   async sendMessage(message) {
     message.lastSendBy = this.plat
+    this.debug(message, { type: DebugDir.send })
     const target = IFrameTop.frameMap.get(message.target)
     const frameDom = typeof target === 'function' ? target() : target
     return frameDom?.contentWindow?.postMessage(message, '*')
@@ -46,6 +47,7 @@ export class IFrame extends WebBridge {
 
   async sendMessage(message) {
     message.lastSendBy = this.plat
+    this.debug(message, { type: DebugDir.send })
     return window.top!.postMessage(message, '*')
   }
 }
