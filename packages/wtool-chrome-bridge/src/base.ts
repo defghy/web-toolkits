@@ -8,6 +8,9 @@ const uuid = () => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
 class BridgeMessageFormat {
   plat: Plat
   constructor({ plat }) {
+    if (plat.includes('/')) {
+      throw new Error(`not support "/" in plat, need path.split('/') to find plat`)
+    }
     this.plat = plat
   }
 

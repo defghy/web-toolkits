@@ -6,15 +6,30 @@ import { getBridgeMap } from '../utils'
  * Web页面Bridge；环境单例
  */
 export class WebBridge extends BaseBridge {
-  constructor({ plat }: any = {}) {
+  static produce({ plat }: any = {}): WebBridge {
     plat = plat || Plat.web
+
     const bridgeMap = getBridgeMap()
     if (bridgeMap[plat]) {
       return bridgeMap[plat]
     }
-    super({ plat })
-    this.init()
+
+    const instance = new WebBridge({ plat })
     bridgeMap[plat] = this
+    return instance
+  }
+
+  constructor({ plat }: any = {}) {
+    plat = plat || Plat.web
+    super({ plat }) // super must be called
+
+    const bridgeMap = getBridgeMap()
+    if (bridgeMap[plat]) {
+      return bridgeMap[plat]
+    } else {
+      this.init()
+      bridgeMap[plat] = this
+    }
   }
 
   init = () => {
