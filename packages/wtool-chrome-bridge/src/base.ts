@@ -2,7 +2,10 @@ import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeExtra } from './co
 import { debug } from './utils'
 
 // 唯一ID生成器
-const uuid = () => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+const crypto = globalThis.crypto
+const uuid = crypto?.randomUUID
+  ? () => crypto.randomUUID()
+  : () => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
 
 // 消息格式
 class BridgeMessageFormat {
@@ -57,6 +60,8 @@ export class BaseBridge extends BridgeMessageFormat {
   handlers: Map<string, Function> = new Map()
   pendingRequests: Map<string, any> = new Map()
   timeout = 30000
+  debug = debug
+
   constructor({ plat }) {
     super({ plat })
     this.plat = plat
@@ -142,49 +147,42 @@ export class BaseBridge extends BridgeMessageFormat {
     }
   }
 
+  // 无返回值发送请求
   send(path, params, options: any = {}) {
     options.noResponse = true
     const requestMessage = this.makeRequest({ path, params, options })
     this.sendMessage(requestMessage)
   }
 
-  debug = debug
-
-  /**
-   * 发送请求并等待响应
-   */
+  // 发送请求并等待响应
   request(path, params = {}, options: BridgeExtra = {}) {
     const requestMessage = this.makeRequest({ path, params, options })
     const { requestId } = requestMessage
-    const { noResponse } = options
 
-    return new Promise((resolve, reject) => {
-      let timeoutId: any
-      if (!noResponse) {
-        // 设置超时
-        timeoutId = setTimeout(() => {
-          this.pendingRequests.delete(requestId)
-          reject(new Error(`Request timeout for route: ${path}`))
-        }, this.timeout)
+    const { promise, resolve, reject } = Promise.withResolvers()
 
-        // 存储pending请求
-        this.pendingRequests.set(requestId, {
-          resolve,
-          reject,
-          timeoutId,
-        })
-      }
+    let timeoutId: any
+    // 设置超时
+    timeoutId = setTimeout(() => {
+      this.pendingRequests.delete(requestId)
+      reject(new Error(`Request timeout for route: ${path}`))
+    }, this.timeout)
 
-      // 发送请求 - 由子类实现具体发送逻辑
-      this.sendMessage(requestMessage).catch(error => {
-        if (!noResponse) {
-          this.pendingRequests.delete(requestId)
-          clearTimeout(timeoutId)
-        }
-
-        reject(error)
-      })
+    // 存储pending请求
+    this.pendingRequests.set(requestId, {
+      resolve,
+      reject,
+      timeoutId,
     })
+    // 发送请求 - 由子类实现具体发送逻辑
+    this.sendMessage(requestMessage).catch(error => {
+      this.pendingRequests.delete(requestId)
+      clearTimeout(timeoutId)
+
+      reject(error)
+    })
+
+    return promise
   }
 
   /**
