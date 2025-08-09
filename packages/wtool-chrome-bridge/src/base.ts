@@ -161,9 +161,8 @@ export class BaseBridge extends BridgeMessageFormat {
 
     const { promise, resolve, reject } = Promise.withResolvers()
 
-    let timeoutId: any
     // 设置超时
-    timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       this.pendingRequests.delete(requestId)
       reject(new Error(`Request timeout for route: ${path}`))
     }, this.timeout)
