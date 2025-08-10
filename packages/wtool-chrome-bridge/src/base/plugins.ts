@@ -1,4 +1,4 @@
-import { RequestMessage, ResponseMessage } from './const'
+import { RequestMessage, ResponseMessage } from '../const'
 import { BaseBridge } from './base'
 
 export enum PluginEvent {
@@ -32,6 +32,7 @@ export interface BridgePlugin {
   [key: string]: any
 }
 
+// 接口超时功能
 class TimeoutPlugin implements Partial<BridgePlugin> {
   timeout
   bridge: BaseBridge

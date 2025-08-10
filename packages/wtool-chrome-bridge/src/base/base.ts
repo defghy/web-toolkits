@@ -1,5 +1,5 @@
-import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeExtra } from './const'
-import { debug } from './utils'
+import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeExtra } from '../const'
+import { debug } from '../utils'
 import { BridgePlugins, PluginEvent } from './plugins'
 
 // 唯一ID生成器
