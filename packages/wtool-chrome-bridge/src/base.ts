@@ -1,5 +1,6 @@
 import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeExtra } from './const'
 import { debug } from './utils'
+import { BridgePlugins, PluginEvent } from './plugins'
 
 // 唯一ID生成器
 const crypto = globalThis.crypto
@@ -59,13 +60,14 @@ export class BaseBridge extends BridgeMessageFormat {
   plat: Plat
   handlers: Map<string, Function> = new Map()
   pendingRequests: Map<string, any> = new Map()
-  timeout = 30000
   debug = debug
+  plugins: BridgePlugins
 
   constructor({ plat }) {
     super({ plat })
     this.plat = plat
     this.debug = this.debug.bind(this)
+    this.plugins = new BridgePlugins({ bridge: this })
   }
 
   /**
@@ -137,9 +139,9 @@ export class BaseBridge extends BridgeMessageFormat {
     const pendingRequest = this.pendingRequests.get(requestId)
     if (!pendingRequest) return
 
-    this.pendingRequests.delete(requestId)
-    clearTimeout(pendingRequest.timeoutId)
+    this.plugins.exec(PluginEvent.onResponse, { response })
 
+    this.pendingRequests.delete(requestId)
     if (data.ret !== 0) {
       pendingRequest.reject(data)
     } else {
@@ -161,23 +163,20 @@ export class BaseBridge extends BridgeMessageFormat {
 
     const { promise, resolve, reject } = Promise.withResolvers()
 
-    // 设置超时
-    const timeoutId = setTimeout(() => {
-      this.pendingRequests.delete(requestId)
-      reject(new Error(`Request timeout for route: ${path}`))
-    }, this.timeout)
-
     // 存储pending请求
-    this.pendingRequests.set(requestId, {
+    const pendingRequest = {
       resolve,
       reject,
-      timeoutId,
-    })
+    }
+    this.pendingRequests.set(requestId, pendingRequest)
+
+    this.plugins.exec(PluginEvent.beforeSendRequest, { request: requestMessage })
+
     // 发送请求 - 由子类实现具体发送逻辑
     this.sendMessage(requestMessage).catch(error => {
-      this.pendingRequests.delete(requestId)
-      clearTimeout(timeoutId)
+      this.plugins.exec(PluginEvent.onSendRequestError, { request: requestMessage, error })
 
+      this.pendingRequests.delete(requestId)
       reject(error)
     })
 
