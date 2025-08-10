@@ -65,6 +65,7 @@ class TimeoutPlugin implements Partial<BridgePlugin> {
     clearTimeout(pendingRequests.get(response.requestId)?.timeoutId)
   }
 }
+
 export class BridgePlugins {
   plugins: Partial<BridgePlugin>[] = []
   bridge: BaseBridge

@@ -1,12 +1,9 @@
 import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeExtra } from '../const'
-import { debug } from '../utils'
+import { debug, uuid } from '../utils'
 import { BridgePlugins, PluginEvent } from './plugins'
 
 // 唯一ID生成器
 const crypto = globalThis.crypto
-const uuid = crypto?.randomUUID
-  ? () => crypto.randomUUID()
-  : () => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
 
 // 消息格式
 class BridgeMessageFormat {

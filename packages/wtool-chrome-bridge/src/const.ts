@@ -20,10 +20,12 @@ export interface BridgeExtra {
   trace?: boolean // 追踪
   noResponse?: boolean // 无返回
   // 参数分块儿
-  chunk?: {
-    size: number // 块儿大小
-    path: string // 数据需要分块儿
-  }
+  chunk?:
+    | {
+        size: number // 块儿大小
+        path: string // 数据需要分块儿
+      }
+    | boolean
   [key: string]: any
 }
 
@@ -42,10 +44,11 @@ export enum DebugDir {
   send = 'send',
 }
 
-export interface PendingRequestData {
-  resolve: Function
-  reject: Function
-  timeoutId?: any
+export interface ChunkItem {
+  chunkId: string
+  data: string
+  size: number
+  nonChunkData?: any
 }
 
 export interface RequestMessage extends BridgeMessage {

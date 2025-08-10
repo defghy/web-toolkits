@@ -16,3 +16,7 @@ export const getBridgeMap = function () {
   globalThis._browserBridgeMap = globalThis._browserBridgeMap || {}
   return globalThis._browserBridgeMap
 }
+
+export const uuid = crypto?.randomUUID
+  ? () => crypto.randomUUID()
+  : () => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
