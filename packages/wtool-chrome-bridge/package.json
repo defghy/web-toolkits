@@ -32,6 +32,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
     "@electron/remote": "^2.1.2",
     "vite": "^5.4.11",
     "typescript": "^5.3.3",
