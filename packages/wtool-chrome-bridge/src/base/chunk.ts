@@ -4,6 +4,7 @@ import { BaseBridge } from './base'
 import { BridgePlugin, PluginEvent } from './plugins'
 import { uuid } from '../utils'
 
+// 普通数据分片
 const data2Chunks = function ({ data, chunkSize }: { data: any; chunkSize: number }) {
   // 转换为string再分割
   let dataStr: string = data
