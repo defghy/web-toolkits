@@ -8,7 +8,8 @@ import { uuid } from '../utils'
 const data2Chunks = function ({ data, chunkSize }: { data: any; chunkSize: number }) {
   // 转换为string再分割
   let dataStr: string = data
-  if (typeof data === 'object') {
+  const isObject = typeof data === 'object'
+  if (isObject) {
     dataStr = JSON.stringify(dataStr)
   }
 
@@ -17,16 +18,18 @@ const data2Chunks = function ({ data, chunkSize }: { data: any; chunkSize: numbe
   for (let i = 0; i < chunkCount; i++) {
     chunks.push(dataStr.slice(i * chunkSize, (i + 1) * chunkSize))
   }
-  return chunks
+  return { chunks, isObject }
 }
 
 // 接口超时功能
 export class ChunkPlugin implements Partial<BridgePlugin> {
   MAX_CHUNK_SIZE = 512 * 1024 // 500k
   bridge: BaseBridge
+  chunkInfoMap: Record<string, { chunks: any[]; count: number; nonChunkData?: any; isObject: boolean }>
 
   constructor({ bridge }: { bridge: BaseBridge }) {
     this.bridge = bridge
+    this.chunkInfoMap = {}
   }
 
   // 请求参数需要分块儿
@@ -61,18 +64,19 @@ export class ChunkPlugin implements Partial<BridgePlugin> {
     const nonChunkData = chunkPath ? set(originParams, chunkPath, null) : null
 
     // chunkData分块儿
-    const chunks = data2Chunks({ data: chunkData, chunkSize })
-    const chunkId = uuid()
+    const { chunks, isObject } = data2Chunks({ data: chunkData, chunkSize })
     const chunkParams = chunks.map((chunkItem, index) => {
       const commonChunk = {
-        chunkId,
+        index,
         data: chunkItem,
         size: chunks.length,
+        chunkId: uuid(),
       } as ChunkItem
 
       // 头部chunk保存meta信息
       if (index === 0) {
         commonChunk.nonChunkData = nonChunkData
+        commonChunk.isObject = isObject
       }
 
       return commonChunk
@@ -87,5 +91,54 @@ export class ChunkPlugin implements Partial<BridgePlugin> {
     })
 
     // 开始发送
+    for (const params of requestList) {
+      await Promise.resolve()
+      this.bridge.sendMessage(params)
+    }
+
+    return Promise.reject('handle by chunk plugin')
+  };
+
+  // 接收到请求需要合并分块儿
+  [PluginEvent.onReceiveRequest]: BridgePlugin[PluginEvent.onReceiveRequest] = async ({ request }) => {
+    let chunkCfg = request.extra?.chunk as any
+    if (!chunkCfg) {
+      return
+    }
+
+    const chunkParams = request.params as ChunkItem
+    const { index, data, size } = chunkParams
+
+    // 初始化
+    if (!this.chunkInfoMap[request.requestId]) {
+      this.chunkInfoMap[request.requestId] = { chunks: Array(size), count: 0 } as any
+    }
+
+    // 更新chunk
+    const chunkInfo = this.chunkInfoMap[request.requestId]
+    const { chunks } = chunkInfo
+    chunkInfo.count++
+    chunks[index] = data
+    if (index === 0) {
+      const { nonChunkData, isObject } = chunkParams
+      Object.assign(chunkInfo, { nonChunkData, isObject })
+    }
+
+    // 判断传输完成了
+    if (chunkInfo.count === size) {
+      const { path = '' } = chunkCfg
+      const { nonChunkData, isObject } = chunkInfo
+      let chunkData = chunks.join('')
+      if (isObject) {
+        chunkData = JSON.parse(chunkData)
+      }
+
+      if (path && nonChunkData) {
+        chunkData = set(nonChunkData, path, chunkData)
+      }
+      request.params = chunkData
+    } else {
+      return Promise.reject('chunk not done')
+    }
   }
 }

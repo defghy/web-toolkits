@@ -111,6 +111,12 @@ export class BaseBridge extends BridgeMessageFormat {
       return false
     }
 
+    // plugin中处理参数
+    const { stop } = await this.plugins.exec(PluginEvent.onReceiveRequest, { request })
+    if (stop) {
+      return
+    }
+
     try {
       // 执行处理器
       const params = request.params ?? {}
@@ -154,7 +160,7 @@ export class BaseBridge extends BridgeMessageFormat {
   }
 
   // 发送请求并等待响应
-  request(path, params = {}, options: BridgeExtra = {}) {
+  async request(path, params = {}, options: BridgeExtra = {}) {
     const requestMessage = this.makeRequest({ path, params, options })
     const { requestId } = requestMessage
 
@@ -167,7 +173,10 @@ export class BaseBridge extends BridgeMessageFormat {
     }
     this.pendingRequests.set(requestId, pendingRequest)
 
-    this.plugins.exec(PluginEvent.beforeSendRequest, { request: requestMessage })
+    const { stop } = await this.plugins.exec(PluginEvent.beforeSendRequest, { request: requestMessage })
+    if (stop) {
+      return
+    }
 
     // 发送请求 - 由子类实现具体发送逻辑
     this.sendMessage(requestMessage).catch(error => {

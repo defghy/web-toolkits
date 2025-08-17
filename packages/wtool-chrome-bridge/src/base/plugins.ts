@@ -3,8 +3,9 @@ import { BaseBridge } from './base'
 
 export enum PluginEvent {
   beforeSendRequest = 'onBeforeSendRequest', // 发送请求前
-  onResponse = 'onResponse', // 收到响应
   onSendRequestError = 'onSendRequestError', // send方法失败
+  onReceiveRequest = 'onReceiveRequest', // 接收到请求
+  onResponse = 'onResponse', // 收到响应
 }
 
 export interface BridgePlugin {
@@ -23,8 +24,14 @@ export interface BridgePlugin {
     error: Error
   }) => any
 
+  [PluginEvent.onReceiveRequest]: ({
+    request, // 完整request数据
+  }: {
+    request: RequestMessage
+  }) => any
+
   [PluginEvent.onResponse]: ({
-    response, // 完整request数据
+    response, // 返回体
   }: {
     response: ResponseMessage
   }) => any

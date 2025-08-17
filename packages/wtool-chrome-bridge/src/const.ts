@@ -45,10 +45,11 @@ export enum DebugDir {
 }
 
 export interface ChunkItem {
-  chunkId: string
+  index: number
   data: string
   size: number
   nonChunkData?: any
+  [key: string]: any
 }
 
 export interface RequestMessage extends BridgeMessage {
