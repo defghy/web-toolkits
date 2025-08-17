@@ -1,5 +1,6 @@
 import { RequestMessage, ResponseMessage } from '../const'
 import { BaseBridge } from './base'
+import { ChunkPlugin } from './chunk'
 
 export enum PluginEvent {
   beforeSendRequest = 'onBeforeSendRequest', // 发送请求前
@@ -78,7 +79,7 @@ export class BridgePlugins {
   bridge: BaseBridge
 
   constructor({ bridge }: { bridge: BaseBridge }) {
-    this.plugins = [new TimeoutPlugin({ bridge })]
+    this.plugins = [new TimeoutPlugin({ bridge }), new ChunkPlugin({ bridge })]
     this.bridge = bridge
   }
 
