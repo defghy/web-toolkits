@@ -1,6 +1,5 @@
-import { RequestMessage, ResponseMessage } from '../const'
-import { BaseBridge } from './base'
-import { ChunkPlugin } from './chunk'
+import type { RequestMessage, ResponseMessage } from '../../const'
+import type { BaseBridge } from '../base'
 
 export enum PluginEvent {
   beforeSendRequest = 'onBeforeSendRequest', // 发送请求前
@@ -41,7 +40,7 @@ export interface BridgePlugin {
 }
 
 // 接口超时功能
-class TimeoutPlugin implements Partial<BridgePlugin> {
+export class TimeoutPlugin implements Partial<BridgePlugin> {
   timeout
   bridge: BaseBridge
 
@@ -53,7 +52,10 @@ class TimeoutPlugin implements Partial<BridgePlugin> {
   [PluginEvent.beforeSendRequest]({ request }) {
     const { requestId, path } = request
     const { pendingRequests } = this.bridge
-    const cache = pendingRequests.get(requestId)!
+    const cache = pendingRequests.get(requestId)
+    if (!cache) {
+      return
+    }
     // 发请求时设置超时
     const timeoutId = setTimeout(() => {
       pendingRequests.delete(requestId)
@@ -71,30 +73,5 @@ class TimeoutPlugin implements Partial<BridgePlugin> {
   [PluginEvent.onResponse]({ response }) {
     const { pendingRequests } = this.bridge
     clearTimeout(pendingRequests.get(response.requestId)?.timeoutId)
-  }
-}
-
-export class BridgePlugins {
-  plugins: Partial<BridgePlugin>[] = []
-  bridge: BaseBridge
-
-  constructor({ bridge }: { bridge: BaseBridge }) {
-    this.plugins = [new TimeoutPlugin({ bridge }), new ChunkPlugin({ bridge })]
-    this.bridge = bridge
-  }
-
-  // 执行生命周期
-  async exec<T extends keyof BridgePlugin>(key: T, params: Parameters<BridgePlugin[T]>[0] = {}) {
-    let stop = false
-    try {
-      // plugin使用reject方式来截断
-      for (let plugin of this.plugins) {
-        await plugin[key]?.(params)
-      }
-    } catch (e) {
-      stop = true
-    }
-
-    return { stop }
   }
 }

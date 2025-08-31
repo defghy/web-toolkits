@@ -1,8 +1,8 @@
 import { get, set } from 'lodash-es'
-import { ChunkItem, ResponseMessage } from '../const'
-import { BaseBridge } from './base'
+import { ChunkItem, ResponseMessage } from '../../const'
+import { BaseBridge } from '../base'
 import { BridgePlugin, PluginEvent } from './plugins'
-import { uuid } from '../utils'
+import { uuid } from '../../utils'
 
 // 普通数据分片
 const data2Chunks = function ({ data, chunkSize }: { data: any; chunkSize: number }) {
@@ -25,7 +25,7 @@ const data2Chunks = function ({ data, chunkSize }: { data: any; chunkSize: numbe
 export class ChunkPlugin implements Partial<BridgePlugin> {
   MAX_CHUNK_SIZE = 512 * 1024 // 500k
   bridge: BaseBridge
-  chunkInfoMap: Record<string, { chunks: any[]; count: number; nonChunkData?: any; isObject: boolean }>
+  chunkInfoMap: Record<string, { chunks: any[]; count: number; isObject: boolean }>
 
   constructor({ bridge }: { bridge: BaseBridge }) {
     this.bridge = bridge
@@ -40,31 +40,27 @@ export class ChunkPlugin implements Partial<BridgePlugin> {
     }
 
     // 边界数据不需要chunk
-    const { params } = request
-    if (!request.params || !['string', 'object'].includes(typeof params)) {
+    if (!request.params) {
       return
     }
 
     // 初始化chunk
-    if (typeof chunk !== 'object') {
-      chunk = {}
-    }
     chunk = {
-      path: '',
       size: this.MAX_CHUNK_SIZE,
       ...chunk,
     }
     request.extra!.chunk = chunk
 
     // params改造
-    const { path: chunkPath, size: chunkSize } = chunk
-    const { params: originParams } = request
-
-    const chunkData = get(originParams, chunkPath)
-    const nonChunkData = chunkPath ? set(originParams, chunkPath, null) : null
+    const { size: chunkSize } = chunk
+    const { params } = request
 
     // chunkData分块儿
-    const { chunks, isObject } = data2Chunks({ data: chunkData, chunkSize })
+    const { chunks, isObject } = data2Chunks({ data: params, chunkSize })
+    // 只有1块儿，不走chunk逻辑
+    if (chunks.length === 1) {
+      return
+    }
     const chunkParams = chunks.map((chunkItem, index) => {
       const commonChunk = {
         index,
@@ -75,7 +71,6 @@ export class ChunkPlugin implements Partial<BridgePlugin> {
 
       // 头部chunk保存meta信息
       if (index === 0) {
-        commonChunk.nonChunkData = nonChunkData
         commonChunk.isObject = isObject
       }
 
@@ -107,7 +102,10 @@ export class ChunkPlugin implements Partial<BridgePlugin> {
     }
 
     const chunkParams = request.params as ChunkItem
-    const { index, data, size } = chunkParams
+    const { index, data, size, chunkId } = chunkParams
+    if (!chunkId) {
+      return
+    }
 
     // 初始化
     if (!this.chunkInfoMap[request.requestId]) {
@@ -120,25 +118,21 @@ export class ChunkPlugin implements Partial<BridgePlugin> {
     chunkInfo.count++
     chunks[index] = data
     if (index === 0) {
-      const { nonChunkData, isObject } = chunkParams
-      Object.assign(chunkInfo, { nonChunkData, isObject })
+      const { isObject } = chunkParams
+      Object.assign(chunkInfo, { isObject })
     }
 
     // 判断传输完成了
     if (chunkInfo.count === size) {
-      const { path = '' } = chunkCfg
-      const { nonChunkData, isObject } = chunkInfo
+      const { isObject } = chunkInfo
       let chunkData = chunks.join('')
       if (isObject) {
         chunkData = JSON.parse(chunkData)
       }
 
-      if (path && nonChunkData) {
-        chunkData = set(nonChunkData, path, chunkData)
-      }
       request.params = chunkData
     } else {
-      return Promise.reject('chunk not done')
+      return Promise.reject('chunk still running')
     }
   }
 }

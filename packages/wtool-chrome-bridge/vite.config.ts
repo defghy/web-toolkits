@@ -42,6 +42,8 @@ export default defineConfig(({ mode }) => {
 
     build: {
       watch: isProd ? null : {},
+      minify: isProd,
+      target: isProd ? undefined : 'esnext',
       lib: {
         entry: resolve(__dirname, 'src/index.ts'), // 入口文件
         name: 'WebToolBridge', // UMD 模块名称
@@ -51,6 +53,9 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         // 告诉打包工具 在external配置的 都是外部依赖项  不需要打包
         external: [],
+        output: {
+          compact: isProd,
+        },
       },
       sourcemap: isProd ? false : true,
     },

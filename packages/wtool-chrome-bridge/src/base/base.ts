@@ -155,8 +155,7 @@ export class BaseBridge extends BridgeMessageFormat {
   // 无返回值发送请求
   send(path, params, options: any = {}) {
     options.noResponse = true
-    const requestMessage = this.makeRequest({ path, params, options })
-    this.sendMessage(requestMessage)
+    this.request(path, params, options)
   }
 
   // 发送请求并等待响应
@@ -167,11 +166,10 @@ export class BaseBridge extends BridgeMessageFormat {
     const { promise, resolve, reject } = Promise.withResolvers()
 
     // 存储pending请求
-    const pendingRequest = {
-      resolve,
-      reject,
+    if (!options.noResponse) {
+      const pendingRequest = { resolve, reject }
+      this.pendingRequests.set(requestId, pendingRequest)
     }
-    this.pendingRequests.set(requestId, pendingRequest)
 
     const { stop } = await this.plugins.exec(PluginEvent.beforeSendRequest, { request: requestMessage })
     if (stop) {
