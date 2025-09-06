@@ -1,9 +1,6 @@
-import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeExtra } from '../const'
+import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeMessage, BridgeExtra, DebugDir } from '../const'
 import { debug, uuid } from '../utils'
 import { BridgePlugins, PluginEvent } from './plugins'
-
-// 唯一ID生成器
-const crypto = globalThis.crypto
 
 // 消息格式
 class BridgeMessageFormat {
@@ -45,9 +42,36 @@ class BridgeMessageFormat {
     } as ResponseMessage
     return response
   }
-  isBridgeMessage(msgdata) {
+  isBridgeMessage(msgdata: BridgeMessage) {
     return msgdata?.requestId && [MsgDef.REQUEST, MsgDef.RESPONSE].includes(msgdata.type)
   }
+  isMyMessage(message: BridgeMessage) {
+    if (!this.isBridgeMessage(message)) {
+      return
+    }
+
+    const { target, lastSendBy } = message
+    // 不处理自己发出去的消息
+    if (lastSendBy === this.plat) return
+
+    // 只处理发给我的消息
+    if (target !== this.plat) return
+
+    return true
+  }
+}
+
+// sendMessage封装
+const sendMessageWrapper = function (ctx: BaseBridge) {
+  const originFunc = ctx.sendMessage
+
+  const realSendMessage = function (message: any) {
+    message.lastSendBy = ctx.plat
+    ctx.debug(message, { type: DebugDir.send })
+    return originFunc.call(ctx, message)
+  }
+
+  return realSendMessage.bind(ctx)
 }
 
 /**
@@ -65,6 +89,7 @@ export class BaseBridge extends BridgeMessageFormat {
     this.plat = plat
     this.debug = this.debug.bind(this)
     this.plugins = new BridgePlugins({ bridge: this })
+    this.sendMessage = sendMessageWrapper(this)
   }
 
   /**
@@ -187,11 +212,17 @@ export class BaseBridge extends BridgeMessageFormat {
     return promise
   }
 
+  sendMessageWrapper(message: any) {
+    message.lastSendBy = this.plat
+    this.debug(message, { type: DebugDir.send })
+    this.sendMessage(message)
+  }
+
   /**
    * 发送消息 - 由子类实现
    * @param {Object} message - 消息对象
    */
-  async sendMessage(message) {
+  async sendMessage(message: BridgeMessage) {
     throw new Error('sendMessage method must be implemented by subclass')
   }
 }

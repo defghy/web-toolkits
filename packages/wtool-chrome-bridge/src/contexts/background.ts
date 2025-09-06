@@ -12,11 +12,7 @@ export class BackgroundBridge extends BaseBridge {
 
   init() {
     chrome.runtime.onMessage.addListener((message: RequestMessage, sender, sendResponse) => {
-      if (!this.isBridgeMessage(message)) {
-        return
-      }
-      // 只处理发给我的消息
-      if (message.target !== this.plat) {
+      if (!this.isMyMessage(message)) {
         return
       }
       if (message.type === MsgDef.REQUEST) {

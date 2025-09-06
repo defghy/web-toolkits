@@ -42,7 +42,7 @@ export class ContentBridge extends BaseBridge {
       const message = event.data
       if (!this.isBridgeMessage(message)) return
 
-      const { type, target, source, extra, lastSendBy } = message
+      const { type, target, source, extra, lastSendBy } = message as BridgeMessage
       if (lastSendBy === this.plat) {
         return
       }

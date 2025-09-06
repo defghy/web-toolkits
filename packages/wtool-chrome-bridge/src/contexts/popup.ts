@@ -22,15 +22,11 @@ export class PopupBridge extends BaseBridge {
 
   init() {
     chrome.runtime.onMessage.addListener((message: BridgeMessage, sender, sendResponse) => {
-      if (!this.isBridgeMessage(message)) {
+      if (!this.isMyMessage(message)) {
         return
       }
       // 可能来自其他tab的信息
       if (this.tabId !== sender.tab?.id) {
-        return
-      }
-      // 只处理发给我的消息
-      if (message.target !== this.plat) {
         return
       }
       this.debug(message, { type: DebugDir.receive })

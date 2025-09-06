@@ -22,8 +22,6 @@ export class IFrameTop extends WebBridge {
   }
 
   async sendMessage(message) {
-    message.lastSendBy = this.plat
-    this.debug(message, { type: DebugDir.send })
     const target = IFrameTop.frameMap.get(message.target)
     const frameDom = typeof target === 'function' ? target() : target
     return frameDom?.contentWindow?.postMessage(message, '*')
@@ -48,8 +46,6 @@ export class IFrame extends WebBridge {
   }
 
   async sendMessage(message) {
-    message.lastSendBy = this.plat
-    this.debug(message, { type: DebugDir.send })
     return window.parent!.postMessage(message, '*')
   }
 }

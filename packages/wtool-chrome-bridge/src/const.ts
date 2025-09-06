@@ -36,7 +36,7 @@ export interface BridgeMessage {
   target: Plat
   requestId: string
   path: string
-  lastSendBy?: Plat
+  lastSendBy?: Plat | string
   extra?: BridgeExtra
 }
 
