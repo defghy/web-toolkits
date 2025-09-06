@@ -49,8 +49,9 @@ export class TimeoutPlugin implements Partial<BridgePlugin> {
     this.bridge = bridge
   }
 
-  [PluginEvent.beforeSendRequest]({ request }) {
-    const { requestId, path } = request
+  [PluginEvent.beforeSendRequest]: BridgePlugin[PluginEvent.beforeSendRequest] = ({ request }) => {
+    const { requestId, path, extra } = request
+    const timeout = extra?.timeout || this.timeout
     const { pendingRequests } = this.bridge
     const cache = pendingRequests.get(requestId)
     if (!cache) {
@@ -60,10 +61,10 @@ export class TimeoutPlugin implements Partial<BridgePlugin> {
     const timeoutId = setTimeout(() => {
       pendingRequests.delete(requestId)
       cache.reject(new Error(`Request timeout for route: ${path}`))
-    }, this.timeout)
+    }, timeout)
 
     cache.timeoutId = timeoutId
-  }
+  };
 
   [PluginEvent.onSendRequestError]({ request }) {
     const { pendingRequests } = this.bridge

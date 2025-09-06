@@ -17,6 +17,7 @@ export enum Plat {
 }
 
 export interface BridgeExtra {
+  timeout?: number // 超时时间
   trace?: boolean // 追踪
   noResponse?: boolean // 无返回
   // 参数分块儿
