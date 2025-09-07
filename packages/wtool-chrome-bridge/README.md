@@ -1,6 +1,9 @@
 # Chrome bridge
 
-A `Proimse` communication method between `runtime envs`, encapsulating `chrome.runtime.sendMessage` and `window.postMessage`
+A `Proimse` communication method between `runtime envs`, such as 
+- `chrome.runtime.sendMessage`
+- `(window | vscode | vscode.panel.webview |worker).postMessage`
+- `Electron.WebContents.send`
 
 # Install
 
@@ -87,4 +90,4 @@ console.log(piniaInfo); // { a: 1 }
 
 # Details
 - (中文说明)[https://segmentfault.com/a/1190000046415823]
-- (English Doc)[https://segmentfault.com/a/1190000046415823]
+- (English Doc)[https://defghy.github.io/docs/bridge]
