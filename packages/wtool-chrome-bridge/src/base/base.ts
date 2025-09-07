@@ -121,7 +121,7 @@ export class BaseBridge extends BridgeMessageFormat {
       return console.error('not support invoke own api')
     }
 
-    if (sendResponse) {
+    if (!sendResponse) {
       sendResponse = response => this.sendMessage(response)
     }
     const doResponse = ({ data, error }: any) => {
