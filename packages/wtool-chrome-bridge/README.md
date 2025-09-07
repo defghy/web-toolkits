@@ -74,20 +74,6 @@ const piniaInfo = await devtoolBridge.request(api.getPinia, { key: 'board' });
 console.log(piniaInfo); // { a: 1 }
 ```
 
-# Bridges
-
-- `path` should be start with `${plat}`，implied who's `request target`
-- `request` and `on` should use same `path`
-
-## WebBridge
-
-- one page may have multiple `WebBridge`, should set unique `plat`
-
-## ContentBridge
-
-- often use to `proxy` `WebBridge`'s request
-- should set `platWeb` for `namespace`
-
 # Details
 - (中文说明)[https://segmentfault.com/a/1190000046415823]
 - (English Doc)[https://defghy.github.io/docs/bridge]
