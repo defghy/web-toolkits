@@ -25,6 +25,8 @@ npm install @yuhufe/browser-bridge
 interface BridgeOptions {
   trace?: boolean // trace api route； for debug
   noResponse?: boolean // just send, no need response
+  timeout?: number // api timeout milliseconds
+  chunk?: { size?: number } // large data cannot send by once postMessage, need split
 }
 
 // on listen api
@@ -83,39 +85,6 @@ console.log(piniaInfo); // { a: 1 }
 - often use to `proxy` `WebBridge`'s request
 - should set `platWeb` for `namespace`
 
-# Other Case
-
-## iframe
-
-`iframe.contentWindow` and `window.top` can also use bridge for `Promise`
-
-```typescript
-import { Plat } from '@yuhufe/browser-bridge'
-// because we have only 1 top and multi iframe;
-const frameKey = 'iframeTest' // multi iframe, so every iframe has a key
-const topKey = Plat.iframeTop // 1 top so key is only one
-const api = {
-  getInfo: `${frameKey}/getInfo`,
-  getTopInfo: `${topKey}/getTopInfo`
-}
-
-// top.js
-import { IFrameTopBridge, Plat } from '@yuhufe/browser-bridge'
-const iframeTestTop = new IFrameTop({ 
-  frameKey, 
-  frameEl: document.querySelector('iframe') 
-})
-iframeTestTop.on(api.getTopInfo, async function({ topname }) {
-  console.log(topname);
-  return { top: 1 };
-});
-const userInfo = await iframeTestTop.request(api.getInfo, { username: '' });
-
-// iframe.js
-import { IFrameBridge } from '@yuhufe/browser-bridge'
-const iframeTest = new IFrameBridge({ frameKey })
-iframeTest.on(api.getInfo, async function({ username }) {
-  return { user: '', age: 0 }
-});
-const topInfo = await iframeTest.request(api.getTopInfo, { topname: '' });
-```
+# Details
+- (中文说明)[https://segmentfault.com/a/1190000046415823]
+- (English Doc)[https://segmentfault.com/a/1190000046415823]
