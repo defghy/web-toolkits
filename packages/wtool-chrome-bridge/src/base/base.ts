@@ -223,6 +223,15 @@ export class BaseBridge extends BridgeMessageFormat {
     throw new Error('sendMessage method must be implemented by subclass')
   }
 
-  // 收到消息后
-  async onReceiveMessage(message: BridgeMessage) {}
+  // 收到消息后 - 一般操作
+  async onReceiveMessage(message: BridgeMessage) {
+    if (!this.isMyMessage(message)) return
+
+    this.debug(message, { type: 'receive' })
+    if (message.type === MsgDef.REQUEST) {
+      this.handleRequest({ request: message })
+    } else {
+      this.handleResponse({ response: message })
+    }
+  }
 }

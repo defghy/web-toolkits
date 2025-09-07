@@ -20,16 +20,7 @@ export class MasterBridge extends BaseBridge {
 
   onMessage = (event: MessageEvent<any>) => {
     const message = event.data
-    if (!this.isMyMessage(message)) return
-
-    const { target, type, lastSendBy } = message
-
-    this.debug(message, { type: 'receive' })
-    if (type === MsgDef.REQUEST) {
-      this.handleRequest({ request: message })
-    } else {
-      this.handleResponse({ response: message })
-    }
+    this.onReceiveMessage(message)
   }
 
   async sendMessage(message) {
