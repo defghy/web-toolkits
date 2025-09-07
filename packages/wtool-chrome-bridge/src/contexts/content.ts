@@ -47,34 +47,28 @@ export class ContentBridge extends BaseBridge {
         return
       }
 
-      // 多套bridge隔离
-      if (source !== this.platWeb) {
-        return
-      }
-
       const isRequest = message.type === MsgDef.REQUEST
-      this.debug(message, { type: DebugDir.receive })
       // 如果目标是content script，直接处理
-      if (target === this.plat) {
+      if (this.isMyMessage(message)) {
+        this.debug(message, { type: DebugDir.receive })
         if (isRequest) {
-          this.handleRequest({
-            request: message,
-            sendResponse: response => {
-              this.sendMessage(response)
-            },
-          })
+          this.handleRequest({ request: message })
         } else {
           this.handleResponse({ response: message })
         }
         return
       }
 
-      // 否则，转发消息
-      const handle = this.sendMessage(message)
+      // 转发消息
+      if (source === this.platWeb) {
+        this.debug(message, { type: DebugDir.receive })
+        const handle = this.sendMessage(message)
 
-      if (isRequest && !extra?.noResponse) {
-        const res = await handle
-        res && this.sendMessage(res)
+        if (isRequest && !extra?.noResponse) {
+          const res = await handle
+          res && this.sendMessage(res)
+        }
+        return
       }
     })
 
@@ -84,9 +78,9 @@ export class ContentBridge extends BaseBridge {
 
       const { type, target } = message
 
-      this.debug(message, { type: DebugDir.receive })
       // content script自己的消息
-      if (target === this.plat) {
+      if (this.isMyMessage(message)) {
+        this.debug(message, { type: DebugDir.receive })
         // 如果是发给content script的请求，处理它
         if (type === MsgDef.REQUEST) {
           this.handleRequest({ request: message, sendResponse })
@@ -98,22 +92,16 @@ export class ContentBridge extends BaseBridge {
 
       // 转发消息
       if (message.target === this.platWeb) {
-        this.send2Web(message)
+        this.debug(message, { type: DebugDir.receive })
+        this.sendMessage(message)
       }
     })
   }
 
-  // 发送web时需要排除content
-  send2Web(message) {
-    message.lastSendBy = this.plat
-    window.postMessage(message, '*')
-  }
-
   async sendMessage(message) {
-    this.debug(message, { type: DebugDir.send })
     // 发送给web页面
     if (message.target === this.platWeb) {
-      return this.send2Web(message)
+      return window.postMessage(message, '*')
     }
 
     // 发送给其他环境（通过background转发）

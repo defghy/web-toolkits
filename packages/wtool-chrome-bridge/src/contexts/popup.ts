@@ -31,10 +31,7 @@ export class PopupBridge extends BaseBridge {
       }
       this.debug(message, { type: DebugDir.receive })
       if (message.type === MsgDef.REQUEST) {
-        this.handleRequest({
-          request: message,
-          sendResponse,
-        })
+        this.handleRequest({ request: message, sendResponse })
         return message.extra?.noResponse ? undefined : true
       } else {
         this.handleResponse({ response: message })
@@ -44,7 +41,6 @@ export class PopupBridge extends BaseBridge {
 
   async sendMessage(message) {
     await this.waitTabId
-    this.debug(message, { type: DebugDir.send })
     return chrome.tabs.sendMessage(this.tabId, message, {})
   }
 }

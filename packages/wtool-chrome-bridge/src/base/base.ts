@@ -113,7 +113,7 @@ export class BaseBridge extends BridgeMessageFormat {
     sendResponse,
   }: {
     request: RequestMessage
-    sendResponse: (res: ResponseMessage) => any
+    sendResponse?: (res: ResponseMessage) => any
   }) {
     if (request.type !== MsgDef.REQUEST) return false
 
@@ -121,12 +121,15 @@ export class BaseBridge extends BridgeMessageFormat {
       return console.error('not support invoke own api')
     }
 
+    if (sendResponse) {
+      sendResponse = response => this.sendMessage(response)
+    }
     const doResponse = ({ data, error }: any) => {
       if (request.extra?.noResponse) {
         return
       }
       const response = this.makeResponse({ data, error, request })
-      sendResponse(response)
+      sendResponse?.(response)
     }
 
     // 检查是否有对应的路由处理器
@@ -212,12 +215,6 @@ export class BaseBridge extends BridgeMessageFormat {
     return promise
   }
 
-  sendMessageWrapper(message: any) {
-    message.lastSendBy = this.plat
-    this.debug(message, { type: DebugDir.send })
-    this.sendMessage(message)
-  }
-
   /**
    * 发送消息 - 由子类实现
    * @param {Object} message - 消息对象
@@ -225,4 +222,7 @@ export class BaseBridge extends BridgeMessageFormat {
   async sendMessage(message: BridgeMessage) {
     throw new Error('sendMessage method must be implemented by subclass')
   }
+
+  // 收到消息后
+  async onReceiveMessage(message: BridgeMessage) {}
 }

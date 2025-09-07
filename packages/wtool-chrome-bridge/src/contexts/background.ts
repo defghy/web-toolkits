@@ -24,10 +24,7 @@ export class BackgroundBridge extends BaseBridge {
           params = { data: params, sender }
         }
         message.params = params
-        this.handleRequest({
-          request: message,
-          sendResponse,
-        })
+        this.handleRequest({ request: message, sendResponse })
         return message.extra?.noResponse ? undefined : true
       } else {
         this.handleResponse({ response: message })

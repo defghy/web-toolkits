@@ -31,12 +31,7 @@ export class WebBridge extends BaseBridge {
 
     this.debug(message, { type: 'receive' })
     if (type === MsgDef.REQUEST) {
-      this.handleRequest({
-        request: message,
-        sendResponse: response => {
-          this.sendMessage(response)
-        },
-      })
+      this.handleRequest({ request: message })
     } else {
       this.handleResponse({ response: message })
     }
