@@ -8,16 +8,32 @@ import { getBridgeMap } from '../utils'
  */
 export class ContentBridge extends BaseBridge {
   platWeb = Plat.web
-  constructor({ plat, platWeb }: any = {}) {
+
+  static produce({ plat }: any = {}): ContentBridge {
     plat = plat || Plat.content
+
     const bridgeMap = getBridgeMap()
     if (bridgeMap[plat]) {
       return bridgeMap[plat]
     }
-    super({ plat })
-    this.platWeb = platWeb || this.platWeb
-    this.init()
+
+    const instance = new ContentBridge({ plat })
     bridgeMap[plat] = this
+    return instance
+  }
+
+  constructor({ plat, platWeb }: any = {}) {
+    plat = plat || Plat.content
+    super({ plat })
+
+    const bridgeMap = getBridgeMap()
+    if (bridgeMap[plat]) {
+      return bridgeMap[plat]
+    } else {
+      this.platWeb = platWeb || this.platWeb
+      this.init()
+      bridgeMap[plat] = this
+    }
   }
 
   init() {
