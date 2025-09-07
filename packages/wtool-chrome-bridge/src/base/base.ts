@@ -1,11 +1,6 @@
-import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeExtra } from './const'
-import { debug } from './utils'
-
-// 唯一ID生成器
-const crypto = globalThis.crypto
-const uuid = crypto?.randomUUID
-  ? () => crypto.randomUUID()
-  : () => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeMessage, BridgeExtra, DebugDir } from '../const'
+import { debug, uuid } from '../utils'
+import { BridgePlugins, PluginEvent } from './plugins'
 
 // 消息格式
 class BridgeMessageFormat {
@@ -47,9 +42,36 @@ class BridgeMessageFormat {
     } as ResponseMessage
     return response
   }
-  isBridgeMessage(msgdata) {
+  isBridgeMessage(msgdata: BridgeMessage) {
     return msgdata?.requestId && [MsgDef.REQUEST, MsgDef.RESPONSE].includes(msgdata.type)
   }
+  isMyMessage(message: BridgeMessage) {
+    if (!this.isBridgeMessage(message)) {
+      return
+    }
+
+    const { target, lastSendBy } = message
+    // 不处理自己发出去的消息
+    if (lastSendBy === this.plat) return
+
+    // 只处理发给我的消息
+    if (target !== this.plat) return
+
+    return true
+  }
+}
+
+// sendMessage封装
+const sendMessageWrapper = function (ctx: BaseBridge) {
+  const originFunc = ctx.sendMessage
+
+  const realSendMessage = function (message: any) {
+    message.lastSendBy = ctx.plat
+    ctx.debug(message, { type: DebugDir.send })
+    return originFunc.call(ctx, message)
+  }
+
+  return realSendMessage.bind(ctx)
 }
 
 /**
@@ -59,13 +81,15 @@ export class BaseBridge extends BridgeMessageFormat {
   plat: Plat
   handlers: Map<string, Function> = new Map()
   pendingRequests: Map<string, any> = new Map()
-  timeout = 30000
   debug = debug
+  plugins: BridgePlugins
 
   constructor({ plat }) {
     super({ plat })
     this.plat = plat
     this.debug = this.debug.bind(this)
+    this.plugins = new BridgePlugins({ bridge: this })
+    this.sendMessage = sendMessageWrapper(this)
   }
 
   /**
@@ -89,7 +113,7 @@ export class BaseBridge extends BridgeMessageFormat {
     sendResponse,
   }: {
     request: RequestMessage
-    sendResponse: (res: ResponseMessage) => any
+    sendResponse?: (res: ResponseMessage) => any
   }) {
     if (request.type !== MsgDef.REQUEST) return false
 
@@ -97,12 +121,15 @@ export class BaseBridge extends BridgeMessageFormat {
       return console.error('not support invoke own api')
     }
 
+    if (!sendResponse) {
+      sendResponse = response => this.sendMessage(response)
+    }
     const doResponse = ({ data, error }: any) => {
       if (request.extra?.noResponse) {
         return
       }
       const response = this.makeResponse({ data, error, request })
-      sendResponse(response)
+      sendResponse?.(response)
     }
 
     // 检查是否有对应的路由处理器
@@ -110,6 +137,12 @@ export class BaseBridge extends BridgeMessageFormat {
     if (!handler) {
       doResponse({ error: 'Route not found' })
       return false
+    }
+
+    // plugin中处理参数
+    const { stop } = await this.plugins.exec(PluginEvent.onReceiveRequest, { request })
+    if (stop) {
+      return
     }
 
     try {
@@ -137,9 +170,9 @@ export class BaseBridge extends BridgeMessageFormat {
     const pendingRequest = this.pendingRequests.get(requestId)
     if (!pendingRequest) return
 
-    this.pendingRequests.delete(requestId)
-    clearTimeout(pendingRequest.timeoutId)
+    this.plugins.exec(PluginEvent.onResponse, { response })
 
+    this.pendingRequests.delete(requestId)
     if (data.ret !== 0) {
       pendingRequest.reject(data)
     } else {
@@ -150,34 +183,32 @@ export class BaseBridge extends BridgeMessageFormat {
   // 无返回值发送请求
   send(path, params, options: any = {}) {
     options.noResponse = true
-    const requestMessage = this.makeRequest({ path, params, options })
-    this.sendMessage(requestMessage)
+    this.request(path, params, options)
   }
 
   // 发送请求并等待响应
-  request(path, params = {}, options: BridgeExtra = {}) {
+  async request(path, params = {}, options: BridgeExtra = {}) {
     const requestMessage = this.makeRequest({ path, params, options })
     const { requestId } = requestMessage
 
     const { promise, resolve, reject } = Promise.withResolvers()
 
-    // 设置超时
-    const timeoutId = setTimeout(() => {
-      this.pendingRequests.delete(requestId)
-      reject(new Error(`Request timeout for route: ${path}`))
-    }, this.timeout)
-
     // 存储pending请求
-    this.pendingRequests.set(requestId, {
-      resolve,
-      reject,
-      timeoutId,
-    })
+    if (!options.noResponse) {
+      const pendingRequest = { resolve, reject }
+      this.pendingRequests.set(requestId, pendingRequest)
+    }
+
+    const { stop } = await this.plugins.exec(PluginEvent.beforeSendRequest, { request: requestMessage })
+    if (stop) {
+      return
+    }
+
     // 发送请求 - 由子类实现具体发送逻辑
     this.sendMessage(requestMessage).catch(error => {
-      this.pendingRequests.delete(requestId)
-      clearTimeout(timeoutId)
+      this.plugins.exec(PluginEvent.onSendRequestError, { request: requestMessage, error })
 
+      this.pendingRequests.delete(requestId)
       reject(error)
     })
 
@@ -188,7 +219,19 @@ export class BaseBridge extends BridgeMessageFormat {
    * 发送消息 - 由子类实现
    * @param {Object} message - 消息对象
    */
-  async sendMessage(message) {
+  async sendMessage(message: BridgeMessage) {
     throw new Error('sendMessage method must be implemented by subclass')
+  }
+
+  // 收到消息后 - 一般操作
+  async onReceiveMessage(message: BridgeMessage) {
+    if (!this.isMyMessage(message)) return
+
+    this.debug(message, { type: 'receive' })
+    if (message.type === MsgDef.REQUEST) {
+      this.handleRequest({ request: message })
+    } else {
+      this.handleResponse({ response: message })
+    }
   }
 }

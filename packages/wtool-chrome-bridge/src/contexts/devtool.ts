@@ -15,23 +15,16 @@ export class DevtoolBridge extends BaseBridge {
 
   init() {
     chrome.runtime.onMessage.addListener((message: BridgeMessage, sender, sendResponse) => {
-      if (!this.isBridgeMessage(message)) {
+      if (!this.isMyMessage(message)) {
         return
       }
       // 可能来自其他tab的信息
       if (this.tabId !== sender.tab?.id) {
         return
       }
-      // 只处理发给我的消息
-      if (message.target !== this.plat) {
-        return
-      }
       this.debug(message, { type: DebugDir.receive })
       if (message.type === MsgDef.REQUEST) {
-        this.handleRequest({
-          request: message,
-          sendResponse,
-        })
+        this.handleRequest({ request: message, sendResponse })
         return message.extra?.noResponse ? undefined : true
       } else {
         this.handleResponse({ response: message })
@@ -40,7 +33,6 @@ export class DevtoolBridge extends BaseBridge {
   }
 
   async sendMessage(message) {
-    this.debug(message, { type: DebugDir.send })
     return chrome.tabs.sendMessage(this.tabId, message, {})
   }
 }

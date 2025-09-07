@@ -17,8 +17,16 @@ export enum Plat {
 }
 
 export interface BridgeExtra {
+  timeout?: number // 超时时间
   trace?: boolean // 追踪
   noResponse?: boolean // 无返回
+  // 参数分块儿
+  chunk?:
+    | {
+        size: number // 块儿大小
+        path: string // 数据需要分块儿
+      }
+    | boolean
   [key: string]: any
 }
 
@@ -28,13 +36,21 @@ export interface BridgeMessage {
   target: Plat
   requestId: string
   path: string
-  lastSendBy?: Plat
+  lastSendBy?: Plat | string
   extra?: BridgeExtra
 }
 
 export enum DebugDir {
   receive = 'receive',
   send = 'send',
+}
+
+export interface ChunkItem {
+  index: number
+  data: string
+  size: number
+  nonChunkData?: any
+  [key: string]: any
 }
 
 export interface RequestMessage extends BridgeMessage {
