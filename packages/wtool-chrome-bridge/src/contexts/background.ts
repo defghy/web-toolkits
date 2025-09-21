@@ -11,7 +11,7 @@ export class BackgroundBridge extends BaseBridge {
   }
 
   init() {
-    chrome.runtime.onMessage.addListener((message: RequestMessage, sender, sendResponse) => {
+    chrome.runtime.onMessage.addListener((message: RequestMessage, sender) => {
       if (!this.isMyMessage(message)) {
         return
       }
@@ -24,8 +24,7 @@ export class BackgroundBridge extends BaseBridge {
           params = { data: params, sender }
         }
         message.params = params
-        this.handleRequest({ request: message, sendResponse })
-        return message.extra?.noResponse ? undefined : true
+        this.handleRequest({ request: message })
       } else {
         this.handleResponse({ response: message })
       }

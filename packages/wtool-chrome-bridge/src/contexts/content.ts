@@ -9,19 +9,6 @@ import { getBridgeMap } from '../utils'
 export class ContentBridge extends BaseBridge {
   platWeb = Plat.web
 
-  static produce({ plat }: any = {}): ContentBridge {
-    plat = plat || Plat.content
-
-    const bridgeMap = getBridgeMap()
-    if (bridgeMap[plat]) {
-      return bridgeMap[plat]
-    }
-
-    const instance = new ContentBridge({ plat })
-    bridgeMap[plat] = this
-    return instance
-  }
-
   constructor({ plat, platWeb }: any = {}) {
     plat = plat || Plat.content
     super({ plat })
@@ -62,13 +49,7 @@ export class ContentBridge extends BaseBridge {
       // 转发消息
       if (source === this.platWeb) {
         this.debug(message, { type: DebugDir.receive })
-        const handle = this.sendMessage(message)
-
-        if (isRequest && !extra?.noResponse) {
-          const res = await handle
-          res && this.sendMessage(res)
-        }
-        return
+        this.sendMessage(message)
       }
     })
 
@@ -83,11 +64,11 @@ export class ContentBridge extends BaseBridge {
         this.debug(message, { type: DebugDir.receive })
         // 如果是发给content script的请求，处理它
         if (type === MsgDef.REQUEST) {
-          this.handleRequest({ request: message, sendResponse })
-          return message.extra?.noResponse ? undefined : true
+          this.handleRequest({ request: message })
         } else {
           this.handleResponse({ response: message })
         }
+        return
       }
 
       // 转发消息
