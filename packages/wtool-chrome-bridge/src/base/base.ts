@@ -108,28 +108,23 @@ export class BaseBridge extends BridgeMessageFormat {
   }
 
   // 处理接收到的请求
-  async handleRequest({
-    request,
-    sendResponse,
-  }: {
-    request: RequestMessage
-    sendResponse?: (res: ResponseMessage) => any
-  }) {
+  async handleRequest({ request }: { request: RequestMessage }) {
     if (request.type !== MsgDef.REQUEST) return false
 
     if (request.source === this.plat) {
       return console.error('not support invoke own api')
     }
 
-    if (!sendResponse) {
-      sendResponse = response => this.sendMessage(response)
-    }
-    const doResponse = ({ data, error }: any) => {
+    const doResponse = async ({ data, error }: any) => {
       if (request.extra?.noResponse) {
         return
       }
       const response = this.makeResponse({ data, error, request })
-      sendResponse?.(response)
+      const { stop } = await this.plugins.exec(PluginEvent.beforeSendResponse, { response })
+      if (stop) {
+        return
+      }
+      this.sendMessage(response)
     }
 
     // 检查是否有对应的路由处理器
