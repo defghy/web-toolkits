@@ -165,7 +165,7 @@ export class BaseBridge extends BridgeMessageFormat {
     const pendingRequest = this.pendingRequests.get(requestId)
     if (!pendingRequest) return
 
-    this.plugins.exec(PluginEvent.onResponse, { response })
+    this.plugins.exec(PluginEvent.onReceiveResponse, { response })
 
     this.pendingRequests.delete(requestId)
     if (data.ret !== 0) {

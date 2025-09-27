@@ -6,7 +6,7 @@ export enum PluginEvent {
   onSendRequestError = 'onSendRequestError', // send方法失败
   onReceiveRequest = 'onReceiveRequest', // 接收到request
   beforeSendResponse = 'beforeSendResponse', // 发送response前
-  onResponse = 'onResponse', // 收到响应
+  onReceiveResponse = 'onReceiveResponse', // 收到响应
 }
 
 export interface BridgePlugin {
@@ -15,7 +15,7 @@ export interface BridgePlugin {
   [PluginEvent.onSendRequestError]: ({ request, error }: { request: RequestMessage; error: Error }) => any
   [PluginEvent.onReceiveRequest]: ({ request }: { request: RequestMessage }) => any
   [PluginEvent.beforeSendResponse]: ({ response }: { response: ResponseMessage }) => any
-  [PluginEvent.onResponse]: ({ response }: { response: ResponseMessage }) => any
+  [PluginEvent.onReceiveResponse]: ({ response }: { response: ResponseMessage }) => any
 
   [key: string]: any
 }
@@ -52,7 +52,7 @@ export class TimeoutPlugin implements Partial<BridgePlugin> {
     clearTimeout(pendingRequests.get(request.requestId)?.timeoutId)
   }
 
-  [PluginEvent.onResponse]({ response }) {
+  [PluginEvent.onReceiveResponse]({ response }) {
     const { pendingRequests } = this.bridge
     clearTimeout(pendingRequests.get(response.requestId)?.timeoutId)
   }
