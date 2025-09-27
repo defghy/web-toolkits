@@ -5,7 +5,9 @@ import { BridgePlugin, PluginEvent } from './plugins'
 import { uuid } from '../../utils'
 
 interface ChunkInfo {
-  chunks: any[]; count: number; isObject: boolean
+  chunks: any[]
+  count: number
+  isObject: boolean
 }
 
 // 接口超时功能
@@ -18,7 +20,7 @@ export class ChunkPlugin implements Partial<BridgePlugin> {
     this.bridge = bridge
     this.chunkMap = {
       req: {},
-      res: {}
+      res: {},
     }
   }
 
@@ -71,36 +73,20 @@ export class ChunkPlugin implements Partial<BridgePlugin> {
     }
 
     const chunkParams = request.params as ChunkItem
-    const { index, data, size, chunkId } = chunkParams
-    if (!chunkId) {
+    if (!chunkParams?.chunkId) {
       return
     }
 
-    // 初始化
-    const infoMap = this.chunkMap.req
-    if (!infoMap[request.requestId]) {
-      infoMap[request.requestId] = { chunks: Array(size), count: 0 } as any
-    }
-
     // 更新chunk
-    const chunkInfo = infoMap[request.requestId]
-    const { chunks } = chunkInfo
-    chunkInfo.count++
-    chunks[index] = data
-    if (index === 0) {
-      const { isObject } = chunkParams
-      Object.assign(chunkInfo, { isObject })
-    }
+    const { isFinished, data } = chunk2data({
+      chunkInfoMap: this.chunkMap.req,
+      requestId: request.requestId,
+      chunkData: chunkParams,
+    })
 
     // 判断传输完成了
-    if (chunkInfo.count === size) {
-      let chunkData = chunks.join('')
-      if (chunkInfo.isObject) {
-        chunkData = JSON.parse(chunkData)
-      }
-
-      request.params = chunkData
-      delete infoMap[request.requestId]
+    if (isFinished) {
+      request.params = data
     } else {
       return Promise.reject('chunk still running')
     }
@@ -143,10 +129,31 @@ export class ChunkPlugin implements Partial<BridgePlugin> {
     }
 
     return Promise.reject('handle by chunk plugin')
-  }
+  };
 
   [PluginEvent.onReceiveResponse]: BridgePlugin[PluginEvent.onReceiveResponse] = async ({ response }) => {
-    response.
+    if (!response.extra?.chunk) {
+      return
+    }
+
+    const chunkParams = response.data as ChunkItem
+    if (!chunkParams?.chunkId) {
+      return
+    }
+
+    // 更新chunk
+    const { isFinished, data } = chunk2data({
+      chunkInfoMap: this.chunkMap.res,
+      requestId: response.requestId,
+      chunkData: chunkParams,
+    })
+
+    // 判断传输完成了
+    if (isFinished) {
+      response.data = data
+    } else {
+      return Promise.reject('chunk still running')
+    }
   }
 }
 
@@ -187,25 +194,40 @@ const data2Chunks = function ({ data, chunkSize }: { data: any; chunkSize: numbe
 }
 
 // 收到chunk，整理成data
-const chunk2data = function({ chunkInfo, chunkData, }: { chunkInfo: ChunkInfo, chunkData: ChunkItem }) {
-    // 更新chunk
-    const { index, data, size, chunkId } = chunkData
-    const { chunks } = chunkInfo
-    chunkInfo.count++
-    chunks[index] = data
-    if (index === 0) {
-      Object.assign(chunkInfo, { isObject: chunkData.isObject })
+const chunk2data = function ({
+  chunkInfoMap,
+  requestId,
+  chunkData,
+}: {
+  chunkInfoMap: Record<string, ChunkInfo>
+  requestId: string
+  chunkData: ChunkItem
+}) {
+  const { index, data, size, chunkId } = chunkData
+  // 初始化
+  if (!chunkInfoMap[requestId]) {
+    chunkInfoMap[requestId] = { chunks: Array(size), count: 0 } as any
+  }
+
+  const chunkInfo = chunkInfoMap[requestId]
+  // 更新chunk
+  const { chunks } = chunkInfo
+  chunkInfo.count++
+  chunks[index] = data
+  if (index === 0) {
+    Object.assign(chunkInfo, { isObject: chunkData.isObject })
+  }
+
+  // 判断传输完成了
+  if (chunkInfo.count === size) {
+    let chunkData = chunks.join('')
+    if (chunkInfo.isObject) {
+      chunkData = JSON.parse(chunkData)
     }
 
-    // 判断传输完成了
-    if (chunkInfo.count === size) {
-      let chunkData = chunks.join('')
-      if (chunkInfo.isObject) {
-        chunkData = JSON.parse(chunkData)
-      }
-
-      return { isFinished: true, data: chunkData };
-    } else {
-      return { isFinished: false }
-    }
+    delete chunkInfoMap[requestId]
+    return { isFinished: true, data: chunkData }
+  } else {
+    return { isFinished: false }
+  }
 }
