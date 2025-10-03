@@ -158,15 +158,19 @@ export class BaseBridge extends BridgeMessageFormat {
   /**
    * 处理接收到的响应
    */
-  handleResponse({ response }: { response: ResponseMessage }) {
+  async handleResponse({ response }: { response: ResponseMessage }) {
     if (response.type !== MsgDef.RESPONSE) return
 
-    const { requestId, data } = response
+    const { requestId } = response
     const pendingRequest = this.pendingRequests.get(requestId)
     if (!pendingRequest) return
 
-    this.plugins.exec(PluginEvent.onReceiveResponse, { response })
+    const { stop } = await this.plugins.exec(PluginEvent.onReceiveResponse, { response })
+    if (stop) {
+      return
+    }
 
+    const { data } = response
     this.pendingRequests.delete(requestId)
     if (data.ret !== 0) {
       pendingRequest.reject(data)
