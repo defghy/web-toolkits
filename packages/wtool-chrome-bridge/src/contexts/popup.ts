@@ -21,7 +21,7 @@ export class PopupBridge extends BaseBridge {
   }
 
   init() {
-    chrome.runtime.onMessage.addListener((message: BridgeMessage, sender, sendResponse) => {
+    chrome.runtime.onMessage.addListener((message: BridgeMessage, sender) => {
       // 可能来自其他tab的信息
       if (this.tabId !== sender.tab?.id) {
         return
@@ -31,8 +31,7 @@ export class PopupBridge extends BaseBridge {
       }
       this.debug(message, { type: DebugDir.receive })
       if (message.type === MsgDef.REQUEST) {
-        this.handleRequest({ request: message, sendResponse })
-        return message.extra?.noResponse ? undefined : true
+        this.handleRequest({ request: message })
       } else {
         this.handleResponse({ response: message })
       }

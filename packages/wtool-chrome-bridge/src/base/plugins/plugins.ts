@@ -2,39 +2,20 @@ import type { RequestMessage, ResponseMessage } from '../../const'
 import type { BaseBridge } from '../base'
 
 export enum PluginEvent {
-  beforeSendRequest = 'onBeforeSendRequest', // 发送请求前
+  beforeSendRequest = 'onBeforeSendRequest', // 发送request前
   onSendRequestError = 'onSendRequestError', // send方法失败
-  onReceiveRequest = 'onReceiveRequest', // 接收到请求
-  onResponse = 'onResponse', // 收到响应
+  onReceiveRequest = 'onReceiveRequest', // 接收到request
+  beforeSendResponse = 'beforeSendResponse', // 发送response前
+  onReceiveResponse = 'onReceiveResponse', // 收到响应
 }
 
 export interface BridgePlugin {
   bridge: BaseBridge
-  [PluginEvent.beforeSendRequest]: ({
-    request, // 完整request数据
-  }: {
-    request: RequestMessage
-  }) => any
-
-  [PluginEvent.onSendRequestError]: ({
-    request, // 完整request数据
-    error,
-  }: {
-    request: RequestMessage
-    error: Error
-  }) => any
-
-  [PluginEvent.onReceiveRequest]: ({
-    request, // 完整request数据
-  }: {
-    request: RequestMessage
-  }) => any
-
-  [PluginEvent.onResponse]: ({
-    response, // 返回体
-  }: {
-    response: ResponseMessage
-  }) => any
+  [PluginEvent.beforeSendRequest]: ({ request }: { request: RequestMessage }) => any
+  [PluginEvent.onSendRequestError]: ({ request, error }: { request: RequestMessage; error: Error }) => any
+  [PluginEvent.onReceiveRequest]: ({ request }: { request: RequestMessage }) => any
+  [PluginEvent.beforeSendResponse]: ({ response }: { response: ResponseMessage }) => any
+  [PluginEvent.onReceiveResponse]: ({ response }: { response: ResponseMessage }) => any
 
   [key: string]: any
 }
@@ -71,7 +52,7 @@ export class TimeoutPlugin implements Partial<BridgePlugin> {
     clearTimeout(pendingRequests.get(request.requestId)?.timeoutId)
   }
 
-  [PluginEvent.onResponse]({ response }) {
+  [PluginEvent.onReceiveResponse]({ response }) {
     const { pendingRequests } = this.bridge
     clearTimeout(pendingRequests.get(response.requestId)?.timeoutId)
   }

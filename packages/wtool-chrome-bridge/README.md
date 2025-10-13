@@ -29,7 +29,7 @@ interface BridgeOptions {
   trace?: boolean // trace api route； for debug
   noResponse?: boolean // just send, no need response
   timeout?: number // api timeout milliseconds
-  chunk?: { size?: number } // large data cannot send by once postMessage, need split
+  chunk?: { size?: number } // large data(request params && response data) cannot send by once postMessage, need split into chunk
 }
 
 // on listen api
