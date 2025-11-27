@@ -59,3 +59,16 @@ export interface RequestMessage extends BridgeMessage {
 export interface ResponseMessage extends BridgeMessage {
   data?: any
 }
+
+// polyfill chrome 119+
+Promise.withResolvers =
+  Promise.withResolvers ||
+  function () {
+    let resolve, reject
+    const promise = new Promise((res, rej) => {
+      resolve = res
+      reject = rej
+    })
+
+    return { resolve, reject, promise }
+  }
