@@ -180,7 +180,7 @@ export class BaseBridge extends BridgeMessageFormat {
   }
 
   // 无返回值发送请求
-  send(path, params, options: any = {}) {
+  send(path, params: any = {}, options: any = {}) {
     options.noResponse = true
     this.request(path, params, options)
   }
