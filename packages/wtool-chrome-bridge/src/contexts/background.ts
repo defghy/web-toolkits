@@ -15,15 +15,10 @@ export class BackgroundBridge extends BaseBridge {
       if (!this.isMyMessage(message)) {
         return
       }
+
+      // 插入一些环境参数
+      message.tabId = message.tabId || sender?.tab?.id
       if (message.type === MsgDef.REQUEST) {
-        // 插入一些环境参数
-        let params = message.params
-        if (typeof params === 'object' && params) {
-          message.params.sender = sender
-        } else {
-          params = { data: params, sender }
-        }
-        message.params = params
         this.handleRequest({ request: message })
       } else {
         this.handleResponse({ response: message })
@@ -32,7 +27,11 @@ export class BackgroundBridge extends BaseBridge {
   }
 
   async sendMessage(message) {
-    // background通信web需要指定tabId，这里的通信指的是popup和option页面
-    return chrome.runtime.sendMessage(message, {})
+    if (message?.tabId) {
+      chrome.tabs.sendMessage(message.tabId, message)
+    } else {
+      // background通信web需要指定tabId，这里的通信指的是popup和option页面
+      return chrome.runtime.sendMessage(message, {})
+    }
   }
 }

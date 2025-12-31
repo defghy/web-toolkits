@@ -38,6 +38,7 @@ export interface BridgeMessage {
   path: string
   lastSendBy?: Plat | string
   extra?: BridgeExtra
+  tabId?: number // 一对多场景，需要明确消息来自哪个tab
 }
 
 export enum DebugDir {
