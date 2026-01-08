@@ -26,13 +26,14 @@ class BridgeMessageFormat {
   }
   // response对象
   makeResponse({ data = null, error, request }: { data?: any; error?: string; request: RequestMessage }) {
-    const { requestId, path, source, params } = request
+    const { requestId, path, source, tabId } = request
     const response = {
       type: MsgDef.RESPONSE,
       path,
       source: this.plat,
       target: source,
       requestId,
+      tabId,
       data: {
         ret: error ? -1 : 0,
         errmsg: error || undefined,

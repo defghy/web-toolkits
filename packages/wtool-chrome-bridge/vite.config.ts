@@ -39,7 +39,6 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-
     build: {
       watch: isProd ? null : {},
       minify: isProd,
@@ -55,6 +54,8 @@ export default defineConfig(({ mode }) => {
         external: [],
         output: {
           compact: isProd,
+          // 禁止 rollup 进行变量重命名
+          hoistTransitiveImports: false,
         },
       },
       sourcemap: isProd ? false : true,
