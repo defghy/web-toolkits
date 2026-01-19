@@ -49,11 +49,11 @@ export function cloneDeepWith(
     const result = Object.create(Object.getPrototypeOf(val))
 
     // 处理所有自有属性（包括不可枚举和 Symbol）
-    const allKeys = [...Object.getOwnPropertyNames(val), ...Object.getOwnPropertySymbols(val)]
+    const allKeys = [...Object.keys(val), ...Object.getOwnPropertySymbols(val)]
     allKeys.forEach(key => {
       const cloned = baseClone(val[key], key)
       if (cloned !== DELETE) {
-        const descriptor = Object.getOwnPropertyDescriptor(val, key)
+        const { get, set, ...descriptor } = Object.getOwnPropertyDescriptor(val, key) || {}
         Object.defineProperty(result, key, {
           ...descriptor,
           value: cloned,
