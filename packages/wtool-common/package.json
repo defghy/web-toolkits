@@ -1,7 +1,7 @@
 {
   "name": "@yuhufe/web-common",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "chrome extension and iframe bridge which support promise",
   "keywords": [
     "lodash",
