@@ -5,10 +5,11 @@ import { getBridgeMap } from '../utils'
 /**
  * IFrame，使用单例
  */
+type FrameEl = HTMLIFrameElement | (() => HTMLIFrameElement)
 export class IFrameTop extends WebBridge {
-  static frameMap = new Map<string, HTMLIFrameElement | (() => HTMLIFrameElement)>()
+  static frameMap = new Map<string, FrameEl>()
 
-  constructor({ plat, frameKey, frameEl }) {
+  constructor({ plat, frameKey, frameEl }: { plat?: any; frameKey: string; frameEl: FrameEl }) {
     plat = plat || Plat.iframeTop
     super({ plat })
     IFrameTop.frameMap.set(frameKey, frameEl)
