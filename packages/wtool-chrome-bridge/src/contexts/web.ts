@@ -5,7 +5,7 @@ import { getBridgeMap } from '../utils'
 /**
  * Web页面Bridge；环境单例
  */
-export class WebBridge extends BaseBridge {
+export class WebBridge<T = any> extends BaseBridge<T> {
   constructor({ plat }: any = {}) {
     plat = plat || Plat.web
     super({ plat }) // super must be called

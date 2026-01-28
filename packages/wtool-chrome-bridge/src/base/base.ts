@@ -78,10 +78,10 @@ const sendMessageWrapper = function (ctx: BaseBridge) {
 /**
  * 基础Bridge类
  */
-export class BaseBridge extends BridgeMessageFormat {
+export class BaseBridge<T extends any = any> extends BridgeMessageFormat {
   plat: Plat
-  handlers: Map<string, Function> = new Map()
-  pendingRequests: Map<string, any> = new Map()
+  handlers: Map<any, Function> = new Map()
+  pendingRequests: Map<any, any> = new Map()
   debug = debug
   plugins: BridgePlugins
 
@@ -96,7 +96,7 @@ export class BaseBridge extends BridgeMessageFormat {
   /**
    * 注册路由处理器
    */
-  on(route: string, handler: Function) {
+  on<K extends keyof T>(route: K, handler: T[K]) {
     this.handlers.set(route, handler)
   }
 
@@ -104,7 +104,7 @@ export class BaseBridge extends BridgeMessageFormat {
    * 注销路由处理器
    * @param {string} route - 路由路径
    */
-  off(route: string) {
+  off(route: keyof T) {
     this.handlers.delete(route)
   }
 
@@ -181,13 +181,13 @@ export class BaseBridge extends BridgeMessageFormat {
   }
 
   // 无返回值发送请求
-  send(path, params: any = {}, options: any = {}) {
+  send<K extends keyof T>(path: K, params: Parameters<T[K]>[0] = {}, options: any = {}) {
     options.noResponse = true
     this.request(path, params, options)
   }
 
   // 发送请求并等待响应
-  async request(path, params = {}, options: BridgeExtra = {}) {
+  async request<K extends keyof T>(path: K, params: Parameters<T[K]>[0] = {}, options: BridgeExtra = {}) {
     const requestMessage = this.makeRequest({ path, params, options })
     const { requestId } = requestMessage
 

@@ -6,7 +6,7 @@ import { BaseBridge } from '../base'
 /**
  * MasterBridge，使用单例
  */
-export class MasterBridge extends BaseBridge {
+export class MasterBridge<T> extends BaseBridge<T> {
   static workerMap = new Map<string, Worker>()
 
   constructor() {

@@ -4,7 +4,7 @@ import { Plat, MsgDef, BridgeMessage, DebugDir } from '../const'
 /**
  * Web页面Bridge
  */
-export class DevtoolBridge extends BaseBridge {
+export class DevtoolBridge<T> extends BaseBridge<T> {
   tabId = 0
 
   constructor({ plat }: any = {}) {

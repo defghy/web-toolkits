@@ -4,7 +4,7 @@ import { Plat, MsgDef, RequestMessage } from '../const'
 /**
  * Web页面Bridge
  */
-export class BackgroundBridge extends BaseBridge {
+export class BackgroundBridge<T> extends BaseBridge<T> {
   constructor({ plat }: any = {}) {
     super({ plat: plat || Plat.background })
     this.init()
