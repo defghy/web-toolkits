@@ -80,7 +80,7 @@ const sendMessageWrapper = function (ctx: BaseBridge) {
  */
 export class BaseBridge<T extends any = any> extends BridgeMessageFormat {
   plat: Plat
-  handlers: Map<any, Function> = new Map()
+  handlers: Map<any, any> = new Map()
   pendingRequests: Map<any, any> = new Map()
   debug = debug
   plugins: BridgePlugins
@@ -212,7 +212,7 @@ export class BaseBridge<T extends any = any> extends BridgeMessageFormat {
       reject(error)
     })
 
-    return promise
+    return promise as ReturnType<T[K]>
   }
 
   /**
