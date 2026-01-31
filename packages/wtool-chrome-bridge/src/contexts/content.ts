@@ -1,12 +1,12 @@
 import { BaseBridge } from '../base'
-import { Plat, MsgDef, BridgeMessage, DebugDir } from '../const'
+import { Plat, MsgDef, BridgeMessage, DebugDir, GenericFuncs } from '../const'
 import { getBridgeMap } from '../utils'
 
 /**
  * Content Script Bridge
  * 负责中转消息
  */
-export class ContentBridge<T> extends BaseBridge<T> {
+export class ContentBridge<T extends GenericFuncs> extends BaseBridge<T> {
   platWeb = Plat.web
 
   constructor({ plat, platWeb }: any = {}) {

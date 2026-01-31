@@ -1,12 +1,12 @@
 import { WebBridge } from './web'
-import { Plat, DebugDir } from '../const'
+import { Plat, GenericFuncs } from '../const'
 import { getBridgeMap } from '../utils'
 
 /**
  * IFrame，使用单例
  */
 type FrameEl = HTMLIFrameElement | (() => HTMLIFrameElement)
-export class IFrameTop<T> extends WebBridge<T> {
+export class IFrameTop<T extends GenericFuncs> extends WebBridge<T> {
   static frameMap = new Map<string, FrameEl>()
 
   constructor({ plat, frameKey, frameEl }: { plat?: any; frameKey: string; frameEl: FrameEl }) {
@@ -35,7 +35,7 @@ export class IFrameTop<T> extends WebBridge<T> {
   }
 }
 
-export class IFrame<T> extends WebBridge<T> {
+export class IFrame<T extends GenericFuncs> extends WebBridge<T> {
   constructor({ frameKey }) {
     super({ plat: frameKey })
     const bridgeMap = getBridgeMap()

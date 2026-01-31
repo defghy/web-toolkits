@@ -1,10 +1,10 @@
 import { BaseBridge } from '../base'
-import { Plat, MsgDef, BridgeMessage, DebugDir } from '../const'
+import { Plat, MsgDef, BridgeMessage, DebugDir, GenericFuncs } from '../const'
 
 /**
  * Web页面Bridge
  */
-export class DevtoolBridge<T> extends BaseBridge<T> {
+export class DevtoolBridge<T extends GenericFuncs> extends BaseBridge<T> {
   tabId = 0
 
   constructor({ plat }: any = {}) {

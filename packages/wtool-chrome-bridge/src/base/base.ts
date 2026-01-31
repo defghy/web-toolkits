@@ -1,4 +1,13 @@
-import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeMessage, BridgeExtra, DebugDir } from '../const'
+import {
+  Plat,
+  MsgDef,
+  RequestMessage,
+  ResponseMessage,
+  BridgeMessage,
+  BridgeExtra,
+  DebugDir,
+  GenericFuncs,
+} from '../const'
 import { debug, uuid } from '../utils'
 import { BridgePlugins, PluginEvent } from './plugins'
 
@@ -78,7 +87,7 @@ const sendMessageWrapper = function (ctx: BaseBridge) {
 /**
  * 基础Bridge类
  */
-export class BaseBridge<T extends any = any> extends BridgeMessageFormat {
+export class BaseBridge<T extends GenericFuncs = any> extends BridgeMessageFormat {
   plat: Plat
   handlers: Map<any, any> = new Map()
   pendingRequests: Map<any, any> = new Map()
@@ -131,7 +140,7 @@ export class BaseBridge<T extends any = any> extends BridgeMessageFormat {
     // 检查是否有对应的路由处理器
     const handler = this.handlers.get(request.path)
     if (!handler) {
-      doResponse({ error: 'Route not found' })
+      doResponse({ error: `Route ${request.path} not found` })
       return false
     }
 
