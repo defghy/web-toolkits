@@ -4,7 +4,7 @@ import { Plat, MsgDef, BridgeMessage, DebugDir, GenericFuncs } from '../const'
 /**
  * extension - popup bridge
  */
-export class PopupBridge<T extends GenericFuncs> extends BaseBridge<T> {
+export class PopupBridge<T extends GenericFuncs<T>> extends BaseBridge<T> {
   tabId: any = 0
   waitTabId: Promise<any>
 

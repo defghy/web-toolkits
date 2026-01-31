@@ -87,7 +87,7 @@ const sendMessageWrapper = function (ctx: BaseBridge) {
 /**
  * 基础Bridge类
  */
-export class BaseBridge<T extends GenericFuncs = any> extends BridgeMessageFormat {
+export class BaseBridge<T extends { [K in keyof T]: (...args: any[]) => any } = any> extends BridgeMessageFormat {
   plat: Plat
   handlers: Map<any, any> = new Map()
   pendingRequests: Map<any, any> = new Map()
