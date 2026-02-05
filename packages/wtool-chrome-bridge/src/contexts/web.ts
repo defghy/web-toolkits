@@ -1,11 +1,11 @@
 import { BaseBridge } from '../base'
-import { Plat, MsgDef } from '../const'
+import { Plat, GenericFuncs } from '../const'
 import { getBridgeMap } from '../utils'
 
 /**
  * Web页面Bridge；环境单例
  */
-export class WebBridge<T = any> extends BaseBridge<T> {
+export class WebBridge<T extends GenericFuncs<T>> extends BaseBridge<T> {
   constructor({ plat }: any = {}) {
     plat = plat || Plat.web
     super({ plat }) // super must be called

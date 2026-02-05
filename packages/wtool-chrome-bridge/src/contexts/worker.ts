@@ -32,7 +32,7 @@ export class MasterBridge<T extends GenericFuncs<T>> extends BaseBridge<T> {
   }
 }
 
-export class WorkerBridge extends WebBridge {
+export class WorkerBridge<T extends GenericFuncs<T>> extends WebBridge<T> {
   constructor() {
     super({ plat: Plat.worker })
   }

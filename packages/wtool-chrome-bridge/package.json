@@ -1,6 +1,6 @@
 {
   "name": "@yuhufe/browser-bridge",
-  "private": true,
+  "private": false,
   "version": "0.1.6",
   "description": "chrome extension and iframe bridge which support promise",
   "keywords": [
