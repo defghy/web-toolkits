@@ -74,6 +74,46 @@ const piniaInfo = await devtoolBridge.request(api.getPinia, { key: 'board' });
 console.log(piniaInfo); // { a: 1 }
 ```
 
+## typescript
+
+API typescript definition
+
+```typescript
+export const Plat = {
+  host: 'host',
+  client: 'client',
+} as const
+
+export const SandboxAPI = {
+  host: {
+    clientReady: `${Plat.host}/clientReady`,
+  },
+  client: {
+    getData: `${Plat.client}/getData`,
+  },
+} as const
+
+export interface SandboxFuncs {
+  [SandboxAPI.host.clientReady]: () => any
+  [SandboxAPI.client.getData]: (args: {
+    needUbf?: boolean
+    needSnap?: boolean
+  }) => Promise<{ ubf?: any; snap?: any }>
+}
+
+// host.ts
+import { IFrameTopBridge } from '@yuhufe/browser-bridge'
+const hostBridge = new IFrameTopBridge<SandboxFuncs>({ plat: Plat.host, frameKey: Plat.client, frameEl })
+// request params and return's ts types
+const { snap } = await hostBridge?.request(SandboxAPI.client.makeLevelDataByAI, { needUbf: true, needSnap: false })
+
+// client.ts
+import { IFrameBridge } from '@yuhufe/browser-bridge'
+const clientBridge = new IFrameBridge<SandboxFuncs>({ frameKey: Plat.client })
+// on handler's ts types
+clientBridge?.on(SandboxAPI.client.makeLevelDataByAI, makeLevelAIData)
+```
+
 # Details
 - (中文说明)[https://segmentfault.com/a/1190000046415823]
 - (English Doc)[https://defghy.github.io/docs/bridge]

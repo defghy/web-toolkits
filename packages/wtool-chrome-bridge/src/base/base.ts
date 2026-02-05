@@ -1,4 +1,13 @@
-import { Plat, MsgDef, RequestMessage, ResponseMessage, BridgeMessage, BridgeExtra, DebugDir } from '../const'
+import {
+  Plat,
+  MsgDef,
+  RequestMessage,
+  ResponseMessage,
+  BridgeMessage,
+  BridgeExtra,
+  DebugDir,
+  GenericFuncs,
+} from '../const'
 import { debug, uuid } from '../utils'
 import { BridgePlugins, PluginEvent } from './plugins'
 
@@ -78,10 +87,10 @@ const sendMessageWrapper = function (ctx: BaseBridge) {
 /**
  * 基础Bridge类
  */
-export class BaseBridge extends BridgeMessageFormat {
+export class BaseBridge<T extends { [K in keyof T]: (...args: any[]) => any } = any> extends BridgeMessageFormat {
   plat: Plat
-  handlers: Map<string, Function> = new Map()
-  pendingRequests: Map<string, any> = new Map()
+  handlers: Map<any, any> = new Map()
+  pendingRequests: Map<any, any> = new Map()
   debug = debug
   plugins: BridgePlugins
 
@@ -96,7 +105,7 @@ export class BaseBridge extends BridgeMessageFormat {
   /**
    * 注册路由处理器
    */
-  on(route: string, handler: Function) {
+  on<K extends keyof T>(route: K, handler: T[K]) {
     this.handlers.set(route, handler)
   }
 
@@ -104,7 +113,7 @@ export class BaseBridge extends BridgeMessageFormat {
    * 注销路由处理器
    * @param {string} route - 路由路径
    */
-  off(route: string) {
+  off(route: keyof T) {
     this.handlers.delete(route)
   }
 
@@ -131,7 +140,7 @@ export class BaseBridge extends BridgeMessageFormat {
     // 检查是否有对应的路由处理器
     const handler = this.handlers.get(request.path)
     if (!handler) {
-      doResponse({ error: 'Route not found' })
+      doResponse({ error: `Route ${request.path} not found` })
       return false
     }
 
@@ -181,13 +190,13 @@ export class BaseBridge extends BridgeMessageFormat {
   }
 
   // 无返回值发送请求
-  send(path, params: any = {}, options: any = {}) {
+  send<K extends keyof T>(path: K, params: Parameters<T[K]>[0] = {}, options: any = {}) {
     options.noResponse = true
     this.request(path, params, options)
   }
 
   // 发送请求并等待响应
-  async request(path, params = {}, options: BridgeExtra = {}) {
+  async request<K extends keyof T>(path: K, params: Parameters<T[K]>[0] = {}, options: BridgeExtra = {}) {
     const requestMessage = this.makeRequest({ path, params, options })
     const { requestId } = requestMessage
 
@@ -212,7 +221,7 @@ export class BaseBridge extends BridgeMessageFormat {
       reject(error)
     })
 
-    return promise
+    return promise as ReturnType<T[K]>
   }
 
   /**

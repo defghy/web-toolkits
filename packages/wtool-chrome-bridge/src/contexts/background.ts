@@ -1,10 +1,10 @@
 import { BaseBridge } from '../base'
-import { Plat, MsgDef, RequestMessage } from '../const'
+import { Plat, MsgDef, RequestMessage, GenericFuncs } from '../const'
 
 /**
  * Web页面Bridge
  */
-export class BackgroundBridge extends BaseBridge {
+export class BackgroundBridge<T extends GenericFuncs<T>> extends BaseBridge<T> {
   constructor({ plat }: any = {}) {
     super({ plat: plat || Plat.background })
     this.init()

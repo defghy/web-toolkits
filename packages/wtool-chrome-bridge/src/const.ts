@@ -61,6 +61,11 @@ export interface ResponseMessage extends BridgeMessage {
   data?: any
 }
 
+// bridge 的接口类型定义
+export type GenericFuncs<T> = {
+  [K in keyof T]: (...args: any[]) => any
+}
+
 // polyfill chrome 119+
 Promise.withResolvers =
   Promise.withResolvers ||
