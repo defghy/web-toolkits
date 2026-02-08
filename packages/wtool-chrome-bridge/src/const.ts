@@ -10,7 +10,6 @@ export enum Plat {
   popup = 'wtc_popup',
   devtool = 'wtc_devtool', // devtool主页面
   background = 'wtc_background',
-  iframe = 'wtc_iframe',
   iframeTop = 'wtc_iframe',
   master = 'wtc_master',
   worker = 'wtc_worker',

@@ -117,3 +117,10 @@ clientBridge?.on(SandboxAPI.client.makeLevelDataByAI, makeLevelAIData)
 # Details
 - (中文说明)[https://segmentfault.com/a/1190000046415823]
 - (English Doc)[https://defghy.github.io/docs/bridge]
+
+# Publish
+
+```
+npm run build
+npm publish --otp=123456
+```

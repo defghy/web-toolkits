@@ -53,6 +53,25 @@ importers:
         specifier: ^4.5.3
         version: 4.5.3(@types/node@22.13.9)(rollup@4.34.9)(typescript@5.8.2)(vite@5.4.14(@types/node@22.13.9))
 
+  packages/wtool-common:
+    dependencies:
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+    devDependencies:
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
+      typescript:
+        specifier: ^5.3.3
+        version: 5.8.2
+      vite:
+        specifier: ^5.4.11
+        version: 5.4.14(@types/node@22.13.9)
+      vite-plugin-dts:
+        specifier: ^4.5.3
+        version: 4.5.3(@types/node@22.13.9)(rollup@4.34.9)(typescript@5.8.2)(vite@5.4.14(@types/node@22.13.9))
+
 packages:
 
   '@babel/helper-string-parser@7.25.9':
