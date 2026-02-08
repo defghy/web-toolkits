@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.svelte",
+    "site/**/*.ts",
+    "site/**/*.vue",
+    "site/**/*.d.ts"
+  ],
+  "exclude": ["node_modules/**"]
+}
