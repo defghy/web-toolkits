@@ -1,13 +1,15 @@
 <script lang="ts">
-  let { msg = 'hello' } = $props()
+  let { msg = 'hello', onChange }: { msg?: string; onChange?: (count: number) => void } = $props()
   let count = $state(0)
 
   function increment() {
     count += 1
+    onChange?.(count)
   }
 
   function decrement() {
     count -= 1
+    onChange?.(count)
   }
 </script>
 

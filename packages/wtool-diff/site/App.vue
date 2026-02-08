@@ -19,7 +19,12 @@ let widget: any
 
 onMounted(() => {
   if (counterContainer.value) {
-    widget = createCounter(counterContainer.value, { msg: 'hello from Vue' })
+    widget = createCounter(counterContainer.value, {
+      msg: 'hello from Vue',
+      onChange(count: number) {
+        console.log('Counter changed:', count)
+      },
+    })
   }
 })
 

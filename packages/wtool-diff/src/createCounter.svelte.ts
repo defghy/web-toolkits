@@ -3,6 +3,7 @@ import Counter from './Counter.svelte'
 
 export interface CounterProps {
   msg?: string
+  onChange?: (count: number) => void
 }
 
 export interface CounterInstance {
