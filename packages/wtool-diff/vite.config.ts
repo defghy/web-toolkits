@@ -1,27 +1,11 @@
 import { resolve } from 'path'
 import { defineConfig, type UserConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
-import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 
-export default defineConfig(({ command }) => {
-  // dev 模式：以 site/ 为入口，同时加载 Svelte + Vue 插件
-  if (command === 'serve') {
-    return {
-      root: resolve(__dirname, 'site'),
-      plugins: [
-        svelte({
-          configFile: resolve(__dirname, 'svelte.config.js'),
-        }),
-        vue(),
-      ],
-      resolve: {
-        extensions: ['.js', '.ts', '.svelte', '.vue', '.json'],
-      },
-    } as UserConfig
-  }
+export default defineConfig(({ mode }) => {
+  const isProd = mode === 'production'
 
-  // build 模式：仅构建 Svelte 库
   return {
     plugins: [
       svelte(),
@@ -35,6 +19,8 @@ export default defineConfig(({ command }) => {
       extensions: ['.js', '.ts', '.svelte', '.json'],
     },
     build: {
+      watch: isProd ? null : {},
+      minify: isProd,
       lib: {
         entry: resolve(__dirname, 'src/index.ts'),
         name: 'DiffView',
@@ -42,7 +28,8 @@ export default defineConfig(({ command }) => {
         formats: ['es', 'cjs'],
       },
       rollupOptions: {
-        external: ['svelte', /^svelte\//],
+        // Custom Elements 需要内置 svelte 运行时，不外化
+        external: [],
         output: {
           hoistTransitiveImports: false,
         },

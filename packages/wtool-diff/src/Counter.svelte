@@ -1,4 +1,5 @@
 <script lang="ts">
+  let { msg = 'hello' } = $props()
   let count = $state(0)
 
   function increment() {
@@ -11,17 +12,28 @@
 </script>
 
 <div class="counter">
-  <button onclick={decrement}>-</button>
-  <span class="count">{count}</span>
-  <button onclick={increment}>+</button>
+  <p class="msg">{msg}</p>
+  <div class="controls">
+    <button onclick={decrement}>-</button>
+    <span class="count">{count}</span>
+    <button onclick={increment}>+</button>
+  </div>
 </div>
 
 <style>
   .counter {
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .msg {
+    margin: 0 0 8px;
+    color: #333;
+  }
+
+  .controls {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-family: system-ui, -apple-system, sans-serif;
   }
 
   button {
