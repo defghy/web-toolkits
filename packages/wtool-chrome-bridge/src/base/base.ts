@@ -108,6 +108,14 @@ export class BaseBridge<T extends { [K in keyof T]: (...args: any[]) => any } = 
   on<K extends keyof T>(route: K, handler: T[K]) {
     this.handlers.set(route, handler)
   }
+  once<K extends keyof T>(route: K, handler: T[K]) {
+    const handlerWrap: any = (...args) => {
+      const res = handler(...args)
+      this.off(route)
+      return res
+    }
+    this.on(route, handlerWrap)
+  }
 
   /**
    * 注销路由处理器
