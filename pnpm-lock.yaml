@@ -49,9 +49,6 @@ importers:
       vite:
         specifier: ^5.4.11
         version: 5.4.14(@types/node@22.13.9)
-      vite-plugin-dts:
-        specifier: ^4.5.3
-        version: 4.5.3(@types/node@22.13.9)(rollup@4.34.9)(typescript@5.8.2)(vite@5.4.14(@types/node@22.13.9))
 
   packages/wtool-common:
     dependencies:
