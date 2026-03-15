@@ -20,10 +20,7 @@ export interface MonacoEditorInstance {
   destroy(): void
 }
 
-export function createMonacoEditor(
-  target: HTMLElement,
-  initialProps: MonacoEditorProps = {},
-): MonacoEditorInstance {
+export function createMonacoDiff(target: HTMLElement, initialProps: MonacoEditorProps = {}): MonacoEditorInstance {
   let props = $state<MonacoEditorProps>({ ...initialProps })
 
   const component = mount(MonacoEditor, { target, props })

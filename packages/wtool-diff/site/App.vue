@@ -7,12 +7,18 @@
       <button class="action-btn" @click="updateMsg">更新 msg</button>
       <button class="action-btn" @click="resetMsg">重置 msg</button>
     </section>
+    <section>
+      monaco-diff
+      <DiffEditor />
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { createCounter } from '../dist/diff-view.es.js'
+
+import DiffEditor from './DiffEditor.vue'
 
 const counterContainer = ref<HTMLElement>()
 let widget: any

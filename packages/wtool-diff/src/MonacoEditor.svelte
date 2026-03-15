@@ -43,6 +43,14 @@
 
       editor = monaco.editor.createDiffEditor(containerEl, {
         automaticLayout: true,
+        readOnly: true,
+        renderSideBySide: true, // 使用双栏diff
+        useInlineViewWhenSpaceIsLimited: false,
+        scrollBeyondLastLine: false,
+        hideUnchangedRegions: {
+          enabled: true,
+          contextLineCount: 3,
+        },
         ...options,
       })
       editor.setModel({
