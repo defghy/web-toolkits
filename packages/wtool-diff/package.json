@@ -32,7 +32,10 @@
   "peerDependencies": {
     "svelte": "^5.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@monaco-editor/loader": "^1.6.1",
+    "monaco-editor": "^0.53.0"
+  },
   "devDependencies": {
     "svelte": "^5.50.0",
     "@sveltejs/vite-plugin-svelte": "^6.0.0",
