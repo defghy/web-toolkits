@@ -51,6 +51,10 @@
           enabled: true, // 折叠未改动区域
           contextLineCount: 3 // 上下文行数
         },
+        scrollbar: {
+          verticalScrollbarSize: 8,   // 竖向滚动条宽度（默认一般是 10）
+          horizontalScrollbarSize: 8, // 横向滚动条宽度
+        },
         ...options,
       })
       editor.setModel({
