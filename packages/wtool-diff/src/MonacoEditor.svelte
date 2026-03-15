@@ -42,14 +42,14 @@
       modifiedModel = monaco.editor.createModel(modifiedCode, language)
 
       editor = monaco.editor.createDiffEditor(containerEl, {
-        automaticLayout: true,
-        readOnly: true,
-        renderSideBySide: true, // 使用双栏diff
-        useInlineViewWhenSpaceIsLimited: false,
-        scrollBeyondLastLine: false,
-        hideUnchangedRegions: {
-          enabled: true,
-          contextLineCount: 3,
+        automaticLayout: true, // 容器尺寸变化时自动重新布局
+        readOnly: true, // 只读，不可编辑
+        renderSideBySide: true, // 双栏diff
+        useInlineViewWhenSpaceIsLimited: false, // 空间不足也不切内联 diff
+        scrollBeyondLastLine: false, // 禁止滚动到最后一行之后
+        hideUnchangedRegions: { 
+          enabled: true, // 折叠未改动区域
+          contextLineCount: 3 // 上下文行数
         },
         ...options,
       })
