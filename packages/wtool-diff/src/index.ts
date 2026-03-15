@@ -1,3 +1,5 @@
 export { createCounter } from './createCounter.svelte.ts'
 export type { CounterProps, CounterInstance } from './createCounter.svelte.ts'
+export { createMonacoEditor } from './createMonacoEditor.svelte.ts'
+export type { MonacoEditorProps, MonacoEditorInstance } from './createMonacoEditor.svelte.ts'
 export { default as loader } from '@monaco-editor/loader'
