@@ -100,6 +100,31 @@ importers:
         specifier: ^3.5.0
         version: 3.5.27(typescript@5.9.3)
 
+  packages/wtool-vdiff:
+    dependencies:
+      '@monaco-editor/loader':
+        specifier: ^1.6.1
+        version: 1.7.0
+      monaco-editor:
+        specifier: ^0.53.0
+        version: 0.53.0
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^5.2.0
+        version: 5.2.4(vite@7.3.1(@types/node@22.13.9))(vue@3.5.27(typescript@5.9.3))
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.3.1
+        version: 7.3.1(@types/node@22.13.9)
+      vite-plugin-dts:
+        specifier: ^4.5.3
+        version: 4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@22.13.9))
+      vue:
+        specifier: ^3.5.0
+        version: 3.5.27(typescript@5.9.3)
+
 packages:
 
   '@babel/helper-string-parser@7.25.9':
