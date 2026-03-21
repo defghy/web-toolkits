@@ -29,7 +29,6 @@ const props = withDefaults(
   {
     diffPair: () => [],
     diffPatch: '',
-    modifiedCode: '',
     language: 'plaintext',
     options: () => ({}),
     modelOptions: () => ({}),

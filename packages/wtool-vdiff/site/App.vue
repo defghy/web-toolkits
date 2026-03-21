@@ -2,11 +2,11 @@
   <div class="app">
     <h1>wtool-vdiff（Vue3）</h1>
     <p class="hint">
-      与 <code>wtool-diff</code> 的 <code>createMonacoDiff(容器, props)</code> 用法一致；底层为 Web Component（亦可
-      <code>register()</code> 后 <code>new WtoolMonacoDiff()</code>）。
+      使用 <code>createDiffViewer(容器, props)</code>，与 <code>createMonacoDiff</code> 用法一致；底层为 Web Component（亦可
+      <code>registerDiffViewer()</code> 后 <code>new WtoolDiffViewer()</code>）。
     </p>
     <section>
-      <h2>Monaco Diff</h2>
+      <h2>DiffViewer（diffPair）</h2>
       <div class="diff-wrap">
         <div class="diff-editor-wrap" ref="diffWrap"></div>
       </div>
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { createMonacoDiff } from '../dist/wtool-vdiff.es.js'
+import { createDiffViewer } from '../dist/wtool-vdiff.es.js'
 
 import oldJson from './assets/old.json'
 import newJson from './assets/new.json'
@@ -26,9 +26,11 @@ let widget: any
 
 onMounted(() => {
   if (diffWrap.value) {
-    widget = createMonacoDiff(diffWrap.value, {
-      originalCode: JSON.stringify(oldJson, null, 4),
-      modifiedCode: JSON.stringify(newJson, null, 4),
+    widget = createDiffViewer(diffWrap.value, {
+      diffPair: [
+        { filename: 'old.json', content: JSON.stringify(oldJson, null, 4) },
+        { filename: 'new.json', content: JSON.stringify(newJson, null, 4) },
+      ],
     })
   }
 })
