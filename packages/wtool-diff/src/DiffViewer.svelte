@@ -25,6 +25,9 @@
 </script>
 
 <div class="diff-view-wrap">
+  <div class="title-bar">
+    
+  </div>
   <MonacoEditor
     {originalCode}
     {modifiedCode}
@@ -38,6 +41,9 @@
 
 <style>
   .diff-view-wrap {
-    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+
+
   }
 </style>
