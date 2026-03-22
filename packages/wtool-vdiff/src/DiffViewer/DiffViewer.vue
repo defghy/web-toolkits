@@ -1,20 +1,20 @@
 <template>
   <div class="diff-viewer-wrap">
-    <MonacoDiffViewer 
+    <MonacoDiffViewer
       :originalCode="originalCode"
       :modifiedCode="modifiedCode"
-      :language="language" 
-      :options="options" 
-      :modelOptions="modelOptions" 
+      :language="language"
+      :options="options"
+      :modelOptions="modelOptions"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch, onMounted, onBeforeUnmount, computed } from 'vue'
-import MonacoDiffViewer from './MonacoDiffViewer.vue';
+import MonacoDiffViewer from './MonacoDiffViewer.vue'
 
-import type{ DiffEditorOptions, ModelOptions } from './props'
+import type { DiffEditorOptions, ModelOptions } from './props'
 
 const props = withDefaults(
   defineProps<{
@@ -34,13 +34,11 @@ const props = withDefaults(
     modelOptions: () => ({}),
     width: '100%',
     height: '400px',
-  },
+  }
 )
 
 const originalCode = computed(() => props.diffPair[0].content)
 const modifiedCode = computed(() => props.diffPair[1].content)
-
-
 </script>
 
 <style scoped>
