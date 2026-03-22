@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 
 const props = withDefaults(
   defineProps<{
@@ -36,6 +36,10 @@ const filename = computed(() => props.diffPair[0].filename)
 
 const viewed = ref<boolean>(false)
 const raw = ref<boolean>(false)
+
+onMounted(() => {
+  // funcs.options.toolbar?.render($el, {})
+})
 </script>
 
 <style scoped>
