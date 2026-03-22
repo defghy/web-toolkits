@@ -81,6 +81,7 @@ const raw = ref<boolean>(false)
     label {
       display: inline-flex;
       align-items: center;
+      cursor: pointer;
     }
   }
 }
