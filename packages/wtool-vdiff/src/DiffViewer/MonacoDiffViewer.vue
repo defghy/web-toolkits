@@ -1,9 +1,5 @@
 <template>
-  <div
-    ref="containerEl"
-    class="monaco-editor-container"
-    :style="{ width, height }"
-  />
+  <div ref="containerEl" class="monaco-editor-container" />
 </template>
 
 <script setup lang="ts">
@@ -21,8 +17,6 @@ const props = withDefaults(
     language?: string
     options?: DiffEditorOptions
     modelOptions?: ModelOptions
-    width?: string
-    height?: string
   }>(),
   {
     originalCode: '',
@@ -30,9 +24,7 @@ const props = withDefaults(
     language: 'plaintext',
     options: () => ({}),
     modelOptions: () => ({}),
-    width: '100%',
-    height: '400px',
-  },
+  }
 )
 
 const containerEl = ref<HTMLDivElement | null>(null)
@@ -97,58 +89,59 @@ onBeforeUnmount(() => {
 
 watch(
   () => props.options,
-  (opts) => {
+  opts => {
     if (!editor.value) return
     editor.value.updateOptions(opts)
   },
-  { deep: true },
+  { deep: true }
 )
 
 watch(
   () => props.originalCode,
-  (v) => {
+  v => {
     if (!originalModel.value) return
     if (originalModel.value.getValue() !== v) {
       originalModel.value.setValue(v)
     }
-  },
+  }
 )
 
 watch(
   () => props.modifiedCode,
-  (v) => {
+  v => {
     if (!modifiedModel.value) return
     if (modifiedModel.value.getValue() !== v) {
       modifiedModel.value.setValue(v)
     }
-  },
+  }
 )
 
 watch(
   () => props.language,
-  (lang) => {
+  lang => {
     const monaco = monacoInstance.value
     const om = originalModel.value
     const mm = modifiedModel.value
     if (!monaco || !om || !mm) return
     monaco.editor.setModelLanguage(om, lang)
     monaco.editor.setModelLanguage(mm, lang)
-  },
+  }
 )
 
 watch(
   () => props.modelOptions,
-  (mo) => {
+  mo => {
     if (!originalModel.value || !modifiedModel.value) return
     originalModel.value.updateOptions(mo)
     modifiedModel.value.updateOptions(mo)
   },
-  { deep: true },
+  { deep: true }
 )
 </script>
 
 <style scoped>
 .monaco-editor-container {
-  min-height: 200px;
+  width: 100%;
+  height: 100%;
 }
 </style>
