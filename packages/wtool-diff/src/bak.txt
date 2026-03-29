@@ -1,0 +1,135 @@
+<template>
+  <div class="diff-modal-wrapper" v-loading="loading">
+    <Collapse v-for="(diffData, index) in diffList">
+      <template slot="title" class="collapse-title">
+        第 {{ index + 1 }} 步：{{ diffData.newData.filename }} => {{ diffData.oldData.filename }}
+      </template>
+      <div slot="body" class="collapse-content">
+        <TextDiff
+          :newData="diffData.newData"
+          :oldData="diffData.oldData"
+          :contentStyle="{ height: 'auto', maxHeight: '400px' }"
+        />
+        <div class="text-wrap" :style="{ height: `${diffData.editorHeight}px` }">
+          <VueMonacoDiffEditor
+            theme="light"
+            :original="JSON.stringify(diffData.oldData, null, 2)"
+            :modified="JSON.stringify(diffData.newData, null, 2)"
+            language="json"
+            :options="{
+              readOnly: true,
+              renderSideBySide: true,
+              useInlineViewWhenSpaceIsLimited: false,
+              scrollBeyondLastLine: false,
+              automaticLayout: true,
+              hideUnchangedRegions: {
+                enabled: true,
+                contextLineCount: 3,
+              },
+            }"
+            @mount="editor => handleEditorMount(editor, diffData)"
+          />
+        </div>
+      </div>
+    </Collapse>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, onBeforeMount, PropType, reactive, toRefs } from 'vue'
+import { Collapse, TextDiff } from '@aweb/pkg-ui'
+import { VueMonacoDiffEditor } from '@aweb/pkg-ui/monaco'
+import { getDiffGuideLevelDetail } from '@/services/guide'
+import { LevelUnique } from '@/types'
+
+export default defineComponent({
+  name: 'DiffGuideModal',
+  components: { Collapse, TextDiff, VueMonacoDiffEditor },
+  kxDialogConfig: {
+    title: '对比关卡引导行为树数据',
+    width: '850px',
+    top: '5vh',
+    showFooter: false,
+  },
+  props: {
+    levelUnique: { type: Object as PropType<any>, required: true },
+    branch: String,
+    isAMF: Boolean,
+  },
+  setup(props, { emit }) {
+    const MAX_EDITOR_HEIGHT = 400
+    const MIN_EDITOR_HEIGHT = 60
+
+    const state = reactive({
+      loading: false,
+      diffList: [] as any[],
+    })
+
+    /** 编辑器挂载后，监听内容高度变化，实现动态高度 */
+    const handleEditorMount = (editor, diffData) => {
+      const modifiedEditor = editor.getModifiedEditor()
+      const updateHeight = () => {
+        const contentHeight = modifiedEditor.getContentHeight()
+        diffData.editorHeight = Math.max(MIN_EDITOR_HEIGHT, Math.min(contentHeight, MAX_EDITOR_HEIGHT))
+      }
+      modifiedEditor.onDidContentSizeChange(updateHeight)
+      editor.onDidUpdateDiff(updateHeight)
+      updateHeight()
+    }
+
+    // 生成对比数据
+    const makeData = function (data) {
+      if (!data) {
+        return {
+          filename: '空',
+          data: '',
+        }
+      }
+      return {
+        filename: data.treeName,
+        data: data.treeData,
+      }
+    }
+
+    const fetchDiff = async function () {
+      state.loading = true
+      try {
+        const { data } = await getDiffGuideLevelDetail({ ...props.levelUnique, branch: props.branch, amf: props.isAMF })
+        const diffData = data.diff
+        const diffLen = Math.max(diffData.new.length, diffData.old.length)
+
+        for (let i = 0; i < diffLen; i++) {
+          const oldData = diffData.old[i]
+          const newData = diffData.new[i]
+          state.diffList.push({
+            oldData: makeData(oldData),
+            newData: makeData(newData),
+            editorHeight: MIN_EDITOR_HEIGHT,
+          })
+        }
+      } finally {
+        state.loading = false
+      }
+    }
+
+    onBeforeMount(() => {
+      fetchDiff()
+    })
+
+    return { ...toRefs(state), handleEditorMount }
+  },
+})
+</script>
+
+<style lang="less" scoped>
+.diff-modal-wrapper {
+  height: 70vh;
+  overflow-y: auto;
+
+  .collapse-content {
+    .diff-wrapper {
+      height: auto;
+    }
+  }
+}
+</style>
