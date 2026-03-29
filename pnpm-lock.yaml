@@ -127,6 +127,9 @@ importers:
       '@monaco-editor/loader':
         specifier: ^1.6.1
         version: 1.7.0
+      '@yuhufe/web-ui':
+        specifier: workspace:*
+        version: link:../wtool-ui
       monaco-editor:
         specifier: ^0.53.0
         version: 0.53.0
