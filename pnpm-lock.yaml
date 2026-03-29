@@ -100,6 +100,28 @@ importers:
         specifier: ^3.5.0
         version: 3.5.27(typescript@5.9.3)
 
+  packages/wtool-ui:
+    dependencies:
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+      vue:
+        specifier: ^3.5.0
+        version: 3.5.27(typescript@5.9.3)
+    devDependencies:
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vite:
+        specifier: ^5.4.11
+        version: 5.4.14(@types/node@22.13.9)
+      vite-plugin-dts:
+        specifier: ^4.5.3
+        version: 4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.9.3)(vite@5.4.14(@types/node@22.13.9))
+
   packages/wtool-vdiff:
     dependencies:
       '@monaco-editor/loader':
@@ -3167,6 +3189,25 @@ snapshots:
       local-pkg: 1.1.1
       magic-string: 0.30.17
       typescript: 5.8.2
+    optionalDependencies:
+      vite: 5.4.14(@types/node@22.13.9)
+    transitivePeerDependencies:
+      - '@types/node'
+      - rollup
+      - supports-color
+
+  vite-plugin-dts@4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.9.3)(vite@5.4.14(@types/node@22.13.9)):
+    dependencies:
+      '@microsoft/api-extractor': 7.51.1(@types/node@22.13.9)
+      '@rollup/pluginutils': 5.1.4(rollup@4.57.1)
+      '@volar/typescript': 2.4.11
+      '@vue/language-core': 2.2.0(typescript@5.9.3)
+      compare-versions: 6.1.1
+      debug: 4.4.0
+      kolorist: 1.8.0
+      local-pkg: 1.1.1
+      magic-string: 0.30.17
+      typescript: 5.9.3
     optionalDependencies:
       vite: 5.4.14(@types/node@22.13.9)
     transitivePeerDependencies:

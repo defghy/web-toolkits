@@ -1,0 +1,43 @@
+{
+  "name": "@yuhufe/web-ui",
+  "private": true,
+  "version": "0.1.1",
+  "description": "ui with vue...",
+  "keywords": [
+    "lodash",
+    "web",
+    "common"
+  ],
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build --mode production",
+    "pub": "node scripts/publish.mjs"
+  },
+  "main": "./dist/web-common.cjs.js",
+  "module": "./dist/web-common.es.js",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "typings": "dist/web-common.es.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "lodash-es": "^4.17.21",
+    "vue": "^3.5.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "vite": "^5.4.11",
+    "typescript": "^5.3.3",
+    "vite-plugin-dts": "^4.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/defghy/web-toolkits.git"
+  }
+}
