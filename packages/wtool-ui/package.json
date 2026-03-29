@@ -19,7 +19,7 @@
     "dist/*",
     "src/*"
   ],
-  "typings": "dist/web-common.es.d.ts",
+  "typings": "src/index.ts",
   "publishConfig": {
     "access": "public"
   },
