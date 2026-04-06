@@ -1,5 +1,5 @@
 import { defineCustomElement } from 'vue'
-import type { WtoolDiffViewerProps } from '../props'
+import type { WtoolDiffViewerProps } from './props'
 import DiffViewer from './DiffViewer.vue'
 
 export type DiffViewerProps = WtoolDiffViewerProps
