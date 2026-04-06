@@ -2,8 +2,15 @@
   <div class="app">
     <h1>wtool-vdiff（Vue3）</h1>
     <p class="hint">
-      使用 <code>createDiffViewer(容器, props)</code>，与 <code>createMonacoDiff</code> 用法一致；底层为 Web Component（亦可
-      <code>registerDiffViewer()</code> 后 <code>new WtoolDiffViewer()</code>）。
+      使用
+      <code>createDiffViewer(容器, props)</code>
+      ，与
+      <code>createMonacoDiff</code>
+      用法一致；底层为 Web Component（亦可
+      <code>registerDiffViewer()</code>
+      后
+      <code>new WtoolDiffViewer()</code>
+      ）。
     </p>
     <section>
       <h2>DiffViewer（diffPair）</h2>
@@ -45,7 +52,10 @@ onUnmounted(() => {
   max-width: 960px;
   margin: 40px auto;
   padding: 0 20px;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 h1 {
@@ -73,7 +83,7 @@ h2 {
 
 <style scoped>
 .diff-wrap {
-  width: 650px;
+  width: 850px;
   height: 150px;
 
   .diff-editor-wrap {

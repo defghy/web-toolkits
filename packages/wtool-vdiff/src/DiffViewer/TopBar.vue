@@ -9,11 +9,11 @@
     </div>
     <div class="toolbar">
       <label>
-        <input type="checkbox" v-model="viewed" />
+        <input type="checkbox" v-model="viewed" @change="onViewedChange" />
         viewed
       </label>
       <label>
-        <input type="checkbox" v-model="raw" />
+        <input type="checkbox" v-model="rawed" @change="onRawedChange" />
         raw
       </label>
     </div>
@@ -22,6 +22,9 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
+import { useDiffViewer } from './useDiffView'
+
+const { funcs, registerFunc } = useDiffViewer()
 
 const props = withDefaults(
   defineProps<{
@@ -35,10 +38,22 @@ const props = withDefaults(
 const filename = computed(() => props.diffPair[0].filename)
 
 const viewed = ref<boolean>(false)
-const raw = ref<boolean>(false)
+const rawed = ref<boolean>(false) // 是否显示原始文件
+
+const onViewedChange = function (evt) {
+  console.log(evt)
+}
+const onRawedChange = function (evt) {
+  console.log(evt)
+}
 
 onMounted(() => {
   // funcs.options.toolbar?.render($el, {})
+})
+
+registerFunc({
+  viewed,
+  rawed,
 })
 </script>
 
