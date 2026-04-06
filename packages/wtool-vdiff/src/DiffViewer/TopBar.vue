@@ -41,10 +41,12 @@ const viewed = ref<boolean>(false)
 const rawed = ref<boolean>(false) // 是否显示原始文件
 
 const onViewedChange = function (evt) {
-  console.log(evt)
+  const checked = (evt.target as HTMLInputElement).checked
+  console.log(checked)
 }
 const onRawedChange = function (evt) {
-  console.log(evt)
+  const checked = (evt.target as HTMLInputElement).checked
+  console.log(checked)
 }
 
 onMounted(() => {
