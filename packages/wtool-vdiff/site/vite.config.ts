@@ -6,6 +6,7 @@ export default defineConfig({
   root: resolve(__dirname),
   plugins: [vue()],
   server: {
+    port: Number(5443),
     fs: {
       allow: [resolve(__dirname, '..')],
     },

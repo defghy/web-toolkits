@@ -1,20 +1,13 @@
 <template>
   <div class="app">
     <h1>wtool-vdiff（Vue3）</h1>
-    <p class="hint">
-      使用
-      <code>createDiffViewer(容器, props)</code>
-      ，与
-      <code>createMonacoDiff</code>
-      用法一致；底层为 Web Component（亦可
-      <code>registerDiffViewer()</code>
-      后
-      <code>new WtoolDiffViewer()</code>
-      ）。
-    </p>
     <section>
       <h2>DiffViewer（diffPair）</h2>
-      <WidgetComp />
+      <!-- <WidgetComp /> -->
+    </section>
+    <section>
+      <h2>DiffViewer 2</h2>
+      <DirectComp />
     </section>
   </div>
 </template>
@@ -22,6 +15,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import WidgetComp from './WidgetComp.vue'
+import DirectComp from './DirectComp.vue'
 </script>
 
 <style>

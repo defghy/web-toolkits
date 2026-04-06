@@ -48,7 +48,9 @@ const modifiedCode = computed(() => props.diffPair[1].content)
 
 const { funcs } = useDiffViewer()
 
-const showEditor = computed(() => !funcs.viewed?.value)
+const showEditor = computed(() => {
+  return !funcs.viewed?.value
+})
 </script>
 
 <style scoped>

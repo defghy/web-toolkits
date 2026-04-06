@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import DiffViewer from '../src/DiffViewer.vue'
+import DiffViewer from '../src/DiffViewer/DiffViewer.vue'
 
 import oldJson from './assets/old.json'
 import newJson from './assets/new.json'
@@ -21,7 +21,6 @@ const diffPair = [
 <style scoped>
 .diff-wrap {
   width: 850px;
-  height: 150px;
 
   .diff-editor-wrap {
     width: 100%;

@@ -9,11 +9,11 @@
     </div>
     <div class="toolbar">
       <label>
-        <input type="checkbox" v-model="viewed" @change="onViewedChange" />
+        <input type="checkbox" :checked="viewed" @change="onViewedChange" />
         viewed
       </label>
       <label>
-        <input type="checkbox" v-model="rawed" @change="onRawedChange" />
+        <input type="checkbox" :checked="rawed" @change="onRawedChange" />
         raw
       </label>
     </div>
@@ -42,11 +42,11 @@ const rawed = ref<boolean>(false) // 是否显示原始文件
 
 const onViewedChange = function (evt) {
   const checked = (evt.target as HTMLInputElement).checked
-  console.log(checked)
+  viewed.value = checked
 }
 const onRawedChange = function (evt) {
   const checked = (evt.target as HTMLInputElement).checked
-  console.log(checked)
+  rawed.value = checked
 }
 
 onMounted(() => {
