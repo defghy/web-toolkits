@@ -48,8 +48,16 @@ const modifiedCode = computed(() => props.diffPair[1].content)
 
 const { funcs } = useDiffViewer({ isMaster: true })
 
+const inited = ref(false)
+onMounted(() => {
+  inited.value = true
+})
 const showEditor = computed(() => {
-  return !funcs.viewed?.value
+  if (!inited.value) {
+    return false
+  }
+
+  return !funcs.viewed.value
 })
 </script>
 
