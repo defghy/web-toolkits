@@ -46,7 +46,7 @@ const props = withDefaults(
 const originalCode = computed(() => props.diffPair[0].content)
 const modifiedCode = computed(() => props.diffPair[1].content)
 
-const { funcs } = useDiffViewer()
+const { funcs } = useDiffViewer({ isMaster: true })
 
 const showEditor = computed(() => {
   return !funcs.viewed?.value
