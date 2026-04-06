@@ -37,9 +37,7 @@ const props = withDefaults(
 
 const filename = computed(() => props.diffPair[0].filename)
 
-const viewed = ref<boolean>(false)
-const rawed = ref<boolean>(false) // 是否显示原始文件
-
+const { viewed, rawed } = funcs
 const onViewedChange = function (evt) {
   const checked = (evt.target as HTMLInputElement).checked
   viewed.value = checked

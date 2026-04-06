@@ -1,13 +1,13 @@
 <template>
   <div class="diff-viewer-wrap">
     <TopBar class="top-bar" :diffPair="diffPair" />
-    <div class="content-wrap" v-show="showEditor">
+    <div class="content-wrap" v-show="!viewed">
       <MonacoDiffViewer
         class="monaco-container"
         :originalCode="originalCode"
         :modifiedCode="modifiedCode"
         :language="language"
-        :options="options"
+        :options="mergedOptions"
         :modelOptions="modelOptions"
       />
     </div>
@@ -46,18 +46,36 @@ const props = withDefaults(
 const originalCode = computed(() => props.diffPair[0].content)
 const modifiedCode = computed(() => props.diffPair[1].content)
 
-const { funcs } = useDiffViewer({ isMaster: true })
+const { funcs, registerFunc } = useDiffViewer({ isMaster: true })
 
-const inited = ref(false)
-onMounted(() => {
-  inited.value = true
-})
-const showEditor = computed(() => {
-  if (!inited.value) {
-    return false
+/** raw 勾选时展示全文；未勾选时折叠无变更块，仅保留差异附近的上下文行 */
+const mergedOptions = computed(() => {
+  // 折叠上下文
+  let hideUnchangedRegions = props.options.hideUnchangedRegions || {}
+  if (rawed.value) {
+    hideUnchangedRegions = {
+      enabled: false,
+      ...hideUnchangedRegions,
+    }
+  } else {
+    hideUnchangedRegions = {
+      enabled: true,
+      contextLineCount: 3,
+      ...hideUnchangedRegions,
+    }
   }
 
-  return !funcs.viewed.value
+  return {
+    ...props.options,
+    hideUnchangedRegions,
+  }
+})
+
+const viewed = ref<boolean>(false) // 是否已读
+const rawed = ref<boolean>(false) // 是否显示原始文件
+registerFunc({
+  viewed,
+  rawed,
 })
 </script>
 
