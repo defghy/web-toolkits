@@ -17,21 +17,13 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onBeforeUnmount, computed } from 'vue'
 
-import type { DiffEditorOptions, ModelOptions } from './props'
+import type { DiffEditorOptions, WtoolDiffViewerProps, ModelOptions } from '../types'
 import MonacoDiffViewer from './MonacoDiffViewer.vue'
 import TopBar from './TopBar.vue'
 import { useDiffViewer } from './useDiffView'
 
 const props = withDefaults(
-  defineProps<{
-    diffPair?: { filename: string; content: string }[]
-    diffPatch?: string
-    language?: string
-    options?: DiffEditorOptions
-    modelOptions?: ModelOptions
-    width?: string
-    height?: string
-  }>(),
+  defineProps<WtoolDiffViewerProps>(),
   {
     diffPair: () => [],
     diffPatch: '',
@@ -43,8 +35,18 @@ const props = withDefaults(
   }
 )
 
-const originalCode = computed(() => props.diffPair[0].content)
-const modifiedCode = computed(() => props.diffPair[1].content)
+const diffPair = ref(props.diffPair || null)
+const initDiff = function() {
+  if (diffPair.value) {
+    return
+  }
+
+  // diffPatch => diffPair
+  diffPair.value =
+}
+
+const originalCode = computed(() => diffPair.value[0].content)
+const modifiedCode = computed(() => diffPair.value[1].content)
 
 const { funcs, registerFunc } = useDiffViewer({ isMaster: true })
 
@@ -60,7 +62,7 @@ const mergedOptions = computed(() => {
   } else {
     hideUnchangedRegions = {
       enabled: true,
-      contextLineCount: 3,
+      contextLineCount: 5,
       ...hideUnchangedRegions,
     }
   }
