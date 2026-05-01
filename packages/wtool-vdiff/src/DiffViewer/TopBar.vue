@@ -3,8 +3,8 @@
     <div class="title-area">
       <div class="filename">{{ filename }}</div>
       <div class="diff-line-num">
-        <div class="add">+12</div>
-        <div class="del">-111</div>
+        <div class="add">+{{ changed.added }}</div>
+        <div class="del">-{{ changed.removed }}</div>
       </div>
     </div>
     <div class="toolbar">
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, reactive } from 'vue'
 import { useDiffViewer } from './useDiffView'
 
 const { funcs, registerFunc } = useDiffViewer()
@@ -51,9 +51,16 @@ onMounted(() => {
   // funcs.options.toolbar?.render($el, {})
 })
 
+// 变更行数
+const changed = ref({ added: 0, removed: 0 })
+function updateChangedLines(newVal) {
+  Object.assign(changed, newVal)
+}
+
 registerFunc({
   viewed,
   rawed,
+  updateChangedLines,
 })
 </script>
 

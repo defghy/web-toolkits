@@ -8,6 +8,7 @@ export const useDiffViewer = function ({ isMaster = false } = {}) {
     rawed: Ref<boolean>
     updateViewed: (viewed: boolean) => any // 控制是否viewed
     updateRawed: (args: boolean) => any // 控制是否收起展开
+    updateChangedLines: (args: { added: number; removed: number }) => any
   }>({ isMaster, key: 'diffViewer' })
 
   return { ...exp }
