@@ -6,6 +6,7 @@
 import { ref, watch, onMounted, onBeforeUnmount, shallowRef } from 'vue'
 import loader from '@monaco-editor/loader'
 import type * as Monaco from 'monaco-editor'
+import { useDiffViewer } from './useDiffView'
 
 type DiffEditorOptions = Monaco.editor.IStandaloneDiffEditorConstructionOptions
 type ModelOptions = Monaco.editor.ITextModelUpdateOptions
@@ -26,6 +27,8 @@ const props = withDefaults(
     modelOptions: () => ({}),
   }
 )
+
+const { funcs, registerFunc } = useDiffViewer()
 
 const containerEl = ref<HTMLDivElement | null>(null)
 const monacoInstance = shallowRef<typeof Monaco | null>(null)
@@ -71,6 +74,17 @@ onMounted(() => {
       originalModel.value.updateOptions(props.modelOptions)
       modifiedModel.value.updateOptions(props.modelOptions)
     }
+
+    // 仅在首次 diff 计算完成后统计行数，之后立即注销监听。
+    // Monaco 用 endLineNumber === 0 表示该侧无变更行（纯删除或纯新增），span 需特殊处理。
+    const onDidUpdateDiffDisposable = editor.value.onDidUpdateDiff(() => {
+      const changes = editor.value?.getLineChanges() ?? []
+      const span = (s: number, e: number) => (e === 0 ? 0 : e - s + 1)
+      const added = changes.reduce((n, c) => n + span(c.modifiedStartLineNumber, c.modifiedEndLineNumber), 0)
+      const removed = changes.reduce((n, c) => n + span(c.originalStartLineNumber, c.originalEndLineNumber), 0)
+      funcs.updateChangedLines?.({ added, removed })
+      onDidUpdateDiffDisposable.dispose()
+    })
   }
 
   void init()

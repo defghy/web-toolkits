@@ -54,7 +54,7 @@ onMounted(() => {
 // 变更行数
 const changed = ref({ added: 0, removed: 0 })
 function updateChangedLines(newVal) {
-  Object.assign(changed, newVal)
+  Object.assign(changed.value, newVal)
 }
 
 registerFunc({
@@ -94,6 +94,7 @@ registerFunc({
       }
       .del {
         color: #d1242f;
+        margin-left: 4px;
       }
     }
   }
