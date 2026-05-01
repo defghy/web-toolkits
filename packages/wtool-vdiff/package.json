@@ -24,7 +24,7 @@
     "dist/*",
     "src/*"
   ],
-  "typings": "dist/wtool-vdiff.es.d.ts",
+  "types": "dist/wtool-vdiff.es.d.ts",
   "publishConfig": {
     "access": "public"
   },
