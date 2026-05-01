@@ -21,29 +21,28 @@ import type { DiffEditorOptions, WtoolDiffViewerProps, ModelOptions } from '../t
 import MonacoDiffViewer from './MonacoDiffViewer.vue'
 import TopBar from './TopBar.vue'
 import { useDiffViewer } from './useDiffView'
+import { patch2Pair } from './utils/patch2Pair'
 
-const props = withDefaults(
-  defineProps<WtoolDiffViewerProps>(),
-  {
-    diffPair: () => [],
-    diffPatch: '',
-    language: 'plaintext',
-    options: () => ({}),
-    modelOptions: () => ({}),
-    width: '100%',
-    height: '400px',
-  }
-)
+const props = withDefaults(defineProps<WtoolDiffViewerProps>(), {
+  diffPair: () => [],
+  diffPatch: '',
+  language: 'plaintext',
+  options: () => ({}),
+  modelOptions: () => ({}),
+  width: '100%',
+  height: '400px',
+})
 
 const diffPair = ref(props.diffPair || null)
-const initDiff = function() {
+const initDiff = function () {
   if (diffPair.value) {
     return
   }
 
   // diffPatch => diffPair
-  diffPair.value =
+  diffPair.value = patch2Pair(props.diffPatch)
 }
+initDiff()
 
 const originalCode = computed(() => diffPair.value[0].content)
 const modifiedCode = computed(() => diffPair.value[1].content)
