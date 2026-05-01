@@ -73,16 +73,10 @@ const mergedOptions = computed(() => {
 
 const viewed = ref<boolean>(false) // 是否已读
 const rawed = ref<boolean>(false) // 是否显示原始文件
-// 由 MonacoDiffViewer 在首次 diff 完成后写入，TopBar 通过 funcs 读取展示
-const changedLines = ref<{ added: number; removed: number }>({ added: 0, removed: 0 })
 
 registerFunc({
   viewed,
   rawed,
-  changedLines,
-  updateChangedLines: (args: { added: number; removed: number }) => {
-    changedLines.value = args
-  },
 })
 </script>
 
