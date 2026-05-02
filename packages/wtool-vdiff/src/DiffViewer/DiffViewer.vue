@@ -90,6 +90,7 @@ const rawed = ref<boolean>(false) // 是否显示原始文件
 registerFunc({
   viewed,
   rawed,
+  canUnchangeVisible: ref(!!props.diffPatch),
 })
 </script>
 
