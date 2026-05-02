@@ -28,7 +28,9 @@ const props = withDefaults(
   }
 )
 
-const { funcs, registerFunc } = useDiffViewer()
+const emit = defineEmits<{ renderComplete: [] }>()
+
+const { funcs } = useDiffViewer()
 
 const containerEl = ref<HTMLDivElement | null>(null)
 const monacoInstance = shallowRef<typeof Monaco | null>(null)
@@ -83,6 +85,7 @@ onMounted(() => {
       const added = changes.reduce((n, c) => n + span(c.modifiedStartLineNumber, c.modifiedEndLineNumber), 0)
       const removed = changes.reduce((n, c) => n + span(c.originalStartLineNumber, c.originalEndLineNumber), 0)
       funcs.updateChangedLines?.({ added, removed })
+      emit('renderComplete')
       onDidUpdateDiffDisposable.dispose()
     })
   }
