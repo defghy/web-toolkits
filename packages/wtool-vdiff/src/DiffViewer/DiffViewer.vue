@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<WtoolDiffViewerProps>(), {
 
 const diffPair = ref(props.diffPair || null)
 const initDiff = function () {
-  if (diffPair.value) {
+  if (diffPair.value?.length) {
     return
   }
 
