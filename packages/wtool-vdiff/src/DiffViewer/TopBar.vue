@@ -12,8 +12,8 @@
         <input type="checkbox" :checked="viewed" @change="onViewedChange" />
         viewed
       </label>
-      <label>
-        <input type="checkbox" :checked="rawed" @change="onRawedChange" />
+      <label :class="{ disabled: !canUnchangeVisible }">
+        <input type="checkbox" :checked="rawed" @change="onRawedChange" :disabled="!canUnchangeVisible" />
         raw
       </label>
     </div>
@@ -37,7 +37,7 @@ const props = withDefaults(
 
 const filename = computed(() => props.diffPair[0].filename)
 
-const { viewed, rawed } = funcs
+const { viewed, rawed, canUnchangeVisible } = funcs
 const onViewedChange = function (evt) {
   const checked = (evt.target as HTMLInputElement).checked
   viewed.value = checked
@@ -109,6 +109,12 @@ registerFunc({
       display: inline-flex;
       align-items: center;
       cursor: pointer;
+
+      &.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
     }
   }
 }

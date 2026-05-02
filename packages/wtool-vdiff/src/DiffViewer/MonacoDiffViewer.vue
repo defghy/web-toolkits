@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerEl" class="monaco-editor-container" />
+  <div ref="containerEl" class="monaco-editor-container" :class="{ 'hide-unchanged-actions': !canUnchangeVisible }" />
 </template>
 
 <script setup lang="ts">
@@ -31,6 +31,7 @@ const props = withDefaults(
 const emit = defineEmits<{ renderComplete: [] }>()
 
 const { funcs } = useDiffViewer()
+const canUnchangeVisible = funcs.canUnchangeVisible
 
 const containerEl = ref<HTMLDivElement | null>(null)
 const monacoInstance = shallowRef<typeof Monaco | null>(null)
@@ -160,5 +161,17 @@ watch(
 .monaco-editor-container {
   width: 100%;
   height: 100%;
+}
+</style>
+
+<style>
+/* patch 模式：未改动区域为空行，隐藏 monaco 内置的展开未改动区域按钮（非 scoped，配合 JS class 控制） */
+.monaco-editor-container.hide-unchanged-actions {
+  .diff-hidden-lines-widget {
+    cursor: not-allowed;
+    .diff-hidden-lines {
+      pointer-events: none;
+    }
+  }
 }
 </style>

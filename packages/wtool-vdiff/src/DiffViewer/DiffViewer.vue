@@ -63,9 +63,12 @@ const { funcs, registerFunc } = useDiffViewer({ isMaster: true })
 
 /** raw 勾选时展示全文；未勾选时折叠无变更块，仅保留差异附近的上下文行 */
 const mergedOptions = computed(() => {
+  // canUnchangeVisible=false（patch 模式）时，未改动区域为空行，强制折叠且忽略 rawed
+  const forceHide = !canUnchangeVisible.value
+
   // 折叠上下文
   let hideUnchangedRegions = props.options.hideUnchangedRegions || {}
-  if (rawed.value) {
+  if (!forceHide && rawed.value) {
     hideUnchangedRegions = {
       enabled: false,
       ...hideUnchangedRegions,
@@ -73,7 +76,7 @@ const mergedOptions = computed(() => {
   } else {
     hideUnchangedRegions = {
       enabled: true,
-      contextLineCount: 5,
+      contextLineCount: 3,
       ...hideUnchangedRegions,
     }
   }
@@ -86,11 +89,12 @@ const mergedOptions = computed(() => {
 
 const viewed = ref<boolean>(false) // 是否已读
 const rawed = ref<boolean>(false) // 是否显示原始文件
+const canUnchangeVisible = ref(!props.diffPatch) // patch 模式下未改动区域为空行，不可展示
 
 registerFunc({
   viewed,
   rawed,
-  canUnchangeVisible: ref(!!props.diffPatch),
+  canUnchangeVisible,
 })
 </script>
 
