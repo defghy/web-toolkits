@@ -36,7 +36,8 @@
   "dependencies": {
     "@yuhufe/web-ui": "workspace:*",
     "@monaco-editor/loader": "^1.6.1",
-    "monaco-editor": "^0.53.0"
+    "monaco-editor": "^0.53.0",
+    "less": "4.6.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.0",

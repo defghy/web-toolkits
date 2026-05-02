@@ -1,7 +1,7 @@
 <template>
   <div class="diff-viewer-wrap">
     <TopBar class="top-bar" :diffPair="diffPair" />
-    <div class="content-wrap" v-show="!viewed">
+    <div class="content-wrap" v-show="!viewed" v-loading="loading">
       <MonacoDiffViewer
         class="monaco-container"
         :originalCode="originalCode"
@@ -18,13 +18,22 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
+import { loadingDirective } from '@yuhufe/web-ui'
 import type { DiffEditorOptions, WtoolDiffViewerProps, ModelOptions } from '../types'
 import MonacoDiffViewer from './MonacoDiffViewer.vue'
 import TopBar from './TopBar.vue'
 import { useDiffViewer } from './useDiffView'
 import { patch2Pair } from './utils/patch2Pair'
 
+const vLoading = loadingDirective
+const loading = ref(true)
+
 const _renderStart = performance.now()
+const onMonacoRenderComplete = () => {
+  const cost = performance.now() - _renderStart
+  console.log(`[DiffViewer] 渲染耗时: ${cost.toFixed(2)} ms`)
+  loading.value = false
+}
 
 const props = withDefaults(defineProps<WtoolDiffViewerProps>(), {
   diffPair: () => [],
@@ -51,11 +60,6 @@ const originalCode = computed(() => diffPair.value[0].content)
 const modifiedCode = computed(() => diffPair.value[1].content)
 
 const { funcs, registerFunc } = useDiffViewer({ isMaster: true })
-
-const onMonacoRenderComplete = () => {
-  const cost = performance.now() - _renderStart
-  console.log(`[DiffViewer] 渲染耗时: ${cost.toFixed(2)} ms`)
-}
 
 /** raw 勾选时展示全文；未勾选时折叠无变更块，仅保留差异附近的上下文行 */
 const mergedOptions = computed(() => {
