@@ -41,8 +41,6 @@ const props = withDefaults(defineProps<WtoolDiffViewerProps>(), {
   language: 'plaintext',
   options: () => ({}),
   modelOptions: () => ({}),
-  width: '100%',
-  height: '400px',
 })
 
 const diffPair = ref(props.diffPair || null)
@@ -55,6 +53,7 @@ const initDiff = function () {
   diffPair.value = patch2Pair(props.diffPatch)
 }
 initDiff()
+console.log(`[DiffViewer] patch耗时: ${(performance.now() - _renderStart).toFixed(2)} ms`)
 
 const originalCode = computed(() => diffPair.value[0].content)
 const modifiedCode = computed(() => diffPair.value[1].content)
@@ -90,6 +89,24 @@ const mergedOptions = computed(() => {
 const viewed = ref<boolean>(false) // 是否已读
 const rawed = ref<boolean>(false) // 是否显示原始文件
 const canUnchangeVisible = ref(!props.diffPatch) // patch 模式下未改动区域为空行，不可展示
+
+// 编辑器样式
+const viewerHeight = computed(() => {
+  if (props.viewerStyle?.height) {
+    return props.viewerStyle.height
+  }
+
+  const heightRange = {
+    minHeight: '100px',
+    maxHeight: '250px',
+    ...(props.viewerStyle || {}),
+  }
+})
+const viewerStyle = computed(() => {
+  const defaultStyle = { width: '100%', height: '400px' }
+  if (!props.viewerStyle) {
+  }
+})
 
 registerFunc({
   viewed,

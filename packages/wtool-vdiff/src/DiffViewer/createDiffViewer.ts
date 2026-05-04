@@ -36,13 +36,6 @@ export function createDiffViewer(target: HTMLElement, initialProps: DiffViewerPr
 
   applyProps(el, initialProps)
 
-  if (initialProps.width === undefined) {
-    el.style.width = '100%'
-  }
-  if (initialProps.height === undefined) {
-    el.style.height = '100%'
-  }
-
   target.appendChild(el)
 
   return {

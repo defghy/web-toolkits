@@ -9,6 +9,12 @@ export interface WtoolDiffViewerProps {
   language?: string
   options?: DiffEditorOptions
   modelOptions?: ModelOptions
+  viewerStyle?: WtoolDiffViewerStyle
+}
+
+export interface WtoolDiffViewerStyle {
   width?: string
   height?: string
+  minHeight?: string
+  maxHeight?: string
 }

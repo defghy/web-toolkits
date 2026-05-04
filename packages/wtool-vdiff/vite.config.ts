@@ -17,6 +17,10 @@ export default defineConfig(({ mode }) => {
     ],
     resolve: {
       extensions: ['.js', '.ts', '.vue', '.json'],
+      alias: {
+        vue: resolve(__dirname, 'node_modules/vue/dist/vue.esm-bundler.js'),
+        '@': resolve(__dirname, 'src'),
+      },
     },
     build: {
       minify: isProd,

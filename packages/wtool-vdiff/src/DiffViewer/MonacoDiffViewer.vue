@@ -171,6 +171,7 @@ watch(
     cursor: not-allowed;
     .diff-hidden-lines {
       pointer-events: none;
+      opacity: 0.75;
     }
   }
 }
