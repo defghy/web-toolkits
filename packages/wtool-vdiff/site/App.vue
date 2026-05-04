@@ -1,14 +1,14 @@
 <template>
   <div class="app">
-    <h1>wtool-vdiff（Vue3）</h1>
+    <h1>wtool-vdiff</h1>
     <section>
-      <h2>DiffViewer（diffPair）</h2>
+      <h2>DiffViewer（new Widget）</h2>
       <WidgetComp />
     </section>
-    <section>
-      <h2>DiffViewer 2</h2>
-      <!-- <DirectComp /> -->
-    </section>
+    <!-- <section>
+      <h2>DiffViewer Vue</h2>
+      <DirectComp />
+    </section> -->
   </div>
 </template>
 
