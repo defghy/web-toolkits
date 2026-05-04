@@ -1,6 +1,6 @@
 # @yuhufe/wtool-vdiff
 
-**Demo**: <a href="https://defghy.github.io/web-toolkits/v-diff/" target="_blank">https://defghy.github.io/web-toolkits/v-diff/</a>
+**Demo**: [https://defghy.github.io/web-toolkits/v-diff/](https://defghy.github.io/web-toolkits/v-diff/)
 
 基于 Monaco 的 DiffViewer。 **框架无关** —— 可直接集成到任何前端项目（React、Vue、原生 JS 等）中。
 
