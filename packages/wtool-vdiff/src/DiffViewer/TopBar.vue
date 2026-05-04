@@ -12,8 +12,8 @@
         <input type="checkbox" :checked="viewed" @change="onViewedChange" />
         viewed
       </label>
-      <label :class="{ disabled: !canUnchangeVisible }">
-        <input type="checkbox" :checked="rawed" @change="onRawedChange" :disabled="!canUnchangeVisible" />
+      <label v-if="canUnchangeVisible">
+        <input type="checkbox" :checked="rawed" @change="onRawedChange" />
         raw
       </label>
     </div>
