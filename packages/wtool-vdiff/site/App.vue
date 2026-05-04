@@ -3,11 +3,11 @@
     <h1>wtool-vdiff（Vue3）</h1>
     <section>
       <h2>DiffViewer（diffPair）</h2>
-      <!-- <WidgetComp /> -->
+      <WidgetComp />
     </section>
     <section>
       <h2>DiffViewer 2</h2>
-      <DirectComp />
+      <!-- <DirectComp /> -->
     </section>
   </div>
 </template>
@@ -23,10 +23,7 @@ import DirectComp from './DirectComp.vue'
   max-width: 960px;
   margin: 40px auto;
   padding: 0 20px;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
 h1 {
