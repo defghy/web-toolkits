@@ -9,7 +9,7 @@ interface CommonParams {
   unchangedCtxLineNum: number
 }
 
-// 根据pair计算
+// 根据patch计算
 const autoHeightPatch = function ({
   patch,
   minLine,
@@ -20,7 +20,7 @@ const autoHeightPatch = function ({
   patch: string
 } & CommonParams) {}
 
-// 根据patch计算
+// 根据pair计算
 const autoHeightPair = function ({
   pair,
   minLine,
@@ -31,6 +31,7 @@ const autoHeightPair = function ({
   pair: WtoolDiffViewerProps['diffPair']
 } & CommonParams) {}
 
+// css 换 数字
 const height2Num = (heightStr: string): number => {
   if (heightStr.endsWith('vh')) {
     const vh = parseFloat(heightStr)
@@ -48,14 +49,14 @@ export const autoHeight = function ({
 }: {
   patch?: string
   pair?: WtoolDiffViewerProps['diffPair']
-  maxHeight: 'string'
-  minHeight: 'string'
+  maxHeight: string
+  minHeight: string
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
 }) {
   const [minLine, maxLine] = [minHeight, maxHeight].map(str => {
     const h = height2Num(str)
-    return Math.floor(h / 18)
+    return Math.floor(h / LINE_HEIGHT)
   })
   const commonParams = {
     minLine,
