@@ -1,8 +1,10 @@
 import { WtoolDiffViewerProps } from '@/types'
 
+const LINE_HEIGHT = 18
+
 interface CommonParams {
-  maxHeight: number
-  minHeight: number
+  minLine: number
+  maxLine: number
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
 }
@@ -10,8 +12,8 @@ interface CommonParams {
 // 根据pair计算
 const autoHeightPatch = function ({
   patch,
-  minHeight,
-  maxHeight,
+  minLine,
+  maxLine,
   unchangedVisiable,
   unchangedCtxLineNum,
 }: {
@@ -21,8 +23,8 @@ const autoHeightPatch = function ({
 // 根据patch计算
 const autoHeightPair = function ({
   pair,
-  minHeight,
-  maxHeight,
+  minLine,
+  maxLine,
   unchangedVisiable,
   unchangedCtxLineNum,
 }: {
@@ -51,10 +53,13 @@ export const autoHeight = function ({
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
 }) {
-  const [minH, maxH] = [minHeight, maxHeight].map(str => height2Num(str))
+  const [minLine, maxLine] = [minHeight, maxHeight].map(str => {
+    const h = height2Num(str)
+    return Math.floor(h / 18)
+  })
   const commonParams = {
-    minHeight: minH,
-    maxHeight: maxH,
+    minLine,
+    maxLine,
     unchangedVisiable,
     unchangedCtxLineNum,
   }
