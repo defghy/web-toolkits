@@ -1,5 +1,5 @@
 <template>
-  <div class="diff-viewer-wrap">
+  <div class="diff-viewer-wrap" :style="viewerStyle">
     <TopBar class="top-bar" :diffPair="diffPair" />
     <div class="content-wrap" v-show="!viewed" v-loading="loading">
       <MonacoDiffViewer
@@ -24,6 +24,7 @@ import MonacoDiffViewer from './MonacoDiffViewer.vue'
 import TopBar from './TopBar.vue'
 import { useDiffViewer } from './useDiffView'
 import { patch2Pair } from './utils/patch2Pair'
+import { autoHeight } from './utils/autoHeight'
 
 const vLoading = loadingDirective
 const loading = ref(true)
@@ -101,10 +102,21 @@ const viewerHeight = computed(() => {
     maxHeight: '250px',
     ...(props.viewerStyle || {}),
   }
+
+  const height = autoHeight({
+    patch: props.diffPatch,
+    pair: props.diffPair,
+    ...heightRange,
+    unchangedVisiable: funcs.rawed.value,
+    unchangedCtxLineNum: mergedOptions.value.hideUnchangedRegions.contextLineCount!,
+  })
+
+  return `${height}px`
 })
 const viewerStyle = computed(() => {
-  const defaultStyle = { width: '100%', height: '400px' }
-  if (!props.viewerStyle) {
+  return {
+    '--viewer-width': props.viewerStyle?.width || '100%',
+    '--viewer-height': viewerHeight.value,
   }
 })
 
@@ -117,13 +129,14 @@ registerFunc({
 
 <style scoped>
 .diff-viewer-wrap {
+  width: var(--viewer-width);
   border: 1px solid #ddd;
 
   .top-bar {
     flex-shrink: 0;
   }
   .content-wrap {
-    height: 250px;
+    height: var(--viewer-height);
     overflow: hidden;
   }
 }

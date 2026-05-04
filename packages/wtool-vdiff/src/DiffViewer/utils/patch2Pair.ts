@@ -1,9 +1,9 @@
-interface FilePair {
+export interface FilePair {
   filename: string
   content: string
 }
 
-interface Hunk {
+export interface Hunk {
   origStart: number  // original 起始行号（1-based）
   origCount: number  // original 行数
   modStart: number   // modified 起始行号（1-based）
@@ -14,7 +14,7 @@ interface Hunk {
 /**
  * 解析 unified diff patch，提取文件名与所有 hunk
  */
-function parseHunks(patch: string): { origFilename: string; modFilename: string; hunks: Hunk[] } {
+export function parseHunks(patch: string): { origFilename: string; modFilename: string; hunks: Hunk[] } {
   const lines = patch.split('\n')
 
   let origFilename = ''
