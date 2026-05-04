@@ -1,0 +1,14 @@
+// 渐进动画
+.xfade {
+  &-enter,
+  &-enter-from {
+    opacity: 0;
+  }
+  &-enter-active {
+    transition: opacity 400ms ease;
+  }
+  &-leave-active {
+    transition: opacity 400ms ease;
+    opacity: 0;
+  }
+}

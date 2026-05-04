@@ -1,0 +1,53 @@
+{
+  "name": "@yuhufe/wtool-vdiff",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Monaco diff viewer as Vue 3 Web Component",
+  "keywords": [
+    "git",
+    "diff",
+    "monaco",
+    "vue3",
+    "web-component"
+  ],
+  "scripts": {
+    "dev": "pnpm run dev:site",
+    "dev:lib": "vite build --watch --mode development",
+    "build:site": "vite build --mode production --config site/vite.config.ts",
+    "dev:site": "vite --config site/vite.config.ts",
+    "build": "vite build --mode production"
+  },
+  "main": "./dist/wtool-vdiff.cjs.js",
+  "module": "./dist/wtool-vdiff.es.js",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "types": "dist/wtool-vdiff.es.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@yuhufe/web-ui": "workspace:*",
+    "@monaco-editor/loader": "^1.6.1",
+    "monaco-editor": "^0.53.0",
+    "less": "4.6.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.3",
+    "vue": "^3.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/defghy/web-toolkits.git"
+  }
+}
