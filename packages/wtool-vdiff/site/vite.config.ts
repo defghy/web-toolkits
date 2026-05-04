@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     port: Number(5443),
     fs: {
-      allow: [resolve(__dirname, '..')],
+      allow: [resolve(__dirname, '..'), resolve(__dirname, '../../../node_modules')],
     },
   },
 })
