@@ -1,6 +1,6 @@
 # @yuhufe/wtool-vdiff
 
-基于 Monaco Editor 和 Vue 3 Web Component 构建的代码差异查看器。 **框架无关** —— 以函数调用方式使用，可直接集成到任何前端项目（React、Vue、原生 JS 等）中。
+基于 Monaco 的 DiffViewer。 **框架无关** —— 可直接集成到任何前端项目（React、Vue、原生 JS 等）中。
 
 ---
 
@@ -62,6 +62,48 @@ const viewer = createDiffViewer(document.getElementById('diff-container')!, {
   language: 'typescript',
 })
 ```
+
+---
+
+## loader 配置
+
+库内部通过 `@monaco-editor/loader` 按需加载 Monaco。默认走 jsDelivr CDN，生产环境建议改为本地 bundle。
+
+**方式一：自定义 CDN 路径**
+
+```typescript
+import { loader } from '@yuhufe/wtool-vdiff'
+
+loader.config({
+  paths: { vs: 'https://your-cdn.example.com/monaco-editor/0.53.0/min/vs' },
+})
+```
+
+**方式二：从 node_modules 本地加载（Vite 项目推荐）**
+
+```typescript
+import * as monaco from 'monaco-editor'
+import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
+import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
+import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
+import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
+import { loader } from '@yuhufe/wtool-vdiff'
+
+self.MonacoEnvironment = {
+  getWorker(_, label) {
+    if (label === 'json') return new jsonWorker()
+    if (label === 'css' || label === 'scss' || label === 'less') return new cssWorker()
+    if (label === 'html' || label === 'handlebars' || label === 'razor') return new htmlWorker()
+    if (label === 'typescript' || label === 'javascript') return new tsWorker()
+    return new editorWorker()
+  },
+}
+
+loader.config({ monaco })
+```
+
+> `loader.config` 必须在任意 `createDiffViewer` 调用之前执行。
 
 ---
 
@@ -128,19 +170,6 @@ const viewer = createDiffViewer(document.getElementById('diff-container')!, {
 | **viewed** 复选框 | 勾选后折叠整个查看器（标记为已读） |
 | **raw** 复选框 | 展开全部未变更行（仅 `diffPair` 模式可用） |
 
----
 
-## 类型导出
-
-```typescript
-import type {
-  DiffViewerProps,      // createDiffViewer 的 props 类型
-  DiffViewerInstance,   // createDiffViewer 的返回值类型
-  DiffEditorOptions,    // Monaco IStandaloneDiffEditorConstructionOptions
-  ModelOptions,         // Monaco ITextModelUpdateOptions
-  WtoolDiffViewerProps, // 完整 props 接口（含 viewerStyle）
-  WtoolDiffViewerStyle, // 样式接口
-} from '@yuhufe/wtool-vdiff'
-```
 
 
