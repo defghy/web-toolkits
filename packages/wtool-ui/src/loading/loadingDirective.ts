@@ -1,4 +1,5 @@
-import { createApp, App, Plugin, ObjectDirective } from 'vue'
+import { createApp } from 'vue'
+import type { App, Plugin, ObjectDirective } from 'vue'
 import Loading from './Loading.vue'
 
 interface LoadingInstance {
