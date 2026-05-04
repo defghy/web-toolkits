@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "pnpm run dev:site",
     "dev:lib": "vite build --watch --mode development",
-    "predev:site": "vite build --mode production",
+    "build:site": "vite build --mode production --config site/vite.config.ts",
     "dev:site": "vite --config site/vite.config.ts",
     "build": "vite build --mode production"
   },
