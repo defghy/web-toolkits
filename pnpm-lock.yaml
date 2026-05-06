@@ -146,6 +146,9 @@ importers:
       vite:
         specifier: ^7.3.1
         version: 7.3.1(@types/node@22.13.9)(less@4.6.4)
+      vite-plugin-css-injected-by-js:
+        specifier: 5.0.1
+        version: 5.0.1(vite@7.3.1(@types/node@22.13.9)(less@4.6.4))
       vite-plugin-dts:
         specifier: ^4.5.3
         version: 4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@22.13.9)(less@4.6.4))
@@ -1575,6 +1578,7 @@ packages:
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   roarr@2.15.4:
@@ -1714,6 +1718,11 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  vite-plugin-css-injected-by-js@5.0.1:
+    resolution: {integrity: sha512-JSB0jjN4VCKqG7XTUdrwiIl5gA+z2yi/tAl9WHo0X4sdyJ1yrmbLOEjf95TDoDIIuKr4GJIc7lMJG0CT88eEUQ==}
+    peerDependencies:
+      vite: '>8.0.0-0'
 
   vite-plugin-dts@4.5.3:
     resolution: {integrity: sha512-P64VnD00dR+e8S26ESoFELqc17+w7pKkwlBpgXteOljFyT0zDwD8hH4zXp49M/kciy//7ZbVXIwQCekBJjfWzA==}
@@ -3308,6 +3317,10 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  vite-plugin-css-injected-by-js@5.0.1(vite@7.3.1(@types/node@22.13.9)(less@4.6.4)):
+    dependencies:
+      vite: 7.3.1(@types/node@22.13.9)(less@4.6.4)
 
   vite-plugin-dts@4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.8.2)(vite@5.4.14(@types/node@22.13.9)(less@4.6.4)):
     dependencies:

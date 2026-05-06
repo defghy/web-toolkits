@@ -148,11 +148,16 @@ registerFunc({
       display: inline-flex;
       align-items: center;
       cursor: pointer;
+      margin-right: 4px;
 
       &.disabled {
         opacity: 0.4;
         cursor: not-allowed;
         pointer-events: none;
+      }
+
+      input {
+        margin-right: 2px;
       }
     }
   }
