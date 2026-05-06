@@ -16,7 +16,8 @@
     "dev:lib": "vite build --watch --mode development",
     "build:site": "vite build --mode production --config site/vite.config.ts",
     "dev:site": "vite --config site/vite.config.ts",
-    "build": "vite build --mode production"
+    "build": "vite build --mode production",
+    "pub": "npm run build && npm publish"
   },
   "main": "./dist/wtool-vdiff.cjs.js",
   "module": "./dist/wtool-vdiff.es.js",
