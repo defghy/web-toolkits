@@ -94,8 +94,8 @@ const autoHeightPair = function ({
 } & CommonParams): number {
   if (!pair || pair.length < 2) return minLine
 
-  const origLines = pair[0].content.split('\n')
-  const modLines = pair[1].content.split('\n')
+  const origLines = pair[0].content?.split('\n') ?? []
+  const modLines = pair[1].content?.split('\n') ?? []
   const totalLines = Math.max(origLines.length, modLines.length)
 
   if (unchangedVisiable) {

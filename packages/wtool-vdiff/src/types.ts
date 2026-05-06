@@ -4,7 +4,7 @@ export type DiffEditorOptions = Monaco.editor.IStandaloneDiffEditorConstructionO
 export type ModelOptions = Monaco.editor.ITextModelUpdateOptions
 
 export interface WtoolDiffViewerProps {
-  diffPair?: { filename: string; content: string }[]
+  diffPair?: { filename: string; content: string | null }[]
   diffPatch?: string
   language?: string
   options?: DiffEditorOptions

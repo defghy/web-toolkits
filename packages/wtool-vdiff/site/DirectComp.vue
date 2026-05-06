@@ -26,7 +26,7 @@ import largePatch from './assets/largePatch.json'
 
 const diffPair = [
   { filename: 'old.json', content: JSON.stringify(oldJson, null, 4) },
-  { filename: 'new.json', content: JSON.stringify(newJson, null, 4) },
+  { filename: '', content: null },
 ]
 
 const patch = miniPatch.patch

@@ -56,8 +56,8 @@ const initDiff = function () {
 initDiff()
 console.log(`[DiffViewer] patch耗时: ${(performance.now() - _renderStart).toFixed(2)} ms`)
 
-const originalCode = computed(() => diffPair.value[0].content)
-const modifiedCode = computed(() => diffPair.value[1].content)
+const originalCode = computed(() => diffPair.value[0]?.content ?? '')
+const modifiedCode = computed(() => diffPair.value[1]?.content ?? '')
 
 const { funcs, registerFunc } = useDiffViewer({ isMaster: true })
 

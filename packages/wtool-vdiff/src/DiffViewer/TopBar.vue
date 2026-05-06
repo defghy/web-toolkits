@@ -1,10 +1,11 @@
 <template>
   <div class="top-bar-wrap">
     <div class="title-area">
-      <div class="filename">{{ filename }}</div>
+      <div class="filename">{{ filenameDisplay }}</div>
+      <span :class="['diff-type-tag', diffType]">{{ diffTypeLabel }}</span>
       <div class="diff-line-num">
-        <div class="add">+{{ changed.added }}</div>
-        <div class="del">-{{ changed.removed }}</div>
+        <div class="add" v-if="diffType !== 'del'">+{{ changed.added }}</div>
+        <div class="del" v-if="diffType !== 'add'">-{{ changed.removed }}</div>
       </div>
     </div>
     <div class="toolbar">
@@ -21,21 +22,53 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, reactive } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useDiffViewer } from './useDiffView'
 
 const { funcs, registerFunc } = useDiffViewer()
 
 const props = withDefaults(
   defineProps<{
-    diffPair?: { filename: string; content: string }[]
+    diffPair?: { filename: string; content: string | null }[]
   }>(),
   {
     diffPair: () => [],
   }
 )
 
-const filename = computed(() => props.diffPair[0].filename)
+type DiffType = 'changed' | 'add' | 'del' | 'rename'
+
+const diffType = computed<DiffType>(() => {
+  const [original, modified] = props.diffPair
+  if (!original || !modified) return 'changed'
+
+  const originalNull = original.content === null
+  const modifiedNull = modified.content === null
+
+  if (originalNull && !modifiedNull) return 'add'
+  if (!originalNull && modifiedNull) return 'del'
+  if (original.filename !== modified.filename) return 'rename'
+  return 'changed'
+})
+
+const diffTypeLabel = computed(() => {
+  const map: Record<DiffType, string> = {
+    changed: 'changed',
+    add: 'added',
+    del: 'deleted',
+    rename: 'renamed',
+  }
+  return map[diffType.value]
+})
+
+const filenameDisplay = computed(() => {
+  const [original, modified] = props.diffPair
+  if (!original) return ''
+  if (diffType.value === 'rename') {
+    return `${original.filename} → ${modified.filename}`
+  }
+  return original.filename
+})
 
 const { viewed, rawed, canUnchangeVisible } = funcs
 const onViewedChange = function (evt) {
@@ -79,12 +112,17 @@ registerFunc({
     flex: 1;
     display: flex;
     align-items: center;
+    overflow: hidden;
 
     .filename {
       font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .diff-line-num {
+      flex-shrink: 0;
       display: inline-flex;
       font-size: 12px;
       font-weight: bold;
@@ -116,6 +154,33 @@ registerFunc({
         pointer-events: none;
       }
     }
+  }
+}
+
+.diff-type-tag {
+  flex-shrink: 0;
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 4px;
+  border-radius: 2px;
+  margin-left: 4px;
+
+  &.changed {
+    background-color: #ddf4ff;
+    color: #0969da;
+  }
+  &.add {
+    background-color: #dafbe1;
+    color: #1a7f37;
+  }
+  &.del {
+    background-color: #ffebe9;
+    color: #d1242f;
+  }
+  &.rename {
+    background-color: #fff8c5;
+    color: #9a6700;
   }
 }
 </style>
