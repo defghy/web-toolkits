@@ -1,0 +1,4164 @@
+{
+  "initLevel": 5535,
+  "detailMap": {
+    "40001": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1717399633746,
+      "fullColorTs": 1725350949992,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1725350949992,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40002": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1709793877978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1709793877972,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40003": {
+      "firstPassContinueWinMaxTimes": 6,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40004": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1719218964068,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1719218964068,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40005": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40006": {
+      "firstPassContinueWinMaxTimes": 7,
+      "fullYellowTs": 1741590839370,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 7,
+      "passLevelAreaCost": 0
+    },
+    "40007": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1714035863645,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1714994803184,
+      "firstPassContinueWinTimes": 8,
+      "passLevelAreaCost": 0
+    },
+    "40008": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1715062598877,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1715062598877,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40009": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40010": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1715089101541,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1715089101541,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40011": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1741591026392,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40012": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 1709799988473,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1709799988473,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40013": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1710745819602,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1710745960394,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40014": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 1710760909474,
+      "fullColorTs": 1759821498176,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1759821498151,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40015": {
+      "firstPassContinueWinMaxTimes": 6,
+      "fullYellowTs": 1712678519229,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40016": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1712130131373,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40017": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40018": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40019": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40020": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40021": {
+      "firstPassContinueWinMaxTimes": 11,
+      "fullYellowTs": 1702279875931,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1702279875931,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40022": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40023": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40024": {
+      "firstPassContinueWinMaxTimes": 10,
+      "fullYellowTs": 1717481503161,
+      "fullColorTs": 1766371189986,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1766371189951,
+      "firstPassContinueWinTimes": 10,
+      "passLevelAreaCost": 0
+    },
+    "40025": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40026": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40027": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40028": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40029": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40030": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40031": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1715246482817,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40032": {
+      "firstPassContinueWinMaxTimes": 9,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1715248417269,
+      "firstPassContinueWinTimes": 9,
+      "passLevelAreaCost": 0
+    },
+    "40033": {
+      "firstPassContinueWinMaxTimes": 12,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1715249876798,
+      "firstPassContinueWinTimes": 12,
+      "passLevelAreaCost": 0
+    },
+    "40034": {
+      "firstPassContinueWinMaxTimes": 13,
+      "fullYellowTs": 1715070322609,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1715251479582,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40035": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1700735096069,
+      "fullColorTs": 1700735096069,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1700735096069,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40036": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40037": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40038": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1710141849806,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1710141849806,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40039": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1714579314626,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40040": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40041": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40042": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40043": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40044": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40045": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1711700394193,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40046": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1713755126833,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1775558731640,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40047": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1714579314626,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40048": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40049": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40050": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1707289432455,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40051": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40052": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40053": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40054": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40055": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40056": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737105752650,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40059": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1738405602807,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1738405602780,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40060": {
+      "firstPassContinueWinMaxTimes": 7,
+      "fullYellowTs": 1714579314626,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 7,
+      "passLevelAreaCost": 0
+    },
+    "40062": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40066": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1740989578375,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1754883228054,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40067": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1754916436186,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1754916436128,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 0
+    },
+    "40068": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40069": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40070": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40071": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1727177299657,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40072": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1740989578375,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40073": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40074": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40075": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1769932046185,
+      "firstPassContinueWinTimes": 8,
+      "passLevelAreaCost": 0
+    },
+    "40076": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 1771659896465,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1770019095958,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 0
+    },
+    "40077": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 1715136919897,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40078": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40079": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1727177299657,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40080": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40081": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40082": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40083": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1715136919897,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40084": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1727177299657,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40085": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40086": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40087": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40088": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40089": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40090": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40091": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40092": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40093": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40094": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40095": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1727177299657,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40096": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1727177299657,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40097": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40098": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40099": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40100": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1762516516488,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40101": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40102": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40103": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40104": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40105": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40106": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40107": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1714505953428,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40108": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40109": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40110": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40111": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40112": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40113": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40114": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40115": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40116": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40117": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40118": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40119": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40120": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40121": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40122": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40123": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40124": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40125": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40126": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40127": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1757575913382,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40128": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40129": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40130": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40131": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40132": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40133": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 1764058177881,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40134": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1764058177881,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40135": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40137": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40142": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40143": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40145": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40146": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40150": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40152": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40153": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40157": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1765935301534,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1765935301534,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40159": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40160": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40161": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40164": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40167": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1717402687628,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40170": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40171": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40174": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40178": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40179": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40180": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1719823725069,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40181": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40182": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40187": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40193": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40200": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1713755826146,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1774582127567,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40201": {
+      "firstPassContinueWinMaxTimes": 12,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40206": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1736147572197,
+      "fullColorTs": 1736147572197,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40207": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737534449991,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40208": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1719481544177,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40209": {
+      "firstPassContinueWinMaxTimes": 14,
+      "fullYellowTs": 1765965786659,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1765973245119,
+      "firstPassContinueWinTimes": 14,
+      "passLevelAreaCost": 0
+    },
+    "40210": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40212": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40214": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40215": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40216": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40222": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1719573259086,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40223": {
+      "firstPassContinueWinMaxTimes": 7,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40225": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40228": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1740989578375,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40229": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1677133799841,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1677133799841,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40230": {
+      "firstPassContinueWinMaxTimes": 10,
+      "fullYellowTs": 1677220996554,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1677220996554,
+      "firstPassContinueWinTimes": 10,
+      "passLevelAreaCost": 0
+    },
+    "40231": {
+      "firstPassContinueWinMaxTimes": 14,
+      "fullYellowTs": 1679888309599,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1719304630079,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40232": {
+      "firstPassContinueWinMaxTimes": 13,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 13,
+      "passLevelAreaCost": 0
+    },
+    "40235": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40236": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40238": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40240": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40241": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40243": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40245": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40247": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40249": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1691144999554,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40250": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40252": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40253": {
+      "firstPassContinueWinMaxTimes": 6,
+      "fullYellowTs": 1714751496496,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1713857297000,
+      "firstPassContinueWinTimes": 6,
+      "passLevelAreaCost": 0
+    },
+    "40254": {
+      "firstPassContinueWinMaxTimes": 14,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1713888167549,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40255": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40258": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40260": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40262": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40263": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1714233508927,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40264": {
+      "firstPassContinueWinMaxTimes": 9,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 9,
+      "passLevelAreaCost": 0
+    },
+    "40265": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40267": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1710140384287,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1710140384287,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40268": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 3,
+      "passLevelAreaCost": 0
+    },
+    "40269": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40271": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742549810149,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40276": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40277": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40278": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40280": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1691144999554,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40282": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40283": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40284": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40287": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40289": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40290": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40291": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40292": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40293": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40294": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 8,
+      "passLevelAreaCost": 0
+    },
+    "40297": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1777431358303,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40298": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40299": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40301": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40304": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40305": {
+      "firstPassContinueWinMaxTimes": 13,
+      "fullYellowTs": 1712384903024,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1743577345198,
+      "firstPassContinueWinTimes": 13,
+      "passLevelAreaCost": 0
+    },
+    "40306": {
+      "firstPassContinueWinMaxTimes": 11,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 11,
+      "passLevelAreaCost": 0
+    },
+    "40307": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40309": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40311": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40312": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40314": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1747290754687,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40315": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40316": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40318": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40319": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40321": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1775825536364,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40325": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40326": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40330": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40331": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40332": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40333": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40334": {
+      "firstPassContinueWinMaxTimes": 10,
+      "fullYellowTs": 1723879319966,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1723879319966,
+      "firstPassContinueWinTimes": 10,
+      "passLevelAreaCost": 0
+    },
+    "40335": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40336": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1719995257654,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40337": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40338": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40340": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40341": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40345": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40347": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1776311370572,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40348": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1777967772617,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40349": {
+      "firstPassContinueWinMaxTimes": 6,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40356": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40357": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40358": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40361": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40366": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40369": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40370": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1662346618000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40371": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40374": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40375": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40376": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40379": {
+      "firstPassContinueWinMaxTimes": 14,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1766128222580,
+      "firstPassContinueWinTimes": 7,
+      "passLevelAreaCost": 0
+    },
+    "40380": {
+      "firstPassContinueWinMaxTimes": 7,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1757675927000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 7,
+      "passLevelAreaCost": 0
+    },
+    "40381": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40382": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40388": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40391": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40393": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40400": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1773903861000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40401": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1726815436000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40402": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40403": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40405": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40406": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40407": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40408": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1685353876577,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40409": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1702300344832,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40415": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1710485104000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40418": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1767854756796,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40420": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1726831166000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40434": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40440": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40441": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1685353876577,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40443": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1695796532760,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40444": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1687761913000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40449": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40453": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40454": {
+      "firstPassContinueWinMaxTimes": 10,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1770876638000,
+      "passLevelAreaTs": 1773908109812,
+      "firstPassContinueWinTimes": 10,
+      "passLevelAreaCost": 3031471812
+    },
+    "40455": {
+      "firstPassContinueWinMaxTimes": 10,
+      "fullYellowTs": 1774159925441,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1773914790000,
+      "passLevelAreaTs": 1774159925441,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 245135441
+    },
+    "40456": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1774162844368,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1774159956000,
+      "passLevelAreaTs": 1774162844368,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 2888368
+    },
+    "40457": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1774085067454,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1774162868000,
+      "passLevelAreaTs": 1774085067454,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 0
+    },
+    "40458": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1774179548088,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1774085085000,
+      "passLevelAreaTs": 1774179548088,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 94463088
+    },
+    "40459": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1773717501472,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1774179663000,
+      "passLevelAreaTs": 1773717501472,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 0
+    },
+    "40460": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1773717536000,
+      "passLevelAreaTs": 1773815426015,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 97890015
+    },
+    "40461": {
+      "firstPassContinueWinMaxTimes": 7,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1773815456000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 7,
+      "passLevelAreaCost": 0
+    },
+    "40463": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40480": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40484": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40485": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40487": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40509": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40511": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40512": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1748402526778,
+      "firstPassContinueWinTimes": 3,
+      "passLevelAreaCost": 0
+    },
+    "40513": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1748413473000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40514": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 8,
+      "passLevelAreaCost": 0
+    },
+    "40519": {
+      "firstPassContinueWinMaxTimes": 13,
+      "fullYellowTs": 1761795212502,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1761795212470,
+      "firstPassContinueWinTimes": 13,
+      "passLevelAreaCost": 0
+    },
+    "40520": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1761795266000,
+      "passLevelAreaTs": 1762174720924,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 379454924
+    },
+    "40521": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1762175380859,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1762174756000,
+      "passLevelAreaTs": 1762175380830,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 624830
+    },
+    "40522": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1762175411000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40525": {
+      "firstPassContinueWinMaxTimes": 9,
+      "fullYellowTs": 1773651368763,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1773651368763,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40526": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1773651387000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40529": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1706878252944,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40530": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1708916507000,
+      "passLevelAreaTs": 1709695607124,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 779100124
+    },
+    "40531": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1709695619000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40533": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40534": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1726112302377,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1726112302377,
+      "firstPassContinueWinTimes": 8,
+      "passLevelAreaCost": 0
+    },
+    "40535": {
+      "firstPassContinueWinMaxTimes": 9,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1724400359000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40536": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1740989578375,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40537": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1742543050579,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40539": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1724675682846,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1724675682846,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40540": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40543": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40545": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40546": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1714732471835,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1724229570000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40548": {
+      "firstPassContinueWinMaxTimes": 6,
+      "fullYellowTs": 1741329569710,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1741329569710,
+      "firstPassContinueWinTimes": 6,
+      "passLevelAreaCost": 0
+    },
+    "40549": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1726136723235,
+      "fullColorTs": 1741416763608,
+      "levelAreaFirstLevelStartTs": 1741329594000,
+      "passLevelAreaTs": 1741416763574,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 87169574
+    },
+    "40550": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1713856178191,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1726137495000,
+      "passLevelAreaTs": 1741861774349,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 15724279349
+    },
+    "40551": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1714134047000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40553": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1714382340165,
+      "fullColorTs": 1714382386532,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1714382340165,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40554": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1714737110000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40555": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1715653666053,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40556": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1715653666053,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40557": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1715653666053,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1715943339682,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40558": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1715944073000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40559": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1715944447207,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1724310877968,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40560": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1724312145000,
+      "passLevelAreaTs": 1727332675255,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 3020530255
+    },
+    "40561": {
+      "firstPassContinueWinMaxTimes": 10,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1727333233000,
+      "passLevelAreaTs": 1716879341446,
+      "firstPassContinueWinTimes": 10,
+      "passLevelAreaCost": 0
+    },
+    "40563": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40564": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1717758012000,
+      "passLevelAreaTs": 1717771574527,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 13562527
+    },
+    "40565": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1718610531919,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1717771597000,
+      "passLevelAreaTs": 1717777237413,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 5640413
+    },
+    "40566": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1719568341302,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1718376234000,
+      "passLevelAreaTs": 1719568341302,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 1192107302
+    },
+    "40567": {
+      "firstPassContinueWinMaxTimes": 11,
+      "fullYellowTs": 1720782921763,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1718368671000,
+      "passLevelAreaTs": 1720782921763,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 2414250763
+    },
+    "40568": {
+      "firstPassContinueWinMaxTimes": 7,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1720782949000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40569": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40570": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1720166870000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 8,
+      "passLevelAreaCost": 0
+    },
+    "40571": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1721384306038,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1719825428000,
+      "passLevelAreaTs": 1721384306038,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 1558878038
+    },
+    "40572": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40573": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1721026661000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40574": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 1723364648617,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40575": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1723364648617,
+      "fullColorTs": 1723364648617,
+      "levelAreaFirstLevelStartTs": 1723719427000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40576": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1725779219176,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1723364727000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40580": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1724150871431,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1723544197000,
+      "passLevelAreaTs": 1723607583280,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 63386280
+    },
+    "40581": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40582": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40583": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1723880683000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 8,
+      "passLevelAreaCost": 0
+    },
+    "40584": {
+      "firstPassContinueWinMaxTimes": 11,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1770707439000,
+      "passLevelAreaTs": 1772803881750,
+      "firstPassContinueWinTimes": 11,
+      "passLevelAreaCost": 2096442750
+    },
+    "40585": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1772803952000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40586": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40589": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40592": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40594": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40598": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1754966571978,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40599": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1730702683801,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40601": {
+      "firstPassContinueWinMaxTimes": 13,
+      "fullYellowTs": 1737626642717,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1735182534000,
+      "passLevelAreaTs": 1735289910989,
+      "firstPassContinueWinTimes": 13,
+      "passLevelAreaCost": 107376989
+    },
+    "40602": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1735292614942,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1735290000000,
+      "passLevelAreaTs": 1735292614942,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 2614942
+    },
+    "40603": {
+      "firstPassContinueWinMaxTimes": 6,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1729249939000,
+      "passLevelAreaTs": 1729841613162,
+      "firstPassContinueWinTimes": 6,
+      "passLevelAreaCost": 591674162
+    },
+    "40604": {
+      "firstPassContinueWinMaxTimes": 9,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1729841264000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40606": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1773999530495,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40607": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40609": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40612": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1732503481353,
+      "fullColorTs": 1732503481353,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1732181868649,
+      "firstPassContinueWinTimes": 5,
+      "passLevelAreaCost": 0
+    },
+    "40613": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1732275026000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40614": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40615": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1734597557295,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40616": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 1765262354939,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1765262354939,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40617": {
+      "firstPassContinueWinMaxTimes": 10,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1765262374000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 10,
+      "passLevelAreaCost": 0
+    },
+    "40619": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1733484108240,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1733900075987,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40620": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1736755089000,
+      "passLevelAreaTs": 1736843848236,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 88759236
+    },
+    "40621": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1736843889000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40622": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40623": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1735887293928,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40624": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1735888532113,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40626": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1735299681439,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1735299681439,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40627": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1737340711000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40628": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40629": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1736508490000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40630": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40632": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1740989578375,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40633": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40634": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1737788233498,
+      "firstPassContinueWinTimes": 3,
+      "passLevelAreaCost": 0
+    },
+    "40635": {
+      "firstPassContinueWinMaxTimes": 12,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1740990090000,
+      "passLevelAreaTs": 1741078979090,
+      "firstPassContinueWinTimes": 12,
+      "passLevelAreaCost": 88889090
+    },
+    "40636": {
+      "firstPassContinueWinMaxTimes": 6,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1741078993000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 6,
+      "passLevelAreaCost": 0
+    },
+    "40638": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1738928018000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40640": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1773999466554,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40641": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40642": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40644": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40645": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40648": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1741934374372,
+      "fullColorTs": 1741934374372,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1741934374337,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40649": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1742439413000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40650": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40651": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1742557906657,
+      "fullColorTs": 1742557906657,
+      "levelAreaFirstLevelStartTs": 1742557532000,
+      "passLevelAreaTs": 1742557906657,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 374657
+    },
+    "40652": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1742558282384,
+      "fullColorTs": 1742558282384,
+      "levelAreaFirstLevelStartTs": 1742557924000,
+      "passLevelAreaTs": 1742558282338,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 358338
+    },
+    "40653": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40656": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40657": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40659": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1745290684000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40660": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40663": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1745914265678,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1745578838000,
+      "passLevelAreaTs": 1745914265645,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 335427645
+    },
+    "40664": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1745581939000,
+      "passLevelAreaTs": 1745585494178,
+      "firstPassContinueWinTimes": 8,
+      "passLevelAreaCost": 3555178
+    },
+    "40667": {
+      "firstPassContinueWinMaxTimes": 6,
+      "fullYellowTs": 1771060032584,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40668": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40669": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 1747474543422,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40670": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1747474634000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40671": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 1747474868123,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1747562200006,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40674": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 1748598495302,
+      "fullColorTs": 1748603344794,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1749112727616,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40675": {
+      "firstPassContinueWinMaxTimes": 9,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1748602906000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40676": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1751013441000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40677": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1749048936362,
+      "fullColorTs": 1749048936362,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1749048936362,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40679": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1749803964302,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1749803964302,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40680": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1750817191837,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1750817191837,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40681": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1750817241000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 3,
+      "passLevelAreaCost": 0
+    },
+    "40682": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40683": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1750421624000,
+      "passLevelAreaTs": 1755591037777,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 5169413777
+    },
+    "40684": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1750472872000,
+      "passLevelAreaTs": 1750486663858,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 13791858
+    },
+    "40685": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1750419803287,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1750486682000,
+      "passLevelAreaTs": 1750419658646,
+      "firstPassContinueWinTimes": 3,
+      "passLevelAreaCost": 0
+    },
+    "40686": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40690": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40692": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1752234728000,
+      "passLevelAreaTs": 1752237243362,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 2515362
+    },
+    "40693": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1752237334000,
+      "passLevelAreaTs": 1752242030277,
+      "firstPassContinueWinTimes": 3,
+      "passLevelAreaCost": 4696277
+    },
+    "40694": {
+      "firstPassContinueWinMaxTimes": 13,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1752458302000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 13,
+      "passLevelAreaCost": 0
+    },
+    "40695": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1754841511000,
+      "passLevelAreaTs": 1755501891864,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 660380864
+    },
+    "40696": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1752842220000,
+      "passLevelAreaTs": 1752845797325,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 3577325
+    },
+    "40697": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1752845816000,
+      "passLevelAreaTs": 1752850782184,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 4966184
+    },
+    "40699": {
+      "firstPassContinueWinMaxTimes": 7,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1753685328000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 3,
+      "passLevelAreaCost": 0
+    },
+    "40700": {
+      "firstPassContinueWinMaxTimes": 6,
+      "fullYellowTs": 1754049091786,
+      "fullColorTs": 1754642979486,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1754642979437,
+      "firstPassContinueWinTimes": 6,
+      "passLevelAreaCost": 0
+    },
+    "40701": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 1754377319465,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1754049158000,
+      "passLevelAreaTs": 1754382181038,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 333023038
+    },
+    "40702": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1754051002000,
+      "passLevelAreaTs": 1754057536651,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 6534651
+    },
+    "40703": {
+      "firstPassContinueWinMaxTimes": 9,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1754057567000,
+      "passLevelAreaTs": 1753671011227,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40709": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1755505308968,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1755505308930,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40713": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1756466340000,
+      "passLevelAreaTs": 1756477349623,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 11009623
+    },
+    "40714": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1756477380000,
+      "passLevelAreaTs": 1756482966594,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 5586594
+    },
+    "40715": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1756483069000,
+      "passLevelAreaTs": 1756486922259,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 3853259
+    },
+    "40719": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1757676234000,
+      "passLevelAreaTs": 1757681060045,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 4826045
+    },
+    "40720": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1757681192000,
+      "passLevelAreaTs": 1757685872950,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 4680950
+    },
+    "40724": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1758958315201,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1758958315153,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40725": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1758958370000,
+      "passLevelAreaTs": 1758962096264,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 3726264
+    },
+    "40726": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1758962123000,
+      "passLevelAreaTs": 1758964960569,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 2837569
+    },
+    "40727": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1758964996000,
+      "passLevelAreaTs": 1758972539845,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 7543845
+    },
+    "40737": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1761810682415,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1761809719000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40740": {
+      "firstPassContinueWinMaxTimes": 9,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1762161430000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 9,
+      "passLevelAreaCost": 0
+    },
+    "40741": {
+      "firstPassContinueWinMaxTimes": 2,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1762513289000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 2,
+      "passLevelAreaCost": 0
+    },
+    "40748": {
+      "firstPassContinueWinMaxTimes": 5,
+      "fullYellowTs": 1764328707984,
+      "fullColorTs": 1766039656473,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1766039656473,
+      "firstPassContinueWinTimes": 3,
+      "passLevelAreaCost": 0
+    },
+    "40749": {
+      "firstPassContinueWinMaxTimes": 13,
+      "fullYellowTs": 1763985072999,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1764328744000,
+      "passLevelAreaTs": 1766471788866,
+      "firstPassContinueWinTimes": 10,
+      "passLevelAreaCost": 2143044866
+    },
+    "40750": {
+      "firstPassContinueWinMaxTimes": 11,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1766471860000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 11,
+      "passLevelAreaCost": 0
+    },
+    "40751": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1763726847000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40761": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1766143901000,
+      "passLevelAreaTs": 1766156814229,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 12913229
+    },
+    "40762": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1766156860000,
+      "passLevelAreaTs": 1766161505637,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 4645637
+    },
+    "40763": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1766161549000,
+      "passLevelAreaTs": 1766164825159,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 3276159
+    },
+    "40764": {
+      "firstPassContinueWinMaxTimes": 14,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1766750239351,
+      "firstPassContinueWinTimes": 14,
+      "passLevelAreaCost": 0
+    },
+    "40765": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1766750262000,
+      "passLevelAreaTs": 1766754565177,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 4303177
+    },
+    "40766": {
+      "firstPassContinueWinMaxTimes": 15,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1766754591000,
+      "passLevelAreaTs": 1766754460216,
+      "firstPassContinueWinTimes": 15,
+      "passLevelAreaCost": 0
+    },
+    "40772": {
+      "firstPassContinueWinMaxTimes": 3,
+      "fullYellowTs": 1768568207261,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1768551524132,
+      "firstPassContinueWinTimes": 3,
+      "passLevelAreaCost": 0
+    },
+    "40773": {
+      "firstPassContinueWinMaxTimes": 4,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1768562160000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 4,
+      "passLevelAreaCost": 0
+    },
+    "40785": {
+      "firstPassContinueWinMaxTimes": 8,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40800": {
+      "firstPassContinueWinMaxTimes": 0,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1774005224000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 0,
+      "passLevelAreaCost": 0
+    },
+    "40814": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 1777433529973,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 0,
+      "passLevelAreaTs": 1777433529973,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    },
+    "40815": {
+      "firstPassContinueWinMaxTimes": 1,
+      "fullYellowTs": 0,
+      "fullColorTs": 0,
+      "levelAreaFirstLevelStartTs": 1777433604000,
+      "passLevelAreaTs": 0,
+      "firstPassContinueWinTimes": 1,
+      "passLevelAreaCost": 0
+    }
+  },
+  "oneTimePassStartArea": 40229
+}
