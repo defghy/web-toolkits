@@ -2,29 +2,33 @@ import type { WtoolDiffViewerProps } from '@/types'
 import { parseHunks } from './patch2Pair'
 
 const LINE_HEIGHT = 18
+const GAP_HEIGHT = 24
 
 interface CommonParams {
-  minLine: number
-  maxLine: number
+  minPx: number
+  maxPx: number
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
 }
 
 /**
  * 在线可见行计数器，按顺序逐个喂入变更区间（1-based inclusive），流式累计可见行数。
- * 区间必须按 start 升序喂入，每次 feed 后可读取 visible 判断是否达到 maxLine。
+ * 区间必须按 start 升序喂入，每次 feed 后可读取 maxReached 判断是否达到像素上限。
  * @param totalLines 文件总行数，用于 clamp context 窗口上界及判断尾部是否有折叠 widget
  * @param ctx        每个变更块上下保留的 context 行数，对应 Monaco contextLineCount
- * @param maxLine    可见行上限，达到后 maxReached 为 true，调用方应立即停止 feed
+ * @param maxPx      像素上限，达到后 maxReached 为 true，调用方应立即停止 feed
  */
-function makeVisibleLineCounter(totalLines: number, ctx: number, maxLine: number) {
+function makeVisibleLineCounter(totalLines: number, ctx: number, maxPx: number) {
   let visible = 0       // 已 commit 的确定可见行数（不含当前 pending 块）
+  let gaps = 0          // gap widget 数量（每个折叠区域占 GAP_HEIGHT，非 LINE_HEIGHT）
   let pendingStart = -1 // 当前待合并窗口的起始行（-1 表示无 pending）
   let pendingEnd = -1   // 当前待合并窗口的结束行
 
+  const usedPx = () => visible * LINE_HEIGHT + gaps * GAP_HEIGHT
+
   const commitPending = () => {
     if (pendingStart === -1) return
-    if (pendingStart > 1) visible += 1
+    if (pendingStart > 1) gaps += 1
     visible += pendingEnd - pendingStart + 1
     pendingStart = -1
     pendingEnd = -1
@@ -43,79 +47,82 @@ function makeVisibleLineCounter(totalLines: number, ctx: number, maxLine: number
       }
     },
     flush() {
+      const lastEnd = pendingEnd
       commitPending()
-      if (visible > 0 && pendingEnd !== totalLines) visible += 1
-      return Math.min(visible, maxLine)
+      if (visible > 0 && lastEnd !== totalLines) gaps += 1
+      return usedPx()
     },
-    get visible() {
-      return visible
+    get usedPx() {
+      return usedPx()
+    },
+    get gaps() {
+      return gaps
     },
     get maxReached() {
-      return visible >= maxLine
+      return usedPx() >= maxPx
     },
   }
 }
 
 const autoHeightPatch = function ({
   patch,
-  minLine,
-  maxLine,
+  minPx,
+  maxPx,
   unchangedCtxLineNum,
 }: {
   patch: string
 } & CommonParams): number {
   const { hunks } = parseHunks(patch)
-  if (hunks.length === 0) return minLine
+  if (hunks.length === 0) return minPx
 
   const lastHunk = hunks[hunks.length - 1]
   const totalLines = Math.max(
     lastHunk.origStart + lastHunk.origCount - 1,
     lastHunk.modStart + lastHunk.modCount - 1,
   )
-  const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxLine)
+  const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxPx)
 
   for (const h of hunks) {
     const hunkEnd = Math.max(h.origStart + h.origCount - 1, h.modStart + h.modCount - 1)
     counter.feed(h.origStart, hunkEnd)
-    if (counter.maxReached) return maxLine
+    if (counter.maxReached) return maxPx
   }
 
-  return Math.max(minLine, counter.flush())
+  return Math.max(minPx, counter.flush())
 }
 
 const autoHeightPair = function ({
   pair,
-  minLine,
-  maxLine,
+  minPx,
+  maxPx,
   unchangedVisiable,
   unchangedCtxLineNum,
 }: {
   pair: WtoolDiffViewerProps['diffPair']
 } & CommonParams): number {
-  if (!pair || pair.length < 2) return minLine
+  if (!pair || pair.length < 2) return minPx
 
   const origLines = pair[0].content?.split('\n') ?? []
   const modLines = pair[1].content?.split('\n') ?? []
   const totalLines = Math.max(origLines.length, modLines.length)
 
   if (unchangedVisiable) {
-    return Math.max(minLine, Math.min(totalLines, maxLine))
+    return Math.max(minPx, Math.min(totalLines * LINE_HEIGHT, maxPx))
   }
 
-  const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxLine)
-  let i = 0
-  while (i < totalLines) {
-    if ((origLines[i] ?? '') !== (modLines[i] ?? '')) {
-      const start = i + 1
-      while (i < totalLines && (origLines[i] ?? '') !== (modLines[i] ?? '')) i++
-      counter.feed(start, i)
-      if (counter.maxReached) return maxLine
-    } else {
-      i++
-    }
-  }
+  // 剥前缀相同行
+  let lo = 0
+  while (lo < origLines.length && lo < modLines.length && origLines[lo] === modLines[lo]) lo++
 
-  return Math.max(minLine, counter.flush())
+  // 剥后缀相同行
+  let origHi = origLines.length, modHi = modLines.length
+  while (origHi > lo && modHi > lo && origLines[origHi - 1] === modLines[modHi - 1]) { origHi--; modHi-- }
+
+  if (origHi <= lo && modHi <= lo) return minPx
+
+  const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxPx)
+  counter.feed(lo + 1, Math.max(origHi, modHi))
+  return Math.max(minPx, counter.flush())
 }
 
 const height2Num = (heightStr: string): number => {
@@ -141,9 +148,9 @@ export const autoHeight = function ({
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
 }): number {
-  const [minLine, maxLine] = [minHeight, maxHeight].map(str => Math.floor(height2Num(str) / LINE_HEIGHT))
-  const commonParams: CommonParams = { minLine, maxLine, unchangedVisiable, unchangedCtxLineNum }
+  const [minPx, maxPx] = [minHeight, maxHeight].map(height2Num)
+  const commonParams: CommonParams = { minPx, maxPx, unchangedVisiable, unchangedCtxLineNum }
 
-  if (patch) return autoHeightPatch({ patch, ...commonParams }) * LINE_HEIGHT
-  return autoHeightPair({ pair, ...commonParams }) * LINE_HEIGHT
+  if (patch) return autoHeightPatch({ patch, ...commonParams })
+  return autoHeightPair({ pair, ...commonParams })
 }
