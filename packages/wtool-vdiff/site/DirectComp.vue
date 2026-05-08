@@ -4,6 +4,11 @@
     <DiffViewer :diffPair="diffPair" :viewerStyle="{ height: '250px' }" />
   </div>
 
+  <p class="hint">pair大</p>
+  <div class="diff-wrap">
+    <DiffViewer :diffPair="diffPairLarge" :viewerStyle="{ height: '500px' }" />
+  </div>
+
   <p class="hint">patch字符串</p>
   <div class="diff-wrap">
     <DiffViewer :diffPatch="patch" :viewerStyle="{ height: '250px' }" />
@@ -19,20 +24,10 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import DiffViewer from '../src/DiffViewer/DiffViewer.vue'
 
-import oldJson from './assets/old.json'
-import newJson from './assets/new.json'
-import miniPatch from './assets/miniPatch.json'
-import largePatch from './assets/largePatch.json'
+import { patch, patchLarge, pair, pairLarge } from './data'
 
-const diffPair = [
-  { filename: 'old.json', content: JSON.stringify(oldJson, null, 4) },
-  { filename: 'new.json', content: JSON.stringify(newJson, null, 4) },
-]
-
-const viewerStyle = { height: '' }
-
-const patch = miniPatch.patch
-const patchLarge = largePatch.patch
+const diffPair = pair
+const diffPairLarge = pairLarge
 </script>
 
 <style scoped>
