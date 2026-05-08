@@ -1,17 +1,17 @@
 <template>
   <p class="hint">pair组件</p>
   <div class="diff-wrap">
-    <DiffViewer :diffPair="diffPair" />
+    <DiffViewer :diffPair="diffPair" :viewerStyle="{ height: '250px' }" />
   </div>
 
   <p class="hint">patch字符串</p>
   <div class="diff-wrap">
-    <DiffViewer :diffPatch="patch" />
+    <DiffViewer :diffPatch="patch" :viewerStyle="{ height: '250px' }" />
   </div>
 
   <p class="hint">超长patch字符串</p>
   <div class="diff-wrap">
-    <DiffViewer :diffPatch="patchLarge" />
+    <DiffViewer :diffPatch="patchLarge" :viewerStyle="{ height: '250px' }" />
   </div>
 </template>
 
@@ -28,6 +28,8 @@ const diffPair = [
   { filename: 'old.json', content: JSON.stringify(oldJson, null, 4) },
   { filename: 'new.json', content: JSON.stringify(newJson, null, 4) },
 ]
+
+const viewerStyle = { height: '' }
 
 const patch = miniPatch.patch
 const patchLarge = largePatch.patch
