@@ -23,7 +23,10 @@ import DirectComp from './DirectComp.vue'
   max-width: 960px;
   margin: 40px auto;
   padding: 0 20px;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 h1 {
