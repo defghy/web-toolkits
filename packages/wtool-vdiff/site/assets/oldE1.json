@@ -1,7 +1,7 @@
 {
   "initLevel": 5535,
   "detailMap": {
-    "40001": {
+    "01": {
       "firstPassContinueWinMaxTimes": 4,
       "fullYellowTs": 1717399633746,
       "fullColorTs": 1725350949992,
@@ -10,7 +10,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40002": {
+    "02": {
       "firstPassContinueWinMaxTimes": 5,
       "fullYellowTs": 1709793877978,
       "fullColorTs": 0,
@@ -19,7 +19,7 @@
       "firstPassContinueWinTimes": 5,
       "passLevelAreaCost": 0
     },
-    "40003": {
+    "03": {
       "firstPassContinueWinMaxTimes": 6,
       "fullYellowTs": 0,
       "fullColorTs": 0,
@@ -28,7 +28,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40004": {
+    "04": {
       "firstPassContinueWinMaxTimes": 2,
       "fullYellowTs": 1719218964068,
       "fullColorTs": 0,
@@ -37,7 +37,7 @@
       "firstPassContinueWinTimes": 2,
       "passLevelAreaCost": 0
     },
-    "40005": {
+    "05": {
       "firstPassContinueWinMaxTimes": 2,
       "fullYellowTs": 0,
       "fullColorTs": 0,
@@ -46,7 +46,7 @@
       "firstPassContinueWinTimes": 2,
       "passLevelAreaCost": 0
     },
-    "40006": {
+    "06": {
       "firstPassContinueWinMaxTimes": 7,
       "fullYellowTs": 1741590839370,
       "fullColorTs": 0,
@@ -55,7 +55,7 @@
       "firstPassContinueWinTimes": 7,
       "passLevelAreaCost": 0
     },
-    "40007": {
+    "07": {
       "firstPassContinueWinMaxTimes": 8,
       "fullYellowTs": 1714035863645,
       "fullColorTs": 0,
@@ -64,7 +64,7 @@
       "firstPassContinueWinTimes": 8,
       "passLevelAreaCost": 0
     },
-    "40008": {
+    "08": {
       "firstPassContinueWinMaxTimes": 5,
       "fullYellowTs": 1715062598877,
       "fullColorTs": 0,
@@ -73,7 +73,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40009": {
+    "09": {
       "firstPassContinueWinMaxTimes": 1,
       "fullYellowTs": 0,
       "fullColorTs": 0,
@@ -82,7 +82,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40010": {
+    "10": {
       "firstPassContinueWinMaxTimes": 4,
       "fullYellowTs": 1715089101541,
       "fullColorTs": 0,
@@ -91,7 +91,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40011": {
+    "11": {
       "firstPassContinueWinMaxTimes": 4,
       "fullYellowTs": 1741591026392,
       "fullColorTs": 0,
@@ -100,7 +100,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40012": {
+    "12": {
       "firstPassContinueWinMaxTimes": 3,
       "fullYellowTs": 1709799988473,
       "fullColorTs": 0,
@@ -109,7 +109,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40013": {
+    "13": {
       "firstPassContinueWinMaxTimes": 4,
       "fullYellowTs": 1710745819602,
       "fullColorTs": 0,
@@ -118,7 +118,7 @@
       "firstPassContinueWinTimes": 4,
       "passLevelAreaCost": 0
     },
-    "40014": {
+    "14": {
       "firstPassContinueWinMaxTimes": 3,
       "fullYellowTs": 1710760909474,
       "fullColorTs": 1759821498176,
@@ -127,7 +127,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40015": {
+    "15": {
       "firstPassContinueWinMaxTimes": 6,
       "fullYellowTs": 1712678519229,
       "fullColorTs": 0,
@@ -136,7 +136,7 @@
       "firstPassContinueWinTimes": 2,
       "passLevelAreaCost": 0
     },
-    "40016": {
+    "16": {
       "firstPassContinueWinMaxTimes": 2,
       "fullYellowTs": 1712130131373,
       "fullColorTs": 0,
@@ -145,7 +145,7 @@
       "firstPassContinueWinTimes": 2,
       "passLevelAreaCost": 0
     },
-    "40017": {
+    "17": {
       "firstPassContinueWinMaxTimes": 1,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -154,7 +154,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40018": {
+    "18": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -163,7 +163,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40019": {
+    "19": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -172,7 +172,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40020": {
+    "20": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -181,7 +181,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40021": {
+    "21": {
       "firstPassContinueWinMaxTimes": 11,
       "fullYellowTs": 1702279875931,
       "fullColorTs": 0,
@@ -190,7 +190,7 @@
       "firstPassContinueWinTimes": 2,
       "passLevelAreaCost": 0
     },
-    "40022": {
+    "22": {
       "firstPassContinueWinMaxTimes": 4,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -199,7 +199,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40023": {
+    "23": {
       "firstPassContinueWinMaxTimes": 4,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -208,7 +208,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40024": {
+    "24": {
       "firstPassContinueWinMaxTimes": 10,
       "fullYellowTs": 1717481503161,
       "fullColorTs": 1766371189986,
@@ -217,7 +217,7 @@
       "firstPassContinueWinTimes": 10,
       "passLevelAreaCost": 0
     },
-    "40025": {
+    "25": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -226,7 +226,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40026": {
+    "26": {
       "firstPassContinueWinMaxTimes": 1,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -235,7 +235,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40027": {
+    "27": {
       "firstPassContinueWinMaxTimes": 2,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -244,7 +244,7 @@
       "firstPassContinueWinTimes": 2,
       "passLevelAreaCost": 0
     },
-    "40028": {
+    "28": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -253,7 +253,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40029": {
+    "29": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -262,7 +262,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40030": {
+    "30": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -271,7 +271,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40031": {
+    "31": {
       "firstPassContinueWinMaxTimes": 5,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -280,7 +280,7 @@
       "firstPassContinueWinTimes": 5,
       "passLevelAreaCost": 0
     },
-    "40032": {
+    "32": {
       "firstPassContinueWinMaxTimes": 9,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -289,7 +289,7 @@
       "firstPassContinueWinTimes": 9,
       "passLevelAreaCost": 0
     },
-    "40033": {
+    "33": {
       "firstPassContinueWinMaxTimes": 12,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -298,7 +298,7 @@
       "firstPassContinueWinTimes": 12,
       "passLevelAreaCost": 0
     },
-    "40034": {
+    "34": {
       "firstPassContinueWinMaxTimes": 13,
       "fullYellowTs": 1715070322609,
       "fullColorTs": 0,
@@ -307,7 +307,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40035": {
+    "35": {
       "firstPassContinueWinMaxTimes": 8,
       "fullYellowTs": 1700735096069,
       "fullColorTs": 1700735096069,
@@ -316,7 +316,7 @@
       "firstPassContinueWinTimes": 4,
       "passLevelAreaCost": 0
     },
-    "40036": {
+    "36": {
       "firstPassContinueWinMaxTimes": 2,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -325,7 +325,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40037": {
+    "37": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -334,7 +334,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40038": {
+    "38": {
       "firstPassContinueWinMaxTimes": 2,
       "fullYellowTs": 1710141849806,
       "fullColorTs": 0,
@@ -343,7 +343,7 @@
       "firstPassContinueWinTimes": 2,
       "passLevelAreaCost": 0
     },
-    "40039": {
+    "39": {
       "firstPassContinueWinMaxTimes": 1,
       "fullYellowTs": 1714579314626,
       "fullColorTs": 0,
@@ -352,7 +352,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40040": {
+    "40": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -361,7 +361,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40041": {
+    "41": {
       "firstPassContinueWinMaxTimes": 1,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -370,7 +370,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40042": {
+    "42": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -379,7 +379,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40043": {
+    "43": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -388,7 +388,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40044": {
+    "44": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -397,7 +397,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40045": {
+    "45": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1711700394193,
       "fullColorTs": 0,
@@ -406,7 +406,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40046": {
+    "46": {
       "firstPassContinueWinMaxTimes": 8,
       "fullYellowTs": 1713755126833,
       "fullColorTs": 0,
@@ -415,7 +415,7 @@
       "firstPassContinueWinTimes": 2,
       "passLevelAreaCost": 0
     },
-    "40047": {
+    "47": {
       "firstPassContinueWinMaxTimes": 5,
       "fullYellowTs": 1714579314626,
       "fullColorTs": 0,
@@ -424,7 +424,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40048": {
+    "48": {
       "firstPassContinueWinMaxTimes": 5,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -433,7 +433,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40049": {
+    "49": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -442,7 +442,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40050": {
+    "50": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1707289432455,
       "fullColorTs": 0,
@@ -451,7 +451,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40051": {
+    "51": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -460,7 +460,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40052": {
+    "52": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -469,7 +469,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40053": {
+    "53": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -478,7 +478,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40054": {
+    "54": {
       "firstPassContinueWinMaxTimes": 1,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -487,7 +487,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40055": {
+    "55": {
       "firstPassContinueWinMaxTimes": 1,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -496,7 +496,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40056": {
+    "56": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737105752650,
       "fullColorTs": 0,
@@ -505,7 +505,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40059": {
+    "59": {
       "firstPassContinueWinMaxTimes": 4,
       "fullYellowTs": 1738405602807,
       "fullColorTs": 0,
@@ -514,7 +514,7 @@
       "firstPassContinueWinTimes": 4,
       "passLevelAreaCost": 0
     },
-    "40060": {
+    "60": {
       "firstPassContinueWinMaxTimes": 7,
       "fullYellowTs": 1714579314626,
       "fullColorTs": 0,
@@ -523,7 +523,7 @@
       "firstPassContinueWinTimes": 7,
       "passLevelAreaCost": 0
     },
-    "40062": {
+    "62": {
       "firstPassContinueWinMaxTimes": 1,
       "fullYellowTs": 0,
       "fullColorTs": 0,
@@ -532,7 +532,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40066": {
+    "66": {
       "firstPassContinueWinMaxTimes": 5,
       "fullYellowTs": 1740989578375,
       "fullColorTs": 0,
@@ -541,7 +541,7 @@
       "firstPassContinueWinTimes": 5,
       "passLevelAreaCost": 0
     },
-    "40067": {
+    "67": {
       "firstPassContinueWinMaxTimes": 15,
       "fullYellowTs": 1754916436186,
       "fullColorTs": 0,
@@ -550,7 +550,7 @@
       "firstPassContinueWinTimes": 15,
       "passLevelAreaCost": 0
     },
-    "40068": {
+    "68": {
       "firstPassContinueWinMaxTimes": 1,
       "fullYellowTs": 1754966571978,
       "fullColorTs": 0,
@@ -559,7 +559,7 @@
       "firstPassContinueWinTimes": 1,
       "passLevelAreaCost": 0
     },
-    "40069": {
+    "69": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737626642717,
       "fullColorTs": 0,
@@ -568,7 +568,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40070": {
+    "70": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1754966571978,
       "fullColorTs": 0,
@@ -577,7 +577,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40071": {
+    "71": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1727177299657,
       "fullColorTs": 0,
@@ -586,7 +586,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40072": {
+    "72": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1740989578375,
       "fullColorTs": 0,
@@ -595,7 +595,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40073": {
+    "73": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1754966571978,
       "fullColorTs": 0,
@@ -604,7 +604,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40074": {
+    "74": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1754966571978,
       "fullColorTs": 0,
@@ -613,7 +613,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40075": {
+    "75": {
       "firstPassContinueWinMaxTimes": 8,
       "fullYellowTs": 1754966571978,
       "fullColorTs": 0,
@@ -622,7 +622,7 @@
       "firstPassContinueWinTimes": 8,
       "passLevelAreaCost": 0
     },
-    "40076": {
+    "76": {
       "firstPassContinueWinMaxTimes": 15,
       "fullYellowTs": 1737626642717,
       "fullColorTs": 1771659896465,
@@ -631,7 +631,7 @@
       "firstPassContinueWinTimes": 15,
       "passLevelAreaCost": 0
     },
-    "40077": {
+    "77": {
       "firstPassContinueWinMaxTimes": 3,
       "fullYellowTs": 1715136919897,
       "fullColorTs": 0,
@@ -640,7 +640,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40078": {
+    "78": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 0,
@@ -649,7 +649,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40079": {
+    "79": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1727177299657,
       "fullColorTs": 0,
@@ -658,7 +658,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40080": {
+    "80": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1742543050579,
       "fullColorTs": 0,
@@ -667,7 +667,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40081": {
+    "81": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737626642717,
       "fullColorTs": 0,
@@ -676,7 +676,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40082": {
+    "82": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 0,
@@ -685,7 +685,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40083": {
+    "83": {
       "firstPassContinueWinMaxTimes": 2,
       "fullYellowTs": 1715136919897,
       "fullColorTs": 0,
@@ -694,7 +694,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40084": {
+    "84": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1727177299657,
       "fullColorTs": 0,
@@ -703,7 +703,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40085": {
+    "85": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737626642717,
       "fullColorTs": 0,
@@ -712,7 +712,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40086": {
+    "86": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 0,
@@ -721,7 +721,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40087": {
+    "87": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 0,
@@ -730,7 +730,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40088": {
+    "88": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 0,
@@ -739,7 +739,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40089": {
+    "89": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 0,
@@ -748,7 +748,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40090": {
+    "90": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737626642717,
       "fullColorTs": 0,
@@ -757,7 +757,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40091": {
+    "91": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1742543050579,
       "fullColorTs": 0,
@@ -766,7 +766,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40092": {
+    "92": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1737626642717,
       "fullColorTs": 0,
@@ -775,7 +775,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40093": {
+    "93": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 0,
@@ -784,7 +784,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40094": {
+    "94": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 0,
@@ -793,7 +793,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40095": {
+    "95": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1727177299657,
       "fullColorTs": 0,
@@ -802,7 +802,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40096": {
+    "96": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1727177299657,
       "fullColorTs": 0,
@@ -811,7 +811,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40097": {
+    "97": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1742543050579,
       "fullColorTs": 0,
@@ -820,7 +820,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40098": {
+    "98": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 1764058177881,
@@ -829,7 +829,7 @@
       "firstPassContinueWinTimes": 0,
       "passLevelAreaCost": 0
     },
-    "40099": {
+    "99": {
       "firstPassContinueWinMaxTimes": 0,
       "fullYellowTs": 1762516516488,
       "fullColorTs": 0,
