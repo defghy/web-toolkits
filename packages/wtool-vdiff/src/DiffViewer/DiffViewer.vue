@@ -4,6 +4,7 @@
     <div class="content-wrap" v-show="!viewed" v-loading="loading">
       <MonacoDiffViewer
         class="monaco-container"
+        :style="{ opacity: loading ? 0 : 1 }"
         :originalCode="originalCode"
         :modifiedCode="modifiedCode"
         :language="language"
@@ -16,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 
 import { loadingDirective } from '@yuhufe/web-ui'
 import type { DiffEditorOptions, WtoolDiffViewerProps, ModelOptions } from '../types'
@@ -30,7 +31,7 @@ const vLoading = loadingDirective
 const loading = ref(true)
 
 const _renderStart = performance.now()
-const onMonacoRenderComplete = () => {
+const onMonacoRenderComplete = async () => {
   const cost = performance.now() - _renderStart
   console.log(`[DiffViewer] 渲染耗时: ${cost.toFixed(2)} ms`)
   loading.value = false
@@ -56,8 +57,8 @@ const initDiff = function () {
 initDiff()
 console.log(`[DiffViewer] patch耗时: ${(performance.now() - _renderStart).toFixed(2)} ms`)
 
-const originalCode = computed(() => diffPair.value[0].content)
-const modifiedCode = computed(() => diffPair.value[1].content)
+const originalCode = computed(() => diffPair.value[0]?.content ?? '')
+const modifiedCode = computed(() => diffPair.value[1]?.content ?? '')
 
 const { funcs, registerFunc } = useDiffViewer({ isMaster: true })
 

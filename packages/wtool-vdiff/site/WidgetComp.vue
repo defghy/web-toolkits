@@ -4,6 +4,11 @@
     <div ref="wrapPair" class="diff-editor-wrap"></div>
   </div>
 
+  <p class="hint">pairLarge组件</p>
+  <div class="diff-wrap">
+    <div ref="wrapPairLarge" class="diff-editor-wrap"></div>
+  </div>
+
   <p class="hint">patch字符串</p>
   <div class="diff-wrap">
     <div ref="wrapPatch" class="diff-editor-wrap"></div>
@@ -19,33 +24,34 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { createDiffViewer } from '../dist/wtool-vdiff.es.js'
 
-import oldJson from './assets/old.json'
-import newJson from './assets/new.json'
-import miniPatch from './assets/miniPatch.json'
-import largePatch from './assets/largePatch.json'
+import { pair, pairLarge, patch, patchLarge } from './data.js'
 
 const wrapPair = ref<HTMLElement>()
 const wrapPatch = ref<HTMLElement>()
 const wrapLarge = ref<HTMLElement>()
+const wrapPairLarge = ref<HTMLElement>()
 
 let widgetPair: ReturnType<typeof createDiffViewer>
 let widgetPatch: ReturnType<typeof createDiffViewer>
 let widgetLarge: ReturnType<typeof createDiffViewer>
+let widgetPairLarge: ReturnType<typeof createDiffViewer>
 
 onMounted(() => {
   widgetPair = createDiffViewer(wrapPair.value!, {
-    diffPair: [
-      { filename: 'old.json', content: JSON.stringify(oldJson, null, 4) },
-      { filename: 'new.json', content: JSON.stringify(newJson, null, 4) },
-    ],
+    diffPair: pair,
+  })
+
+  widgetPairLarge = createDiffViewer(wrapPairLarge.value!, {
+    diffPair: pairLarge,
+    viewerStyle: { height: '500px' },
   })
 
   widgetPatch = createDiffViewer(wrapPatch.value!, {
-    diffPatch: miniPatch.patch,
+    diffPatch: patch,
   })
 
   widgetLarge = createDiffViewer(wrapLarge.value!, {
-    diffPatch: largePatch.patch,
+    diffPatch: patchLarge,
   })
 })
 

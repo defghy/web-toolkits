@@ -1,7 +1,7 @@
 {
   "name": "@yuhufe/wtool-vdiff",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.6",
   "type": "module",
   "description": "Monaco diff viewer as Vue 3 Web Component",
   "keywords": [
@@ -16,7 +16,8 @@
     "dev:lib": "vite build --watch --mode development",
     "build:site": "vite build --mode production --config site/vite.config.ts",
     "dev:site": "vite --config site/vite.config.ts",
-    "build": "vite build --mode production"
+    "build": "vite build --mode production",
+    "pub": "npm run build && npm publish"
   },
   "main": "./dist/wtool-vdiff.cjs.js",
   "module": "./dist/wtool-vdiff.es.js",
@@ -34,15 +35,16 @@
     "vue": "^3.5.0"
   },
   "dependencies": {
-    "@yuhufe/web-ui": "workspace:*",
     "@monaco-editor/loader": "^1.6.1",
-    "monaco-editor": "^0.53.0",
-    "less": "4.6.4"
+    "less": "4.6.4",
+    "monaco-editor": "^0.53.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.0",
+    "@yuhufe/web-ui": "workspace:*",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
+    "vite-plugin-css-injected-by-js": "5.0.1",
     "vite-plugin-dts": "^4.5.3",
     "vue": "^3.5.0"
   },

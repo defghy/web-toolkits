@@ -56,9 +56,12 @@ export function parseHunks(patch: string): { origFilename: string; modFilename: 
 /**
  * 将 unified diff patch 转换为 [original, modified] 文件对。
  *
- * Monaco diff editor 需要两个完整文件内容，而 patch 只记录变更片段。
- * 未改动的行（hunk 之外）用空行填充，使两侧行号与 hunk 声明的起始位置对齐，
- * 从而让 Monaco 能在正确的行号位置渲染增删差异。
+ * 策略：
+ *   - hunk 之外的行（patch 未提供内容）：两侧各补一个空行撑开行号，
+ *     Monaco hideUnchangedRegions 会将这些相同的空行折叠并显示正确的行号范围
+ *   - context 行（' '）：两侧均写入真实内容
+ *   - 连续的删除（'-'）/ 新增（'+'）块：收集后成对对齐写入，
+ *     行数较少的一侧补空行，使 Monaco 能在同一视觉行渲染替换关系
  */
 export const patch2Pair = function (patch: string): FilePair[] {
   if (!patch) {
@@ -73,12 +76,24 @@ export const patch2Pair = function (patch: string): FilePair[] {
   const origLines: string[] = []
   const modLines: string[] = []
 
-  // 追踪两侧各自已写到的行号（1-based）
+  const pendingDel: string[] = []
+  const pendingAdd: string[] = []
+
+  const flushPending = () => {
+    const maxLen = Math.max(pendingDel.length, pendingAdd.length)
+    for (let i = 0; i < maxLen; i++) {
+      origLines.push(pendingDel[i] ?? '')
+      modLines.push(pendingAdd[i] ?? '')
+    }
+    pendingDel.length = 0
+    pendingAdd.length = 0
+  }
+
   let origCursor = 1
   let modCursor = 1
 
   for (const hunk of hunks) {
-    // hunk 之前未覆盖的行用空行填充，使光标推进到 hunk 起始位置
+    // hunk 之前（或两个 hunk 之间）的 gap：两侧各补空行对齐行号
     while (origCursor < hunk.origStart) {
       origLines.push('')
       origCursor++
@@ -93,25 +108,21 @@ export const patch2Pair = function (patch: string): FilePair[] {
       const content = line.slice(1)
 
       if (prefix === ' ') {
-        // context 行：两侧都保留原文
+        flushPending()
         origLines.push(content)
         modLines.push(content)
         origCursor++
         modCursor++
       } else if (prefix === '-') {
-        // 删除行：original 保留，modified 用空行占位
-        origLines.push(content)
-        modLines.push('')
+        pendingDel.push(content)
         origCursor++
-        modCursor++
       } else if (prefix === '+') {
-        // 新增行：modified 保留，original 用空行占位
-        origLines.push('')
-        modLines.push(content)
-        origCursor++
+        pendingAdd.push(content)
         modCursor++
       }
     }
+
+    flushPending()
   }
 
   return [

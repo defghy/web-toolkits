@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import { defineConfig, type UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
+import cssInjectedByJs from 'vite-plugin-css-injected-by-js'
 
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
@@ -9,6 +10,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       vue(),
+      cssInjectedByJs(),
       dts({
         insertTypesEntry: true,
         include: ['src/**/*.ts', 'src/**/*.vue'],
