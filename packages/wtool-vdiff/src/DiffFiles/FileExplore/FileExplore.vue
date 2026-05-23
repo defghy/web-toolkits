@@ -3,10 +3,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick } from 'vue'
+import { ref, computed, nextTick, shallowRef } from 'vue'
 
 import { loadingDirective } from '@yuhufe/web-ui'
-import type { DiffEditorOptions, WtoolDiffViewerProps, ModelOptions } from '@/types'
+import type { FileTree, WtoolDiffViewerProps, ModelOptions } from '@/types'
 
 const props = withDefaults(
   defineProps<{
@@ -16,6 +16,8 @@ const props = withDefaults(
     diffFiles: () => [],
   }
 )
+
+const filesData = shallowRef<FileTree[]>([])
 </script>
 
 <style scoped></style>
