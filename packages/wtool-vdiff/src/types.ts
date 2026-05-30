@@ -18,3 +18,10 @@ export interface WtoolDiffViewerStyle {
   minHeight?: string
   maxHeight?: string
 }
+
+export interface FileTree {
+  isDir?: boolean
+  name: string
+  type?: string
+  children?: FileTree[]
+}

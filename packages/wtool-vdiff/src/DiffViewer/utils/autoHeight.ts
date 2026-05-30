@@ -1,5 +1,5 @@
 import type { WtoolDiffViewerProps } from '@/types'
-import { parseHunks } from './patch2Pair'
+import { parsePatchHunks } from '@/utils/patch'
 
 const LINE_HEIGHT = 18
 const GAP_HEIGHT = 24
@@ -72,7 +72,7 @@ const autoHeightPatch = function ({
 }: {
   patch: string
 } & CommonParams): number {
-  const { hunks } = parseHunks(patch)
+  const hunks = parsePatchHunks(patch)
   if (hunks.length === 0) return minPx
 
   const lastHunk = hunks[hunks.length - 1]
