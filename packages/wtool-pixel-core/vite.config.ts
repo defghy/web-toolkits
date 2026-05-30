@@ -2,13 +2,22 @@ import { resolve } from 'path'
 import { defineConfig, loadEnv, type UserConfig } from 'vite'
 import pluginVue2 from '@vitejs/plugin-vue2'
 import pluginVue2JSX from '@vitejs/plugin-vue2-jsx'
+import dts from 'vite-plugin-dts'
 
 export default ({ mode }) => {
   const envs = loadEnv(mode, process.cwd(), '')
   const isProd = envs.NODE_ENV === 'production'
   const config = {
     publicDir: resolve('./public'), // 静态资源路径
-    plugins: [pluginVue2(), pluginVue2JSX()].filter(f => !!f),
+    plugins: [
+      pluginVue2(),
+      pluginVue2JSX(),
+      dts({
+        insertTypesEntry: true,
+        include: ['src/**/*.ts', 'src/**/*.vue'],
+        outDir: 'dist',
+      }),
+    ].filter(f => !!f),
     define: {
       'process.env': {
         VITE_ENV: true,

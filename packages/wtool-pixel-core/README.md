@@ -5,7 +5,7 @@
 
 ## Demo
 
-[地址](https://github.com/defghy/web-toolkits/tree/main/packages/wtool-pixel-core)
+[地址](https://defghy.github.io/web-toolkits/pixel-demo/)
 
 ## Quick Start
 

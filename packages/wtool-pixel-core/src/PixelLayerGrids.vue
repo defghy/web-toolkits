@@ -36,7 +36,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const { funcs } = useInner()
     const allGrids = computed(() => props.grids.flat())
-    const { id2Idx, idx2Id, getId } = useArrKey({ arr: allGrids })
+    const { id2Idx, idx2Id, getId } = useArrKey({ arr: allGrids as any })
     const { colNum } = funcs.config
 
     // 根据点击元素返回grid数据

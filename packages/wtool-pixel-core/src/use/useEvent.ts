@@ -39,10 +39,16 @@ export const usePixEventMaster = function ({ exp }: { exp: InnerFunc }) {
 export const usePixEvent = function ({ comp }: { comp?: Ref<PixelPaletteInst> } = {}) {
   const unbinds = [] as Function[]
   const when = async function (cfg: Partial<PixelWhenSetData>) {
+    if (!comp) {
+      return
+    }
     if (!comp.value?.funcs?.when) {
       await nextTick()
     }
     const pixelWhen = comp.value?.funcs?.when
+    if (!pixelWhen) {
+      return
+    }
     Object.entries(cfg).forEach(([key, func]) => {
       const target = pixelWhen[key]
       if (!target.includes(func)) {

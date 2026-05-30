@@ -8,7 +8,8 @@ export default ({ mode }) => {
   const isProd = envs.NODE_ENV === 'production'
   const config = {
     publicDir: resolve(__dirname, 'public'), // 静态资源路径
-    base: isProd ? './' : '',
+    root: resolve(__dirname),
+    base: '/web-toolkits/pixel-demo/',
     plugins: [
       pluginVue2(),
       pluginVue2JSX(),
@@ -21,18 +22,22 @@ export default ({ mode }) => {
     },
     server: {
       port: Number(4936),
-      open: '/',
+      open: '/web-toolkits/pixel-demo/',
       cors: true,
       host: true,
       proxy: {},
+      fs: {
+        allow: [resolve(__dirname, '..'), resolve(__dirname, '../../../node_modules')],
+      },
     },
     resolve: {
       extensions: ['.js', '.vue', '.json', '.ts', '.jsx', '.tsx'],
       alias: [
         { find: '@', replacement: resolve(__dirname) },
         { find: '~@', replacement: resolve(__dirname) },
-        { find: /^vue$/, replacement: resolve(__dirname, 'node_modules/vue/dist/vue.runtime.esm.js') },
-        { find: 'lodash-es', replacement: resolve(__dirname, 'node_modules/lodash-es') },
+        { find: '@yuhufe/wtool-pixel-core', replacement: resolve(__dirname, '../src/index.ts') },
+        { find: /^vue$/, replacement: resolve(__dirname, '../node_modules/vue/dist/vue.runtime.esm.js') },
+        { find: 'lodash-es', replacement: resolve(__dirname, '../node_modules/lodash-es') },
       ],
     },
     css: {

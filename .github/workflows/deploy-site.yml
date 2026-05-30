@@ -1,4 +1,4 @@
-name: Deploy wtool-vdiff site to GitHub Pages
+name: Deploy toolkit sites to GitHub Pages
 
 on:
   push:
@@ -36,14 +36,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build lib & site
+      - name: Build wtool-vdiff lib & site
         working-directory: packages/wtool-vdiff
+        run: pnpm run build && pnpm run build:site
+
+      - name: Build wtool-pixel-core lib & site
+        working-directory: packages/wtool-pixel-core
         run: pnpm run build && pnpm run build:site
 
       - name: Arrange Pages structure
         run: |
           mkdir -p _site/v-diff
           cp -r packages/wtool-vdiff/site/dist/. _site/v-diff/
+          mkdir -p _site/pixel-demo
+          cp -r packages/wtool-pixel-core/site/dist/. _site/pixel-demo/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

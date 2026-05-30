@@ -37,19 +37,23 @@ export const usePixFuncMaster = function ({ exp }: { exp: InnerFunc }) {
 }
 
 export const usePixFunc = function ({ comp }: { comp?: Ref<PixelPaletteInst> } = {}) {
-  let innerStage: Ref<Konva.Stage> = shallowRef(null as any)
+  let innerStage: Ref<Konva.Stage | null> = shallowRef(null)
   const getStage = function () {
     if (innerStage.value) {
       return innerStage.value
     }
-    innerStage.value = comp.value?.funcs.getStage()
+    const stage = comp?.value?.funcs.getStage()
+    if (!stage) {
+      throw new Error('PixelPalette instance is not ready')
+    }
+    innerStage.value = stage
     return innerStage.value
   }
-  const getHistoryDo = () => comp.value?.historyDo
+  const getHistoryDo = () => comp?.value?.historyDo
 
   // 将棋盘重置到容器中间，缩放到合适大小
   const centerAndPosition = async function () {
-    return comp.value?.funcs.centerAndPosition()
+    return comp?.value?.funcs.centerAndPosition()
   }
   const scaleByCenter = function ({ newScale }: { newScale: number }) {
     const stage = getStage()
@@ -64,7 +68,7 @@ export const usePixFunc = function ({ comp }: { comp?: Ref<PixelPaletteInst> } =
   // 当前棋盘导出图片，参数 https://konvajs.org/api/Konva.Layer.html#toDataURL__anchor
   const exportImage = async function (...args) {
     // 渲染完成
-    await comp.value?.funcs.isRenderred()
+    await comp?.value?.funcs.isRenderred()
     const stage = getStage()
     const area = stage.find('#pixelBoardArea')[0]
 

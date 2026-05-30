@@ -129,7 +129,7 @@ export default defineComponent({
     let historyDo = null as any
     if (props.useUndo) {
       const { pixelHistory } = usePixelUndo({ funcs })
-      historyDo = useUndo({ editRecord: pixelHistory, isEnable: ref(true) })
+      historyDo = useUndo({ editRecord: pixelHistory, isEnable: ref(true) as any })
     }
 
     registerFunc({
