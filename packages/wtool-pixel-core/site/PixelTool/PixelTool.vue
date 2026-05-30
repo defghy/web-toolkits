@@ -27,7 +27,7 @@
 
 <script lang="ts">
 // 自定义树形，支持自定义节点
-import { PropType, reactive, defineComponent, computed, toRefs, toRef } from 'vue'
+import { computed, defineComponent, reactive, toRef, toRefs, type PropType } from 'vue'
 
 import type { PixelLayerData } from '../types'
 

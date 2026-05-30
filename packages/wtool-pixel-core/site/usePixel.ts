@@ -1,4 +1,4 @@
-import { inject, provide, Ref } from 'vue'
+import { inject, provide, type Ref } from 'vue'
 
 import type { PixelPaletteInst } from './types'
 

@@ -8,13 +8,6 @@
     "pixel"
   ],
   "type": "module",
-  "main": "./dist/wtool-pixel-core.cjs.js",
-  "module": "./dist/wtool-pixel-core.es.js",
-  "files": [
-    "dist/*",
-    "src/*"
-  ],
-  "types": "dist/wtool-pixel-core.es.d.ts",
   "scripts": {
     "dev": "pnpm run dev:site",
     "dev:lib": "vite build --watch --mode development",
@@ -23,6 +16,13 @@
     "build": "vite build --mode production",
     "pub": "npm run build && npm publish"
   },
+  "main": "./dist/wtool-pixel-core.cjs.js",
+  "module": "./dist/wtool-pixel-core.es.js",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "types": "dist/wtool-pixel-core.es.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -34,18 +34,15 @@
     "konva": "^10.0.8"
   },
   "dependencies": {
-    "@yuhufe/web-common": "workspace:*",
     "vue-konva": "^2.1.7",
     "konva": "^10.0.8"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.3",
-    "vite": "^7.2.2",
-    "@vitejs/plugin-basic-ssl": "^1.2.0",
     "@vitejs/plugin-vue2": "^2.3.1",
-    "@vitejs/plugin-vue2-jsx": "^1.1.1",
+    "@yuhufe/web-common": "workspace:*",
     "typescript": "^5.9.3",
-    "vite-plugin-commonjs": "^0.10.1",
+    "vite": "^7.3.1",
     "vite-plugin-dts": "^4.5.3"
   },
   "repository": {
