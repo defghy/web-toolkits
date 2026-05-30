@@ -13,13 +13,13 @@
     "build": "vite build --mode production",
     "pub": "node scripts/publish.mjs"
   },
-  "main": "./dist/web-common.cjs.js",
-  "module": "./dist/web-common.es.js",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "files": [
     "dist/*",
     "src/*"
   ],
-  "typings": "dist/web-common.es.d.ts",
+  "typings": "src/index.ts",
   "publishConfig": {
     "access": "public"
   },

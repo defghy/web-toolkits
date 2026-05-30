@@ -1,4 +1,4 @@
-import { Ref, set } from 'vue'
+import { set, type Ref } from 'vue'
 import { cloneDeep } from 'lodash-es'
 import { usePixEvent } from '@yuhufe/wtool-pixel-core'
 

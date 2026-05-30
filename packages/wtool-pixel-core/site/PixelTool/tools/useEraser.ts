@@ -1,4 +1,4 @@
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 import { usePixEvent } from '@yuhufe/wtool-pixel-core'
 
 import type { PixelLayerData, PixelPaletteInst } from '../../types'

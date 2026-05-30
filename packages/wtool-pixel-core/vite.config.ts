@@ -1,71 +1,41 @@
 import { resolve } from 'path'
-import { defineConfig, loadEnv, type UserConfig } from 'vite'
+import { defineConfig, type UserConfig } from 'vite'
 import pluginVue2 from '@vitejs/plugin-vue2'
-import pluginVue2JSX from '@vitejs/plugin-vue2-jsx'
 import dts from 'vite-plugin-dts'
 
-export default ({ mode }) => {
-  const envs = loadEnv(mode, process.cwd(), '')
-  const isProd = envs.NODE_ENV === 'production'
-  const config = {
-    publicDir: resolve('./public'), // 静态资源路径
+export default defineConfig(({ mode }) => {
+  const isProd = mode === 'production'
+
+  return {
     plugins: [
       pluginVue2(),
-      pluginVue2JSX(),
       dts({
         insertTypesEntry: true,
         include: ['src/**/*.ts', 'src/**/*.vue'],
         outDir: 'dist',
       }),
-    ].filter(f => !!f),
-    define: {
-      'process.env': {
-        VITE_ENV: true,
-      },
-    },
+    ],
     resolve: {
-      extensions: ['.js', '.vue', '.json', '.ts', '.jsx', '.tsx'],
-      alias: [
-        { find: '@', replacement: resolve('src') },
-        { find: '~@', replacement: resolve('src') },
-        { find: /^vue$/, replacement: resolve('./node_modules/vue/dist/vue.runtime.esm.js') },
-        { find: 'lodash-es', replacement: resolve('./node_modules/lodash-es') },
-      ],
-    },
-    css: {
-      postcss: {
-        plugins: [],
+      extensions: ['.js', '.ts', '.vue', '.json'],
+      alias: {
+        vue: resolve(__dirname, 'node_modules/vue/dist/vue.runtime.esm.js'),
+        '@': resolve(__dirname, 'src'),
       },
     },
-    optimizeDeps: {
-      esbuildOptions: {
-        define: {
-          global: 'globalThis',
-        },
-        plugins: [],
-        loader: {
-          '.js': 'jsx',
-        },
-      },
-    },
-
     build: {
+      minify: isProd,
       lib: {
-        entry: resolve(__dirname, 'src/index.ts'), // 入口文件
-        name: 'PixelArt', // UMD 模块名称
-        fileName: format => `wtool-pixel-core.${format}.js`, // 输出文件名
+        entry: resolve(__dirname, 'src/index.ts'),
+        name: 'WtoolPixelCore',
+        fileName: format => `wtool-pixel-core.${format}.js`,
         formats: ['es', 'cjs'],
       },
-      commonjsOptions: {
-        transformMixedEsModules: true,
-      },
       rollupOptions: {
-        // 告诉打包工具 在external配置的 都是外部依赖项  不需要打包
-        external: ['@yuhufe/web-common', 'vue', 'lodash-es', 'konva', 'vue-konva'],
+        external: [],
+        output: {
+          hoistTransitiveImports: false,
+        },
       },
-      sourcemap: isProd ? false : true,
     },
   } as UserConfig
-
-  return defineConfig(config)
-}
+})

@@ -1,8 +1,24 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
+    "types": ["vite/client"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.d.ts", "src/**/*.react.tsx"],
+  "vueCompilerOptions": {
+    "target": 2.7
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue",
+    "site/**/*.ts",
+    "site/**/*.vue",
+    "site/**/*.d.ts"
+  ],
   "exclude": ["node_modules/**"]
 }
