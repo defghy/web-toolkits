@@ -1,6 +1,7 @@
 packages:
   # all packages in subdirs of packages/
   - 'packages/*'
+  - 'packages/*/site'
   - 'platforms/*'
   - 'pkgcommon/*'
   - 'tools/*'
