@@ -50,25 +50,6 @@ importers:
         specifier: ^5.4.11
         version: 5.4.14(@types/node@22.13.9)(less@4.6.4)
 
-  packages/wtool-common:
-    dependencies:
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
-    devDependencies:
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
-      typescript:
-        specifier: ^5.3.3
-        version: 5.8.2
-      vite:
-        specifier: ^5.4.11
-        version: 5.4.14(@types/node@22.13.9)(less@4.6.4)
-      vite-plugin-dts:
-        specifier: ^4.5.3
-        version: 4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.8.2)(vite@5.4.14(@types/node@22.13.9)(less@4.6.4))
-
   packages/wtool-diff:
     dependencies:
       '@monaco-editor/loader':
@@ -100,7 +81,60 @@ importers:
         specifier: ^3.5.0
         version: 3.5.27(typescript@5.9.3)
 
-  packages/wtool-ui:
+  packages/wtool-vdiff:
+    dependencies:
+      '@monaco-editor/loader':
+        specifier: ^1.6.1
+        version: 1.7.0
+      less:
+        specifier: 4.6.4
+        version: 4.6.4
+      monaco-editor:
+        specifier: ^0.53.0
+        version: 0.53.0
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^5.2.0
+        version: 5.2.4(vite@7.3.1(@types/node@22.13.9)(less@4.6.4))(vue@3.5.27(typescript@5.9.3))
+      '@yuhufe/web-ui':
+        specifier: workspace:*
+        version: link:../../tools/wtool-ui
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.3.1
+        version: 7.3.1(@types/node@22.13.9)(less@4.6.4)
+      vite-plugin-css-injected-by-js:
+        specifier: 5.0.1
+        version: 5.0.1(vite@7.3.1(@types/node@22.13.9)(less@4.6.4))
+      vite-plugin-dts:
+        specifier: ^4.5.3
+        version: 4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@22.13.9)(less@4.6.4))
+      vue:
+        specifier: ^3.5.0
+        version: 3.5.27(typescript@5.9.3)
+
+  tools/wtool-common:
+    dependencies:
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+    devDependencies:
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vite:
+        specifier: ^5.4.11
+        version: 5.4.14(@types/node@22.13.9)(less@4.6.4)
+      vite-plugin-dts:
+        specifier: ^4.5.3
+        version: 4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.9.3)(vite@5.4.14(@types/node@22.13.9)(less@4.6.4))
+
+  tools/wtool-ui:
     dependencies:
       lodash-es:
         specifier: ^4.17.21
@@ -121,40 +155,6 @@ importers:
       vite-plugin-dts:
         specifier: ^4.5.3
         version: 4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.9.3)(vite@5.4.14(@types/node@22.13.9)(less@4.6.4))
-
-  packages/wtool-vdiff:
-    dependencies:
-      '@monaco-editor/loader':
-        specifier: ^1.6.1
-        version: 1.7.0
-      less:
-        specifier: 4.6.4
-        version: 4.6.4
-      monaco-editor:
-        specifier: ^0.53.0
-        version: 0.53.0
-    devDependencies:
-      '@vitejs/plugin-vue':
-        specifier: ^5.2.0
-        version: 5.2.4(vite@7.3.1(@types/node@22.13.9)(less@4.6.4))(vue@3.5.27(typescript@5.9.3))
-      '@yuhufe/web-ui':
-        specifier: workspace:*
-        version: link:../wtool-ui
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      vite:
-        specifier: ^7.3.1
-        version: 7.3.1(@types/node@22.13.9)(less@4.6.4)
-      vite-plugin-css-injected-by-js:
-        specifier: 5.0.1
-        version: 5.0.1(vite@7.3.1(@types/node@22.13.9)(less@4.6.4))
-      vite-plugin-dts:
-        specifier: ^4.5.3
-        version: 4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@22.13.9)(less@4.6.4))
-      vue:
-        specifier: ^3.5.0
-        version: 3.5.27(typescript@5.9.3)
 
 packages:
 
@@ -2414,19 +2414,6 @@ snapshots:
       de-indent: 1.0.2
       he: 1.2.0
 
-  '@vue/language-core@2.2.0(typescript@5.8.2)':
-    dependencies:
-      '@volar/language-core': 2.4.11
-      '@vue/compiler-dom': 3.5.13
-      '@vue/compiler-vue2': 2.7.16
-      '@vue/shared': 3.5.13
-      alien-signals: 0.4.14
-      minimatch: 9.0.5
-      muggle-string: 0.4.1
-      path-browserify: 1.0.1
-    optionalDependencies:
-      typescript: 5.8.2
-
   '@vue/language-core@2.2.0(typescript@5.9.3)':
     dependencies:
       '@volar/language-core': 2.4.11
@@ -3321,25 +3308,6 @@ snapshots:
   vite-plugin-css-injected-by-js@5.0.1(vite@7.3.1(@types/node@22.13.9)(less@4.6.4)):
     dependencies:
       vite: 7.3.1(@types/node@22.13.9)(less@4.6.4)
-
-  vite-plugin-dts@4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.8.2)(vite@5.4.14(@types/node@22.13.9)(less@4.6.4)):
-    dependencies:
-      '@microsoft/api-extractor': 7.51.1(@types/node@22.13.9)
-      '@rollup/pluginutils': 5.1.4(rollup@4.57.1)
-      '@volar/typescript': 2.4.11
-      '@vue/language-core': 2.2.0(typescript@5.8.2)
-      compare-versions: 6.1.1
-      debug: 4.4.0
-      kolorist: 1.8.0
-      local-pkg: 1.1.1
-      magic-string: 0.30.17
-      typescript: 5.8.2
-    optionalDependencies:
-      vite: 5.4.14(@types/node@22.13.9)(less@4.6.4)
-    transitivePeerDependencies:
-      - '@types/node'
-      - rollup
-      - supports-color
 
   vite-plugin-dts@4.5.3(@types/node@22.13.9)(rollup@4.57.1)(typescript@5.9.3)(vite@5.4.14(@types/node@22.13.9)(less@4.6.4)):
     dependencies:
