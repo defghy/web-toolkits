@@ -2,7 +2,7 @@ import { promises as fsp } from 'fs'
 import path from 'path'
 import { $ } from 'execa'
 
-import packageJson from '../package.json' with { type: 'json' };
+import packageJson from '../package.json' with { type: 'json' }
 
 // 修改package.json
 const changePackage = function (newJson) {
@@ -20,11 +20,13 @@ const run = async function () {
   const newJson = JSON.parse(JSON.stringify(packageJson))
 
   Object.assign(newJson, {
-    name: '@yuhufe/web-common',
+    name: '@yuhufe/wtool-pixel-core',
     private: false,
+    main: 'dist/wtool-pixel-core.cjs.js',
+    module: 'dist/wtool-pixel-core.es.js',
   })
   Object.keys(newJson.dependencies).forEach(key => {
-    if (key.startsWith('@aweb')) {
+    if (key.startsWith('@yuhufe') && key !== '@yuhufe/web-common') {
       Reflect.deleteProperty(newJson.dependencies, key)
     }
   })

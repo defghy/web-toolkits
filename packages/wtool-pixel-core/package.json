@@ -1,0 +1,55 @@
+{
+  "name": "@yuhufe/wtool-pixel-core",
+  "private": false,
+  "version": "0.0.8",
+  "description": "A pixel art editing UI core component based on Vue@2.7",
+  "keywords": [
+    "vue2",
+    "pixel"
+  ],
+  "type": "module",
+  "main": "./dist/wtool-pixel-core.cjs.js",
+  "module": "./dist/wtool-pixel-core.es.js",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "types": "dist/wtool-pixel-core.es.d.ts",
+  "scripts": {
+    "dev": "pnpm run dev:site",
+    "dev:lib": "vite build --watch --mode development",
+    "build:site": "vite build --mode production --config site/vite.config.ts",
+    "dev:site": "vite --config site/vite.config.ts",
+    "build": "vite build --mode production",
+    "pub": "npm run build && npm publish"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "lodash-es": "^4.17.21",
+    "vue": "^2.7.16",
+    "konva": "^10.0.8"
+  },
+  "dependencies": {
+    "@yuhufe/web-common": "workspace:*",
+    "vue-konva": "^2.1.7",
+    "konva": "^10.0.8"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.3",
+    "vite": "^7.2.2",
+    "@vitejs/plugin-basic-ssl": "^1.2.0",
+    "@vitejs/plugin-vue2": "^2.3.1",
+    "@vitejs/plugin-vue2-jsx": "^1.1.1",
+    "typescript": "^5.9.3",
+    "vite-plugin-commonjs": "^0.10.1",
+    "vite-plugin-dts": "^4.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/defghy/web-toolkits.git"
+  }
+}

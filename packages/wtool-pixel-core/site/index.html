@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <title>Pixel Demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <svg
+        id="pageInitLoading"
+        style="
+          animation: loading-spinner 1s linear infinite;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+        "
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="60px"
+        height="60px"
+        viewBox="0 0 50 50"
+        style="enable-background: new 0 0 50 50"
+        xml:space="preserve"
+      >
+        <style>
+          @keyframes loading-spinner {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+        <path
+          fill="#337eff"
+          d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
+          transform="rotate(275.098 25 25)"
+        ></path>
+      </svg>
+    </div>
+    <!-- built files will be auto injected -->
+    <script type="module" src="/index.ts"></script>
+  </body>
+</html>

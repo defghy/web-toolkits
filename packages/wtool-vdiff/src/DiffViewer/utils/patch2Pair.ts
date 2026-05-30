@@ -1,56 +1,8 @@
+import { parsePatchFilenames, parsePatchHunks } from '@/utils/patch'
+
 export interface FilePair {
   filename: string
   content: string
-}
-
-export interface Hunk {
-  origStart: number  // original 起始行号（1-based）
-  origCount: number  // original 行数
-  modStart: number   // modified 起始行号（1-based）
-  modCount: number   // modified 行数
-  lines: string[]    // hunk 原始行（含前缀字符）
-}
-
-/**
- * 解析 unified diff patch，提取文件名与所有 hunk
- */
-export function parseHunks(patch: string): { origFilename: string; modFilename: string; hunks: Hunk[] } {
-  const lines = patch.split('\n')
-
-  let origFilename = ''
-  let modFilename = ''
-  const hunks: Hunk[] = []
-  let currentHunk: Hunk | null = null
-
-  for (const line of lines) {
-    if (line.startsWith('--- ')) {
-      origFilename = line.slice(4).trim()
-      continue
-    }
-    if (line.startsWith('+++ ')) {
-      modFilename = line.slice(4).trim()
-      continue
-    }
-    // @@ -origStart,origCount +modStart,modCount @@
-    const hunkMatch = line.match(/^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/)
-    if (hunkMatch) {
-      currentHunk = {
-        origStart: parseInt(hunkMatch[1], 10),
-        origCount: hunkMatch[2] !== undefined ? parseInt(hunkMatch[2], 10) : 1,
-        modStart: parseInt(hunkMatch[3], 10),
-        modCount: hunkMatch[4] !== undefined ? parseInt(hunkMatch[4], 10) : 1,
-        lines: [],
-      }
-      hunks.push(currentHunk)
-      continue
-    }
-    if (currentHunk) {
-      if (line.startsWith('\\')) continue // "\ No newline at end of file"
-      currentHunk.lines.push(line)
-    }
-  }
-
-  return { origFilename, modFilename, hunks }
 }
 
 /**
@@ -71,7 +23,8 @@ export const patch2Pair = function (patch: string): FilePair[] {
     ]
   }
 
-  const { origFilename, modFilename, hunks } = parseHunks(patch)
+  const { origFilename, modFilename } = parsePatchFilenames(patch)
+  const hunks = parsePatchHunks(patch)
 
   const origLines: string[] = []
   const modLines: string[] = []
