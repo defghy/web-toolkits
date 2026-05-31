@@ -1,0 +1,3 @@
+{
+  "startCommand": "pnpm --filter @yuhufe/wtool-pixel-core run dev"
+}
