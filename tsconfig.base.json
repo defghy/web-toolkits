@@ -13,6 +13,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+    "verbatimModuleSyntax": false,
     "useDefineForClassFields": false,
     "sourceMap": true,
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
