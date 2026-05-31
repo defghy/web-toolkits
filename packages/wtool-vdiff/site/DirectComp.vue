@@ -1,4 +1,10 @@
 <template>
+  <a
+    href="https://stackblitz.com/~/github.com/defghy/web-toolkits?configPath=packages/v-diff&file=packages/v-diff/site/App.vue&initialpath=/web-toolkits/v-diff/"
+    target="_blank"
+  >
+    查看代码(stackblitz)
+  </a>
   <p class="hint">pair组件</p>
   <div class="diff-wrap">
     <DiffViewer :diffPair="diffPair" :viewerStyle="{ height: '250px' }" />
