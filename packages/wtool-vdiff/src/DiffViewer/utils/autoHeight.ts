@@ -19,10 +19,10 @@ interface CommonParams {
  * @param maxPx      像素上限，达到后 maxReached 为 true，调用方应立即停止 feed
  */
 function makeVisibleLineCounter(totalLines: number, ctx: number, maxPx: number) {
-  let visible = 0       // 已 commit 的确定可见行数（不含当前 pending 块）
-  let gaps = 0          // gap widget 数量（每个折叠区域占 GAP_HEIGHT，非 LINE_HEIGHT）
+  let visible = 0 // 已 commit 的确定可见行数（不含当前 pending 块）
+  let gaps = 0 // gap widget 数量（每个折叠区域占 GAP_HEIGHT，非 LINE_HEIGHT）
   let pendingStart = -1 // 当前待合并窗口的起始行（-1 表示无 pending）
-  let pendingEnd = -1   // 当前待合并窗口的结束行
+  let pendingEnd = -1 // 当前待合并窗口的结束行
 
   const usedPx = () => visible * LINE_HEIGHT + gaps * GAP_HEIGHT
 
@@ -39,7 +39,7 @@ function makeVisibleLineCounter(totalLines: number, ctx: number, maxPx: number) 
       const winStart = Math.max(1, s - ctx)
       const winEnd = Math.min(totalLines, e + ctx)
       if (pendingEnd === -1 || winStart > pendingEnd + 1) {
-        commitPending()          // 新窗口与 pending 有间隙：先提交 pending，再开新窗口
+        commitPending() // 新窗口与 pending 有间隙：先提交 pending，再开新窗口
         pendingStart = winStart
         pendingEnd = winEnd
       } else {
@@ -76,10 +76,7 @@ const autoHeightPatch = function ({
   if (hunks.length === 0) return minPx
 
   const lastHunk = hunks[hunks.length - 1]
-  const totalLines = Math.max(
-    lastHunk.origStart + lastHunk.origCount - 1,
-    lastHunk.modStart + lastHunk.modCount - 1,
-  )
+  const totalLines = Math.max(lastHunk.origStart + lastHunk.origCount - 1, lastHunk.modStart + lastHunk.modCount - 1)
   const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxPx)
 
   for (const h of hunks) {
@@ -115,14 +112,22 @@ const autoHeightPair = function ({
   while (lo < origLines.length && lo < modLines.length && origLines[lo] === modLines[lo]) lo++
 
   // 剥后缀相同行
-  let origHi = origLines.length, modHi = modLines.length
-  while (origHi > lo && modHi > lo && origLines[origHi - 1] === modLines[modHi - 1]) { origHi--; modHi-- }
+  let origHi = origLines.length,
+    modHi = modLines.length
+  while (origHi > lo && modHi > lo && origLines[origHi - 1] === modLines[modHi - 1]) {
+    origHi--
+    modHi--
+  }
 
   if (origHi <= lo && modHi <= lo) return minPx
 
   const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxPx)
   counter.feed(lo + 1, Math.max(origHi, modHi))
-  return Math.max(minPx, counter.flush())
+  let result = counter.flush()
+  result = Math.max(minPx, result)
+  result = Math.min(maxPx, result)
+
+  return result
 }
 
 const height2Num = (heightStr: string): number => {
