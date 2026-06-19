@@ -3,6 +3,7 @@ import { parsePatchHunks } from '@/utils/patch'
 
 const LINE_HEIGHT = 18
 const GAP_HEIGHT = 24
+const heightMap = new Map<string, Partial<Record<'visible' | 'hidden', number>>>()
 
 interface CommonParams {
   minPx: number
@@ -139,6 +140,7 @@ const height2Num = (heightStr: string): number => {
 }
 
 export const autoHeight = function ({
+  id,
   patch,
   pair,
   maxHeight,
@@ -146,6 +148,7 @@ export const autoHeight = function ({
   unchangedVisiable,
   unchangedCtxLineNum,
 }: {
+  id: string
   patch?: string
   pair?: WtoolDiffViewerProps['diffPair']
   maxHeight: string
@@ -153,9 +156,19 @@ export const autoHeight = function ({
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
 }): number {
+  const cacheKey = unchangedVisiable ? 'visible' : 'hidden'
+  const cache = heightMap.get(id) || {}
+  const cachedHeight = cache?.[cacheKey]
+  if (cachedHeight !== undefined) return cachedHeight
+
   const [minPx, maxPx] = [minHeight, maxHeight].map(height2Num)
   const commonParams: CommonParams = { minPx, maxPx, unchangedVisiable, unchangedCtxLineNum }
+  const height = patch ? autoHeightPatch({ patch, ...commonParams }) : autoHeightPair({ pair, ...commonParams })
 
-  if (patch) return autoHeightPatch({ patch, ...commonParams })
-  return autoHeightPair({ pair, ...commonParams })
+  heightMap.set(id, {
+    ...cache,
+    [cacheKey]: height,
+  })
+
+  return height
 }

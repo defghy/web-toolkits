@@ -26,9 +26,11 @@ import TopBar from './TopBar.vue'
 import { useDiffViewer } from './useDiffView'
 import { patch2Pair } from './utils/patch2Pair'
 import { autoHeight } from './utils/autoHeight'
+import { createUniqueId } from './utils/id'
 
 const vLoading = loadingDirective
 const loading = ref(true)
+const autoHeightId = createUniqueId()
 
 const _renderStart = performance.now()
 const onMonacoRenderComplete = async () => {
@@ -105,6 +107,7 @@ const viewerHeight = computed(() => {
   }
 
   const height = autoHeight({
+    id: autoHeightId,
     patch: props.diffPatch,
     pair: props.diffPair,
     ...heightRange,
