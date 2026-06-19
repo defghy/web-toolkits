@@ -120,6 +120,9 @@ importers:
       '@monaco-editor/loader':
         specifier: ^1.6.1
         version: 1.7.0
+      '@yuhufe/web-common':
+        specifier: workspace:*
+        version: link:../../tools/wtool-common
       '@yuhufe/web-ui':
         specifier: workspace:*
         version: link:../../tools/wtool-ui

@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@yuhufe/web-ui": "workspace:*",
+    "@yuhufe/web-common": "workspace:*",
     "@monaco-editor/loader": "^1.6.1",
     "diff": "^9.0.0",
     "monaco-editor": "^0.53.0"

@@ -20,17 +20,17 @@
 import { ref, computed, nextTick } from 'vue'
 
 import { loadingDirective } from '@yuhufe/web-ui'
+import { v4 } from '@yuhufe/web-common'
 import type { DiffEditorOptions, WtoolDiffViewerProps, ModelOptions } from '../types'
 import MonacoDiffViewer from './MonacoDiffViewer.vue'
 import TopBar from './TopBar.vue'
 import { useDiffViewer } from './useDiffView'
 import { patch2Pair } from './utils/patch2Pair'
 import { autoHeight } from './utils/autoHeight'
-import { createUniqueId } from './utils/id'
 
 const vLoading = loadingDirective
 const loading = ref(true)
-const autoHeightId = createUniqueId()
+const autoHeightId = v4()
 
 const _renderStart = performance.now()
 const onMonacoRenderComplete = async () => {
