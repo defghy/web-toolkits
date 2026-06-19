@@ -80,6 +80,7 @@ const mergedOptions = computed(() => {
     hideUnchangedRegions = {
       enabled: true,
       contextLineCount: 3,
+      minimumLineCount: 1,
       ...hideUnchangedRegions,
     }
   }
@@ -115,7 +116,7 @@ const viewerHeight = computed(() => {
     unchangedCtxLineNum: mergedOptions.value.hideUnchangedRegions.contextLineCount!,
   })
 
-  return `${height}px`
+  return `${height + 32}px`
 })
 const viewerStyle = computed(() => {
   return {

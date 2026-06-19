@@ -1,3 +1,4 @@
+import { diffLines } from 'diff'
 import type { WtoolDiffViewerProps } from '@/types'
 import { parsePatchHunks } from '@/utils/patch'
 
@@ -10,6 +11,54 @@ interface CommonParams {
   maxPx: number
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
+}
+
+interface ChangedLineBlock {
+  start: number
+  end: number
+}
+
+interface ChangedLineInfo {
+  blocks: ChangedLineBlock[]
+  totalLines: number
+}
+
+function getChangedLineInfo(origContent: string, modContent: string): ChangedLineInfo {
+  const changes = diffLines(origContent, modContent)
+  const blocks: ChangedLineBlock[] = []
+  let row = 1
+  let removed = 0
+  let added = 0
+
+  const flush = () => {
+    const len = Math.max(removed, added)
+    if (len > 0) {
+      blocks.push({ start: row, end: row + len - 1 })
+      row += len
+      removed = 0
+      added = 0
+    }
+  }
+
+  for (const part of changes) {
+    const count = part.count ?? 0
+
+    if (part.removed) {
+      removed += count
+    } else if (part.added) {
+      added += count
+    } else {
+      flush()
+      row += count
+    }
+  }
+
+  flush()
+
+  return {
+    blocks,
+    totalLines: Math.max(0, row - 1),
+  }
 }
 
 /**
@@ -100,30 +149,25 @@ const autoHeightPair = function ({
 } & CommonParams): number {
   if (!pair || pair.length < 2) return minPx
 
-  const origLines = pair[0].content?.split('\n') ?? []
-  const modLines = pair[1].content?.split('\n') ?? []
+  const origContent = pair[0].content ?? ''
+  const modContent = pair[1].content ?? ''
+  const origLines = origContent.split('\n')
+  const modLines = modContent.split('\n')
   const totalLines = Math.max(origLines.length, modLines.length)
 
   if (unchangedVisiable) {
     return Math.max(minPx, Math.min(totalLines * LINE_HEIGHT, maxPx))
   }
 
-  // 剥前缀相同行
-  let lo = 0
-  while (lo < origLines.length && lo < modLines.length && origLines[lo] === modLines[lo]) lo++
+  const { blocks, totalLines: diffTotalLines } = getChangedLineInfo(origContent, modContent)
+  if (blocks.length === 0) return minPx
 
-  // 剥后缀相同行
-  let origHi = origLines.length,
-    modHi = modLines.length
-  while (origHi > lo && modHi > lo && origLines[origHi - 1] === modLines[modHi - 1]) {
-    origHi--
-    modHi--
+  const counter = makeVisibleLineCounter(diffTotalLines, unchangedCtxLineNum, maxPx)
+  for (const block of blocks) {
+    counter.feed(block.start, block.end)
+    if (counter.maxReached) return maxPx
   }
 
-  if (origHi <= lo && modHi <= lo) return minPx
-
-  const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxPx)
-  counter.feed(lo + 1, Math.max(origHi, modHi))
   let result = counter.flush()
   result = Math.max(minPx, result)
   result = Math.min(maxPx, result)
