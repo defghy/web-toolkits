@@ -27,6 +27,7 @@ import TopBar from './TopBar.vue'
 import { useDiffViewer } from './useDiffView'
 import { patch2Pair } from './utils/patch2Pair'
 import { autoHeight } from './utils/autoHeight'
+import { HEIGHT_TOP_BAR } from './const'
 
 const vLoading = loadingDirective
 const loading = ref(true)
@@ -116,7 +117,8 @@ const viewerHeight = computed(() => {
     unchangedCtxLineNum: mergedOptions.value.hideUnchangedRegions.contextLineCount!,
   })
 
-  return `${height + 32}px`
+  // 当前高度为代码高度，需要加上 topBar 高度才是完整高度
+  return `${height + HEIGHT_TOP_BAR}px`
 })
 const viewerStyle = computed(() => {
   return {
