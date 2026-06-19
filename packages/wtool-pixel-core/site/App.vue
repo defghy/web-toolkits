@@ -2,7 +2,7 @@
   <div id="app">
     <div class="top-toolbar">
       <a
-        href="https://stackblitz.com/~/github.com/defghy/web-toolkits?configPath=.stackblitz/pixel-demo.json&file=packages/wtool-pixel-core/site/App.vue&initialpath=/web-toolkits/pixel-demo/"
+        href="https://stackblitz.com/~/github.com/defghy/web-toolkits?configPath=packages/wtool-pixel-core&file=packages/wtool-pixel-core/site/App.vue&initialpath=/web-toolkits/pixel-demo/"
         target="_blank"
       >
         查看代码(stackblitz)

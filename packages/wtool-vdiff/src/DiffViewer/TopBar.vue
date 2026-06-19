@@ -1,5 +1,5 @@
 <template>
-  <div class="top-bar-wrap">
+  <div class="top-bar-wrap" :style="{ height: `${HEIGHT_TOP_BAR}px` }">
     <div class="title-area">
       <div class="filename">{{ filenameDisplay }}</div>
       <span :class="['diff-type-tag', diffType]">{{ diffTypeLabel }}</span>
@@ -24,6 +24,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
 import { useDiffViewer } from './useDiffView'
+import { HEIGHT_TOP_BAR } from './const'
 
 const { funcs, registerFunc } = useDiffViewer()
 
@@ -100,7 +101,6 @@ registerFunc({
 <style scoped>
 .top-bar-wrap {
   box-sizing: border-box;
-  height: 32px;
 
   display: flex;
   overflow: hidden;

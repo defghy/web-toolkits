@@ -1,14 +1,64 @@
+import { diffLines } from 'diff'
 import type { WtoolDiffViewerProps } from '@/types'
 import { parsePatchHunks } from '@/utils/patch'
 
 const LINE_HEIGHT = 18
 const GAP_HEIGHT = 24
+const heightMap = new Map<string, Partial<Record<'visible' | 'hidden', number>>>()
 
 interface CommonParams {
   minPx: number
   maxPx: number
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
+}
+
+interface ChangedLineBlock {
+  start: number
+  end: number
+}
+
+interface ChangedLineInfo {
+  blocks: ChangedLineBlock[]
+  totalLines: number
+}
+
+function getChangedLineInfo(origContent: string, modContent: string): ChangedLineInfo {
+  const changes = diffLines(origContent, modContent)
+  const blocks: ChangedLineBlock[] = []
+  let row = 1
+  let removed = 0
+  let added = 0
+
+  const flush = () => {
+    const len = Math.max(removed, added)
+    if (len > 0) {
+      blocks.push({ start: row, end: row + len - 1 })
+      row += len
+      removed = 0
+      added = 0
+    }
+  }
+
+  for (const part of changes) {
+    const count = part.count ?? 0
+
+    if (part.removed) {
+      removed += count
+    } else if (part.added) {
+      added += count
+    } else {
+      flush()
+      row += count
+    }
+  }
+
+  flush()
+
+  return {
+    blocks,
+    totalLines: Math.max(0, row - 1),
+  }
 }
 
 /**
@@ -19,10 +69,10 @@ interface CommonParams {
  * @param maxPx      像素上限，达到后 maxReached 为 true，调用方应立即停止 feed
  */
 function makeVisibleLineCounter(totalLines: number, ctx: number, maxPx: number) {
-  let visible = 0       // 已 commit 的确定可见行数（不含当前 pending 块）
-  let gaps = 0          // gap widget 数量（每个折叠区域占 GAP_HEIGHT，非 LINE_HEIGHT）
+  let visible = 0 // 已 commit 的确定可见行数（不含当前 pending 块）
+  let gaps = 0 // gap widget 数量（每个折叠区域占 GAP_HEIGHT，非 LINE_HEIGHT）
   let pendingStart = -1 // 当前待合并窗口的起始行（-1 表示无 pending）
-  let pendingEnd = -1   // 当前待合并窗口的结束行
+  let pendingEnd = -1 // 当前待合并窗口的结束行
 
   const usedPx = () => visible * LINE_HEIGHT + gaps * GAP_HEIGHT
 
@@ -39,7 +89,7 @@ function makeVisibleLineCounter(totalLines: number, ctx: number, maxPx: number) 
       const winStart = Math.max(1, s - ctx)
       const winEnd = Math.min(totalLines, e + ctx)
       if (pendingEnd === -1 || winStart > pendingEnd + 1) {
-        commitPending()          // 新窗口与 pending 有间隙：先提交 pending，再开新窗口
+        commitPending() // 新窗口与 pending 有间隙：先提交 pending，再开新窗口
         pendingStart = winStart
         pendingEnd = winEnd
       } else {
@@ -76,10 +126,7 @@ const autoHeightPatch = function ({
   if (hunks.length === 0) return minPx
 
   const lastHunk = hunks[hunks.length - 1]
-  const totalLines = Math.max(
-    lastHunk.origStart + lastHunk.origCount - 1,
-    lastHunk.modStart + lastHunk.modCount - 1,
-  )
+  const totalLines = Math.max(lastHunk.origStart + lastHunk.origCount - 1, lastHunk.modStart + lastHunk.modCount - 1)
   const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxPx)
 
   for (const h of hunks) {
@@ -102,27 +149,30 @@ const autoHeightPair = function ({
 } & CommonParams): number {
   if (!pair || pair.length < 2) return minPx
 
-  const origLines = pair[0].content?.split('\n') ?? []
-  const modLines = pair[1].content?.split('\n') ?? []
+  const origContent = pair[0].content ?? ''
+  const modContent = pair[1].content ?? ''
+  const origLines = origContent.split('\n')
+  const modLines = modContent.split('\n')
   const totalLines = Math.max(origLines.length, modLines.length)
 
   if (unchangedVisiable) {
     return Math.max(minPx, Math.min(totalLines * LINE_HEIGHT, maxPx))
   }
 
-  // 剥前缀相同行
-  let lo = 0
-  while (lo < origLines.length && lo < modLines.length && origLines[lo] === modLines[lo]) lo++
+  const { blocks, totalLines: diffTotalLines } = getChangedLineInfo(origContent, modContent)
+  if (blocks.length === 0) return minPx
 
-  // 剥后缀相同行
-  let origHi = origLines.length, modHi = modLines.length
-  while (origHi > lo && modHi > lo && origLines[origHi - 1] === modLines[modHi - 1]) { origHi--; modHi-- }
+  const counter = makeVisibleLineCounter(diffTotalLines, unchangedCtxLineNum, maxPx)
+  for (const block of blocks) {
+    counter.feed(block.start, block.end)
+    if (counter.maxReached) return maxPx
+  }
 
-  if (origHi <= lo && modHi <= lo) return minPx
+  let result = counter.flush()
+  result = Math.max(minPx, result)
+  result = Math.min(maxPx, result)
 
-  const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxPx)
-  counter.feed(lo + 1, Math.max(origHi, modHi))
-  return Math.max(minPx, counter.flush())
+  return result
 }
 
 const height2Num = (heightStr: string): number => {
@@ -134,6 +184,7 @@ const height2Num = (heightStr: string): number => {
 }
 
 export const autoHeight = function ({
+  id,
   patch,
   pair,
   maxHeight,
@@ -141,6 +192,7 @@ export const autoHeight = function ({
   unchangedVisiable,
   unchangedCtxLineNum,
 }: {
+  id: string
   patch?: string
   pair?: WtoolDiffViewerProps['diffPair']
   maxHeight: string
@@ -148,9 +200,19 @@ export const autoHeight = function ({
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
 }): number {
+  const cacheKey = unchangedVisiable ? 'visible' : 'hidden'
+  const cache = heightMap.get(id) || {}
+  const cachedHeight = cache?.[cacheKey]
+  if (cachedHeight !== undefined) return cachedHeight
+
   const [minPx, maxPx] = [minHeight, maxHeight].map(height2Num)
   const commonParams: CommonParams = { minPx, maxPx, unchangedVisiable, unchangedCtxLineNum }
+  const height = patch ? autoHeightPatch({ patch, ...commonParams }) : autoHeightPair({ pair, ...commonParams })
 
-  if (patch) return autoHeightPatch({ patch, ...commonParams })
-  return autoHeightPair({ pair, ...commonParams })
+  heightMap.set(id, {
+    ...cache,
+    [cacheKey]: height,
+  })
+
+  return height
 }

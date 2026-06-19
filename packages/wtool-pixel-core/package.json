@@ -1,7 +1,7 @@
 {
   "name": "@yuhufe/wtool-pixel-core",
   "private": false,
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A pixel art editing UI core component based on Vue@2.7",
   "keywords": [
     "vue2",

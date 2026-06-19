@@ -1,3 +1,0 @@
-{
-  "startCommand": "pnpm --filter @yuhufe/wtool-vdiff run dev"
-}
