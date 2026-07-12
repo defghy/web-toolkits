@@ -5,7 +5,7 @@ export interface DiffFileSelection {
   fullPath: string
 }
 
-type FileItem = Pick<FileTree, 'type' | 'fullPath' | 'name' | 'diffPair' | 'diffPatch'>
+export type FileItem = Pick<FileTree, 'type' | 'fullPath' | 'name' | 'diffPair' | 'diffPatch'>
 
 // 格式：{ filePath: 'aaa/bbb/ccc', isDirectory: true, children: [] }
 export function buildDiffFileTree(files: FileItem[]): FileTree[] {
