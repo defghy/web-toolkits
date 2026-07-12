@@ -18,7 +18,7 @@
     >
       <template #node="{ node }">
         <div class="file-tree-node" :title="node.fullPath || node.title">
-          <img class="file-tree-node__icon" :src="node.kind === 'directory' ? folderIcon : fileIcon" alt="" />
+          <img class="file-tree-node__icon" :src="node.isDirectory ? folderIcon : fileIcon" alt="" />
           <span class="file-tree-node__label">{{ node.title }}</span>
         </div>
       </template>
@@ -34,7 +34,7 @@ import '@wsfe/vue-tree/style.css'
 import fileIcon from '@/assets/file.svg'
 import folderIcon from '@/assets/folder.svg'
 import type { FileTree } from '@/types'
-import { buildDiffFileTree, type DiffFileSelection, type FileTreeNode, type FileItem } from './fileTree'
+import { buildDiffFileTree, type DiffFileSelection, type FileItem } from './fileTree'
 
 const props = withDefaults(
   defineProps<{
@@ -50,15 +50,13 @@ const emit = defineEmits<{
 }>()
 
 type VTreeInstance = InstanceType<typeof VTree>
-type RenderedTreeNode = TreeNode & FileTreeNode
+type RenderedTreeNode = TreeNode & FileTree
 
 const treeRef = ref<VTreeInstance | null>(null)
-const filesData = shallowRef<FileTreeNode[]>([])
-let mounted = false
+const filesData = shallowRef<FileTree[]>([])
 
 const loadTreeData = async () => {
   filesData.value = buildDiffFileTree(props.diffFiles)
-  if (!mounted) return
 
   await nextTick()
   treeRef.value?.clearSelected()
@@ -66,24 +64,19 @@ const loadTreeData = async () => {
 }
 
 const handleNodeClick = (node: RenderedTreeNode) => {
-  if (node.kind !== 'directory') return
+  if (!node.isDirectory) return
   treeRef.value?.setExpand(node.id, !node.expand, false)
 }
 
 const handleSelectedChange = (node: RenderedTreeNode | null) => {
-  if (!node || node.kind !== 'file') return
+  if (!node || node?.isDirectory) return
 
   emit('select-file', {
-    diffFile: node.diffFile,
-    path: node.fullPath,
-    sourceIndex: node.sourceIndex,
+    fullPath: node.fullPath,
   })
 }
 
-watch(() => props.diffFiles, loadTreeData, { deep: true, immediate: true })
-
 onMounted(() => {
-  mounted = true
   loadTreeData()
 })
 </script>
