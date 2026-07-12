@@ -16,23 +16,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { ref } from 'vue'
 
 import DiffFiles from '../src/DiffFiles/DiffFiles.vue'
 import type { DiffFileSelection } from '../src/DiffFiles/FileExplore/fileTree'
-import type { WtoolDiffViewerProps } from '../src/types'
+import type { FileTree } from '../src/types'
 import fileListDiff from './assets/fileListDiff.json'
 
-type FixtureMode = 'fixture' | 'large' | 'long' | 'empty'
-
-const fixtureFiles = fileListDiff as WtoolDiffViewerProps[]
-
-const mode = ref<FixtureMode>('large')
+const fixtureFiles = fileListDiff as FileTree[]
 const selectedFile = ref<DiffFileSelection | null>(null)
-
-watch(mode, () => {
-  selectedFile.value = null
-})
 </script>
 
 <style scoped>

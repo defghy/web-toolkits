@@ -19,12 +19,16 @@ export interface WtoolDiffViewerStyle {
   maxHeight?: string
 }
 
-export interface FileTree {
+interface FileItem {
   filePath: string
-  diffPair?: WtoolDiffViewerProps['diffPair']
-  diffPatch?: string
-  isDirector?: boolean
   name?: string
   type?: string
+}
+export interface FileTree extends FileItem {
+  diffPair?: WtoolDiffViewerProps['diffPair']
+  diffPatch?: string
+
+  // 文件夹
+  isDirectory?: boolean
   children?: FileTree[]
 }

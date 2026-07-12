@@ -34,11 +34,11 @@ import '@wsfe/vue-tree/style.css'
 import fileIcon from '@/assets/file.svg'
 import folderIcon from '@/assets/folder.svg'
 import type { FileTree } from '@/types'
-import { buildDiffFileTree, type DiffFileSelection, type FileTreeNode } from './fileTree'
+import { buildDiffFileTree, type DiffFileSelection, type FileTreeNode, type FileItem } from './fileTree'
 
 const props = withDefaults(
   defineProps<{
-    diffFiles: FileTree[]
+    diffFiles: FileItem[]
   }>(),
   {
     diffFiles: () => [],

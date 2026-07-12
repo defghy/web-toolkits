@@ -1,7 +1,7 @@
 <template>
   <div class="diff-files-wrap">
     <div class="content-wrap">
-      <FileExplore class="file-explore" :diffFiles="diffFiles" @select-file="handleSelectFile" />
+      <FileExplore class="file-explore" :diffFiles="files" @select-file="handleSelectFile" />
       <div class="filelist-viewer-wrap"></div>
     </div>
   </div>
@@ -11,6 +11,7 @@
 import type { FileTree } from '../types'
 
 import FileExplore from './FileExplore/FileExplore.vue'
+import { fileTree2FileList } from './FileExplore/fileTree'
 import type { DiffFileSelection } from './FileExplore/fileTree'
 
 const props = withDefaults(
@@ -21,6 +22,8 @@ const props = withDefaults(
     diffFiles: () => [],
   }
 )
+
+const { files, fileMap } = fileTree2FileList(props.diffFiles)
 
 const emit = defineEmits<{
   'select-file': [selection: DiffFileSelection]

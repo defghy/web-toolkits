@@ -12,7 +12,7 @@
     "web-component"
   ],
   "scripts": {
-    "dev": "pnpm run dev:site",
+    "vite": "pnpm run dev:site",
     "dev:lib": "vite build --watch --mode development",
     "build:site": "vite build --mode production --config site/vite.config.ts",
     "dev:site": "vite --config site/vite.config.ts",

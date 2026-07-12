@@ -1,10 +1,30 @@
-import type { WtoolDiffViewerProps } from '../../types'
-import { parsePatchFilenames } from '../../utils/patch'
+import { treeUtil } from '@yuhufe/web-common'
+import type { FileTree } from '../../types'
 
 export interface DiffFileSelection {
-  diffFile: WtoolDiffViewerProps
+  diffFile: FileTree
   path: string
   sourceIndex: number
+}
+
+export interface FileItem {
+  filePath: string
+  name?: string
+  file: FileTree
+  diffPatch?: string
+  diffPair?: FileTree['diffPair']
+}
+
+export interface FileTreePathItem {
+  fullPath: string
+  node: FileTree
+}
+
+export interface FileMapNode {
+  name: string
+  fullPath: string
+  files: FlatFileTreeItem[]
+  children: Record<string, FileMapNode>
 }
 
 interface BaseFileTreeNode {
@@ -22,19 +42,12 @@ export interface DirectoryTreeNode extends BaseFileTreeNode {
 export interface DiffFileTreeNode extends BaseFileTreeNode {
   kind: 'file'
   sourceIndex: number
-  diffFile: WtoolDiffViewerProps
+  diffFile: FileTree
 }
 
 export type FileTreeNode = DirectoryTreeNode | DiffFileTreeNode
 
-interface MutableDirectoryNode extends DirectoryTreeNode {
-  directoryChildren: Map<string, MutableDirectoryNode>
-  fileChildren: DiffFileTreeNode[]
-}
-
-function normalizedCandidate(path: string | undefined): string {
-  if (!path || !path.trim()) return ''
-
+function normalizePath(path: string): string {
   return path
     .replace(/\\/g, '/')
     .split('/')
@@ -42,40 +55,80 @@ function normalizedCandidate(path: string | undefined): string {
     .join('/')
 }
 
-export function normalizeDiffPath(path: string | undefined, sourceIndex: number): string {
-  return normalizedCandidate(path) || `untitled-${sourceIndex + 1}`
-}
+function splitFilePath(filePath: string): {
+  filePath: string
+  foldPath: string
+  name: string
+} {
+  const normalizedPath = normalizePath(filePath)
+  const segments = normalizedPath.split('/')
+  const name = segments.pop() || normalizedPath
 
-export function resolveDiffPath(diffFile: WtoolDiffViewerProps, sourceIndex: number): string {
-  const candidates = [
-    diffFile.filePath,
-    diffFile.diffPair?.[1]?.filename,
-    diffFile.diffPair?.[0]?.filename,
-  ]
-
-  if (diffFile.diffPatch) {
-    const { modFilename, origFilename } = parsePatchFilenames(diffFile.diffPatch)
-    candidates.push(modFilename, origFilename)
-  }
-
-  for (const candidate of candidates) {
-    const normalizedPath = normalizedCandidate(candidate)
-    if (normalizedPath) return normalizedPath
-  }
-
-  return normalizeDiffPath(undefined, sourceIndex)
-}
-
-function createDirectory(title: string, fullPath: string): MutableDirectoryNode {
   return {
-    id: `directory:${fullPath}`,
-    title,
-    fullPath,
-    kind: 'directory',
-    children: [],
-    directoryChildren: new Map(),
-    fileChildren: [],
+    filePath: normalizedPath,
+    foldPath: segments.join('/'),
+    name,
   }
+}
+
+/**
+ * Directory nodes only contribute path context. File nodes are collected with
+ * their resolved full path.
+ */
+export function collectFileTreePaths(fileTree: FileTree[]): FileTreePathItem[] {
+  const paths: FileTreePathItem[] = []
+  const fullPathMap = new WeakMap<FileTree, string>()
+
+  treeUtil.tranverse(fileTree, (node, { parent }: { parent: FileTree | null }) => {
+    const nodePath = normalizePath(node.filePath)
+    const parentPath = parent ? fullPathMap.get(parent) || '' : ''
+    const fullPath =
+      parentPath && nodePath !== parentPath && !nodePath.startsWith(`${parentPath}/`)
+        ? `${parentPath}/${nodePath}`
+        : nodePath
+
+    fullPathMap.set(node, fullPath)
+
+    if (node.isDirector || node.children?.length) return
+
+    paths.push({ fullPath, node })
+    return false
+  })
+
+  return paths
+}
+
+function createFileMapNode(name: string, fullPath: string): FileMapNode {
+  return {
+    name,
+    fullPath,
+    files: [],
+    children: Object.create(null) as Record<string, FileMapNode>,
+  }
+}
+
+/**
+ * Groups the flat file list into a folder map. Each folder owns its direct
+ * files and child folders, so parent/child insertion order does not matter.
+ */
+export function buildFileMap(files: FileItem[]): FileMapNode {
+  const root = createFileMapNode('', '')
+
+  files.forEach(file => {
+    const folderSegments = file.foldPath ? file.foldPath.split('/') : []
+    let parent = root
+    let currentPath = ''
+
+    folderSegments.forEach(segment => {
+      currentPath = currentPath ? `${currentPath}/${segment}` : segment
+      parent.children[segment] ||= createFileMapNode(segment, currentPath)
+      parent = parent.children[segment]
+    })
+
+    parent.files.push(file)
+  })
+
+  return root
 }
 
 function compareText(left: string, right: string): number {
@@ -105,65 +158,83 @@ function compareNodes(left: FileTreeNode, right: FileTreeNode): number {
   return 0
 }
 
-function finalizeDirectory(node: MutableDirectoryNode): DirectoryTreeNode {
-  const directoryChildren = [...node.directoryChildren.values()].map(finalizeDirectory)
-  let finalized: DirectoryTreeNode = {
-    id: node.id,
-    title: node.title,
+function fileMapDirectoryToTree(node: FileMapNode): DirectoryTreeNode {
+  const directories = Object.values(node.children).map(fileMapDirectoryToTree)
+  const files: DiffFileTreeNode[] = node.files.map(file => ({
+    id: `file:${file.sourceIndex}:${file.filePath}`,
+    title: file.name,
+    fullPath: file.filePath,
+    kind: 'file',
+    sourceIndex: file.sourceIndex,
+    diffFile: file.file,
+  }))
+
+  let directory: DirectoryTreeNode = {
+    id: `directory:${node.fullPath}`,
+    title: node.name,
     fullPath: node.fullPath,
     kind: 'directory',
-    children: [...directoryChildren, ...node.fileChildren].sort(compareNodes),
+    children: [...directories, ...files].sort(compareNodes),
   }
 
-  while (
-    finalized.children.length === 1 &&
-    finalized.children[0].kind === 'directory'
-  ) {
-    const child = finalized.children[0]
-    finalized = {
+  while (directory.children.length === 1 && directory.children[0].kind === 'directory') {
+    const child = directory.children[0]
+    directory = {
       id: child.id,
-      title: `${finalized.title}/${child.title}`,
+      title: `${directory.title}/${child.title}`,
       fullPath: child.fullPath,
       kind: 'directory',
       children: child.children,
     }
   }
 
-  return finalized
+  return directory
 }
 
-export function buildDiffFileTree(diffFiles: WtoolDiffViewerProps[]): FileTreeNode[] {
-  const root = createDirectory('', '')
+export function fileMapToTree(fileMap: FileMapNode): FileTreeNode[] {
+  const directories = Object.values(fileMap.children).map(fileMapDirectoryToTree)
+  const files: DiffFileTreeNode[] = fileMap.files.map(file => ({
+    id: `file:${file.sourceIndex}:${file.filePath}`,
+    title: file.name,
+    fullPath: file.filePath,
+    kind: 'file',
+    sourceIndex: file.sourceIndex,
+    diffFile: file.file,
+  }))
 
-  diffFiles.forEach((diffFile, sourceIndex) => {
-    const fullPath = resolveDiffPath(diffFile, sourceIndex)
-    const segments = fullPath.split('/')
-    const filename = segments.pop()!
-    let parent = root
-    let directoryPath = ''
+  return [...directories, ...files].sort(compareNodes)
+}
 
-    for (const segment of segments) {
-      directoryPath = directoryPath ? `${directoryPath}/${segment}` : segment
-      let directory = parent.directoryChildren.get(segment)
+export function buildDiffFileTree(files: FileItem[]): FileTree[] {
+  return []
+}
 
-      if (!directory) {
-        directory = createDirectory(segment, directoryPath)
-        parent.directoryChildren.set(segment, directory)
-      }
+/**
+ * FileTree can be a nested directory tree or an already flattened file list.
+ * Directory entries are discarded and every file leaf keeps its full filePath.
+ */
+export function fileTree2FileList(fileTree: FileTree[]): {
+  files: FileItem[]
+  fileMap: Record<string, FileItem>
+} {
+  const files: any[] = []
 
-      parent = directory
+  treeUtil.tranverse(fileTree, function (node, args) {
+    const { paths = [] } = args
+    // 文件夹
+    if (node.children) {
+      paths.push(node.name || node.filePath)
+    } else {
+      const filename = node.name || node.filePath || ''
+      const extname = filename.split('.').at(-1)
+      files.push({
+        ...node,
+        filePath: [...paths, filename].join('/'),
+        type: extname?.toLowerCase(),
+      })
     }
-
-    parent.fileChildren.push({
-      id: `file:${sourceIndex}:${fullPath}`,
-      title: filename,
-      fullPath,
-      kind: 'file',
-      sourceIndex,
-      diffFile,
-    })
   })
 
-  const directories = [...root.directoryChildren.values()].map(finalizeDirectory)
-  return [...directories, ...root.fileChildren].sort(compareNodes)
+  const fileMap = Object.fromEntries(files.map(file => [file.filePath, file]))
+  return { files, fileMap }
 }
