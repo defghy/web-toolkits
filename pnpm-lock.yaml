@@ -120,6 +120,9 @@ importers:
       '@monaco-editor/loader':
         specifier: ^1.6.1
         version: 1.7.0
+      '@wsfe/vue-tree':
+        specifier: ^4.1.1
+        version: 4.1.1
       '@yuhufe/web-common':
         specifier: workspace:*
         version: link:../../tools/wtool-common
@@ -980,6 +983,9 @@ packages:
 
   '@vue/shared@3.5.27':
     resolution: {integrity: sha512-dXr/3CgqXsJkZ0n9F3I4elY8wM9jMJpP3pvRG52r6m0tu/MsAFIe6JpXVGeNMd/D9F4hQynWT8Rfuj0bdm9kFQ==}
+
+  '@wsfe/vue-tree@4.1.1':
+    resolution: {integrity: sha512-loQeThj5aaJwYRAL5vE/yzv/4PJiaC8Z5JoicvnnFug0I9vBU75b17TyjVeqtliqKDKJzE7kR3odkLTB50wlhg==}
 
   acorn@8.14.0:
     resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
@@ -2543,6 +2549,8 @@ snapshots:
   '@vue/shared@3.5.13': {}
 
   '@vue/shared@3.5.27': {}
+
+  '@wsfe/vue-tree@4.1.1': {}
 
   acorn@8.14.0: {}
 
