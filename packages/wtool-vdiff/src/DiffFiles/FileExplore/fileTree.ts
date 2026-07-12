@@ -32,10 +32,12 @@ export function fileTree2FileList(fileTree: FileTree[]): {
       const filename = path || ''
       const extname = filename.split('.').at(-1)
       const fullPath = [...paths, filename].join('/')
+      const fullPaths = fullPath.split('/')
       files.push({
         ...node,
+        name: fullPaths.at(-1),
         fullPath,
-        folderPath: fullPath.split('/').slice(0, -1).join('/'),
+        folderPath: fullPaths.slice(0, -1).join('/'),
         type: extname?.toLowerCase(),
       })
     }
