@@ -1,32 +1,34 @@
 <template>
   <div class="diff-files-wrap">
-    <Toolbar class="toolbar" />
     <div class="content-wrap">
-      <FileExplore :diffFiles="diffFiles" />
+      <FileExplore class="file-explore" :diffFiles="diffFiles" @select-file="handleSelectFile" />
       <div class="filelist-viewer-wrap"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick } from 'vue'
-
-import { loadingDirective } from '@yuhufe/web-ui'
-import type { DiffEditorOptions, WtoolDiffViewerProps, ModelOptions } from '../types'
+import type { FileTree } from '../types'
 
 import FileExplore from './FileExplore/FileExplore.vue'
-
-const vLoading = loadingDirective
-const loading = ref(true)
+import type { DiffFileSelection } from './FileExplore/fileTree'
 
 const props = withDefaults(
   defineProps<{
-    diffFiles: WtoolDiffViewerProps[]
+    diffFiles: FileTree[]
   }>(),
   {
     diffFiles: () => [],
   }
 )
+
+const emit = defineEmits<{
+  'select-file': [selection: DiffFileSelection]
+}>()
+
+const handleSelectFile = (selection: DiffFileSelection) => {
+  emit('select-file', selection)
+}
 </script>
 
 <style scoped>
@@ -36,12 +38,25 @@ const props = withDefaults(
   display: flex;
   flex-direction: column;
 
-  .toolbar {
-    flex-shrink: 0;
-  }
   .content-wrap {
     flex: 1;
+    min-height: 0;
+    display: flex;
     overflow: hidden;
+
+    .file-explore {
+      width: 300px;
+      min-width: 220px;
+      max-width: 40%;
+      flex: 0 0 300px;
+      border-right: 1px solid #dfe3e8;
+      box-sizing: border-box;
+    }
+
+    .filelist-viewer-wrap {
+      min-width: 0;
+      flex: 1;
+    }
   }
 }
 </style>

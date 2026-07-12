@@ -20,8 +20,11 @@ export interface WtoolDiffViewerStyle {
 }
 
 export interface FileTree {
-  isDir?: boolean
-  name: string
+  filePath: string
+  diffPair?: WtoolDiffViewerProps['diffPair']
+  diffPatch?: string
+  isDirector?: boolean
+  name?: string
   type?: string
   children?: FileTree[]
 }
