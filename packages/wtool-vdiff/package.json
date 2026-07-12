@@ -39,7 +39,8 @@
     "@yuhufe/web-common": "workspace:*",
     "@monaco-editor/loader": "^1.6.1",
     "diff": "^9.0.0",
-    "monaco-editor": "^0.53.0"
+    "monaco-editor": "^0.53.0",
+    "@wsfe/vue-tree": "^4.1.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.0",
