@@ -2,12 +2,10 @@ import { treeUtil } from '@yuhufe/web-common'
 import type { FileTree } from '../../types'
 
 export interface DiffFileSelection {
-  diffFile: FileTree
-  path: string
-  sourceIndex: number
+  fullPath: string
 }
 
-type FileItem = Pick<FileTree, 'type' | 'filePath' | 'name' | 'diffPair' | 'diffPatch'>
+type FileItem = Pick<FileTree, 'type' | 'fullPath' | 'name' | 'diffPair' | 'diffPatch'>
 
 // 格式：{ filePath: 'aaa/bbb/ccc', isDirectory: true, children: [] }
 export function buildDiffFileTree(files: FileItem[]): FileTree[] {
@@ -27,14 +25,17 @@ export function fileTree2FileList(fileTree: FileTree[]): {
   treeUtil.tranverse(fileTree, function (node, args) {
     const { paths = [] } = args
     // 文件夹
+    const path = node.name || node.fullPath
     if (node.children) {
-      paths.push(node.name || node.filePath)
+      paths.push(path)
     } else {
-      const filename = node.name || node.filePath || ''
+      const filename = path || ''
       const extname = filename.split('.').at(-1)
+      const fullPath = [...paths, filename].join('/')
       files.push({
         ...node,
-        filePath: [...paths, filename].join('/'),
+        fullPath,
+        folderPath: fullPath.split('/').slice(0, -1).join('/'),
         type: extname?.toLowerCase(),
       })
     }

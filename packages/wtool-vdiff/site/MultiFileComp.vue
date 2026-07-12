@@ -23,7 +23,12 @@ import type { DiffFileSelection } from '../src/DiffFiles/FileExplore/fileTree'
 import type { FileTree } from '../src/types'
 import fileListDiff from './assets/fileListDiff.json'
 
-const fixtureFiles = fileListDiff as FileTree[]
+const fixtureFiles = (fileListDiff as any[]).map(file => {
+  return {
+    fullPath: file.filePath,
+    diffPatch: file.diffPatch,
+  }
+})
 const selectedFile = ref<DiffFileSelection | null>(null)
 </script>
 
