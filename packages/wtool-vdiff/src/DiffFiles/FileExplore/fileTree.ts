@@ -13,14 +13,6 @@ interface VTreeNode extends FileTree {
   children?: VTreeNode[]
 }
 
-function normalizePath(path: string): string {
-  return path
-    .replace(/\\/g, '/')
-    .split('/')
-    .filter(segment => segment && segment !== '.')
-    .join('/')
-}
-
 function createDirectory(name: string, fullPath: string): VTreeNode {
   return {
     id: fullPath,
