@@ -24,24 +24,6 @@ function createDirectory(name: string, fullPath: string): VTreeNode {
   }
 }
 
-function compareText(left: string, right: string): number {
-  const foldedLeft = left.toLocaleLowerCase('en-US')
-  const foldedRight = right.toLocaleLowerCase('en-US')
-
-  if (foldedLeft < foldedRight) return -1
-  if (foldedLeft > foldedRight) return 1
-  if (left < right) return -1
-  if (left > right) return 1
-  return 0
-}
-
-function compareNodes(left: VTreeNode, right: VTreeNode): number {
-  if (left.isDirectory !== right.isDirectory) return left.isDirectory ? -1 : 1
-
-  const titleOrder = compareText(left.title, right.title)
-  return titleOrder || compareText(left.fullPath, right.fullPath)
-}
-
 function finalizeDirectory(node: VTreeNode): VTreeNode {
   const children = node.children?.map(child => (child.isDirectory ? finalizeDirectory(child) : child)) || []
   let directory: VTreeNode = {
@@ -50,7 +32,7 @@ function finalizeDirectory(node: VTreeNode): VTreeNode {
     name: node.name,
     fullPath: node.fullPath,
     isDirectory: true,
-    children: children.sort(compareNodes),
+    children,
   }
 
   while (directory.children?.length === 1 && directory.children[0].isDirectory) {
@@ -76,7 +58,7 @@ export function buildDiffFileTree(files: FileItem[]): FileTree[] {
 
   files.forEach((file, index) => {
     const { fullPath, folderPath = '', name: filename } = file
-    const segments = folderPath.split('/')
+    const segments = folderPath.split('/').filter(Boolean)
     let parent = root
     let directoryPath = ''
 
@@ -102,7 +84,7 @@ export function buildDiffFileTree(files: FileItem[]): FileTree[] {
     } as any)
   })
 
-  return root.children!.map(child => (child.isDirectory ? finalizeDirectory(child) : child)).sort(compareNodes)
+  return root.children!.map(child => (child.isDirectory ? finalizeDirectory(child) : child))
 }
 
 /**
@@ -136,6 +118,7 @@ export function fileTree2FileList(fileTree: FileTree[]): {
     }
   })
 
+  files.sort((left, right) => (left.fullPath > right.fullPath ? 1 : -1))
   const fileMap = Object.fromEntries(files.map(file => [file.filePath, file]))
   return { files, fileMap }
 }
