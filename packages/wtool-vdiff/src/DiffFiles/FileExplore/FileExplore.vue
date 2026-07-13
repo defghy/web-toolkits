@@ -2,14 +2,13 @@
   <div class="file-explore-wrap">
     <VTree
       ref="treeRef"
-      class="file-tree"
       selectable
       enable-leaf-only
       :unselect-on-click="false"
       :default-expand-all="true"
       :animation="false"
       :node-min-height="32"
-      :node-indent="16"
+      :node-indent="8"
       :render-node-amount="60"
       :buffer-node-amount="20"
       empty-text="No changed files"
@@ -81,7 +80,7 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .file-explore-wrap {
   width: 100%;
   height: 100%;
@@ -103,47 +102,49 @@ onMounted(() => {
   align-items: center;
   width: 100%;
   min-width: 0;
-  height: 32px;
   padding-right: 8px;
   box-sizing: border-box;
+  font-size: 14px;
+
+  .file-tree-node__icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 7px;
+    flex: 0 0 16px;
+  }
+
+  .file-tree-node__label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
-.file-tree-node__icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 7px;
-  flex: 0 0 16px;
-}
+.file-explore-wrap {
+  :deep(.vtree-tree__wrapper) {
+    .vtree-tree-node__title {
+      min-width: 0;
+      flex: 1;
+      overflow: hidden;
+      cursor: pointer;
+      margin-left: 0;
+      padding-left: 2px;
+    }
 
-.file-tree-node__label {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+    .vtree-tree-node__title_selected {
+      color: #1261a6;
+      background: #e7f2fc;
+    }
 
-:deep(.vtree-tree-node__title) {
-  min-width: 0;
-  flex: 1;
-  overflow: hidden;
-  cursor: pointer;
-}
+    .vtree-tree__empty-text_default {
+      color: #747b85;
+      font-size: 13px;
+    }
 
-:deep(.vtree-tree-node__node-body) {
-  min-width: 0;
-}
-
-:deep(.vtree-tree-node__wrapper) {
-  min-width: 0;
-}
-
-:deep(.vtree-tree-node__title_selected) {
-  color: #1261a6;
-  background: #e7f2fc;
-}
-
-:deep(.vtree-tree__empty-text_default) {
-  color: #747b85;
-  font-size: 13px;
+    .vtree-tree__scroll-area {
+      scrollbar-width: thin;
+    }
+  }
 }
 </style>
