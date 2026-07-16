@@ -10,7 +10,8 @@
 
 ## 技术方案
 
-使用库“@wsfe/vue-tree”组件`VTreeSearch`实现
+- 搜索单独抽取一个组件
+- 使用 treeUtil.filter 实现树的过滤，注意节流
 
 库文档请查看文件夹下 md 文件
 

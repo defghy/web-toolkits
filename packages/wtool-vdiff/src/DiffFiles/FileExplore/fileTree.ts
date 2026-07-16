@@ -1,4 +1,4 @@
-import { treeUtil } from '@yuhufe/web-common'
+import { treeUtil, strUtil } from '@yuhufe/web-common'
 import type { FileTree } from '../../types'
 
 export interface DiffFileSelection {
@@ -7,13 +7,13 @@ export interface DiffFileSelection {
 
 export type FileItem = Pick<FileTree, 'type' | 'fullPath' | 'folderPath' | 'name' | 'diffPair' | 'diffPatch'>
 
-interface VTreeNode extends FileTree {
+export interface DiffFileTreeNode extends FileTree {
   id: string
   title: string
-  children?: VTreeNode[]
+  children?: DiffFileTreeNode[]
 }
 
-function createDirectory(name: string, fullPath: string): VTreeNode {
+function createDirectory(name: string, fullPath: string): DiffFileTreeNode {
   return {
     id: fullPath,
     title: name,
@@ -24,9 +24,9 @@ function createDirectory(name: string, fullPath: string): VTreeNode {
   }
 }
 
-function finalizeDirectory(node: VTreeNode): VTreeNode {
+function finalizeDirectory(node: DiffFileTreeNode): DiffFileTreeNode {
   const children = node.children?.map(child => (child.isDirectory ? finalizeDirectory(child) : child)) || []
-  let directory: VTreeNode = {
+  let directory: DiffFileTreeNode = {
     id: node.id,
     title: node.title,
     name: node.name,
@@ -53,10 +53,10 @@ function finalizeDirectory(node: VTreeNode): VTreeNode {
 }
 
 // 格式：{ filePath: 'aaa/bbb/ccc', isDirectory: true, children: [] }
-export function buildDiffFileTree(files: FileItem[]): FileTree[] {
+export function buildDiffFileTree(files: FileItem[]): DiffFileTreeNode[] {
   const root = createDirectory('', '')
 
-  files.forEach((file, index) => {
+  files.forEach(file => {
     const { fullPath, folderPath = '', name: filename } = file
     const segments = folderPath.split('/').filter(Boolean)
     let parent = root
@@ -85,6 +85,17 @@ export function buildDiffFileTree(files: FileItem[]): FileTree[] {
   })
 
   return root.children!.map(child => (child.isDirectory ? finalizeDirectory(child) : child))
+}
+
+export function filterDiffFileTree(fileTree: DiffFileTreeNode[], keyword: string): DiffFileTreeNode[] {
+  if (!keyword?.trim()) return fileTree
+
+  const filteredTree = treeUtil.filter(fileTree, node => {
+    const hasMatch = [node.title, node.fullPath].find(content => strUtil.like(content, keyword))
+    return hasMatch || Boolean(node.children?.length)
+  })
+
+  return (filteredTree || []) as DiffFileTreeNode[]
 }
 
 /**
