@@ -51,7 +51,7 @@ export default defineConfig(({ mode }) => {
       },
       rollupOptions: {
         // 告诉打包工具 在external配置的 都是外部依赖项  不需要打包
-        external: ['konva', 'vue', 'lodash-es'],
+        external: ['konva', 'vue'],
         output: {
           compact: isProd,
           // 禁止 rollup 进行变量重命名

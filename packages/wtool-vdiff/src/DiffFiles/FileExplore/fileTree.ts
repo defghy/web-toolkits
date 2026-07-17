@@ -1,4 +1,4 @@
-import { treeUtil } from '@yuhufe/web-common'
+import { treeUtil, strUtil } from '@yuhufe/web-common'
 import type { FileTree } from '../../types'
 
 export interface DiffFileSelection {
@@ -7,21 +7,13 @@ export interface DiffFileSelection {
 
 export type FileItem = Pick<FileTree, 'type' | 'fullPath' | 'folderPath' | 'name' | 'diffPair' | 'diffPatch'>
 
-interface VTreeNode extends FileTree {
+export interface DiffFileTreeNode extends FileTree {
   id: string
   title: string
-  children?: VTreeNode[]
+  children?: DiffFileTreeNode[]
 }
 
-function normalizePath(path: string): string {
-  return path
-    .replace(/\\/g, '/')
-    .split('/')
-    .filter(segment => segment && segment !== '.')
-    .join('/')
-}
-
-function createDirectory(name: string, fullPath: string): VTreeNode {
+function createDirectory(name: string, fullPath: string): DiffFileTreeNode {
   return {
     id: fullPath,
     title: name,
@@ -32,33 +24,15 @@ function createDirectory(name: string, fullPath: string): VTreeNode {
   }
 }
 
-function compareText(left: string, right: string): number {
-  const foldedLeft = left.toLocaleLowerCase('en-US')
-  const foldedRight = right.toLocaleLowerCase('en-US')
-
-  if (foldedLeft < foldedRight) return -1
-  if (foldedLeft > foldedRight) return 1
-  if (left < right) return -1
-  if (left > right) return 1
-  return 0
-}
-
-function compareNodes(left: VTreeNode, right: VTreeNode): number {
-  if (left.isDirectory !== right.isDirectory) return left.isDirectory ? -1 : 1
-
-  const titleOrder = compareText(left.title, right.title)
-  return titleOrder || compareText(left.fullPath, right.fullPath)
-}
-
-function finalizeDirectory(node: VTreeNode): VTreeNode {
+function finalizeDirectory(node: DiffFileTreeNode): DiffFileTreeNode {
   const children = node.children?.map(child => (child.isDirectory ? finalizeDirectory(child) : child)) || []
-  let directory: VTreeNode = {
+  let directory: DiffFileTreeNode = {
     id: node.id,
     title: node.title,
     name: node.name,
     fullPath: node.fullPath,
     isDirectory: true,
-    children: children.sort(compareNodes),
+    children,
   }
 
   while (directory.children?.length === 1 && directory.children[0].isDirectory) {
@@ -79,12 +53,12 @@ function finalizeDirectory(node: VTreeNode): VTreeNode {
 }
 
 // 格式：{ filePath: 'aaa/bbb/ccc', isDirectory: true, children: [] }
-export function buildDiffFileTree(files: FileItem[]): FileTree[] {
+export function buildDiffFileTree(files: FileItem[]): DiffFileTreeNode[] {
   const root = createDirectory('', '')
 
-  files.forEach((file, index) => {
+  files.forEach(file => {
     const { fullPath, folderPath = '', name: filename } = file
-    const segments = folderPath.split('/')
+    const segments = folderPath.split('/').filter(Boolean)
     let parent = root
     let directoryPath = ''
 
@@ -110,7 +84,18 @@ export function buildDiffFileTree(files: FileItem[]): FileTree[] {
     } as any)
   })
 
-  return root.children!.map(child => (child.isDirectory ? finalizeDirectory(child) : child)).sort(compareNodes)
+  return root.children!.map(child => (child.isDirectory ? finalizeDirectory(child) : child))
+}
+
+export function filterDiffFileTree(fileTree: DiffFileTreeNode[], keyword: string): DiffFileTreeNode[] {
+  if (!keyword?.trim()) return fileTree
+
+  const filteredTree = treeUtil.filter(fileTree, node => {
+    const hasMatch = [node.title, node.fullPath].find(content => strUtil.like(content, keyword))
+    return hasMatch || Boolean(node.children?.length)
+  })
+
+  return (filteredTree || []) as DiffFileTreeNode[]
 }
 
 /**
@@ -144,6 +129,7 @@ export function fileTree2FileList(fileTree: FileTree[]): {
     }
   })
 
+  files.sort((left, right) => (left.fullPath > right.fullPath ? 1 : -1))
   const fileMap = Object.fromEntries(files.map(file => [file.filePath, file]))
   return { files, fileMap }
 }

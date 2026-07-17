@@ -8,9 +8,9 @@
       <DiffFiles :diffFiles="fixtureFiles" @select-file="selectedFile = $event" />
     </div>
 
-    <div class="selection-status" :title="selectedFile?.path">
+    <div class="selection-status" :title="selectedFile?.fullPath">
       <strong>Selected:</strong>
-      <span>{{ selectedFile?.path || 'None' }}</span>
+      <span>{{ selectedFile?.fullPath || 'None' }}</span>
     </div>
   </div>
 </template>

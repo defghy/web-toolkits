@@ -30,7 +30,7 @@ import { ref } from 'vue'
 import DirectComp from './DirectComp.vue'
 import MultiFileComp from './MultiFileComp.vue'
 
-const viewMode = ref<'files' | 'single'>('files')
+const viewMode = ref<'files' | 'single'>('single')
 </script>
 
 <style>
