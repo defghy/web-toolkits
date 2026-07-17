@@ -1,39 +1,49 @@
 <template>
   <div class="file-explore-wrap">
-    <VTree
-      ref="treeRef"
-      selectable
-      enable-leaf-only
-      :unselect-on-click="false"
-      :default-expand-all="true"
-      :animation="false"
-      :node-min-height="32"
-      :node-indent="8"
-      :render-node-amount="60"
-      :buffer-node-amount="20"
-      empty-text="No changed files"
-      @click="handleNodeClick"
-      @selected-change="handleSelectedChange"
-    >
-      <template #node="{ node }">
-        <div class="file-tree-node" :title="node.fullPath || node.title">
-          <img class="file-tree-node__icon" :src="node.isDirectory ? folderIcon : fileIcon" alt="" />
-          <span class="file-tree-node__label">{{ node.title }}</span>
-        </div>
-      </template>
-    </VTree>
+    <FileSearch />
+    <div class="file-tree">
+      <VTree
+        ref="treeRef"
+        selectable
+        enable-leaf-only
+        :unselect-on-click="false"
+        :default-expand-all="true"
+        :animation="false"
+        :node-min-height="32"
+        :node-indent="8"
+        :render-node-amount="60"
+        :buffer-node-amount="20"
+        empty-text="No changed files"
+        @click="handleNodeClick"
+        @selected-change="handleSelectedChange"
+      >
+        <template #node="{ node }">
+          <div class="file-tree-node" :title="node.fullPath || node.title">
+            <img class="file-tree-node__icon" :src="node.isDirectory ? folderIcon : fileIcon" alt="" />
+            <span class="file-tree-node__label">{{ node.title }}</span>
+          </div>
+        </template>
+      </VTree>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, ref, shallowRef, watch } from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import VTree, { type TreeNode } from '@wsfe/vue-tree'
 import '@wsfe/vue-tree/style.css'
 
 import fileIcon from '@/assets/file.svg'
 import folderIcon from '@/assets/folder.svg'
-import type { FileTree } from '@/types'
-import { buildDiffFileTree, type DiffFileSelection, type FileItem } from './fileTree'
+import FileSearch from './FileSearch.vue'
+import {
+  buildDiffFileTree,
+  filterDiffFileTree,
+  type DiffFileSelection,
+  type DiffFileTreeNode,
+  type FileItem,
+} from './fileTree'
+import { useFileExplore } from './useFileExplore'
 
 const props = withDefaults(
   defineProps<{
@@ -48,18 +58,38 @@ const emit = defineEmits<{
   'select-file': [selection: DiffFileSelection]
 }>()
 
+const { registerFunc } = useFileExplore({ isMaster: true })
+
 type VTreeInstance = InstanceType<typeof VTree>
-type RenderedTreeNode = TreeNode & FileTree
+type RenderedTreeNode = TreeNode & DiffFileTreeNode
 
 const treeRef = ref<VTreeInstance | null>(null)
-const filesData = shallowRef<FileTree[]>([])
+const filesData = shallowRef<DiffFileTreeNode[]>([])
+const searchKeyword = ref('')
+
+const applySearch = (keyword: string) => {
+  const filteredTree = filterDiffFileTree(filesData.value, keyword)
+  treeRef.value?.setData(filteredTree)
+}
+registerFunc({
+  filterTree: applySearch,
+})
+
+const handleSearchUpdate = (keyword: string) => {
+  searchKeyword.value = keyword
+
+  if (!keyword.trim()) {
+    applySearch('')
+    return
+  }
+}
 
 const loadTreeData = async () => {
   filesData.value = buildDiffFileTree(props.diffFiles)
 
   await nextTick()
   treeRef.value?.clearSelected()
-  treeRef.value?.setData(filesData.value)
+  applySearch(searchKeyword.value)
 }
 
 const handleNodeClick = (node: RenderedTreeNode) => {
@@ -82,6 +112,8 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .file-explore-wrap {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   min-width: 0;
@@ -91,8 +123,11 @@ onMounted(() => {
 }
 
 .file-tree {
+  flex: 1 1 0;
   width: 100%;
-  height: 100%;
+  height: 0;
+  min-height: 0;
+  overflow: hidden;
   color: #252a31;
   font-size: 13px;
 }
