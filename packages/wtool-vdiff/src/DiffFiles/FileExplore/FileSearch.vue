@@ -30,8 +30,11 @@ const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
 
-const { funcs } = useFileExplore()
+const { funcs, registerFunc } = useFileExplore()
 const searchKeyword = ref('')
+registerFunc({
+  searchKeyword,
+})
 
 const handleInput = debounce((event: Event) => {
   funcs.filterTree((event.target as HTMLInputElement).value)
