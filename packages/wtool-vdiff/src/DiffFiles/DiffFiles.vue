@@ -2,21 +2,25 @@
   <div class="diff-files-wrap">
     <div class="content-wrap">
       <FileExplore class="file-explore" :diffFiles="files" @select-file="handleSelectFile" />
-      <div class="filelist-viewer-wrap"></div>
+      <div class="filelist-viewer-wrap">
+        <DiffList :diffFiles="files" :viewerStyle="viewerStyle" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { FileTree } from '../types'
+import type { FileTree, WtoolDiffViewerStyle } from '../types'
 
 import FileExplore from './FileExplore/FileExplore.vue'
 import { fileTree2FileList } from './useDiffFiles'
 import type { DiffFileSelection } from './FileExplore/fileTree'
+import DiffList from './DiffList/DiffList.vue'
 
 const props = withDefaults(
   defineProps<{
     diffFiles: FileTree[]
+    viewerStyle: WtoolDiffViewerStyle
   }>(),
   {
     diffFiles: () => [],
@@ -59,6 +63,7 @@ const handleSelectFile = (selection: DiffFileSelection) => {
     .filelist-viewer-wrap {
       min-width: 0;
       flex: 1;
+      overflow: hidden;
     }
   }
 }
