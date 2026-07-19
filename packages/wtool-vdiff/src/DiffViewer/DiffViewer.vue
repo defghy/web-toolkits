@@ -31,7 +31,6 @@ import { HEIGHT_TOP_BAR } from './const'
 
 const vLoading = loadingDirective
 const loading = ref(true)
-const autoHeightId = v4()
 
 const _renderStart = performance.now()
 const onMonacoRenderComplete = async () => {
@@ -41,6 +40,7 @@ const onMonacoRenderComplete = async () => {
 }
 
 const props = withDefaults(defineProps<WtoolDiffViewerProps>(), {
+  fileId: '',
   diffPair: () => [],
   diffPatch: '',
   language: 'plaintext',
@@ -108,6 +108,7 @@ const viewerHeight = computed(() => {
     ...(props.viewerStyle || {}),
   }
 
+  const autoHeightId = props.fileId || v4()
   const height = autoHeight({
     id: autoHeightId,
     patch: props.diffPatch,

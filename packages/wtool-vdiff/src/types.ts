@@ -4,6 +4,7 @@ export type DiffEditorOptions = Monaco.editor.IStandaloneDiffEditorConstructionO
 export type ModelOptions = Monaco.editor.ITextModelUpdateOptions
 
 export interface WtoolDiffViewerProps {
+  fileId?: string
   diffPair?: { filename: string; content: string | null }[]
   diffPatch?: string
   language?: string
@@ -32,4 +33,7 @@ export interface FileTree extends FileItem {
   // 文件夹
   isDirectory?: boolean
   children?: FileTree[]
+
+  // 样式
+  viewerStyle?: WtoolDiffViewerStyle
 }
