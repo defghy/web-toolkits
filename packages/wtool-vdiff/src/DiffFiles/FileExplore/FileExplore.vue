@@ -36,13 +36,8 @@ import '@wsfe/vue-tree/style.css'
 import fileIcon from '@/assets/file.svg'
 import folderIcon from '@/assets/folder.svg'
 import FileSearch from './FileSearch.vue'
-import {
-  buildDiffFileTree,
-  filterDiffFileTree,
-  type DiffFileSelection,
-  type DiffFileTreeNode,
-  type FileItem,
-} from './fileTree'
+import { buildDiffFileTree, filterDiffFileTree, type DiffFileSelection, type DiffFileTreeNode } from './fileTree'
+import { type FileItem } from '../types'
 import { useFileExplore } from './useFileExplore'
 
 const props = withDefaults(

@@ -11,7 +11,7 @@
 import type { FileTree } from '../types'
 
 import FileExplore from './FileExplore/FileExplore.vue'
-import { fileTree2FileList } from './FileExplore/fileTree'
+import { fileTree2FileList } from './useDiffFiles'
 import type { DiffFileSelection } from './FileExplore/fileTree'
 
 const props = withDefaults(
