@@ -1,5 +1,5 @@
 <template>
-  <div class="diff-viewer-wrap" :style="viewerStyle">
+  <div class="diff-viewer-wrap" :style="viewerStyle" @viewStateChange="">
     <TopBar class="top-bar" :diffPair="diffPair" />
     <div class="content-wrap" v-show="!viewed" v-loading="loading">
       <MonacoDiffViewer
@@ -28,6 +28,10 @@ import { useDiffViewer } from './useDiffView'
 import { patch2Pair } from './utils/patch2Pair'
 import { autoHeight } from './utils/autoHeight'
 import { HEIGHT_TOP_BAR } from './const'
+
+const emit = defineEmits<{
+  viewStateChange: [data: { viewed: boolean; rawed: boolean }]
+}>()
 
 const vLoading = loadingDirective
 const loading = ref(true)
@@ -130,7 +134,15 @@ const viewerStyle = computed(() => {
 
 registerFunc({
   viewed,
+  updateViewed(newVal) {
+    viewed.value = newVal
+    emit('viewStateChange', { rawed: rawed.value, viewed: newVal })
+  },
   rawed,
+  updateRawed(newVal) {
+    rawed.value = newVal
+    emit('viewStateChange', { rawed: newVal, viewed: viewed.value })
+  },
   canUnchangeVisible,
 })
 </script>

@@ -74,11 +74,11 @@ const filenameDisplay = computed(() => {
 const { viewed, rawed, canUnchangeVisible } = funcs
 const onViewedChange = function (evt) {
   const checked = (evt.target as HTMLInputElement).checked
-  viewed.value = checked
+  funcs.updateViewed(checked)
 }
 const onRawedChange = function (evt) {
   const checked = (evt.target as HTMLInputElement).checked
-  rawed.value = checked
+  funcs.updateRawed(checked)
 }
 
 onMounted(() => {
