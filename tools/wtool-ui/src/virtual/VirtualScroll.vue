@@ -10,7 +10,7 @@
           transform: `translateY(${item.start}px)`,
         }"
       >
-        <slot :item="items[item.index]" />
+        <slot :item="items[item.index]" :index="item.index" />
       </div>
     </div>
   </div>
@@ -27,9 +27,9 @@ export default defineComponent({
   name: 'VirtualScroll',
   props: {
     items: { required: true, type: Array as PropType<any[]> },
-    itemSize: { required: true, type: Number },
-    keyField: { default: 'key' },
-    overscan: { default: 5 },
+    itemSize: { required: true, type: [Number, Function] as PropType<number | ((item: any, index: number) => number)> },
+    keyField: { default: 'key', type: String },
+    overscan: { default: 5, type: Number },
   },
   setup(props, { emit }) {
     const scrollCtn = ref<HTMLElement>(null as any)
@@ -38,7 +38,11 @@ export default defineComponent({
       return {
         count: props.items.length || 0,
         getScrollElement: () => scrollCtn.value,
-        estimateSize: () => props.itemSize,
+        estimateSize: (index: number) => {
+          const size = typeof props.itemSize === 'function' ? props.itemSize(props.items[index], index) : props.itemSize
+          return Math.max(0, Number(size) || 0)
+        },
+        getItemKey: (index: number) => props.items[index]?.[props.keyField] ?? index,
         overscan: props.overscan,
       }
     })
@@ -58,6 +62,10 @@ export default defineComponent({
     })
 
     const getVirtualer = () => virtualer.value
+    function resizeItem(key, size) {
+      const index = props.items.findIndex(item => item[props.keyField] === key)
+      virtualer.value.resizeItem(index, size)
+    }
     const { registerFunc } = useVirtual({ isMaster: false })
     registerFunc({
       virtualer,
@@ -78,7 +86,7 @@ export default defineComponent({
       }
     }
 
-    return { scrollCtn, onScroll, totalHeight, virtualItems, getVirtualer }
+    return { scrollCtn, onScroll, totalHeight, virtualItems, getVirtualer, resizeItem }
   },
 })
 </script>
