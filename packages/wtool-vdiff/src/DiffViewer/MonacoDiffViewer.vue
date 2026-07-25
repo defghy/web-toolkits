@@ -169,6 +169,21 @@ watch(
 </style>
 
 <style>
+/* Monaco tooltip 会挂载到独立的 context view 中，需使用非 scoped 样式避免遮挡工具按钮 */
+.context-view.monaco-component {
+  .workbench-hover-container {
+    .hover-contents {
+      white-space: nowrap !important;
+    }
+  }
+}
+
+.monaco-editor-container {
+  .codicon.codicon-widget-close {
+    box-sizing: content-box !important;
+  }
+}
+
 /* patch 模式：未改动区域为空行，隐藏 monaco 内置的展开未改动区域按钮（非 scoped，配合 JS class 控制） */
 .monaco-editor-container.hide-unchanged-actions {
   .diff-hidden-lines-widget {

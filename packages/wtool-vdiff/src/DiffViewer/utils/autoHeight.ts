@@ -1,16 +1,27 @@
 import { diffLines } from 'diff'
 import type { WtoolDiffViewerProps } from '@/types'
-import { parsePatchHunks } from '@/utils/patch'
+import { HEIGHT_CODE_LINE, HEIGHT_HIDDEN_REGION, HEIGHT_HORIZONTAL_SCROLLBAR } from '../const'
+import { patch2PairWithLayout } from './patch2Pair'
 
-const LINE_HEIGHT = 18
-const GAP_HEIGHT = 24
-const heightMap = new Map<string, Partial<Record<'visible' | 'hidden', number>>>()
+interface HeightCache {
+  patch?: string
+  origContent?: string | null
+  modContent?: string | null
+  minPx: number
+  maxPx: number
+  unchangedCtxLineNum: number
+  unchangedMinLineNum: number
+  heights: Partial<Record<'visible' | 'hidden', number>>
+}
+
+const heightMap = new Map<string, HeightCache>()
 
 interface CommonParams {
   minPx: number
   maxPx: number
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
+  unchangedMinLineNum: number
 }
 
 interface ChangedLineBlock {
@@ -66,15 +77,17 @@ function getChangedLineInfo(origContent: string, modContent: string): ChangedLin
  * 区间必须按 start 升序喂入，每次 feed 后可读取 maxReached 判断是否达到像素上限。
  * @param totalLines 文件总行数，用于 clamp context 窗口上界及判断尾部是否有折叠 widget
  * @param ctx        每个变更块上下保留的 context 行数，对应 Monaco contextLineCount
+ * @param minHidden  Monaco minimumLineCount，小于此值的未变更区不折叠
  * @param maxPx      像素上限，达到后 maxReached 为 true，调用方应立即停止 feed
  */
-function makeVisibleLineCounter(totalLines: number, ctx: number, maxPx: number) {
+function makeVisibleLineCounter(totalLines: number, ctx: number, minHidden: number, maxPx: number) {
   let visible = 0 // 已 commit 的确定可见行数（不含当前 pending 块）
-  let gaps = 0 // gap widget 数量（每个折叠区域占 GAP_HEIGHT，非 LINE_HEIGHT）
+  let gaps = 0 // gap widget 数量（每个折叠区域占固定高度，非代码行高）
   let pendingStart = -1 // 当前待合并窗口的起始行（-1 表示无 pending）
   let pendingEnd = -1 // 当前待合并窗口的结束行
 
-  const usedPx = () => visible * LINE_HEIGHT + gaps * GAP_HEIGHT
+  const usedPx = () =>
+    visible * HEIGHT_CODE_LINE + gaps * HEIGHT_HIDDEN_REGION + HEIGHT_HORIZONTAL_SCROLLBAR
 
   const commitPending = () => {
     if (pendingStart === -1) return
@@ -86,9 +99,17 @@ function makeVisibleLineCounter(totalLines: number, ctx: number, maxPx: number) 
 
   return {
     feed(s: number, e: number) {
-      const winStart = Math.max(1, s - ctx)
+      let winStart = Math.max(1, s - ctx)
       const winEnd = Math.min(totalLines, e + ctx)
-      if (pendingEnd === -1 || winStart > pendingEnd + 1) {
+      if (pendingEnd === -1) {
+        if (winStart - 1 < minHidden) winStart = 1
+        pendingStart = winStart
+        pendingEnd = winEnd
+        return
+      }
+
+      const hiddenLineCount = winStart - pendingEnd - 1
+      if (hiddenLineCount > 0 && hiddenLineCount >= minHidden) {
         commitPending() // 新窗口与 pending 有间隙：先提交 pending，再开新窗口
         pendingStart = winStart
         pendingEnd = winEnd
@@ -99,7 +120,14 @@ function makeVisibleLineCounter(totalLines: number, ctx: number, maxPx: number) 
     flush() {
       const lastEnd = pendingEnd
       commitPending()
-      if (visible > 0 && lastEnd !== totalLines) gaps += 1
+      const trailingLineCount = totalLines - lastEnd
+      if (visible > 0 && trailingLineCount > 0) {
+        if (trailingLineCount >= minHidden) {
+          gaps += 1
+        } else {
+          visible += trailingLineCount
+        }
+      }
       return usedPx()
     },
     get usedPx() {
@@ -119,23 +147,20 @@ const autoHeightPatch = function ({
   minPx,
   maxPx,
   unchangedCtxLineNum,
+  unchangedMinLineNum,
 }: {
   patch: string
 } & CommonParams): number {
-  const hunks = parsePatchHunks(patch)
-  if (hunks.length === 0) return minPx
+  const { changedLineBlocks, totalLines } = patch2PairWithLayout(patch)
+  if (changedLineBlocks.length === 0) return minPx
 
-  const lastHunk = hunks[hunks.length - 1]
-  const totalLines = Math.max(lastHunk.origStart + lastHunk.origCount - 1, lastHunk.modStart + lastHunk.modCount - 1)
-  const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, maxPx)
-
-  for (const h of hunks) {
-    const hunkEnd = Math.max(h.origStart + h.origCount - 1, h.modStart + h.modCount - 1)
-    counter.feed(h.origStart, hunkEnd)
+  const counter = makeVisibleLineCounter(totalLines, unchangedCtxLineNum, unchangedMinLineNum, maxPx)
+  for (const block of changedLineBlocks) {
+    counter.feed(block.start, block.end)
     if (counter.maxReached) return maxPx
   }
 
-  return Math.max(minPx, counter.flush())
+  return Math.min(maxPx, Math.max(minPx, counter.flush()))
 }
 
 const autoHeightPair = function ({
@@ -144,6 +169,7 @@ const autoHeightPair = function ({
   maxPx,
   unchangedVisiable,
   unchangedCtxLineNum,
+  unchangedMinLineNum,
 }: {
   pair: WtoolDiffViewerProps['diffPair']
 } & CommonParams): number {
@@ -156,13 +182,14 @@ const autoHeightPair = function ({
   const totalLines = Math.max(origLines.length, modLines.length)
 
   if (unchangedVisiable) {
-    return Math.max(minPx, Math.min(totalLines * LINE_HEIGHT, maxPx))
+    const contentHeight = totalLines * HEIGHT_CODE_LINE + HEIGHT_HORIZONTAL_SCROLLBAR
+    return Math.max(minPx, Math.min(contentHeight, maxPx))
   }
 
   const { blocks, totalLines: diffTotalLines } = getChangedLineInfo(origContent, modContent)
   if (blocks.length === 0) return minPx
 
-  const counter = makeVisibleLineCounter(diffTotalLines, unchangedCtxLineNum, maxPx)
+  const counter = makeVisibleLineCounter(diffTotalLines, unchangedCtxLineNum, unchangedMinLineNum, maxPx)
   for (const block of blocks) {
     counter.feed(block.start, block.end)
     if (counter.maxReached) return maxPx
@@ -191,6 +218,7 @@ export const autoHeight = function ({
   minHeight,
   unchangedVisiable,
   unchangedCtxLineNum,
+  unchangedMinLineNum = 1,
 }: {
   id: string
   patch?: string
@@ -199,19 +227,45 @@ export const autoHeight = function ({
   minHeight: string
   unchangedVisiable: boolean
   unchangedCtxLineNum: number
+  unchangedMinLineNum?: number
 }): number {
   const cacheKey = unchangedVisiable ? 'visible' : 'hidden'
-  const cache = heightMap.get(id) || {}
-  const cachedHeight = cache?.[cacheKey]
+  const [minPx, maxPx] = [minHeight, maxHeight].map(height2Num)
+  const origContent = pair?.[0]?.content
+  const modContent = pair?.[1]?.content
+  const cache = heightMap.get(id)
+  const cacheMatched =
+    cache?.patch === patch &&
+    cache?.origContent === origContent &&
+    cache?.modContent === modContent &&
+    cache?.minPx === minPx &&
+    cache?.maxPx === maxPx &&
+    cache?.unchangedCtxLineNum === unchangedCtxLineNum &&
+    cache?.unchangedMinLineNum === unchangedMinLineNum
+  const cachedHeight = cacheMatched ? cache.heights[cacheKey] : undefined
   if (cachedHeight !== undefined) return cachedHeight
 
-  const [minPx, maxPx] = [minHeight, maxHeight].map(height2Num)
-  const commonParams: CommonParams = { minPx, maxPx, unchangedVisiable, unchangedCtxLineNum }
+  const commonParams: CommonParams = {
+    minPx,
+    maxPx,
+    unchangedVisiable,
+    unchangedCtxLineNum,
+    unchangedMinLineNum,
+  }
   const height = patch ? autoHeightPatch({ patch, ...commonParams }) : autoHeightPair({ pair, ...commonParams })
 
   heightMap.set(id, {
-    ...cache,
-    [cacheKey]: height,
+    patch,
+    origContent,
+    modContent,
+    minPx,
+    maxPx,
+    unchangedCtxLineNum,
+    unchangedMinLineNum,
+    heights: {
+      ...(cacheMatched ? cache.heights : {}),
+      [cacheKey]: height,
+    },
   })
 
   return height

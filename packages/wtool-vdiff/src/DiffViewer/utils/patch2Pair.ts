@@ -5,6 +5,17 @@ export interface FilePair {
   content: string
 }
 
+export interface PatchChangedLineBlock {
+  start: number
+  end: number
+}
+
+export interface PatchPairLayout {
+  pair: FilePair[]
+  changedLineBlocks: PatchChangedLineBlock[]
+  totalLines: number
+}
+
 /**
  * 将 unified diff patch 转换为 [original, modified] 文件对。
  *
@@ -15,12 +26,16 @@ export interface FilePair {
  *   - 连续的删除（'-'）/ 新增（'+'）块：收集后成对对齐写入，
  *     行数较少的一侧补空行，使 Monaco 能在同一视觉行渲染替换关系
  */
-export const patch2Pair = function (patch: string): FilePair[] {
+export const patch2PairWithLayout = function (patch: string): PatchPairLayout {
   if (!patch) {
-    return [
-      { filename: '', content: '' },
-      { filename: '', content: '' },
-    ]
+    return {
+      pair: [
+        { filename: '', content: '' },
+        { filename: '', content: '' },
+      ],
+      changedLineBlocks: [],
+      totalLines: 1,
+    }
   }
 
   const { origFilename, modFilename } = parsePatchFilenames(patch)
@@ -28,12 +43,17 @@ export const patch2Pair = function (patch: string): FilePair[] {
 
   const origLines: string[] = []
   const modLines: string[] = []
+  const changedLineBlocks: PatchChangedLineBlock[] = []
 
   const pendingDel: string[] = []
   const pendingAdd: string[] = []
 
   const flushPending = () => {
     const maxLen = Math.max(pendingDel.length, pendingAdd.length)
+    if (maxLen > 0) {
+      const start = Math.max(origLines.length, modLines.length) + 1
+      changedLineBlocks.push({ start, end: start + maxLen - 1 })
+    }
     for (let i = 0; i < maxLen; i++) {
       origLines.push(pendingDel[i] ?? '')
       modLines.push(pendingAdd[i] ?? '')
@@ -78,8 +98,16 @@ export const patch2Pair = function (patch: string): FilePair[] {
     flushPending()
   }
 
-  return [
-    { filename: origFilename, content: origLines.join('\n') },
-    { filename: modFilename, content: modLines.join('\n') },
-  ]
+  return {
+    pair: [
+      { filename: origFilename, content: origLines.join('\n') },
+      { filename: modFilename, content: modLines.join('\n') },
+    ],
+    changedLineBlocks,
+    totalLines: Math.max(origLines.length, modLines.length),
+  }
+}
+
+export const patch2Pair = function (patch: string): FilePair[] {
+  return patch2PairWithLayout(patch).pair
 }
