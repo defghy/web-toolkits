@@ -6,8 +6,12 @@
     :itemSize="getItemSize"
     keyField="fullPath"
   >
-    <template #default="{ item: file, index }">
-      <div class="file-wrap">
+    <template #default="{ item: file }">
+      <div
+        class="file-wrap"
+        :class="{ 'file-wrap--selected': selectedFilePath === file.fullPath }"
+        :style="{ paddingBottom: `${FILE_GAP}px` }"
+      >
         <DiffViewer
           :fileId="file.fullPath"
           :diffPair="file.diffPair"
@@ -21,9 +25,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { nextTick, ref } from 'vue'
 import { VirtualScroll, useVirtual } from '@yuhufe/web-ui'
 import type { DiffFileState, FileItem } from '../types'
+import { useDiffFiles } from '../useDiffFiles'
 import type { WtoolDiffViewerStyle } from '@/types'
 import DiffViewer from '@/DiffViewer/DiffViewer.vue'
 import { HEIGHT_TOP_BAR } from '@/DiffViewer/const'
@@ -51,6 +56,22 @@ const emit = defineEmits<{
 
 const virtualScrollRef = ref(null)
 const { funcs } = useVirtual()
+const { registerFunc } = useDiffFiles()
+const selectedFilePath = ref('')
+
+const selectFile = async (fullPath: string) => {
+  const index = props.diffFiles.findIndex(file => file.fullPath === fullPath)
+  if (index < 0) {
+    selectedFilePath.value = ''
+    return
+  }
+
+  selectedFilePath.value = fullPath
+  await nextTick()
+  funcs.virtualer?.value.scrollToIndex(index, { align: 'start' })
+}
+
+registerFunc({ selectFile })
 
 const getViewerStyle = (file: FileItem): WtoolDiffViewerStyle => {
   return {
@@ -87,8 +108,11 @@ const handleViewStateChange = (file: FileItem, state: Partial<DiffFileState>) =>
 
   .file-wrap {
     height: 100%;
-    padding-bottom: 12px;
     box-sizing: border-box;
+  }
+
+  .file-wrap--selected :deep(.diff-viewer-wrap) {
+    border-color: #1677ff;
   }
 }
 </style>
