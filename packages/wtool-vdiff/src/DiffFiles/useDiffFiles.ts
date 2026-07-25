@@ -1,11 +1,15 @@
 import { treeUtil } from '@yuhufe/web-common'
 import { useCompExp } from '@yuhufe/web-ui'
+import type { Ref } from 'vue'
 import type { FileTree } from '../types'
 import type { DiffFileState, FileItem } from './types'
 
 export const useDiffFiles = function ({ isMaster = false } = {}) {
   const exp = useCompExp<{
+    selectedFileKey: Ref<string>
+    searchKeyword: Ref<string>
     selectFile: (fullPath: string) => Promise<void>
+    filterTree: (keyword: string) => void
   }>({ isMaster, key: 'diffFiles' })
 
   return { ...exp }

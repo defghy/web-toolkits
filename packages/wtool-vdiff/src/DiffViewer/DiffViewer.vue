@@ -119,7 +119,8 @@ const viewerHeight = computed(() => {
     pair: props.diffPair,
     ...heightRange,
     unchangedVisiable: funcs.rawed.value,
-    unchangedCtxLineNum: mergedOptions.value.hideUnchangedRegions.contextLineCount!,
+    unchangedCtxLineNum: mergedOptions.value.hideUnchangedRegions.contextLineCount ?? 3,
+    unchangedMinLineNum: mergedOptions.value.hideUnchangedRegions.minimumLineCount ?? 1,
   })
 
   // 当前高度为代码高度

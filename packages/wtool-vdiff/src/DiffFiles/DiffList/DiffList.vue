@@ -9,7 +9,7 @@
     <template #default="{ item: file }">
       <div
         class="file-wrap"
-        :class="{ 'file-wrap--selected': selectedFilePath === file.fullPath }"
+        :class="{ 'file-wrap--selected': selectedFileKey === file.fullPath }"
         :style="{ paddingBottom: `${FILE_GAP}px` }"
       >
         <DiffViewer
@@ -56,17 +56,17 @@ const emit = defineEmits<{
 
 const virtualScrollRef = ref(null)
 const { funcs } = useVirtual()
-const { registerFunc } = useDiffFiles()
-const selectedFilePath = ref('')
+const { funcs: diffFilesFuncs, registerFunc } = useDiffFiles()
+const { selectedFileKey } = diffFilesFuncs
 
 const selectFile = async (fullPath: string) => {
   const index = props.diffFiles.findIndex(file => file.fullPath === fullPath)
   if (index < 0) {
-    selectedFilePath.value = ''
+    selectedFileKey.value = ''
     return
   }
 
-  selectedFilePath.value = fullPath
+  selectedFileKey.value = fullPath
   await nextTick()
   funcs.virtualer?.value.scrollToIndex(index, { align: 'start' })
 }
