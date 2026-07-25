@@ -1,6 +1,15 @@
 import { treeUtil } from '@yuhufe/web-common'
+import { useCompExp } from '@yuhufe/web-ui'
 import type { FileTree } from '../types'
 import type { DiffFileState, FileItem } from './types'
+
+export const useDiffFiles = function ({ isMaster = false } = {}) {
+  const exp = useCompExp<{
+    selectFile: (fullPath: string) => Promise<void>
+  }>({ isMaster, key: 'diffFiles' })
+
+  return { ...exp }
+}
 
 /**
  * FileTree can be a nested directory tree or an already flattened file list.

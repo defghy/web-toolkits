@@ -7,6 +7,7 @@ import { ref, watch, onMounted, onBeforeUnmount, shallowRef } from 'vue'
 import loader from '@monaco-editor/loader'
 import type * as Monaco from 'monaco-editor'
 import { useDiffViewer } from './useDiffView'
+import { HEIGHT_CODE_LINE, HEIGHT_HORIZONTAL_SCROLLBAR } from './const'
 
 type DiffEditorOptions = Monaco.editor.IStandaloneDiffEditorConstructionOptions
 type ModelOptions = Monaco.editor.ITextModelUpdateOptions
@@ -58,6 +59,7 @@ onMounted(() => {
       renderSideBySide: true,
       useInlineViewWhenSpaceIsLimited: false,
       scrollBeyondLastLine: false,
+      lineHeight: HEIGHT_CODE_LINE,
       hideUnchangedRegions: {
         enabled: true,
         contextLineCount: 3,
@@ -65,7 +67,7 @@ onMounted(() => {
       ...props.options,
       scrollbar: {
         verticalScrollbarSize: 8,
-        horizontalScrollbarSize: 8,
+        horizontalScrollbarSize: HEIGHT_HORIZONTAL_SCROLLBAR,
         alwaysConsumeMouseWheel: false,
         ...props.options.scrollbar,
       },
