@@ -1,7 +1,7 @@
 <template>
   <div class="diff-files-wrap">
     <div class="content-wrap">
-      <FileExplore class="file-explore" :diffFiles="files" @select-file="handleSelectFile" />
+      <FileExplore class="file-explore" :diffFiles="files" @select-file="emit('select-file', $event)" />
       <div class="filelist-viewer-wrap">
         <DiffList
           :diffFiles="files"
@@ -19,7 +19,7 @@ import { onBeforeMount, reactive } from 'vue'
 import type { FileTree, WtoolDiffViewerStyle } from '../types'
 
 import FileExplore from './FileExplore/FileExplore.vue'
-import { fileTree2FileList } from './useDiffFiles'
+import { fileTree2FileList, useDiffFiles } from './useDiffFiles'
 import type { DiffFileState, FileItem } from './types'
 import type { DiffFileSelection } from './FileExplore/fileTree'
 import DiffList from './DiffList/DiffList.vue'
@@ -59,6 +59,7 @@ const calculateViewerHeight = (file: FileItem) => {
       maxHeight: heightRange.maxHeight,
       unchangedVisiable: state.isRaw,
       unchangedCtxLineNum: DEFAULT_CONTEXT_LINE_COUNT,
+      unchangedMinLineNum: 1,
     })
 
     return height
@@ -88,6 +89,7 @@ onBeforeMount(() => {
 const emit = defineEmits<{
   'select-file': [selection: DiffFileSelection]
 }>()
+useDiffFiles({ isMaster: true })
 
 const freshViewState = (file: FileItem, newViewState = {}) => {
   const state = fileViewMap[file.fullPath]
@@ -95,9 +97,6 @@ const freshViewState = (file: FileItem, newViewState = {}) => {
   state.height = calculateViewerHeight(file)
 }
 
-const handleSelectFile = (selection: DiffFileSelection) => {
-  emit('select-file', selection)
-}
 </script>
 
 <style scoped>
