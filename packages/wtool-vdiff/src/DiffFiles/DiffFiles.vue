@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { onBeforeMount, reactive } from 'vue'
-import type { FileTree, WtoolDiffViewerStyle } from '../types'
+import type { WtoolDiffFilesProps } from '../types'
 
 import FileExplore from './FileExplore/FileExplore.vue'
 import { fileTree2FileList, useDiffFiles } from './useDiffFiles'
@@ -26,10 +26,7 @@ import DiffList from './DiffList/DiffList.vue'
 import { autoHeight, height2Num } from '@/DiffViewer/utils/autoHeight'
 
 const props = withDefaults(
-  defineProps<{
-    diffFiles: FileTree[]
-    viewerStyle?: WtoolDiffViewerStyle
-  }>(),
+  defineProps<WtoolDiffFilesProps>(),
   {
     diffFiles: () => [],
     viewerStyle: () => ({}),

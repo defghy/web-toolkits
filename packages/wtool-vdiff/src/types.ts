@@ -37,3 +37,8 @@ export interface FileTree extends FileItem {
   // 样式
   viewerStyle?: WtoolDiffViewerStyle
 }
+
+export interface WtoolDiffFilesProps {
+  diffFiles?: FileTree[]
+  viewerStyle?: WtoolDiffViewerStyle
+}

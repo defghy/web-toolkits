@@ -85,7 +85,8 @@ const selectFile = (fullPath: string) => {
   emit('select-file', { fullPath })
 }
 
-const handleNodeClick = (node: RenderedTreeNode) => {
+const handleNodeClick = node => {
+  node = node as RenderedTreeNode
   if (node.isDirectory) {
     treeRef.value?.setExpand(node.id, !node.expand, false)
     return
