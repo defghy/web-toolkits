@@ -13,9 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { debounce } from 'es-toolkit'
-import { useFileExplore } from './useFileExplore'
+import { useDiffFiles } from '../useDiffFiles'
 
 withDefaults(
   defineProps<{
@@ -30,11 +29,8 @@ const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
 
-const { funcs, registerFunc } = useFileExplore()
-const searchKeyword = ref('')
-registerFunc({
-  searchKeyword,
-})
+const { funcs } = useDiffFiles()
+const { searchKeyword } = funcs
 
 const handleInput = debounce((event: Event) => {
   funcs.filterTree((event.target as HTMLInputElement).value)

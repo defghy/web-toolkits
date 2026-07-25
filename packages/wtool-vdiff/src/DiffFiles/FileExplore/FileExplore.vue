@@ -14,11 +14,10 @@
         :render-node-amount="60"
         :buffer-node-amount="20"
         empty-text="No changed files"
-        @click="handleNodeClick"
         @selected-change="handleSelectedChange"
       >
         <template #node="{ node }">
-          <div class="file-tree-node" :title="node.fullPath || node.title">
+          <div class="file-tree-node" :title="node.fullPath || node.title" @click="handleNodeClick(node)">
             <img class="file-tree-node__icon" :src="node.isDirectory ? folderIcon : fileIcon" alt="" />
             <span class="file-tree-node__label">{{ node.title }}</span>
           </div>
@@ -36,14 +35,9 @@ import '@wsfe/vue-tree/style.css'
 import fileIcon from '@/assets/file.svg'
 import folderIcon from '@/assets/folder.svg'
 import FileSearch from './FileSearch.vue'
-import {
-  buildDiffFileTree,
-  filterDiffFileTree,
-  type DiffFileSelection,
-  type DiffFileTreeNode,
-  type FileItem,
-} from './fileTree'
-import { useFileExplore } from './useFileExplore'
+import { buildDiffFileTree, filterDiffFileTree, type DiffFileSelection, type DiffFileTreeNode } from './fileTree'
+import { type FileItem } from '../types'
+import { useDiffFiles } from '../useDiffFiles'
 
 const props = withDefaults(
   defineProps<{
@@ -58,7 +52,7 @@ const emit = defineEmits<{
   'select-file': [selection: DiffFileSelection]
 }>()
 
-const { registerFunc } = useFileExplore({ isMaster: true })
+const { funcs: diffFilesFuncs, registerFunc } = useDiffFiles()
 
 type VTreeInstance = InstanceType<typeof VTree>
 type RenderedTreeNode = TreeNode & DiffFileTreeNode
@@ -66,23 +60,17 @@ type RenderedTreeNode = TreeNode & DiffFileTreeNode
 const treeRef = ref<VTreeInstance | null>(null)
 const filesData = shallowRef<DiffFileTreeNode[]>([])
 const searchKeyword = ref('')
+const selectedFileKey = ref('')
 
 const applySearch = (keyword: string) => {
   const filteredTree = filterDiffFileTree(filesData.value, keyword)
   treeRef.value?.setData(filteredTree)
 }
 registerFunc({
+  searchKeyword,
+  selectedFileKey,
   filterTree: applySearch,
 })
-
-const handleSearchUpdate = (keyword: string) => {
-  searchKeyword.value = keyword
-
-  if (!keyword.trim()) {
-    applySearch('')
-    return
-  }
-}
 
 const loadTreeData = async () => {
   filesData.value = buildDiffFileTree(props.diffFiles)
@@ -92,17 +80,25 @@ const loadTreeData = async () => {
   applySearch(searchKeyword.value)
 }
 
-const handleNodeClick = (node: RenderedTreeNode) => {
-  if (!node.isDirectory) return
-  treeRef.value?.setExpand(node.id, !node.expand, false)
+const selectFile = (fullPath: string) => {
+  void diffFilesFuncs.selectFile?.(fullPath)
+  emit('select-file', { fullPath })
+}
+
+const handleNodeClick = node => {
+  node = node as RenderedTreeNode
+  if (node.isDirectory) {
+    treeRef.value?.setExpand(node.id, !node.expand, false)
+    return
+  }
+
+  selectFile(node.fullPath)
 }
 
 const handleSelectedChange = (node: RenderedTreeNode | null) => {
-  if (!node || node?.isDirectory) return
+  if (!node || node.isDirectory || diffFilesFuncs.selectedFileKey.value === node.fullPath) return
 
-  emit('select-file', {
-    fullPath: node.fullPath,
-  })
+  selectFile(node.fullPath)
 }
 
 onMounted(() => {

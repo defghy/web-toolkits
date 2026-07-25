@@ -29,7 +29,10 @@
     "es-toolkit": "^1.49.0",
     "vue": "^3.5.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@yuhufe/web-common": "workspace:*",
+    "@tanstack/vue-virtual": "^3.13.32"
+  },
   "devDependencies": {
     "vite": "^5.4.11",
     "typescript": "^6.0.3",

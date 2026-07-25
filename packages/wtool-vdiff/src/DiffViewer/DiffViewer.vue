@@ -1,5 +1,5 @@
 <template>
-  <div class="diff-viewer-wrap" :style="viewerStyle">
+  <div class="diff-viewer-wrap" :style="viewerStyle" @viewStateChange="">
     <TopBar class="top-bar" :diffPair="diffPair" />
     <div class="content-wrap" v-show="!viewed" v-loading="loading">
       <MonacoDiffViewer
@@ -29,9 +29,12 @@ import { patch2Pair } from './utils/patch2Pair'
 import { autoHeight } from './utils/autoHeight'
 import { HEIGHT_TOP_BAR } from './const'
 
+const emit = defineEmits<{
+  viewStateChange: [data: { viewed: boolean; rawed: boolean }]
+}>()
+
 const vLoading = loadingDirective
 const loading = ref(true)
-const autoHeightId = v4()
 
 const _renderStart = performance.now()
 const onMonacoRenderComplete = async () => {
@@ -41,6 +44,7 @@ const onMonacoRenderComplete = async () => {
 }
 
 const props = withDefaults(defineProps<WtoolDiffViewerProps>(), {
+  fileId: '',
   diffPair: () => [],
   diffPatch: '',
   language: 'plaintext',
@@ -108,17 +112,19 @@ const viewerHeight = computed(() => {
     ...(props.viewerStyle || {}),
   }
 
+  const autoHeightId = props.fileId || v4()
   const height = autoHeight({
     id: autoHeightId,
     patch: props.diffPatch,
     pair: props.diffPair,
     ...heightRange,
     unchangedVisiable: funcs.rawed.value,
-    unchangedCtxLineNum: mergedOptions.value.hideUnchangedRegions.contextLineCount!,
+    unchangedCtxLineNum: mergedOptions.value.hideUnchangedRegions.contextLineCount ?? 3,
+    unchangedMinLineNum: mergedOptions.value.hideUnchangedRegions.minimumLineCount ?? 1,
   })
 
-  // 当前高度为代码高度，需要加上 topBar 高度才是完整高度
-  return `${height + HEIGHT_TOP_BAR}px`
+  // 当前高度为代码高度
+  return `${height}px`
 })
 const viewerStyle = computed(() => {
   return {
@@ -129,7 +135,15 @@ const viewerStyle = computed(() => {
 
 registerFunc({
   viewed,
+  updateViewed(newVal) {
+    viewed.value = newVal
+    emit('viewStateChange', { rawed: rawed.value, viewed: newVal })
+  },
   rawed,
+  updateRawed(newVal) {
+    rawed.value = newVal
+    emit('viewStateChange', { rawed: newVal, viewed: viewed.value })
+  },
   canUnchangeVisible,
 })
 </script>

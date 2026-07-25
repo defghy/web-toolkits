@@ -7,6 +7,7 @@ import { ref, watch, onMounted, onBeforeUnmount, shallowRef } from 'vue'
 import loader from '@monaco-editor/loader'
 import type * as Monaco from 'monaco-editor'
 import { useDiffViewer } from './useDiffView'
+import { HEIGHT_CODE_LINE, HEIGHT_HORIZONTAL_SCROLLBAR } from './const'
 
 type DiffEditorOptions = Monaco.editor.IStandaloneDiffEditorConstructionOptions
 type ModelOptions = Monaco.editor.ITextModelUpdateOptions
@@ -58,15 +59,18 @@ onMounted(() => {
       renderSideBySide: true,
       useInlineViewWhenSpaceIsLimited: false,
       scrollBeyondLastLine: false,
+      lineHeight: HEIGHT_CODE_LINE,
       hideUnchangedRegions: {
         enabled: true,
         contextLineCount: 3,
       },
+      ...props.options,
       scrollbar: {
         verticalScrollbarSize: 8,
-        horizontalScrollbarSize: 8,
+        horizontalScrollbarSize: HEIGHT_HORIZONTAL_SCROLLBAR,
+        alwaysConsumeMouseWheel: false,
+        ...props.options.scrollbar,
       },
-      ...props.options,
     })
     editor.value.setModel({
       original: originalModel.value,
@@ -165,6 +169,21 @@ watch(
 </style>
 
 <style>
+/* Monaco tooltip 会挂载到独立的 context view 中，需使用非 scoped 样式避免遮挡工具按钮 */
+.context-view.monaco-component {
+  .workbench-hover-container {
+    .hover-contents {
+      white-space: nowrap !important;
+    }
+  }
+}
+
+.monaco-editor-container {
+  .codicon.codicon-widget-close {
+    box-sizing: content-box !important;
+  }
+}
+
 /* patch 模式：未改动区域为空行，隐藏 monaco 内置的展开未改动区域按钮（非 scoped，配合 JS class 控制） */
 .monaco-editor-container.hide-unchanged-actions {
   .diff-hidden-lines-widget {

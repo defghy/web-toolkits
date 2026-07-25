@@ -20,7 +20,6 @@ export function cloneDeepWith(
 
     // 处理原始类型
     if (!result || typeof result !== 'object' || result === DELETE) {
-      cache.set(val, result)
       return result
     }
 
@@ -30,19 +29,21 @@ export function cloneDeepWith(
     // 根据类型进行克隆
     const handler = handlers[tag] || cloneObject
     result = handler(result)
-    cache.set(val, result)
+    if (result && ['function', 'object'].includes(typeof val)) {
+      cache.set(val, result)
+    }
 
     return result
   }
 
   const cloneArray = (val: any[]) => {
     const result: any[] = []
-    val.forEach((v, i) => {
-      const cloned = baseClone(v, i)
+    for (let i = 0; i < val.length; i++) {
+      const cloned = baseClone(val[i], i)
       if (cloned !== DELETE) {
         result.push(cloned)
       }
-    })
+    }
     return result
   }
   const cloneObject = (val: Object) => {
