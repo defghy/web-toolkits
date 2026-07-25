@@ -62,11 +62,13 @@ onMounted(() => {
         enabled: true,
         contextLineCount: 3,
       },
+      ...props.options,
       scrollbar: {
         verticalScrollbarSize: 8,
         horizontalScrollbarSize: 8,
+        alwaysConsumeMouseWheel: false,
+        ...props.options.scrollbar,
       },
-      ...props.options,
     })
     editor.value.setModel({
       original: originalModel.value,
