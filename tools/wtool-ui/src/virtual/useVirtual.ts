@@ -7,6 +7,7 @@ import { useCompExp } from '../use'
 export const useVirtual = function ({ isMaster = true } = {} as any) {
   const exp = useCompExp<{
     virtualer: Ref<Virtualizer<HTMLElement, Element>>
+    resizeItem: (key: any, size: number) => any
   }>({ isMaster, key: 'virtualExp' })
 
   return { ...exp }

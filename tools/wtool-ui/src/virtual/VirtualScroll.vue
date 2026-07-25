@@ -62,13 +62,14 @@ export default defineComponent({
     })
 
     const getVirtualer = () => virtualer.value
-    function resizeItem(key, size) {
-      const index = props.items.findIndex(item => item[props.keyField] === key)
-      virtualer.value.resizeItem(index, size)
-    }
+
     const { registerFunc } = useVirtual({ isMaster: false })
     registerFunc({
       virtualer,
+      resizeItem(key, size) {
+        const index = props.items.findIndex(item => item[props.keyField] === key)
+        virtualer.value.resizeItem(index, size)
+      },
     })
 
     // 滚动时
@@ -86,7 +87,7 @@ export default defineComponent({
       }
     }
 
-    return { scrollCtn, onScroll, totalHeight, virtualItems, getVirtualer, resizeItem }
+    return { scrollCtn, onScroll, totalHeight, virtualItems, getVirtualer }
   },
 })
 </script>
