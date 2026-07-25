@@ -1,16 +1,13 @@
 import { treeUtil } from '@yuhufe/web-common'
 import type { FileTree } from '../types'
-import type { FileItem } from './types'
+import type { DiffFileState, FileItem } from './types'
 
 /**
  * FileTree can be a nested directory tree or an already flattened file list.
  * Directory entries are discarded and every file leaf keeps its full filePath.
  */
-export function fileTree2FileList(fileTree: FileTree[]): {
-  files: FileItem[]
-  fileMap: Record<string, FileItem>
-} {
-  const files: any[] = []
+export function fileTree2FileList(fileTree: FileTree[]) {
+  const files: FileItem[] = []
 
   treeUtil.tranverse(fileTree, function (node, args) {
     const { paths = [] } = args
@@ -34,6 +31,7 @@ export function fileTree2FileList(fileTree: FileTree[]): {
   })
 
   files.sort((left, right) => (left.fullPath > right.fullPath ? 1 : -1))
-  const fileMap = Object.fromEntries(files.map(file => [file.filePath, file]))
+
+  const fileMap = Object.fromEntries(files.map(file => [file.fullPath, file]))
   return { files, fileMap }
 }
