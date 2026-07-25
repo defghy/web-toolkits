@@ -1,7 +1,3 @@
-import { dynamicImportWrapper } from '@aweb/pkg-common/v3'
-
-export const VirtualScroll = dynamicImportWrapper(() => import('./VirtualScroll.vue').then(res => res.default))
-export const DynamicVirtualScroll = dynamicImportWrapper(() =>
-  import('./DynamicVirtualScroll.vue').then(res => res.default)
-)
+export { default as VirtualScroll } from './VirtualScroll.vue'
+export { default as DynamicVirtualScroll } from './DynamicVirtualScroll.vue'
 export * from './useVirtual'

@@ -4,7 +4,7 @@ import type { FileTree } from '../types'
 export type FileItem = Omit<FileTree, 'isDirectory' | 'children'>
 
 export interface DiffFileState {
-  height: number | string
+  height: number
   viewed: boolean
   isRaw: boolean
 }

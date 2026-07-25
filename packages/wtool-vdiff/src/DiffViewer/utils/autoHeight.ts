@@ -175,7 +175,7 @@ const autoHeightPair = function ({
   return result
 }
 
-const height2Num = (heightStr: string): number => {
+export const height2Num = (heightStr: string): number => {
   if (heightStr.endsWith('vh')) {
     const vh = parseFloat(heightStr)
     return Math.round((vh / 100) * document.documentElement.clientHeight)

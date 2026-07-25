@@ -122,8 +122,8 @@ const viewerHeight = computed(() => {
     unchangedCtxLineNum: mergedOptions.value.hideUnchangedRegions.contextLineCount!,
   })
 
-  // 当前高度为代码高度，需要加上 topBar 高度才是完整高度
-  return `${height + HEIGHT_TOP_BAR}px`
+  // 当前高度为代码高度
+  return `${height}px`
 })
 const viewerStyle = computed(() => {
   return {

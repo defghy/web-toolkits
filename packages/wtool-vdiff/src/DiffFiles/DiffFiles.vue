@@ -24,7 +24,6 @@ import type { DiffFileState, FileItem } from './types'
 import type { DiffFileSelection } from './FileExplore/fileTree'
 import DiffList from './DiffList/DiffList.vue'
 import { autoHeight, height2Num } from '@/DiffViewer/utils/autoHeight'
-import { HEIGHT_TOP_BAR } from '@/DiffViewer/const'
 
 const props = withDefaults(
   defineProps<{
@@ -43,7 +42,7 @@ const DEFAULT_CONTEXT_LINE_COUNT = 3
 const calculateViewerHeight = (file: FileItem) => {
   const state = fileViewMap[file.fullPath]
   if (props.viewerStyle.height) {
-    return props.viewerStyle.height
+    return height2Num(props.viewerStyle.height)
   }
 
   const fileHeight = (() => {
@@ -72,7 +71,7 @@ const fileViewMap = reactive(
     files.map(file => [
       file.fullPath,
       {
-        height: 0 as string | number,
+        height: 0,
         viewed: false,
         isRaw: false,
       },

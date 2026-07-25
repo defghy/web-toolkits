@@ -30,6 +30,7 @@
     "vue": "^3.5.0"
   },
   "dependencies": {
+    "@yuhufe/web-common": "workspace:*",
     "@tanstack/vue-virtual": "^3.13.32"
   },
   "devDependencies": {
