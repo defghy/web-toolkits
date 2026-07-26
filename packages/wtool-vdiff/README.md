@@ -2,18 +2,18 @@
 
 **Demo**: [https://defghy.github.io/web-toolkits/v-diff/](https://defghy.github.io/web-toolkits/v-diff/)
 
-基于 Monaco 的 DiffViewer。 **框架无关** —— 可直接集成到任何前端项目（React、Vue、原生 JS 等）中。
+基于 Monaco 的框架无关 DiffViewer，可集成到 React、Vue、原生 JS 等前端项目。
 
 ---
 
 ## 特性
 
-- **框架无关** ：通过 Web Component 封装，函数调用即可挂载，无需 Vue 项目
-- **双模式输入** ：支持 `diffPatch`（unified diff 字符串）与 `diffPair`（原始文件对）两种数据格式
-- **自适应高度** ：根据实际变更行数自动计算编辑器高度，避免大量空白
-- **折叠未变更区域** ：默认折叠无差异区域，仅保留变更附近的上下文行
-- **顶部工具栏** ：内置文件名展示、增删行数统计、viewed 标记、raw 展开模式
-- **文件列表 Diff** ：提供文件树搜索、文件选择联动和虚拟滚动，支持扁平列表与嵌套目录树
+- **框架无关** ：通过 Web Component 封装，函数调用即可挂载
+- **双模式输入** ：支持 `diffPatch`（unified diff）和 `diffPair`（文件对）
+- **自适应高度** ：按变更行数计算编辑器高度，减少空白
+- **折叠未变更区域** ：默认折叠无差异区域，保留变更上下文
+- **顶部工具栏** ：提供文件名、增删行统计、viewed 标记和 raw 模式
+- **文件列表 Diff** ：通过文件数组生成可搜索的文件树，支持选择联动和虚拟滚动
 
 ---
 
@@ -29,7 +29,7 @@ pnpm add @yuhufe/wtool-vdiff
 
 ## 快速开始
 
-### 方式一：`diffPatch` 模式（unified diff 字符串）
+### 方式一：`diffPatch`（unified diff）
 
 ```typescript
 import { createDiffViewer } from '@yuhufe/wtool-vdiff'
@@ -45,14 +45,14 @@ const viewer = createDiffViewer(document.getElementById('diff-container')!, {
  export { foo }`,
 })
 
-// 动态更新内容
+// 更新
 viewer.update({ diffPatch: newPatch })
 
 // 销毁
 viewer.destroy()
 ```
 
-### 方式二：`diffPair` 模式（完整文件对）
+### 方式二：`diffPair`（文件对）
 
 ```typescript
 import { createDiffViewer } from '@yuhufe/wtool-vdiff'
@@ -70,7 +70,7 @@ const viewer = createDiffViewer(document.getElementById('diff-container')!, {
 
 ## 文件列表 Diff
 
-`createDiffFiles` 通过 Web Component 挂载文件列表 Diff，不依赖 Vue。左侧展示可搜索的文件树，右侧通过虚拟滚动展示每个文件的 Diff；点击文件树节点时，右侧会滚动到对应文件并高亮。
+`createDiffFiles` 展示可搜索的文件树和虚拟滚动 Diff 列表，选择文件时自动滚动并高亮。
 
 ```html
 <div id="diff-files-container"></div>
@@ -85,13 +85,12 @@ const viewer = createDiffViewer(document.getElementById('diff-container')!, {
 ```
 
 ```typescript
-import { createDiffFiles, type FileTree } from '@yuhufe/wtool-vdiff'
+import { createDiffFiles, type DiffFile } from '@yuhufe/wtool-vdiff'
 
-const diffFiles: FileTree[] = [
+const diffFiles: DiffFile[] = [
   {
-    fullPath: 'src/index.ts',
-    diffPatch: `--- a/src/index.ts
-+++ b/src/index.ts
+    diffPatch: `--- src/index.ts
++++ src/index.ts
 @@ -1,2 +1,3 @@
  import { foo } from './foo'
 -export { foo }
@@ -99,7 +98,6 @@ const diffFiles: FileTree[] = [
 +export { foo, version }`,
   },
   {
-    fullPath: 'src/utils/sum.ts',
     diffPair: [
       {
         filename: 'src/utils/sum.ts',
@@ -118,34 +116,25 @@ const filesViewer = createDiffFiles(document.getElementById('diff-files-containe
   viewerStyle: { maxHeight: '360px' },
 })
 
-// 不再使用时销毁
+// 销毁
 filesViewer.destroy()
 ```
 
-> 文件列表使用虚拟滚动，外层容器必须具有明确高度。每个文件的 `fullPath` 必须唯一；文件内容可通过 `diffPatch` 或 `diffPair` 提供。
+> 组件根据 `fullPath` 构建目录树。外层容器需设置明确高度，且每个文件的最终 `fullPath` 必须唯一。文件内容通过 `diffPatch` 或 `diffPair` 提供。
 
-`diffFiles` 也可以使用嵌套目录树：
+省略 `fullPath` 时，组件按以下顺序推导文件路径：
 
-```typescript
-const diffFiles: FileTree[] = [
-  {
-    name: 'src',
-    isDirectory: true,
-    children: [
-      {
-        name: 'index.ts',
-        diffPatch: patch,
-      },
-    ],
-  },
-]
-```
+1. 显式 `fullPath`
+2. `diffPair` 中修改后文件的 `filename`，其次为原文件
+3. `diffPatch` 的 `+++` 头部
+
+`diffPatch` 中的文件名会原样保留，也可通过 `fullPath` 覆盖。无法确定路径时，组件会抛出带数组下标的 `TypeError`。
 
 ---
 
 ## loader 配置
 
-库内部通过 `@monaco-editor/loader` 按需加载 Monaco。默认走 jsDelivr CDN，生产环境建议改为本地 bundle。
+库通过 `@monaco-editor/loader` 按需加载 Monaco。默认使用 jsDelivr CDN，生产环境建议本地加载。
 
 **方式一：自定义 CDN 路径**
 
@@ -157,7 +146,7 @@ loader.config({
 })
 ```
 
-**方式二：从 node_modules 本地加载（Vite 项目推荐）**
+**方式二：本地加载（Vite 推荐）**
 
 ```typescript
 import * as monaco from 'monaco-editor'
@@ -181,7 +170,7 @@ self.MonacoEnvironment = {
 loader.config({ monaco })
 ```
 
-> `loader.config` 必须在任意 `createDiffViewer` 调用之前执行。
+> 请在首次调用 `createDiffViewer` 前配置 `loader`。
 
 ---
 
@@ -189,86 +178,85 @@ loader.config({ monaco })
 
 ### `createDiffViewer(target, props?)`
 
-在目标元素内创建并挂载 diff 查看器，返回 `DiffViewerInstance` 实例。
+挂载 DiffViewer。
 
-| 参数     | 类型              | 必填 | 说明                            |
-| -------- | ----------------- | ---- | ------------------------------- |
-| `target` | `HTMLElement`     | ✅   | 挂载目标容器元素                |
-| `props`  | `DiffViewerProps` | ❌   | 初始化属性（见下方 Props 说明） |
+| 参数     | 类型              | 必填 | 说明     |
+| -------- | ----------------- | ---- | -------- |
+| `target` | `HTMLElement`     | ✅   | 挂载容器 |
+| `props`  | `DiffViewerProps` | ❌   | 初始属性 |
 
 **返回值：`DiffViewerInstance`**
 
-| 方法      | 签名                                        | 说明                    |
-| --------- | ------------------------------------------- | ----------------------- |
-| `update`  | `(props: Partial<DiffViewerProps>) => void` | 动态更新 props          |
-| `destroy` | `() => void`                                | 销毁查看器并从 DOM 移除 |
+| 方法      | 签名                                        | 说明         |
+| --------- | ------------------------------------------- | ------------ |
+| `update`  | `(props: Partial<DiffViewerProps>) => void` | 更新 props   |
+| `destroy` | `() => void`                                | 销毁并从 DOM 移除 |
 
 ---
 
 ### `createDiffFiles(target, props?)`
 
-在目标元素内创建并挂载文件列表 Diff，返回 `DiffFilesInstance` 实例。
+挂载文件列表 Diff。
 
-| 参数     | 类型             | 必填 | 说明             |
-| -------- | ---------------- | ---- | ---------------- |
-| `target` | `HTMLElement`    | ✅   | 挂载目标容器元素 |
-| `props`  | `DiffFilesProps` | ❌   | 初始化属性       |
+| 参数     | 类型             | 必填 | 说明     |
+| -------- | ---------------- | ---- | -------- |
+| `target` | `HTMLElement`    | ✅   | 挂载容器 |
+| `props`  | `DiffFilesProps` | ❌   | 初始属性 |
 
 **返回值：`DiffFilesInstance`**
 
-| 方法      | 签名                                       | 说明                  |
-| --------- | ------------------------------------------ | --------------------- |
-| `update`  | `(props: Partial<DiffFilesProps>) => void` | 动态更新 props        |
-| `destroy` | `() => void`                               | 销毁组件并从 DOM 移除 |
+| 方法      | 签名                                       | 说明         |
+| --------- | ------------------------------------------ | ------------ |
+| `update`  | `(props: Partial<DiffFilesProps>) => void` | 更新 props   |
+| `destroy` | `() => void`                               | 销毁并从 DOM 移除 |
 
 ### `DiffFilesProps`
 
-| 属性          | 类型                   | 默认值 | 说明                             |
-| ------------- | ---------------------- | ------ | -------------------------------- |
-| `diffFiles`   | `FileTree[]`           | `[]`   | 文件列表或嵌套目录树             |
-| `viewerStyle` | `WtoolDiffViewerStyle` | `{}`   | 应用于每个文件 DiffViewer 的样式 |
+| 属性          | 类型                   | 默认值 | 说明                  |
+| ------------- | ---------------------- | ------ | --------------------- |
+| `diffFiles`   | `DiffFile[]`           | `[]`   | 文件数组              |
+| `viewerStyle` | `WtoolDiffViewerStyle` | `{}`   | 单个 DiffViewer 的样式 |
 
-### `FileTree`
+### `DiffFile`
 
-| 属性          | 类型                                              | 必填 | 说明                                      |
-| ------------- | ------------------------------------------------- | ---- | ----------------------------------------- |
-| `fullPath`    | `string`                                          | ✅   | 文件完整路径，同时作为文件的唯一标识      |
-| `name`        | `string`                                          | ❌   | 文件名或目录名，嵌套目录树中建议提供      |
-| `diffPatch`   | `string`                                          | ❌   | Unified diff 字符串，与 `diffPair` 二选一 |
-| `diffPair`    | `{ filename: string; content: string \| null }[]` | ❌   | 原始文件与修改后文件，数组长度为 2        |
-| `isDirectory` | `boolean`                                         | ❌   | 是否为目录节点                            |
-| `children`    | `FileTree[]`                                      | ❌   | 子目录或文件，仅目录节点使用              |
+| 属性          | 类型                                              | 必填 | 说明                                                     |
+| ------------- | ------------------------------------------------- | ---- | -------------------------------------------------------- |
+| `fullPath`    | `string`                                          | ❌   | 文件完整路径；省略时根据 `diffPair` 或 `diffPatch` 推导  |
+| `diffPatch`   | `string`                                          | ❌   | Unified diff 字符串，与 `diffPair` 二选一                |
+| `diffPair`    | `{ filename: string; content: string \| null }[]` | ❌   | 原文件和修改后文件                                       |
+
+> `FileTree` 是 `DiffFile` 的废弃别名，建议迁移到 `DiffFile`。
 
 ---
 
-### Props（`DiffViewerProps`）
+### `DiffViewerProps`
 
-| 属性           | 类型                                      | 默认值        | 说明                                                                          |
-| -------------- | ----------------------------------------- | ------------- | ----------------------------------------------------------------------------- |
-| `diffPatch`    | `string`                                  | `''`          | Unified diff 格式字符串（与 `diffPair` 二选一）                               |
-| `diffPair`     | `{ filename: string; content: string }[]` | `[]`          | 原始文件对，数组长度为 2，分别为原始文件与修改后文件（与 `diffPatch` 二选一） |
-| `language`     | `string`                                  | `'plaintext'` | Monaco 语言标识，影响语法高亮（如 `'typescript'`、`'python'`）                |
-| `options`      | `DiffEditorOptions`                       | `{}`          | Monaco `IStandaloneDiffEditorConstructionOptions`，透传给 Monaco 编辑器       |
-| `modelOptions` | `ModelOptions`                            | `{}`          | Monaco `ITextModelUpdateOptions`，透传给文本模型                              |
-| `viewerStyle`  | `WtoolDiffViewerStyle`                    | —             | 查看器外层样式（宽高）                                                        |
+| 属性           | 类型                                      | 默认值        | 说明                                                  |
+| -------------- | ----------------------------------------- | ------------- | ----------------------------------------------------- |
+| `diffPatch`    | `string`                                  | `''`          | Unified diff 字符串，与 `diffPair` 二选一             |
+| `diffPair`     | `{ filename: string; content: string }[]` | `[]`          | 原文件和修改后文件，与 `diffPatch` 二选一             |
+| `language`     | `string`                                  | `'plaintext'` | Monaco 语言标识，如 `'typescript'`、`'python'`        |
+| `options`      | `DiffEditorOptions`                       | `{}`          | 透传至 Monaco Diff Editor                             |
+| `modelOptions` | `ModelOptions`                            | `{}`          | 透传至 Monaco 文本模型                                |
+| `viewerStyle`  | `WtoolDiffViewerStyle`                    | —             | 外层尺寸                                              |
 
 ---
 
 ### `WtoolDiffViewerStyle`
 
-| 属性        | 类型     | 说明                             |
-| ----------- | -------- | -------------------------------- |
-| `width`     | `string` | 查看器宽度，默认 `100%`          |
-| `height`    | `string` | 固定高度（设置后忽略自适应逻辑） |
-| `minHeight` | `string` | 自适应高度最小值，默认 `100px`   |
-| `maxHeight` | `string` | 自适应高度最大值，默认 `250px`   |
+| 属性        | 类型     | 说明                           |
+| ----------- | -------- | ------------------------------ |
+| `width`     | `string` | 宽度，默认 `100%`              |
+| `height`    | `string` | 固定高度，优先于自适应高度     |
+| `minHeight` | `string` | 最小高度，默认 `100px`         |
+| `maxHeight` | `string` | 最大高度，默认 `250px`         |
 
-> 支持 `px` 和 `vh` 单位。当 `height` 显式设置时，`minHeight` / `maxHeight` 无效。
+> 尺寸支持 `px` 和 `vh`。
 
 ---
 
 ### `DiffEditorOptions`（Monaco 透传）
 
-完整选项参考 [Monaco Editor 官方文档](https://microsoft.github.io/monaco-editor/docs.html)。
+选项见 [Monaco Editor 官方文档](https://microsoft.github.io/monaco-editor/docs.html)。
 
 ---
