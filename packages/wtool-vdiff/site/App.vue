@@ -16,10 +16,12 @@
     <section v-if="viewMode === 'files'">
       <h2>Files diff explorer</h2>
       <MultiFileComp />
+      <!-- <MultiFileWidget /> -->
     </section>
     <section v-else>
       <h2>DiffViewer Vue</h2>
-      <DirectComp />
+      <ViewerComp />
+      <!-- <ViewerWidget /> -->
     </section>
   </div>
 </template>
@@ -27,8 +29,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import DirectComp from './DirectComp.vue'
+import ViewerComp from './ViewerComp.vue'
+import ViewerWidget from './ViewerWidget.vue'
 import MultiFileComp from './MultiFileComp.vue'
+import MultiFileWidget from './MultiFileWidget.vue'
 
 const viewMode = ref<'files' | 'single'>('single')
 </script>
