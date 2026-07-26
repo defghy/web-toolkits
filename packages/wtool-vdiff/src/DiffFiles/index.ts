@@ -8,4 +8,4 @@ export {
   type DiffFilesSelectFileListener,
 } from './createDiffFiles'
 export type { DiffFileSelection } from './FileExplore/fileTree'
-export type { FileTree, WtoolDiffFilesProps, WtoolDiffViewerStyle } from '../types'
+export type { DiffFile, FileTree, WtoolDiffFilesProps, WtoolDiffViewerStyle } from '../types'

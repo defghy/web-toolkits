@@ -20,25 +20,17 @@ export interface WtoolDiffViewerStyle {
   maxHeight?: string
 }
 
-interface FileItem {
-  fullPath: string // 文件全路径
-  folderPath?: string // 文件夹路径
-  type?: string
-}
-export interface FileTree extends FileItem {
+export interface DiffFile {
+  fullPath?: string
   diffPair?: WtoolDiffViewerProps['diffPair']
   diffPatch?: string
-  name?: string // 文件名，文件夹名
-
-  // 文件夹
-  isDirectory?: boolean
-  children?: FileTree[]
-
-  // 样式
   viewerStyle?: WtoolDiffViewerStyle
 }
 
+/** @deprecated Use DiffFile. Nested directory input is no longer supported. */
+export type FileTree = DiffFile
+
 export interface WtoolDiffFilesProps {
-  diffFiles?: FileTree[]
+  diffFiles?: DiffFile[]
   viewerStyle?: WtoolDiffViewerStyle
 }

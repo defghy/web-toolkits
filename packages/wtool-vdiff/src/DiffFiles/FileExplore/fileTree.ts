@@ -1,13 +1,18 @@
 import { treeUtil, strUtil } from '@yuhufe/web-common'
-import type { FileTree } from '../../types'
+import type { DiffFile } from '../../types'
 import type { FileItem } from '../types'
 
 export interface DiffFileSelection {
   fullPath: string
 }
-export interface DiffFileTreeNode extends FileTree {
+export interface DiffFileTreeNode extends DiffFile {
   id: string
   title: string
+  name: string
+  fullPath: string
+  folderPath?: string
+  type?: string
+  isDirectory: boolean
   children?: DiffFileTreeNode[]
 }
 
