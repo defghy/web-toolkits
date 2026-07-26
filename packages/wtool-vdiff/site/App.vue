@@ -15,8 +15,8 @@
 
     <section v-if="viewMode === 'files'">
       <h2>Files diff explorer</h2>
-      <!-- <MultiFileComp /> -->
-      <MultipFileWidget />
+      <MultiFileComp />
+      <!-- <MultipFileWidget /> -->
     </section>
     <section v-else>
       <h2>DiffViewer Vue</h2>
