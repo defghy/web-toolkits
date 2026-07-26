@@ -11,5 +11,5 @@ export interface FileItem extends DiffFile {
 export interface DiffFileState {
   height: number
   viewed: boolean
-  isRaw: boolean
+  rawed: boolean
 }

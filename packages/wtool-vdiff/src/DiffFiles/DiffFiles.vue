@@ -51,7 +51,7 @@ const calculateViewerHeight = (file: FileItem) => {
       pair: file.diffPair,
       minHeight: heightRange.minHeight,
       maxHeight: heightRange.maxHeight,
-      unchangedVisiable: state.isRaw,
+      unchangedVisiable: state.rawed,
       unchangedCtxLineNum: DEFAULT_CONTEXT_LINE_COUNT,
       unchangedMinLineNum: 1,
     })
@@ -68,7 +68,7 @@ const fileViewMap = reactive(
       {
         height: 0,
         viewed: false,
-        isRaw: false,
+        rawed: false,
       },
     ])
   )
