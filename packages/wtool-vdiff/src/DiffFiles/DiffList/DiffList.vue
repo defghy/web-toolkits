@@ -74,9 +74,13 @@ const selectFile = async (fullPath: string) => {
 registerFunc({ selectFile })
 
 const getViewerStyle = (file: FileItem): WtoolDiffViewerStyle => {
+  const fileViewState = props.fileViewMap[file.fullPath]
+
   return {
     ...props.viewerStyle,
-    height: `${props.fileViewMap[file.fullPath]?.height || 0}px`,
+    height: `${fileViewState?.height || 0}px`,
+    viewed: fileViewState?.viewed ?? false,
+    rawed: fileViewState?.rawed ?? false,
   }
 }
 

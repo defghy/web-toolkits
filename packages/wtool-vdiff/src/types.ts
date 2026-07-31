@@ -18,6 +18,8 @@ export interface WtoolDiffViewerStyle {
   height?: string
   minHeight?: string
   maxHeight?: string
+  viewed?: boolean
+  rawed?: boolean
 }
 
 export interface DiffFile {

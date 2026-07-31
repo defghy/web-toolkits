@@ -244,12 +244,14 @@ loader.config({ monaco })
 
 ### `WtoolDiffViewerStyle`
 
-| 属性        | 类型     | 说明                           |
-| ----------- | -------- | ------------------------------ |
-| `width`     | `string` | 宽度，默认 `100%`              |
-| `height`    | `string` | 固定高度，优先于自适应高度     |
-| `minHeight` | `string` | 最小高度，默认 `100px`         |
-| `maxHeight` | `string` | 最大高度，默认 `250px`         |
+| 属性        | 类型      | 说明                           |
+| ----------- | --------- | ------------------------------ |
+| `width`     | `string`  | 宽度，默认 `100%`              |
+| `height`    | `string`  | 固定高度，优先于自适应高度     |
+| `minHeight` | `string`  | 最小高度，默认 `100px`         |
+| `maxHeight` | `string`  | 最大高度，默认 `250px`         |
+| `viewed`    | `boolean` | 是否已读的初始值，默认 `false` |
+| `rawed`     | `boolean` | 是否显示原始文件，默认 `false` |
 
 > 尺寸支持 `px` 和 `vh`。
 
