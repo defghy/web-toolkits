@@ -15,6 +15,9 @@ export default defineConfig(({ mode }) => {
         insertTypesEntry: true,
         include: ['src/**/*.ts', 'src/**/*.vue'],
         outDir: 'dist',
+        compilerOptions: {
+          rootDir: 'src',
+        },
       }),
     ],
     resolve: {
@@ -29,7 +32,7 @@ export default defineConfig(({ mode }) => {
       lib: {
         entry: resolve(__dirname, 'src/index.ts'),
         name: 'WtoolVdiff',
-        fileName: (format) => `wtool-vdiff.${format}.js`,
+        fileName: format => `wtool-vdiff.${format}.js`,
         formats: ['es', 'cjs'],
       },
       rollupOptions: {
