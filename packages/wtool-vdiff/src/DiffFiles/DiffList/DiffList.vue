@@ -5,6 +5,7 @@
     :items="diffFiles"
     :itemSize="getItemSize"
     keyField="fullPath"
+    :overscan="fileOverScan"
   >
     <template #default="{ item: file }">
       <div
@@ -40,11 +41,13 @@ const BASE_HEIGHT = HEIGHT_TOP_BAR + VIEWER_BORDER_HEIGHT + FILE_GAP
 const props = withDefaults(
   defineProps<{
     diffFiles: FileItem[]
+    fileOverScan?: number
     fileViewMap: Record<string, DiffFileState>
     viewerStyle?: WtoolDiffViewerStyle
   }>(),
   {
     diffFiles: () => [],
+    fileOverScan: 30,
     fileViewMap: () => ({}),
     viewerStyle: () => ({}),
   }

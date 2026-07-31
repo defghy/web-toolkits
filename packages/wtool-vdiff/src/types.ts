@@ -34,5 +34,6 @@ export type FileTree = DiffFile
 
 export interface WtoolDiffFilesProps {
   diffFiles?: DiffFile[]
+  fileOverScan?: number
   viewerStyle?: WtoolDiffViewerStyle
 }

@@ -5,6 +5,7 @@
       <div class="filelist-viewer-wrap">
         <DiffList
           :diffFiles="files"
+          :fileOverScan="fileOverScan"
           :fileViewMap="fileViewMap"
           :viewerStyle="viewerStyle"
           @viewStateChange="freshViewState"
@@ -27,6 +28,7 @@ import { autoHeight, height2Num } from '@/DiffViewer/utils/autoHeight'
 
 const props = withDefaults(defineProps<WtoolDiffFilesProps>(), {
   diffFiles: () => [],
+  fileOverScan: 30,
   viewerStyle: () => ({}),
 })
 
