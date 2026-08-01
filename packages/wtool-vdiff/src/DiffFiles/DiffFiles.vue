@@ -5,6 +5,7 @@
       <div class="filelist-viewer-wrap">
         <DiffList
           :diffFiles="files"
+          :fileOverScan="fileOverScan"
           :fileViewMap="fileViewMap"
           :viewerStyle="viewerStyle"
           @viewStateChange="freshViewState"
@@ -19,21 +20,19 @@ import { onBeforeMount, reactive } from 'vue'
 import type { WtoolDiffFilesProps } from '../types'
 
 import FileExplore from './FileExplore/FileExplore.vue'
-import { fileTree2FileList, useDiffFiles } from './useDiffFiles'
+import { useDiffFiles, formatDiffFiles } from './useDiffFiles'
 import type { DiffFileState, FileItem } from './types'
 import type { DiffFileSelection } from './FileExplore/fileTree'
 import DiffList from './DiffList/DiffList.vue'
 import { autoHeight, height2Num } from '@/DiffViewer/utils/autoHeight'
 
-const props = withDefaults(
-  defineProps<WtoolDiffFilesProps>(),
-  {
-    diffFiles: () => [],
-    viewerStyle: () => ({}),
-  }
-)
+const props = withDefaults(defineProps<WtoolDiffFilesProps>(), {
+  diffFiles: () => [],
+  fileOverScan: 30,
+  viewerStyle: () => ({}),
+})
 
-const { files, fileMap } = fileTree2FileList(props.diffFiles)
+const { files, fileMap } = formatDiffFiles(props.diffFiles)
 const DEFAULT_CONTEXT_LINE_COUNT = 3
 
 const calculateViewerHeight = (file: FileItem) => {
@@ -54,7 +53,7 @@ const calculateViewerHeight = (file: FileItem) => {
       pair: file.diffPair,
       minHeight: heightRange.minHeight,
       maxHeight: heightRange.maxHeight,
-      unchangedVisiable: state.isRaw,
+      unchangedVisiable: state.rawed,
       unchangedCtxLineNum: DEFAULT_CONTEXT_LINE_COUNT,
       unchangedMinLineNum: 1,
     })
@@ -71,7 +70,7 @@ const fileViewMap = reactive(
       {
         height: 0,
         viewed: false,
-        isRaw: false,
+        rawed: false,
       },
     ])
   )
@@ -93,7 +92,6 @@ const freshViewState = (file: FileItem, newViewState = {}) => {
   Object.assign(state, newViewState)
   state.height = calculateViewerHeight(file)
 }
-
 </script>
 
 <style scoped>

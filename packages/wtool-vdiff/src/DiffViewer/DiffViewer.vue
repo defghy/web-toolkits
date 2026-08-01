@@ -1,6 +1,6 @@
 <template>
   <div class="diff-viewer-wrap" :style="viewerStyle" @viewStateChange="">
-    <TopBar class="top-bar" :diffPair="diffPair" />
+    <TopBar class="top-bar" :diffPair="diffPair" :diffPatch="diffPatch" />
     <div class="content-wrap" v-show="!viewed" v-loading="loading">
       <MonacoDiffViewer
         class="monaco-container"
@@ -96,8 +96,8 @@ const mergedOptions = computed(() => {
   }
 })
 
-const viewed = ref<boolean>(false) // 是否已读
-const rawed = ref<boolean>(false) // 是否显示原始文件
+const viewed = ref<boolean>(props.viewerStyle?.viewed ?? false) // 是否已读
+const rawed = ref<boolean>(props.viewerStyle?.rawed ?? false) // 是否显示原始文件
 const canUnchangeVisible = ref(!props.diffPatch) // patch 模式下未改动区域为空行，不可展示
 
 // 编辑器样式

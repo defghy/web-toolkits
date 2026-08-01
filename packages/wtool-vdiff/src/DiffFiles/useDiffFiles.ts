@@ -1,8 +1,9 @@
-import { treeUtil } from '@yuhufe/web-common'
 import { useCompExp } from '@yuhufe/web-ui'
 import type { Ref } from 'vue'
-import type { FileTree } from '../types'
-import type { DiffFileState, FileItem } from './types'
+
+import { DiffFile } from '@/types'
+import { parsePatchFilenames } from '@/utils/patch'
+import type { FileItem } from './types'
 
 export const useDiffFiles = function ({ isMaster = false } = {}) {
   const exp = useCompExp<{
@@ -15,36 +16,41 @@ export const useDiffFiles = function ({ isMaster = false } = {}) {
   return { ...exp }
 }
 
-/**
- * FileTree can be a nested directory tree or an already flattened file list.
- * Directory entries are discarded and every file leaf keeps its full filePath.
- */
-export function fileTree2FileList(fileTree: FileTree[]) {
-  const files: FileItem[] = []
+export function formatDiffFiles(diffFiles: DiffFile[]) {
+  function resolveDiffFileFullPath(file: DiffFile): string {
+    if (file.fullPath) return file.fullPath
 
-  treeUtil.tranverse(fileTree, function (node, args) {
-    const { paths = [] } = args
-    // 文件夹
-    const path = node.name || node.fullPath
-    if (node.children) {
-      paths.push(path)
-    } else {
-      const filename = path || ''
-      const extname = filename.split('.').at(-1)
-      const fullPath = [...paths, filename].join('/')
-      const fullPaths = fullPath.split('/')
-      files.push({
-        ...node,
-        name: fullPaths.at(-1),
-        fullPath,
-        folderPath: fullPaths.slice(0, -1).join('/'),
-        type: extname?.toLowerCase(),
-      })
+    if (file.diffPair) {
+      return file.diffPair[1]?.filename || file.diffPair[0]?.filename
+    }
+
+    if (typeof file.diffPatch === 'string') {
+      return parsePatchFilenames(file.diffPatch).modFilename
+    }
+
+    return ''
+  }
+  const files = diffFiles.map<FileItem>((file, index) => {
+    const fullPath = resolveDiffFileFullPath(file)
+
+    const pathSegments = fullPath.split('/')
+    const name = pathSegments.at(-1) || ''
+    const extname = name.split('.').at(-1)
+
+    return {
+      ...file,
+      fullPath,
+      name,
+      folderPath: pathSegments.slice(0, -1).join('/'),
+      type: extname?.toLowerCase(),
     }
   })
 
-  files.sort((left, right) => (left.fullPath > right.fullPath ? 1 : -1))
+  files.sort((left, right) => {
+    if (left.fullPath === right.fullPath) return 0
+    return left.fullPath > right.fullPath ? 1 : -1
+  })
 
-  const fileMap = Object.fromEntries(files.map(file => [file.fullPath, file]))
+  const fileMap: Record<string, FileItem> = Object.fromEntries(files.map(file => [file.fullPath, file]))
   return { files, fileMap }
 }
