@@ -2,7 +2,7 @@ import { parsePatchFilenames, parsePatchHunks } from '@/utils/patch'
 
 export interface FilePair {
   filename: string
-  content: string
+  content: string | null
 }
 
 export interface PatchChangedLineBlock {
@@ -23,8 +23,8 @@ export interface PatchPairLayout {
  *   - hunk 之外的行（patch 未提供内容）：两侧各补一个空行撑开行号，
  *     Monaco hideUnchangedRegions 会将这些相同的空行折叠并显示正确的行号范围
  *   - context 行（' '）：两侧均写入真实内容
- *   - 连续的删除（'-'）/ 新增（'+'）块：收集后成对对齐写入，
- *     行数较少的一侧补空行，使 Monaco 能在同一视觉行渲染替换关系
+ *   - 连续的删除（'-'）/ 新增（'+'）块：分别写入对应侧，
+ *     由 Monaco 自己为纯新增、纯删除和不等长替换生成视觉占位
  */
 export const patch2PairWithLayout = function (patch: string): PatchPairLayout {
   if (!patch) {
@@ -47,17 +47,17 @@ export const patch2PairWithLayout = function (patch: string): PatchPairLayout {
 
   const pendingDel: string[] = []
   const pendingAdd: string[] = []
+  let layoutLineCount = 0
 
   const flushPending = () => {
     const maxLen = Math.max(pendingDel.length, pendingAdd.length)
     if (maxLen > 0) {
-      const start = Math.max(origLines.length, modLines.length) + 1
+      const start = layoutLineCount + 1
       changedLineBlocks.push({ start, end: start + maxLen - 1 })
+      layoutLineCount += maxLen
     }
-    for (let i = 0; i < maxLen; i++) {
-      origLines.push(pendingDel[i] ?? '')
-      modLines.push(pendingAdd[i] ?? '')
-    }
+    origLines.push(...pendingDel)
+    modLines.push(...pendingAdd)
     pendingDel.length = 0
     pendingAdd.length = 0
   }
@@ -67,6 +67,8 @@ export const patch2PairWithLayout = function (patch: string): PatchPairLayout {
 
   for (const hunk of hunks) {
     // hunk 之前（或两个 hunk 之间）的 gap：两侧各补空行对齐行号
+    const origGap = hunk.origStart - origCursor
+    const modGap = hunk.modStart - modCursor
     while (origCursor < hunk.origStart) {
       origLines.push('')
       origCursor++
@@ -75,6 +77,7 @@ export const patch2PairWithLayout = function (patch: string): PatchPairLayout {
       modLines.push('')
       modCursor++
     }
+    layoutLineCount += Math.max(0, origGap, modGap)
 
     for (const line of hunk.lines) {
       const prefix = line[0]
@@ -86,6 +89,7 @@ export const patch2PairWithLayout = function (patch: string): PatchPairLayout {
         modLines.push(content)
         origCursor++
         modCursor++
+        layoutLineCount++
       } else if (prefix === '-') {
         pendingDel.push(content)
         origCursor++
@@ -98,13 +102,16 @@ export const patch2PairWithLayout = function (patch: string): PatchPairLayout {
     flushPending()
   }
 
+  const originalContent = origLines.length === 0 && modLines.length > 0 ? null : origLines.join('\n')
+  const modifiedContent = modLines.length === 0 && origLines.length > 0 ? null : modLines.join('\n')
+
   return {
     pair: [
-      { filename: origFilename, content: origLines.join('\n') },
-      { filename: modFilename, content: modLines.join('\n') },
+      { filename: origFilename, content: originalContent },
+      { filename: modFilename, content: modifiedContent },
     ],
     changedLineBlocks,
-    totalLines: Math.max(origLines.length, modLines.length),
+    totalLines: layoutLineCount,
   }
 }
 
