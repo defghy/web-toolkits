@@ -2,7 +2,7 @@ import { parsePatchFilenames, parsePatchHunks } from '@/utils/patch'
 
 export interface FilePair {
   filename: string
-  content: string
+  content: string | null
 }
 
 export interface PatchChangedLineBlock {
@@ -102,10 +102,13 @@ export const patch2PairWithLayout = function (patch: string): PatchPairLayout {
     flushPending()
   }
 
+  const originalContent = origLines.length === 0 && modLines.length > 0 ? null : origLines.join('\n')
+  const modifiedContent = modLines.length === 0 && origLines.length > 0 ? null : modLines.join('\n')
+
   return {
     pair: [
-      { filename: origFilename, content: origLines.join('\n') },
-      { filename: modFilename, content: modLines.join('\n') },
+      { filename: origFilename, content: originalContent },
+      { filename: modFilename, content: modifiedContent },
     ],
     changedLineBlocks,
     totalLines: layoutLineCount,
