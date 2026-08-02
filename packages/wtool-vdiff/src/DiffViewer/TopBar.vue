@@ -4,8 +4,8 @@
       <div class="filename">{{ filenameDisplay }}</div>
       <span :class="['diff-type-tag', diffType]">{{ diffTypeLabel }}</span>
       <div class="diff-line-num">
-        <div class="add" v-if="diffType !== 'del'">+{{ displayedChanged.added }}</div>
-        <div class="del" v-if="diffType !== 'add'">-{{ displayedChanged.removed }}</div>
+        <div class="add" v-if="diffType !== 'del'">+{{ changed.added }}</div>
+        <div class="del" v-if="diffType !== 'add'">-{{ changed.removed }}</div>
       </div>
     </div>
     <div class="toolbar">
@@ -25,18 +25,15 @@
 import { computed, ref, onMounted } from 'vue'
 import { useDiffViewer } from './useDiffView'
 import { HEIGHT_TOP_BAR } from './const'
-import { parsePatchHunks } from '@/utils/patch'
 
 const { funcs, registerFunc } = useDiffViewer()
 
 const props = withDefaults(
   defineProps<{
     diffPair?: { filename: string; content: string | null }[]
-    diffPatch?: string
   }>(),
   {
     diffPair: () => [],
-    diffPatch: '',
   }
 )
 
@@ -90,22 +87,6 @@ onMounted(() => {
 
 // 变更行数
 const changed = ref({ added: 0, removed: 0 })
-const patchChanged = computed(() => {
-  const result = { added: 0, removed: 0 }
-
-  for (const hunk of parsePatchHunks(props.diffPatch)) {
-    for (const line of hunk.lines) {
-      if (line.startsWith('+')) {
-        result.added++
-      } else if (line.startsWith('-')) {
-        result.removed++
-      }
-    }
-  }
-
-  return result
-})
-const displayedChanged = computed(() => (props.diffPatch ? patchChanged.value : changed.value))
 function updateChangedLines(newVal) {
   Object.assign(changed.value, newVal)
 }

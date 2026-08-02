@@ -1,6 +1,6 @@
 <template>
   <div class="diff-viewer-wrap" :style="viewerStyle" @viewStateChange="">
-    <TopBar class="top-bar" :diffPair="diffPair" :diffPatch="diffPatch" />
+    <TopBar class="top-bar" :diffPair="diffPair" />
     <div class="content-wrap" v-show="!viewed" v-loading="loading">
       <MonacoDiffViewer
         class="monaco-container"
