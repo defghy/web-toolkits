@@ -28,6 +28,7 @@ import { useDiffViewer } from './useDiffView'
 import { patch2Pair } from './utils/patch2Pair'
 import { autoHeight } from './utils/autoHeight'
 import { HEIGHT_TOP_BAR } from './const'
+import { debugLog } from '../utils'
 
 const emit = defineEmits<{
   viewStateChange: [data: { viewed: boolean; rawed: boolean }]
@@ -39,7 +40,7 @@ const loading = ref(true)
 const _renderStart = performance.now()
 const onMonacoRenderComplete = async () => {
   const cost = performance.now() - _renderStart
-  console.log(`[DiffViewer] 渲染耗时: ${cost.toFixed(2)} ms`)
+  debugLog(`[DiffViewer] 渲染耗时: ${cost.toFixed(2)} ms`)
   loading.value = false
 }
 
@@ -62,7 +63,7 @@ const initDiff = function () {
   diffPair.value = patch2Pair(props.diffPatch)
 }
 initDiff()
-console.log(`[DiffViewer] patch耗时: ${(performance.now() - _renderStart).toFixed(2)} ms`)
+debugLog(`[DiffViewer] patch耗时: ${(performance.now() - _renderStart).toFixed(2)} ms`)
 
 const originalCode = computed(() => diffPair.value[0]?.content ?? '')
 const modifiedCode = computed(() => diffPair.value[1]?.content ?? '')
