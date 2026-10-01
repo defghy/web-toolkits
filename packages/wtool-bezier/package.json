@@ -1,0 +1,56 @@
+{
+  "name": "@yuhufe/wtool-bezier",
+  "private": false,
+  "version": "0.0.1",
+  "description": "A bezier curve editor based on Vue@2.7 and konva",
+  "keywords": [
+    "vue2",
+    "bezier",
+    "konva",
+    "easing"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm run dev:site",
+    "dev:lib": "vite build --watch --mode development",
+    "build:site": "vite build --mode production --config site/vite.config.ts",
+    "dev:site": "vite --config site/vite.config.ts",
+    "build": "vite build --mode production",
+    "pub": "npm run build && npm publish"
+  },
+  "main": "./dist/wtool-bezier.cjs.js",
+  "module": "./dist/wtool-bezier.es.js",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "lodash-es": "^4.17.21",
+    "vue": "^2.7.16",
+    "konva": "^10.0.8"
+  },
+  "dependencies": {
+    "bezier-js": "^6.1.4",
+    "chroma-js": "^3.2.0",
+    "konva": "^10.0.8",
+    "vue-konva": "^2.1.7"
+  },
+  "devDependencies": {
+    "@types/bezier-js": "^4.1.3",
+    "@vitejs/plugin-vue2": "^2.3.1",
+    "@yuhufe/web-common": "workspace:*",
+    "typescript": "^6.0.3",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/defghy/web-toolkits.git"
+  }
+}
