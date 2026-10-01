@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { BezierEditor, BezierEditMode, PluginFlagPoint, useBezier, type BezierCurveSingle } from '@yuhufe/wtool-bezier'
 
 const createCurve = (): BezierCurveSingle => ({
@@ -48,9 +48,11 @@ export default defineComponent({
   components: { BezierEditor },
   setup() {
     const editorRef = ref()
-    const { toggleMode, getEditMode } = useBezier({ comp: editorRef })
+    const { toggleMode, getEditMode, selectGrpCurve } = useBezier({ comp: editorRef })
     const curves = ref<BezierCurveSingle[]>([createCurve()])
     const mode = computed(() => getEditMode())
+
+    onMounted(() => selectGrpCurve(curves.value[0].id))
 
     const toggle = (target: BezierEditMode) => toggleMode(target)
     const onChange = (newVal: BezierCurveSingle[]) => {

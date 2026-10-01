@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import {
   BezierEditor,
   EasingCurve,
@@ -67,7 +67,7 @@ const createCurve = (): BezierCurveSingle => ({
       start: { x: 120, y: 360 },
       end: { x: 260, y: 120 },
       startCtrl: { x: 120, y: 200 },
-      endCtrl: { x: 300, y: 120 },
+      endCtrl: { x: 220, y: 120 },
     },
     {
       id: 'seg-2',
@@ -84,7 +84,7 @@ export default defineComponent({
   components: { BezierEditor, EasingCurve },
   setup() {
     const editorRef = ref()
-    const { travel } = useBezier({ comp: editorRef })
+    const { travel, selectGrpCurve } = useBezier({ comp: editorRef })
 
     const duration = ref(2000)
     const cycle = ref(false)
@@ -117,6 +117,8 @@ export default defineComponent({
     const resetEasing = () => {
       easingModel.value = { easingData: createEasingCurves(), flagPoints: [] }
     }
+
+    onMounted(() => selectGrpCurve('curve-travel'))
 
     return {
       editorRef,
