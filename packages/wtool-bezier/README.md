@@ -1,42 +1,35 @@
 # wtool-bezier
 
-#### 基于 `Vue@2.7`、`Konva` 和 `bezier-js` 的贝塞尔曲线编辑组件
+基于 `Vue@2.7`、`Konva` 和 `bezier-js` 的贝塞尔曲线编辑器。
 
-- `BezierEditor`：完整贝塞尔画板，支持多条逻辑曲线、标记点、缩放平移、背景图、轨迹动画
-- `EasingCurve`：0-1 笛卡尔坐标系的多段缓动曲线与标记点编辑器
-- `EasingPresetCurve`：单段缓动曲线的 SVG 缩略图，不可交互
+- `BezierEditor`：曲线编辑器组件（下文简称编辑器）
+- `EasingCurve` / `EasingPresetCurve`：缓动曲线编辑与缩略图
 
-## Demo
-
-[地址](https://defghy.github.io/web-toolkits/bezier-demo/)
-
-## Quick Start
-
-**Step1. Install**
+## 安装
 
 ```bash
-$ npm install @yuhufe/wtool-bezier
+npm install @yuhufe/wtool-bezier
 ```
 
-**Step2. Use `BezierEditor`**
+## 快速开始
 
 ```vue
 <template>
   <div style="width: 600px; height: 400px">
-    <BezierEditor ref="editorRef" v-model="curves" />
+    <BezierEditor ref="editorRef" v-model="curves" :plugins="plugins" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { BezierEditor, useBezier, BezierEditMode } from '@yuhufe/wtool-bezier'
+import { BezierEditor, PluginFlagPoint, useBezier, type BezierCurveSingle } from '@yuhufe/wtool-bezier'
 
 export default defineComponent({
   components: { BezierEditor },
   setup() {
     const editorRef = ref()
-    const { toggleMode } = useBezier({ comp: editorRef })
-    const curves = ref([
+    const { toggleMode, getEditMode } = useBezier({ comp: editorRef })
+    const curves = ref<BezierCurveSingle[]>([
       {
         id: 'curve-1',
         flagPoints: [],
@@ -52,74 +45,11 @@ export default defineComponent({
       },
     ])
 
-    return { editorRef, curves, toggleMode, BezierEditMode }
+    return { editorRef, curves, toggleMode, getEditMode, plugins: [PluginFlagPoint] }
   },
 })
 </script>
 ```
-
-<br/>
-
-## 数据模型
-
-### BezierCurveModel
-
-一段三次贝塞尔曲线，四个点均使用直角坐标。
-
-```ts
-interface BezierCurveModel {
-  id?: string
-  start: Point
-  end: Point
-  startCtrl: Point
-  endCtrl: Point
-}
-```
-
-### BezierCurveSingle
-
-`BezierEditor` 的 `v-model` 类型，每个元素代表一条由多段曲线组成的逻辑曲线。
-
-```ts
-interface BezierCurveSingle {
-  id: string
-  curveSegs: BezierCurveModel[]
-  hide?: boolean
-  trail?: { enable?: boolean; cycle?: boolean }
-  easingData?: {
-    type: EasingType
-    duration: number
-    params: { curves: BezierCurveModel[] }
-  }
-  owner?: string | '__shared__'
-  flagPoints?: FlagPoint[]
-  switches?: {
-    showEdStart?: boolean
-    showEdEnd?: boolean
-    showControlPoint?: boolean
-    canSelect?: boolean
-    canDelete?: boolean
-  }
-}
-```
-
-> 参与编辑的曲线应显式初始化 `flagPoints: []`。
-
-### FlagPoint
-
-```ts
-interface FlagPoint {
-  key: string
-  type: 'common' | 'extreme'
-  point: Point
-  progressType?: 'len' | 'x' | 'y'
-  progress?: number
-}
-```
-
-`progressType` 为 `len` / `x` / `y`，`progress` 为该维度上的归一化进度。曲线形状变化后，标记点会依据 `progress` 自动重新定位。
-
-## BezierEditor
 
 ### Props
 
@@ -132,28 +62,47 @@ interface FlagPoint {
 | `comps`         | `{ aboveBack?: Component }` | -                                 | 在背景图上方插入自定义 Konva 组件                    |
 | `plugins`       | `BezierPlugin[]`            | `[PluginFlagPoint, PluginTravel]` | 编辑器插件                                           |
 
-组件会触发 `changeScale` 和 `changePos`，用于外部保存缩放、平移结果。
+组件会触发 `change`（数据变更）、`changeScale`、`changePos` 事件。
 
-### useBezier
+## useBezier
+
+`useBezier` 通过编辑器组件 ref 获取实例方法。
 
 ```ts
-const { toggleMode, getEditMode, when, travel, centerAndFitbackImg, ueUtilGet, selectGrpCurve, getSingleFuncs } =
-  useBezier({ comp: editorRef })
+import { ref } from 'vue'
+import { useBezier, BezierEditMode } from '@yuhufe/wtool-bezier'
+
+const editorRef = ref()
+
+const {
+  toggleMode, // 切换编辑模式
+  getEditMode, // 获取当前模式
+  when, // 注册事件监听
+  travel, // 轨迹动画控制
+  selectGrpCurve, // 选中曲线
+  hoverGrpCurve, // 悬停曲线
+  getSingleFuncs, // 获取单条曲线的方法
+  centerAndFitbackImg,
+  ueUtilGet,
+} = useBezier({ comp: editorRef })
 ```
 
-| 方法                  | 说明                                                  |
-| --------------------- | ----------------------------------------------------- |
-| `toggleMode`          | `(mode: BezierEditMode) => void` 切换编辑模式         |
-| `getEditMode`         | `() => BezierEditMode` 获取当前编辑模式               |
-| `when`                | 注册事件监听，返回 `{ unbind }`                       |
-| `centerAndFitbackImg` | 背景图居中适配视口                                    |
-| `ueUtilGet`           | 获取手势目标控制器，可切换缩放/平移目标               |
-| `selectGrpCurve`      | 程序化选中逻辑曲线                                    |
-| `getSingleFuncs`      | 获取指定逻辑曲线的计算函数与 CRUD                     |
-| `travel.start`        | `(params?: { randomStart?; randomDisturb? }) => void` |
-| `travel.pause`        | 暂停轨迹动画                                          |
-| `travel.resume`       | 恢复轨迹动画                                          |
-| `travel.stop`         | 停止轨迹动画                                          |
+### API
+
+| 方法                  | 说明                                                                   |
+| --------------------- | ---------------------------------------------------------------------- |
+| `toggleMode`          | `(mode: BezierEditMode) => void` 切换编辑模式，再次传入当前模式则退出   |
+| `getEditMode`         | `() => BezierEditMode` 获取当前编辑模式                                |
+| `selectGrpCurve`      | `(id: string) => void` 程序化选中曲线                                  |
+| `hoverGrpCurve`       | `(id: string, isHover: boolean) => void` 程序化悬停曲线                |
+| `when`                | `(handlers) => Promise<{ unbind }>` 注册事件监听，返回值可注销         |
+| `getSingleFuncs`      | `(id: string) => SingleInnerAPI` 获取指定逻辑曲线的数据与 CRUD 方法    |
+| `centerAndFitbackImg` | 背景图居中适配视口                                                     |
+| `ueUtilGet`           | 获取手势目标控制器，可切换缩放/平移目标                                |
+| `travel.start`        | `(params?: { randomStart?; randomDisturb? }) => void` 启动轨迹动画     |
+| `travel.pause`        | 暂停轨迹动画                                                           |
+| `travel.resume`       | 恢复轨迹动画                                                           |
+| `travel.stop`         | 停止轨迹动画                                                           |
 
 ### 编辑模式
 
@@ -164,23 +113,93 @@ enum BezierEditMode {
   flag = 'flag',
   del = 'del',
   fitting = 'fitting',
+  easingAdd = 'easingAdd',
+  easingDel = 'easingDel',
 }
 ```
 
-| 模式      | 交互                 | 行为                                    |
-| --------- | -------------------- | --------------------------------------- |
-| `common`  | 悬停、点击曲线       | 高亮并选中曲线                          |
-| `add`     | 点击画布空白处       | 在选中曲线末尾追加曲线段                |
-| `add`     | 点击已有曲线段       | 在点击位置分割曲线                      |
-| `flag`    | 点击已有曲线段       | 新增标记点                              |
-| `del`     | 点击曲线/控制点/端点 | 删除对应曲线段                          |
-| `del`     | 点击标记点           | 删除该标记点                            |
-| `fitting` | 点击画布空白处       | 触发 `onFittingAdd`，由外部创建拟合曲线 |
+| 模式     | 交互                 | 行为                                    |
+| -------- | -------------------- | --------------------------------------- |
+| `common` | 悬停、点击曲线       | 高亮并选中曲线                          |
+| `add`    | 点击画布空白处       | 在选中曲线末尾追加曲线段                |
+| `add`    | 点击已有曲线段       | 在点击位置分割曲线                      |
+| `flag`   | 点击已有曲线段       | 新增标记点（需 `PluginFlagPoint`）      |
+| `del`    | 点击曲线/控制点/端点 | 删除对应曲线段                          |
+| `del`    | 点击标记点           | 删除该标记点                            |
+| `fitting`| 点击画布空白处       | 触发 `onFittingAdd`，由外部创建拟合曲线 |
 
-### 程序化增删标记点
+### 示例：切换编辑模式
 
 ```ts
-const singleFuncs = getSingleFuncs(curveId)
+const { toggleMode, getEditMode } = useBezier({ comp: editorRef })
+
+const setMode = (mode: BezierEditMode) => toggleMode(mode)
+const current = () => getEditMode()
+```
+
+### 示例：监听事件
+
+```ts
+const { when } = useBezier({ comp: editorRef })
+
+const binding = await when({
+  onGrpCurveSelected({ grpCurveId }) {
+    console.log('selected', grpCurveId)
+  },
+  onSegCurveClick({ curveInfo, index }) {
+    console.log('clicked segment', index, curveInfo)
+  },
+  afterFlagPointAdd({ curveId, flagPoint }) {
+    console.log('flag added', curveId, flagPoint)
+  },
+  afterFlagPointDel({ curveId, flagPointKey }) {
+    console.log('flag removed', curveId, flagPointKey)
+  },
+  travelStart() {},
+  travelStop() {},
+})
+
+// 注销
+binding.unbind()
+```
+
+常用事件：
+
+| 事件                    | 参数                                                  |
+| ----------------------- | ----------------------------------------------------- |
+| `onStageClick`          | `{ evt, funcs }`                                      |
+| `onSegCurveEnter`       | `{ segCurveId, grpCurveId, funcs, singleFuncs }`      |
+| `onSegCurveLeave`       | `{ segCurveId, grpCurveId, funcs, singleFuncs }`      |
+| `onSegCurveClick`       | `{ curveInfo, index, startCtrlPos, endCtrlPos, ... }` |
+| `onControlPointClick`   | `{ point, originPoint, index, funcs, singleFuncs }`   |
+| `onEdPointClick`        | `{ point, index, funcs, singleFuncs }`                |
+| `onFlagPointClick`      | `{ flagPoint, funcs, singleFuncs }`                   |
+| `onGrpCurveSelected`    | `{ grpCurveId, funcs, singleFuncs }`                  |
+| `onFittingAdd`          | `{ pos: Point }`                                      |
+| `afterFlagPointAdd`     | `{ curveId, flagPoint }`                              |
+| `afterFlagPointDel`     | `{ curveId, flagPointKey }`                           |
+| `travelStart`           | `{ randomStart?, randomDisturb? }`                    |
+| `travelPause`           | 无                                                    |
+| `travelResume`          | 无                                                    |
+| `travelStop`            | 无                                                    |
+
+### 示例：默认选中曲线
+
+```ts
+import { onMounted } from 'vue'
+
+const { selectGrpCurve } = useBezier({ comp: editorRef })
+
+onMounted(() => {
+  selectGrpCurve(curves.value[0].id)
+})
+```
+
+### 示例：程序化增删标记点
+
+```ts
+const { getSingleFuncs } = useBezier({ comp: editorRef })
+const singleFuncs = getSingleFuncs('curve-1')
 
 singleFuncs.crud.addFlagPointByPos({
   pos: { x: 120, y: 80 },
@@ -191,82 +210,86 @@ singleFuncs.crud.addFlagPointByPos({
 singleFuncs.crud.delFlagPoint(flagPointKey)
 ```
 
-## EasingCurve
+### 示例：轨迹动画
+
+曲线数据需开启 `trail.enable` 并配置 `easingData`。
+
+```ts
+const curves = ref<BezierCurveSingle[]>([
+  {
+    id: 'curve-travel',
+    flagPoints: [],
+    trail: { enable: true, cycle: false },
+    easingData: {
+      type: EasingType.bezier,
+      duration: 2000,
+      params: { curves: easingCurves },
+    },
+    curveSegs: [
+      /* ... */
+    ],
+  },
+])
+
+const { travel } = useBezier({ comp: editorRef })
+
+travel.start({ randomDisturb: 0 })
+travel.pause()
+travel.resume()
+travel.stop()
+```
+
+## 插件 plugins
+
+`plugins` 用于向编辑器注入额外能力，默认启用 `PluginFlagPoint` 和 `PluginTravel`。
+
+- `PluginFlagPoint`：曲线标记点。新增 `flag` 编辑模式，可在曲线上点击新增标记、在 `del` 模式点击删除标记。
+- `PluginTravel`：轨迹动画小球。配合曲线数据上的 `trail.enable` 与 `useBezier().travel` 使用。
 
 ```vue
-<EasingCurve ref="easingRef" v-model="easingValue" />
+<template>
+  <BezierEditor v-model="curves" :plugins="[PluginFlagPoint, PluginTravel]" />
+</template>
 ```
+
+### 自定义插件
 
 ```ts
-const easingValue = ref({
-  easingData: [
-    {
-      id: crypto.randomUUID(),
-      start: { x: 0, y: 0 },
-      end: { x: 1, y: 1 },
-      startCtrl: { x: 0.25, y: 0.1 },
-      endCtrl: { x: 0.24, y: 0.89 },
-    },
-  ],
-  flagPoints: [],
-})
+interface BezierPlugin {
+  components?: {
+    inCurve?: Component // 渲染在每条曲线上的组件
+  }
+  registerMode?: (args: {
+    modeAdd: BezierModeConfig
+    modeDel: BezierModeConfig
+    modeCommon: BezierModeConfig
+    funcs: InnerAPI
+    selectSingle: (args: { singleFuncs: SingleInnerAPI }) => void
+  }) => Record<string, BezierModeConfig>
+}
 ```
 
-### useEasingExp
+`registerMode` 返回的模式会按 `BezierEditMode` 合并进编辑器，可覆盖或扩展内置模式。
 
 ```ts
-const { getTheme, toggleMode, getEditMode, when, getSingleFuncs } = useEasingExp({ comp: easingRef })
+const MyPlugin = {
+  components: { inCurve: MyOverlay },
+  registerMode({ modeCommon, selectSingle }) {
+    return {
+      // 覆盖 common 模式下标记点的点击行为
+      [BezierEditMode.common]: {
+        ...modeCommon,
+        onFlagPointClick({ singleFuncs, flagPoint }) {
+          selectSingle({ singleFuncs })
+          console.log('clicked flag', flagPoint.key)
+        },
+      },
+      // 新增自定义模式
+      [BezierEditMode.fitting]: {
+        onEnter() {},
+        onFlagPointClick() {},
+      },
+    }
+  },
+}
 ```
-
-缓动编辑器只使用 `common`、`add`、`del` 模式，标记点通过 `v-model` 或单曲线 CRUD 创建。
-
-## 轨迹动画
-
-每条 `BezierCurveSingle` 在 `trail.enable` 为 `true` 时响应 `travel.*`。`trail.cycle` 为 `true` 时循环播放。
-
-多段轨迹与多段缓动的计算流程：
-
-1. 按实际曲线长度计算总路径与分段里程碑
-2. 将已播放时间归一化为 0-1 时间进度
-3. 在 `easingData.params.curves` 上按 x 定位交点，取交点 y 作为动画进度
-4. 按动画进度映射到轨迹总长度，得到运动点坐标
-
-## 事件
-
-```ts
-const binding = await when({
-  onGrpCurveSelected({ grpCurveId }) {},
-  onFittingAdd({ pos }) {},
-  afterFlagPointAdd({ curveId, flagPoint }) {},
-  afterFlagPointDel({ curveId, flagPointKey }) {},
-  travelStart() {},
-  travelStop() {},
-})
-binding.unbind()
-```
-
-| 事件                  | 参数                                                  |
-| --------------------- | ----------------------------------------------------- |
-| `onStageClick`        | `{ evt, funcs }`                                      |
-| `onSegCurveEnter`     | `{ segCurveId, grpCurveId, funcs, singleFuncs }`      |
-| `onSegCurveLeave`     | `{ segCurveId, grpCurveId, funcs, singleFuncs }`      |
-| `onSegCurveClick`     | `{ curveInfo, index, startCtrlPos, endCtrlPos, ... }` |
-| `onControlPointClick` | `{ point, originPoint, index, funcs, singleFuncs }`   |
-| `onEdPointClick`      | `{ point, index, funcs, singleFuncs }`                |
-| `onFlagPointClick`    | `{ flagPoint, funcs, singleFuncs }`                   |
-| `onGrpCurveSelected`  | `{ grpCurveId, funcs, singleFuncs }`                  |
-| `onFittingAdd`        | `{ pos: Point }`                                      |
-| `afterFlagPointAdd`   | `{ curveId, flagPoint }`                              |
-| `afterFlagPointDel`   | `{ curveId, flagPointKey }`                           |
-| `travelStart`         | `{ randomStart?, randomDisturb? }`                    |
-| `travelPause`         | 无                                                    |
-| `travelResume`        | 无                                                    |
-| `travelStop`          | 无                                                    |
-
-## Examples
-
-[demo 源码](./site)
-
-- `BezierEdit`：单曲线编辑，支持增删曲线段/控制点
-- `BezierTravel`：单曲线轨迹动画，支持缓动曲线与播放/暂停/停止
-- `BezierFlag`：单曲线标记点增删
