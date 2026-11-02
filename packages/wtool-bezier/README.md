@@ -5,6 +5,10 @@
 - `BezierEditor`：曲线编辑器组件（下文简称编辑器）
 - `EasingCurve` / `EasingPresetCurve`：缓动曲线编辑与缩略图
 
+## Demo
+
+[在线体验](https://defghy.github.io/web-toolkits/bezier-demo/)
+
 ## 安装
 
 ```bash
