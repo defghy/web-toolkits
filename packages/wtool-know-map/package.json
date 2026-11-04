@@ -7,17 +7,20 @@
     "vite": "vite",
     "build": "pnpm validate:data && vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "validate:data": "tsx scripts/validate-data.ts",
+    "test:browser": "node scripts/browser-check.mjs"
   },
   "dependencies": {
     "vue": "^3.5.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "vite": "^6.1.0",
-    "typescript": "~5.7.3",
-    "vue-tsc": "^2.2.0",
+    "puppeteer-core": "25.16.0",
     "tsx": "^4.19.0",
-    "vitest": "^3.0.0"
+    "typescript": "~5.7.3",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.0",
+    "vue-tsc": "^2.2.0"
   }
 }
