@@ -190,7 +190,7 @@ group('storage-form', 'database', '按存储 / 运行形态', 'dimension', {
 group('embedded', 'storage-form', '文件型 / 嵌入式')
 techs('embedded', ['sqlite', 'duckdb'])
 group('server-db', 'storage-form', '独立服务')
-techs('server-db', ['mysql', 'postgres'])
+techs('server-db', ['mysql', 'postgres', 'clickhouse'])
 group('distributed', 'storage-form', '分布式')
 techs('distributed', ['cockroachdb', 'tidb'])
 group('db-tools', 'database', '配套工具')
