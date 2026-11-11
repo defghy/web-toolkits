@@ -16,7 +16,7 @@ describe('知识树浏览', () => {
       visibleTree(index, state.expanded)
         .map(row => row.entry.id)
         .slice(0, 4)
-    ).toEqual(['frontend', 'interface', 'client', 'ingress'])
+    ).toEqual(['frontend', 'interface', 'client-runtime', 'ingress'])
     state = toggleBranch(index, state, 'interface')
     expect(visibleTree(index, state.expanded).some(row => row.entry.id === 'platform')).toBe(true)
     state = toggleBranch(index, state, 'frontend')
@@ -34,7 +34,7 @@ describe('知识树浏览', () => {
     for (const id of ['frontend', 'interface', 'platform', 'web', 'ui']) expect(state.expanded.has(id)).toBe(true)
   })
   it('有序职责和数据阶段在树中保持配置顺序', () => {
-    expect(treeChildren(index, 'frontend').map(entry => entry.id)).toEqual(['interface', 'client'])
+    expect(treeChildren(index, 'frontend').map(entry => entry.id)).toEqual(['interface', 'client-runtime'])
     expect(treeChildren(index, 'data').map(entry => entry.id)).toEqual(['cache', 'persistence', 'other-data'])
   })
   it('同一实体的不同入口独立定位，连续定位保留最后目标', () => {
@@ -63,14 +63,14 @@ describe('知识树浏览', () => {
     const rows = visibleTree(index, state.expanded)
     const vue = rows.find(row => row.entry.id === 'ui/vue')!
     expect(vue.guides).toHaveLength(vue.depth)
-    expect(vue.siblingCount).toBe(3)
+    expect(vue.siblingCount).toBe(7)
     expect(vue.siblingIndex).toBe(0)
     expect(vue.last).toBe(false)
-    expect(rows.find(row => row.entry.id === 'ui/angular')?.last).toBe(true)
+    expect(rows.find(row => row.entry.id === 'ui/lit')?.last).toBe(true)
   })
   it('最后一个分支的下级不延续已结束的祖先连接线', () => {
-    const state = revealEntry(index, initial(), 'routing/router')
+    const state = revealEntry(index, initial(), 'offline/service-worker')
     const rows = visibleTree(index, state.expanded)
-    expect(rows.find(row => row.entry.id === 'routing')?.guides[0]).toBe(false)
+    expect(rows.find(row => row.entry.id === 'offline')?.guides[0]).toBe(false)
   })
 })

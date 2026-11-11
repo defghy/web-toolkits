@@ -12,8 +12,8 @@ export const layoutGroups: LayoutGroup[] = [
     id: 'frontend-stages',
     parentEntryId: 'frontend',
     mode: 'ordered-stages',
-    orderedEntryIds: ['interface', 'client'],
-    context: '从界面呈现深入到客户端应用逻辑。',
+    orderedEntryIds: ['interface', 'client-runtime'],
+    context: '从用户界面与客户端应用架构，深入到它们共享的通信、存储与离线能力。',
   },
   {
     id: 'backend-stages',

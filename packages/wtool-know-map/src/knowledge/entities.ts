@@ -53,6 +53,22 @@ const rows: [string, string, string, string, string, string?][] = [
   ['turf', 'Turf.js', '库', '用于地理空间分析和几何计算的 JavaScript 工具库。', 'https://turfjs.org/'],
   ['cesium', 'CesiumJS', '库', '在 Web 中展示地球、地形及三维地理空间场景。', 'https://cesium.com/platform/cesiumjs/'],
   [
+    'amap',
+    '高德地图',
+    '地图 SDK / 服务',
+    '通过 JavaScript API 接入地图展示与交互，以及地点搜索、地理编码和路线规划等位置服务。',
+    'https://lbs.amap.com/api/javascript-api-v2/summary',
+    'AMap,高德地图 JS API,高德地图 SDK',
+  ],
+  [
+    'baidu-map',
+    '百度地图',
+    '地图 SDK / 服务',
+    '通过 JavaScript API 接入地图展示与交互，以及定位、地点检索、地址解析和路线规划等位置服务。',
+    'https://lbs.baidu.com/docs/jsapi?title=jsapi4/index',
+    'BMap,BMapGL,百度地图 JS API,百度地图 SDK',
+  ],
+  [
     'webgl',
     'WebGL',
     '图形 API',
@@ -82,6 +98,14 @@ const rows: [string, string, string, string, string, string?][] = [
   ['d3', 'D3', '库', '以数据驱动方式组合可视化计算与 Web 图形。', 'https://d3js.org/'],
   ['antv', 'AntV', '可视化方案', '包含图表、图分析等多个可视化项目。', 'https://antv.antgroup.com/'],
   ['webrtc', 'WebRTC', 'Web API / 协议', '支持浏览器中的实时音视频与点对点数据通信。', 'https://webrtc.org/'],
+  [
+    'livekit',
+    'LiveKit',
+    '实时音视频平台',
+    '基于 WebRTC 的开源实时音视频平台，提供客户端 SDK 与 SFU 服务端，支持视频通话、多人会议和屏幕共享，可自建或使用云服务。',
+    'https://github.com/livekit/livekit',
+    'livekit-client,视频通话,多人会议,屏幕共享,SFU',
+  ],
   ['tiptap', 'Tiptap', '编辑器框架', '基于 ProseMirror 的可扩展富文本编辑器框架。', 'https://tiptap.dev/'],
   ['html', 'HTML', '标记语言', '表达 Web 文档结构和语义。', 'https://html.spec.whatwg.org/'],
   ['css', 'CSS', '样式语言', '定义文档布局、外观与响应式呈现。', 'https://www.w3.org/Style/CSS/'],
@@ -247,6 +271,258 @@ const rows: [string, string, string, string, string, string?][] = [
   ['oauth', 'OAuth 2.0', '协议', '用于授权委托的协议框架。', 'https://www.rfc-editor.org/rfc/rfc6749'],
   ['tls', 'TLS', '协议', '为网络通信提供机密性、完整性与身份验证能力。', 'https://www.rfc-editor.org/rfc/rfc8446'],
   ['vault', 'Vault', '产品', '集中管理密钥和敏感凭据等秘密信息。', 'https://developer.hashicorp.com/vault/docs'],
+
+  // 界面框架与组件
+  ['svelte', 'Svelte', '框架', '在构建阶段编译响应式组件的 UI 框架。', 'https://svelte.dev/'],
+  ['solid', 'SolidJS', '框架', '以细粒度响应式更新界面的 JavaScript 框架。', 'https://www.solidjs.com/'],
+  ['preact', 'Preact', '库', '与 React API 兼容的轻量 UI 库。', 'https://preactjs.com/'],
+  ['lit', 'Lit', '库', '基于 Web Components 标准构建组件的库。', 'https://lit.dev/'],
+  ['sveltekit', 'SvelteKit', '应用框架', 'Svelte 的全栈应用框架，支持路由、服务端渲染与静态生成。', 'https://svelte.dev/docs/kit'],
+  ['astro', 'Astro', '应用框架', '内容优先、默认输出静态 HTML 并支持多框架组件的 Web 框架。', 'https://astro.build/'],
+  ['antd', 'Ant Design', '组件库', '面向企业应用的 React UI 组件库与设计体系。', 'https://ant.design/', 'antd'],
+  ['element-plus', 'Element Plus', '组件库', '面向 Vue 3 的桌面端 UI 组件库。', 'https://element-plus.org/'],
+  ['mui', 'Material UI', '组件库', '实现 Material Design 的 React 组件库。', 'https://mui.com/', 'MUI'],
+  [
+    'shadcn-ui',
+    'shadcn/ui',
+    '组件集合',
+    '以可复制源码方式提供、基于 Radix 与 Tailwind 的 React 组件集合。',
+    'https://ui.shadcn.com/',
+    'shadcn',
+  ],
+  ['tailwind', 'Tailwind CSS', '样式框架', '以工具类组合样式的 CSS 框架。', 'https://tailwindcss.com/'],
+  ['sass', 'Sass', '样式预处理器', '提供变量、嵌套、混入与模块化的 CSS 预处理器。', 'https://sass-lang.com/'],
+  ['postcss', 'PostCSS', '样式处理工具', '通过插件转换 CSS 的工具。', 'https://postcss.org/'],
+  ['bootstrap', 'Bootstrap', '样式框架', '提供栅格、组件与工具类的 CSS 框架。', 'https://getbootstrap.com/'],
+
+  // 原生、跨平台与小程序
+  ['uikit', 'UIKit', 'UI 框架', 'Apple 平台的命令式界面框架。', 'https://developer.apple.com/documentation/uikit'],
+  [
+    'capacitor',
+    'Capacitor',
+    '跨平台运行时',
+    '将 Web 应用打包运行于 iOS、Android 等原生容器。',
+    'https://capacitorjs.com/',
+    'capacitorjs',
+  ],
+  ['ionic', 'Ionic', 'UI 工具包', '面向跨平台混合应用的 UI 组件库。', 'https://ionicframework.com/'],
+  ['taro', 'Taro', '跨端框架', '使用 React 等写法构建小程序与多端应用。', 'https://docs.taro.zone/', 'Taro 小程序'],
+
+  // 客户端应用架构
+  ['react-router', 'React Router', '路由库', 'React 的客户端与服务端路由库。', 'https://reactrouter.com/'],
+  [
+    'redux',
+    'Redux Toolkit',
+    '状态管理',
+    'Redux 官方推荐的状态管理工具集。',
+    'https://redux-toolkit.js.org/',
+    'Redux',
+  ],
+  ['zustand', 'Zustand', '状态管理', '轻量的 React 状态管理库。', 'https://zustand.docs.pmnd.rs/'],
+  ['jotai', 'Jotai', '状态管理', '以原子为单位组织 React 状态。', 'https://jotai.org/'],
+  ['xstate', 'XState', '状态机', '用状态机与状态图建模应用逻辑。', 'https://stately.ai/docs/xstate'],
+  [
+    'react-hook-form',
+    'React Hook Form',
+    '表单库',
+    '基于 React Hook 的表单状态与校验库。',
+    'https://react-hook-form.com/',
+    'RHF',
+  ],
+  ['zod', 'Zod', '校验库', 'TypeScript 优先的模式声明与校验库。', 'https://zod.dev/'],
+  ['i18next', 'i18next', '国际化库', '通用 JavaScript 国际化框架。', 'https://www.i18next.com/'],
+  ['vue-i18n', 'Vue I18n', '国际化库', 'Vue 的国际化插件。', 'https://vue-i18n.intlify.dev/'],
+  ['axe-core', 'axe-core', '无障碍测试库', '可访问性规则与自动化检测引擎。', 'https://github.com/dequelabs/axe-core'],
+
+  // 编辑器与富文本
+  [
+    'monaco',
+    'Monaco Editor',
+    '代码编辑器',
+    '支撑 VS Code 的浏览器代码编辑器，提供语法高亮、智能提示与差异对比等能力。',
+    'https://microsoft.github.io/monaco-editor/',
+    'Monaco,VS Code 编辑器',
+  ],
+  ['codemirror', 'CodeMirror', '代码编辑器', '可扩展的浏览器代码编辑器。', 'https://codemirror.net/'],
+  [
+    'prosemirror',
+    'ProseMirror',
+    '富文本工具包',
+    '提供文档模型、编辑视图与协作扩展的富文本工具包。',
+    'https://prosemirror.net/',
+  ],
+  ['lexical', 'Lexical', '编辑器框架', 'Meta 开源的、可扩展的富文本编辑器框架。', 'https://lexical.dev/'],
+  ['slate', 'Slate', '编辑器框架', '以可编辑文档模型构建富文本编辑器。', 'https://www.slatejs.org/'],
+  ['quill', 'Quill', '富文本编辑器', '轻量、可扩展的富文本编辑器。', 'https://quilljs.com/'],
+  [
+    'ckeditor',
+    'CKEditor 5',
+    '富文本编辑器',
+    '可定制的富文本编辑器与协作编辑方案。',
+    'https://ckeditor.com/ckeditor-5/',
+    'CKEditor',
+  ],
+
+  // 图表、动画与图形
+  ['chartjs', 'Chart.js', '图表库', '基于 Canvas 的交互式图表库。', 'https://www.chartjs.org/'],
+  ['plotly', 'Plotly.js', '图表库', '支持统计图表与三维可视化的 JavaScript 库。', 'https://plotly.com/javascript/'],
+  ['recharts', 'Recharts', '图表库', '基于 React 与 D3 的图表组件库。', 'https://recharts.org/'],
+  ['gsap', 'GSAP', '动画库', '高性能脚本动画平台。', 'https://gsap.com/'],
+  ['motion', 'Motion', '动画库', '面向 React 与 Web 的动画库。', 'https://motion.dev/', 'Framer Motion'],
+  ['playcanvas', 'PlayCanvas', '引擎', '面向 Web 的 3D 游戏与交互引擎。', 'https://playcanvas.com/'],
+  ['p5', 'p5.js', '创意编程库', '面向视觉艺术与创意编程的 JavaScript 库。', 'https://p5js.org/'],
+
+  // GIS
+  ['mapbox-gl', 'Mapbox GL JS', '地图库', '基于 WebGL 的矢量地图渲染库。', 'https://docs.mapbox.com/mapbox-gl-js/'],
+  [
+    'arcgis-js',
+    'ArcGIS Maps SDK for JavaScript',
+    '地图 SDK',
+    'Esri 的地图展示与地理分析 SDK。',
+    'https://developers.arcgis.com/javascript/latest/',
+    'ArcGIS JS API',
+  ],
+  [
+    'google-maps',
+    'Google Maps JavaScript API',
+    '地图 SDK',
+    'Google 地图展示与位置服务 API。',
+    'https://developers.google.com/maps/documentation/javascript',
+    'Google Maps',
+  ],
+  [
+    'deck-gl',
+    'deck.gl',
+    '可视化框架',
+    '基于 WebGL 的大规模地理与数据可视化框架。',
+    'https://deck.gl/',
+    'deckgl',
+  ],
+
+  // 音视频与协同
+  ['hlsjs', 'HLS.js', '播放库', '在浏览器中通过 Media Source Extensions 播放 HLS。', 'https://github.com/video-dev/hls.js/'],
+  ['videojs', 'Video.js', '播放器', '可扩展的 HTML5 视频播放器。', 'https://videojs.com/'],
+  ['webcodecs', 'WebCodecs', 'Web API', '暴露音视频编解码能力的 Web API。', 'https://developer.mozilla.org/en-US/docs/Web/API/WebCodecs_API'],
+  ['webaudio', 'Web Audio API', 'Web API', '在浏览器中处理与合成音频。', 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API'],
+  ['ffmpeg-wasm', 'FFmpeg.wasm', '工具', '在浏览器中运行 FFmpeg 的 WebAssembly 版本。', 'https://ffmpegwasm.netlify.app/'],
+  ['yjs', 'Yjs', '协同数据框架', '基于 CRDT 的实时协同数据框架。', 'https://yjs.dev/'],
+  ['automerge', 'Automerge', 'CRDT 库', '支持离线协作与合并的 CRDT 库。', 'https://automerge.org/'],
+
+  // Web 基础
+  [
+    'web-components',
+    'Web Components',
+    'Web 标准',
+    '通过自定义元素、Shadow DOM 与模板封装可复用组件。',
+    'https://developer.mozilla.org/en-US/docs/Web/API/Web_Components',
+  ],
+  ['webassembly', 'WebAssembly', '标准', '可在浏览器等环境运行的二进制指令格式。', 'https://webassembly.org/', 'WASM'],
+
+  // 客户端通信
+  ['axios', 'Axios', 'HTTP 客户端', '基于 Promise 的 HTTP 客户端。', 'https://axios-http.com/'],
+  ['tanstack-query', 'TanStack Query', '数据请求库', '管理异步数据获取、缓存与同步。', 'https://tanstack.com/query', 'React Query'],
+  ['swr', 'SWR', '数据请求库', '基于 stale-while-revalidate 的 React 数据获取库。', 'https://swr.vercel.app/'],
+  ['websocket', 'WebSocket', '协议 / Web API', '提供全双工客户端与服务端通信。', 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API'],
+  ['sse', 'Server-Sent Events', 'Web API', '由服务端向客户端推送事件流。', 'https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events', 'SSE'],
+  ['socketio', 'Socket.IO', '实时通信库', '提供事件式双向通信与连接降级机制。', 'https://socket.io/'],
+  ['trpc', 'tRPC', 'RPC 框架', '在 TypeScript 客户端与服务端之间共享类型定义的 RPC 框架。', 'https://trpc.io/'],
+
+  // 客户端存储与离线
+  ['localstorage', 'localStorage', 'Web API', '浏览器提供的同步键值存储。', 'https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage'],
+  ['cache-api', 'Cache API', 'Web API', '以 Request / Response 缓存资源供离线使用。', 'https://developer.mozilla.org/en-US/docs/Web/API/Cache'],
+  ['dexie', 'Dexie.js', '本地数据库', '简化 IndexedDB 使用的 JavaScript 封装。', 'https://dexie.org/', 'Dexie'],
+  ['sqlite-wasm', 'SQLite WASM', '本地数据库', '在浏览器中运行的 SQLite WebAssembly 构建。', 'https://sqlite.org/wasm/doc/trunk/index.md'],
+  ['service-worker', 'Service Worker', 'Web API', '在浏览器后台拦截请求并支持离线能力。', 'https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API'],
+  ['workbox', 'Workbox', '离线工具', '用于生成 Service Worker 缓存策略的工具库。', 'https://developer.chrome.com/docs/workbox'],
+  ['pwa', 'PWA', '应用模式', '具备离线、可安装与推送等能力的 Web 应用。', 'https://web.dev/explore/progressive-web-apps'],
+
+  // 后端框架与服务协作
+  ['express', 'Express', '框架', 'Node.js 的轻量 Web 应用框架。', 'https://expressjs.com/'],
+  ['fastify', 'Fastify', '框架', '高性能 Node.js Web 框架。', 'https://fastify.dev/'],
+  ['django', 'Django', '框架', 'Python 的全栈 Web 框架。', 'https://www.djangoproject.com/'],
+  ['flask', 'Flask', '框架', 'Python 的轻量 Web 框架。', 'https://flask.palletsprojects.com/'],
+  ['gin', 'Gin', '框架', 'Go 的 HTTP Web 框架。', 'https://gin-gonic.com/'],
+  ['nats', 'NATS', '消息系统', '轻量高性能的消息与流系统。', 'https://nats.io/'],
+  ['celery', 'Celery', '任务队列', 'Python 的分布式任务队列。', 'https://docs.celeryq.dev/'],
+  ['temporal', 'Temporal', '工作流引擎', '持久化执行的分布式工作流平台。', 'https://temporal.io/'],
+  ['drizzle', 'Drizzle ORM', 'ORM', 'TypeScript 优先的 SQL ORM。', 'https://orm.drizzle.team/'],
+  ['sqlalchemy', 'SQLAlchemy', 'ORM', 'Python 的 SQL 工具包与 ORM。', 'https://www.sqlalchemy.org/'],
+  ['hibernate', 'Hibernate ORM', 'ORM', 'Java 的 ORM 与持久化框架。', 'https://hibernate.org/orm/'],
+
+  // 数据与存储
+  ['mariadb', 'MariaDB', '数据库', 'MySQL 分支的关系型数据库。', 'https://mariadb.org/'],
+  ['cockroachdb', 'CockroachDB', '数据库', '分布式 SQL 数据库。', 'https://www.cockroachlabs.com/docs/'],
+  ['tidb', 'TiDB', '数据库', '分布式 HTAP SQL 数据库。', 'https://www.pingcap.com/tidb/'],
+  ['etcd', 'etcd', '键值存储', '分布式一致性键值存储。', 'https://etcd.io/'],
+  ['couchdb', 'CouchDB', '数据库', '面向文档与离线同步的数据库。', 'https://couchdb.apache.org/'],
+  ['scylladb', 'ScyllaDB', '数据库', '兼容 Cassandra 的高吞吐宽列数据库。', 'https://www.scylladb.com/'],
+  ['arangodb', 'ArangoDB', '数据库', '支持文档、键值与图的多模型数据库。', 'https://arangodb.com/'],
+  ['influxdb', 'InfluxDB', '时序数据库', '面向时序数据的数据库。', 'https://www.influxdata.com/'],
+  ['milvus', 'Milvus', '向量数据库', '面向向量相似度检索的数据库。', 'https://milvus.io/'],
+  ['qdrant', 'Qdrant', '向量数据库', '向量相似度搜索引擎。', 'https://qdrant.tech/'],
+  ['opensearch', 'OpenSearch', '搜索', 'Elasticsearch 分支的搜索与分析套件。', 'https://opensearch.org/'],
+  ['meilisearch', 'Meilisearch', '搜索', '轻量快速的搜索引擎。', 'https://www.meilisearch.com/'],
+  ['ceph', 'Ceph', '对象存储', '提供对象、块与文件存储的分布式存储系统。', 'https://ceph.io/'],
+  ['flink', 'Apache Flink', '流处理', '有状态流处理引擎。', 'https://flink.apache.org/'],
+  ['postgis', 'PostGIS', '空间数据库扩展', '为 PostgreSQL 增加空间数据类型与查询。', 'https://postgis.net/'],
+
+  // 语言与运行时
+  ['deno', 'Deno', '运行时', '基于 V8 的 JavaScript / TypeScript 运行时。', 'https://deno.com/'],
+  ['bun', 'Bun', '运行时', '集成包管理、打包与测试的 JavaScript 运行时。', 'https://bun.sh/'],
+  ['go', 'Go', '语言', '面向并发与系统编程的编程语言。', 'https://go.dev/', 'Golang'],
+  ['rust', 'Rust', '语言', '注重内存安全与性能的系统编程语言。', 'https://www.rust-lang.org/'],
+  ['java', 'Java', '语言', '运行于 JVM 的面向对象编程语言。', 'https://dev.java/'],
+  ['csharp', 'C#', '语言', '.NET 平台的编程语言。', 'https://learn.microsoft.com/dotnet/csharp/', 'CSharp'],
+
+  // 工程与交付
+  ['npm', 'npm', '包管理器', 'Node.js 的包管理器。', 'https://www.npmjs.com/'],
+  ['pnpm', 'pnpm', '包管理器', '高效磁盘利用的 Node.js 包管理器。', 'https://pnpm.io/'],
+  ['yarn', 'Yarn', '包管理器', 'JavaScript 包管理器。', 'https://yarnpkg.com/'],
+  ['webpack', 'webpack', '构建工具', 'JavaScript 应用打包工具。', 'https://webpack.js.org/'],
+  ['esbuild', 'esbuild', '构建工具', '高性能 JavaScript / TypeScript 打包器。', 'https://esbuild.github.io/'],
+  ['rollup', 'Rollup', '构建工具', 'JavaScript 模块打包器。', 'https://rollupjs.org/'],
+  ['turborepo', 'Turborepo', '单仓工具', '面向 JavaScript / TypeScript 的单仓构建系统。', 'https://turbo.build/repo', 'Turbo'],
+  ['nx', 'Nx', '单仓工具', '支持多语言与缓存的单仓构建系统。', 'https://nx.dev/'],
+  ['eslint', 'ESLint', '代码检查', 'JavaScript / TypeScript 静态检查工具。', 'https://eslint.org/'],
+  ['prettier', 'Prettier', '格式化', '代码格式化工具。', 'https://prettier.io/'],
+  ['jest', 'Jest', '测试框架', 'JavaScript 测试框架。', 'https://jestjs.io/'],
+  ['playwright', 'Playwright', '测试框架', '跨浏览器端到端测试框架。', 'https://playwright.dev/'],
+  ['testing-library', 'Testing Library', '测试库', '面向用户行为的 UI 测试工具。', 'https://testing-library.com/'],
+  ['storybook', 'Storybook', '组件工作台', '开发、测试与文档化 UI 组件。', 'https://storybook.js.org/'],
+  ['github-actions', 'GitHub Actions', 'CI/CD', 'GitHub 的自动化工作流服务。', 'https://github.com/features/actions'],
+  ['terraform', 'Terraform', 'IaC', '声明式基础设施编排工具。', 'https://developer.hashicorp.com/terraform'],
+  ['ansible', 'Ansible', '配置管理', '基于无代理的配置管理与自动化工具。', 'https://www.ansible.com/'],
+  ['git', 'Git', '版本控制', '分布式版本控制系统。', 'https://git-scm.com/'],
+
+  // 接入与流量
+  ['traefik', 'Traefik', '代理', '面向容器与云原生的反向代理与负载均衡器。', 'https://traefik.io/'],
+  ['haproxy', 'HAProxy', '代理', '高可用负载均衡与代理。', 'https://www.haproxy.org/'],
+  ['caddy', 'Caddy', '代理', '自动 HTTPS 的 Web 服务器与反向代理。', 'https://caddyserver.com/'],
+
+  // 微服务与服务治理
+  ['istio', 'Istio', '服务网格', '提供服务间流量、安全与可观测能力。', 'https://istio.io/'],
+  ['linkerd', 'Linkerd', '服务网格', '轻量级 Kubernetes 服务网格。', 'https://linkerd.io/'],
+
+  // 基础设施
+  ['gpu', 'GPU', '硬件', '面向并行计算与图形渲染的处理器。', 'https://www.nvidia.com/en-us/data-center/gpu/'],
+  ['hdd', 'HDD', '硬件', '使用磁盘介质保存数据的机械硬盘。', 'https://www.seagate.com/products/hard-drives/'],
+
+  // 可观测性
+  ['loki', 'Grafana Loki', '日志', '面向日志的横向可扩展存储与查询系统。', 'https://grafana.com/oss/loki/'],
+  ['jaeger', 'Jaeger', '链路追踪', '分布式追踪系统。', 'https://www.jaegertracing.io/'],
+  ['sentry', 'Sentry', '错误监控', '应用错误与性能监控平台。', 'https://sentry.io/'],
+
+  // 安全
+  ['oidc', 'OpenID Connect', '协议', '基于 OAuth 2.0 的身份认证协议。', 'https://openid.net/connect/', 'OIDC'],
+  ['keycloak', 'Keycloak', '身份平台', '开源身份与访问管理平台。', 'https://www.keycloak.org/'],
+  ['opa', 'Open Policy Agent', '策略引擎', '通用策略决策引擎。', 'https://www.openpolicyagent.org/', 'OPA'],
+  ['trivy', 'Trivy', '安全扫描', '容器、代码与依赖漏洞扫描工具。', 'https://trivy.dev/'],
+  ['snyk', 'Snyk', '安全扫描', '依赖与代码安全扫描平台。', 'https://snyk.io/'],
+  ['zap', 'OWASP ZAP', '安全测试', 'Web 应用安全扫描与渗透测试工具。', 'https://www.zaproxy.org/', 'ZAP'],
+  ['csp', 'CSP', 'Web 安全', '限制页面可加载资源的内容安全策略。', 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP'],
+  ['cors', 'CORS', 'Web 标准', '控制跨源请求访问的浏览器机制。', 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS'],
+  ['sigstore', 'Sigstore', '供应链安全', '软件签名与验证工具链。', 'https://www.sigstore.dev/'],
+  ['jwt', 'JWT', '令牌标准', '以 JSON 声明传递身份与授权信息。', 'https://www.rfc-editor.org/rfc/rfc7519'],
 ]
 export const entities: TechEntity[] = rows.map(([id, name, kind, summary, url, aliases]) => ({
   id,
@@ -259,4 +535,6 @@ export const entities: TechEntity[] = rows.map(([id, name, kind, summary, url, a
 // checkedAt 只记录实际核验日期，其余来源保留待核验，避免伪造核验记录。
 for (const entity of entities) {
   if (['docker', 'kubernetes', 'sqlite', 'd3'].includes(entity.id)) entity.sources[0].checkedAt = '2026-11-04'
+  if (['amap', 'baidu-map'].includes(entity.id)) entity.sources[0].checkedAt = '2026-11-05'
+  if (entity.id === 'livekit') entity.sources[0].checkedAt = '2026-11-06'
 }
