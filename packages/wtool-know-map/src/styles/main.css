@@ -1,0 +1,38 @@
+:root {
+  font-family: Inter, 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  color: #293e32;
+  background: #f7f8f4;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --page: #f7f8f4;
+  --ink: #293e32;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input {
+  font: inherit;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #315f47;
+  outline-offset: 3px;
+}
+.page {
+  padding: 0 16px;
+  max-width: 1920px;
+  margin: auto;
+}
+::selection {
+  background: #bed7c3;
+}
+@media (max-width: 600px) {
+  .page {
+    padding: 0 8px;
+  }
+}
