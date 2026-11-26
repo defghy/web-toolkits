@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">WTool Health</string>
+    <string name="title_activity_main">WTool Health</string>
+    <string name="package_name">com.defghy.wtoolhealth</string>
+    <string name="custom_url_scheme">com.defghy.wtoolhealth</string>
+</resources>
