@@ -27,7 +27,9 @@ pnpm --filter @yuhufe/know-map build
 
 ## 数据与代码
 
-当前包含 238 个技术实体、385 个展示入口和 11 条带场景关系。职责顺序和分类层次沿用知识数据；用户界面、客户端应用架构、客户端通信与存储、缓存与数据库等是不同分类，共享技术可以有多个独立入口。
+当前包含 267 个技术实体、440 个展示入口和 11 条带场景关系。职责顺序和分类层次沿用知识数据；用户界面、客户端应用架构、客户端通信与存储、缓存与数据库等是不同分类，共享技术可以有多个独立入口。
+
+“跨层支撑 → 工程与交付 → 包管理”按“语言与项目依赖”和“系统软件与应用”分类，覆盖 JavaScript、Java/Kotlin、Swift/iOS、Python、Go、Rust、.NET、PHP、Ruby、Dart/Flutter、C/C++，以及 Linux 各主要发行版、macOS 和 Windows。简介区分项目依赖与系统软件、APT/dpkg 与 DNF/RPM 的职责；Maven、Gradle、Cargo 还提供构建工具入口。
 
 服务网格归在“后端与服务 → 服务协作 → 微服务 → 服务治理”下，标记为可选方案；它用于治理服务间通信，不是每个系统都必须具备的固定层级。
 
@@ -42,7 +44,7 @@ pnpm --filter @yuhufe/know-map build
 
 无需图形引擎、SVG 矩形布局、尺寸观察或聚焦历史。新增数据后运行 `pnpm --filter @yuhufe/know-map validate:data`，检查 ID、引用、树无环、分类覆盖与关系端点。
 
-所有实体附官方资料链接。`checkedAt` 仅填写实际核验日期：D3、SQLite、Docker、Kubernetes 已核验，其余空日期条目待逐项复核。
+所有实体附官方资料链接。`checkedAt` 仅填写实际核验日期，空日期条目待逐项记录核验。
 
 ## 浏览器验证
 

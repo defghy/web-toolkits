@@ -11,11 +11,11 @@ function group(
   entries.push({ id, parentId, label, kind, order: entries.length, ...extra })
   return id
 }
-function techs(parentId: string, ids: string[]) {
+function techs(parentId: string, ids: string[], idPrefix = parentId) {
   for (const entityId of ids) {
     const entity = entities.find(e => e.id === entityId)!
     entries.push({
-      id: `${parentId}/${entityId}`,
+      id: `${idPrefix}/${entityId}`,
       parentId,
       label: entity.name,
       kind: 'technology',
@@ -248,12 +248,69 @@ domain('support', '跨层支撑', { classificationBasis: '支持多个职责的�
 group('engineering', 'support', '工程与交付')
 group('vcs', 'engineering', '版本控制')
 techs('vcs', ['git'])
-group('package-manager', 'engineering', '包管理')
-techs('package-manager', ['npm', 'pnpm', 'yarn'])
+group('package-manager', 'engineering', '包管理', 'function', {
+  classificationBasis: '按管理对象区分项目依赖与系统软件，再按语言生态或操作系统分类；同一工具可能同时负责构建、环境管理等工作。',
+})
+group('project-packages', 'package-manager', '语言与项目依赖', 'dimension', {
+  classificationBasis: '管理项目使用的库、模块及其版本；语言与平台并非一一对应，例如 Kotlin 与 Java 共享部分工具链。',
+})
+group('package-js', 'project-packages', 'JavaScript / TypeScript', 'function', {
+  classificationBasis: '用于 Web 前端、Node.js 后端和 JavaScript 工具开发等场景。',
+})
+// 保留既有入口 ID，兼容已保存的技术详情链接。
+techs('package-js', ['npm', 'pnpm', 'yarn'], 'package-manager')
+techs('package-js', ['bun'])
+group('package-jvm', 'project-packages', 'Java / Kotlin / Android', 'function', {
+  classificationBasis: 'Java 与 Kotlin/JVM 可使用 Maven 或 Gradle；Android 与 Kotlin 多平台项目常用 Gradle。',
+})
+techs('package-jvm', ['maven', 'gradle'])
+group('package-apple', 'project-packages', 'Swift / Objective-C / iOS')
+techs('package-apple', ['swift-package-manager', 'cocoapods'])
+group('package-python', 'project-packages', 'Python', 'function', {
+  classificationBasis: '覆盖包安装、项目依赖与虚拟环境；Conda 还管理原生依赖及其他语言的软件包。',
+})
+techs('package-python', ['pip', 'uv', 'poetry', 'conda'])
+group('package-go', 'project-packages', 'Go')
+techs('package-go', ['go-modules'])
+group('package-rust', 'project-packages', 'Rust')
+techs('package-rust', ['cargo'])
+group('package-dotnet', 'project-packages', '.NET / C#')
+techs('package-dotnet', ['nuget'])
+group('package-php', 'project-packages', 'PHP')
+techs('package-php', ['composer'])
+group('package-ruby', 'project-packages', 'Ruby')
+techs('package-ruby', ['rubygems', 'bundler'])
+group('package-dart', 'project-packages', 'Dart / Flutter')
+techs('package-dart', ['pub'])
+group('package-cpp', 'project-packages', 'C / C++')
+techs('package-cpp', ['conan', 'vcpkg'])
+group('system-packages', 'package-manager', '系统软件与应用', 'dimension', {
+  classificationBasis: '管理操作系统中的软件、命令行工具和应用；Linux 发行版的原生包管理与跨发行版应用分发分别列出。',
+})
+group('package-debian', 'system-packages', 'Linux · Debian / Ubuntu', 'function', {
+  classificationBasis: 'APT 处理仓库与依赖解析，dpkg 执行底层 .deb 包操作，两者属于同一套工具链。',
+})
+techs('package-debian', ['apt', 'dpkg'])
+group('package-rpm', 'system-packages', 'Linux · Fedora / RHEL', 'function', {
+  classificationBasis: 'DNF 处理仓库与依赖解析，RPM 提供底层包管理；RPM 也用于 openSUSE 等发行版。',
+})
+techs('package-rpm', ['dnf', 'rpm'])
+group('package-arch', 'system-packages', 'Linux · Arch Linux')
+techs('package-arch', ['pacman'])
+group('package-alpine', 'system-packages', 'Linux · Alpine Linux')
+techs('package-alpine', ['apk'])
+group('package-suse', 'system-packages', 'Linux · openSUSE / SUSE')
+techs('package-suse', ['zypper'])
+group('package-linux-apps', 'system-packages', 'Linux · 跨发行版应用分发')
+techs('package-linux-apps', ['flatpak', 'snap'])
+group('package-homebrew', 'system-packages', 'macOS / Linux')
+techs('package-homebrew', ['homebrew'])
+group('package-windows', 'system-packages', 'Windows')
+techs('package-windows', ['winget', 'chocolatey'])
 group('build', 'engineering', '构建工具')
-techs('build', ['vite', 'webpack', 'esbuild', 'rollup'])
-group('monorepo', 'engineering', '单仓管理')
-techs('monorepo', ['turborepo', 'nx'])
+techs('build', ['vite', 'webpack', 'esbuild', 'rollup', 'maven', 'gradle', 'cargo'])
+group('monorepo', 'engineering', '单仓管理（monorepo）')
+techs('monorepo', ['pnpm-workspace', 'nx'])
 group('code-quality', 'engineering', '代码质量')
 techs('code-quality', ['eslint', 'prettier'])
 group('testing', 'engineering', '测试')
