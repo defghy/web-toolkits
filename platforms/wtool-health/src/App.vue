@@ -1,3 +1,10 @@
+<template>
+  <main>
+    <h1>helloworld</h1>
+  </main>
+</template>
+
+<style>
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
@@ -14,3 +21,4 @@ h1 {
   margin: 0;
   font-size: 2rem;
 }
+</style>
