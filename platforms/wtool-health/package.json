@@ -9,7 +9,8 @@
     "vite": "vite",
     "build": "vite build --base ./",
     "preview": "vite preview",
-    "android": "pnpm build && cap run android"
+    "android": "pnpm build && cap run android",
+    "connDevice": "node scripts/connect-device.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.0",
